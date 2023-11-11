@@ -60,4 +60,4 @@ __Recordar:__
 - Si aparecen conflictos deben tomar captura de los mismos y resguardarlos en un archivo PDF como muestra y explicación de la resolución del mismo. Debe presentarse al menos 1.
 
 
-![Pdf_TpIntegrador](https://drive.google.com/drive/folders/1JaQ5PFQeSZZ0vj__ijJCkcTH4cjd09-P)
+[Pdf_TpIntegrador](https://drive.google.com/drive/folders/1JaQ5PFQeSZZ0vj__ijJCkcTH4cjd09-P)
