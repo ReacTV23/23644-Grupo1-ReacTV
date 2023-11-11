@@ -58,3 +58,6 @@ __Recordar:__
 - El día (a confirmar) se realizará una charla expositiva de cada TP por los integrantes del grupo hacia el resto de compañeros.
 - Todos deben participar y debe tener al menos 5 commits, recordar el trabajo de grupo en ramas y la línea de producción final.
 - Si aparecen conflictos deben tomar captura de los mismos y resguardarlos en un archivo PDF como muestra y explicación de la resolución del mismo. Debe presentarse al menos 1.
+
+
+![Pdf_TpIntegrador](https://drive.google.com/drive/folders/1JaQ5PFQeSZZ0vj__ijJCkcTH4cjd09-P)
