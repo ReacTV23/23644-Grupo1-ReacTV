@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# **ReacTV**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## _OBJETIVO_
+Integrar todos los contenidos vistos en una interfaz, prototipo y diseño web funcional.
 
-## Available Scripts
+### _CONSIGNAS_
+Desarrollar una aplicación web completa en React con JavaScript. La misma podrá ser un formato establecido como Humaya sobre un producto o servicio o bien un Netflix con el uso de la API TMDB. Esta aplicación deberá ser de arquitectura distribuida, sectorizada, comentada y contener un diseño de interfaz (front end) que muestre la información, una base de datos que almacene algún dato del sitio y debe contar con al menos una API. La idea es que, además de servirte para aplicar lo aprendido, pueda ser publicada en la red de codo a codo a modo de portfolio y usarlo como carta de presentación en el mercado laboral. El sitio debe contener todos los temas vistos durante la cursada incorporados y tener partes editables, tales como un favorito, login, etc.
 
-In the project directory, you can run:
+### __TIEMPO DE ENTREGA Y FORMA__
+La fecha límite de entrega del trabajo es la fecha de cierre del curso. El proyecto integrador está diseñado para el trabajo en grupo, lo cual requiere que cada integrante del grupo disponga tiempo para el trabajo con sus compañeros, coordinándose por cualquier canal, implementando el uso de Git, Github. Pueden compartir con el resto de los grupos sus inquietudes en los foros o grupo de Whatsapp e ir creciendo con la interacción al compartir sus resultados o consultas.
 
-### `npm start`
+- **Primera fecha de entrega:** 10/11/2023
+- **Segunda fecha de entrega:** 06/12/2023
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+La entrega del trabajo debe realizarse de la siguiente manera:
+- Repositorio con el nombre: comisión-número de grupo-nombre del proyecto
+- Link del proyecto alojado en algún prestador gratuito como Netlify, webhost, etc.
+- PDF con la información del diseño de interfaz, prototipado y explicación de las partes del sitios diseñadas, alojado en un link.
+- Se debe completar los datos en el cuadro de grupos con la información pedida para la entrega.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### __CONTENIDOS OBLIGATORIOS__
+Los siguientes contenidos deben estar incluidos en el TP y serán evaluados por su incorporación:
 
-### `npm test`
+- Variables `let`
+- Estructuras de control (`if - while - do-while`)
+- Bucles (`for`, `forEach`, `map`)
+- Arrays en React
+- Manipulación del DOM por medio de componentes/React renderizados
+- Eventos en React
+- Componentes con props
+- Hooks (`useState - useEffect - useContext` - pueden usar otros)
+- Asincronismo (`fetch - async await - axios`)
+- APIs
+- Base de datos no relacional (Firebase(preferencia) - Mongo)
+- Bootstrap 5
+- Html2canvas
+- Librerías externas vistas como `animate.css` / `sweetalert2` / `slick` etc.
+- Paginado del contenido
+- React Router
+- Codificación en HTML, JS y JSX (proyecto hecho en React)
+- Librerías exclusivas de React
+- Formulario de contacto
+- Login simple acorde al sitio.
+- Galería de imágenes interactiva
+- Sitio web sectorizado, comentado, organizado y acorde al diseño presentado en el PDF en cuanto a su estructura y funcionabilidad.
+- Implementación de teoría del color/psicología del color/diseño responsive/ diseño de accesibilidad/ diseño de interfaces.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El grupo debe elegir el tema e informarlo, una vez elegido no se podrá modificar. Es sumamente importante antes de comenzar a codear el hacer un boceto digital o en papel para plasmar las ideas sobre el diseño y evitar tener que hacerlo en forma improvisada.
 
-### `npm run build`
+### __DOCUMENTACIÓN__
+Deberán desarrollar la documentación correspondiente en un archivo PDF explicando las cosas usadas para cada sector de la web. Dejando las capturas de pantalla de las modificaciones y partes agregadas, las funciones usadas, declaraciones de variables y todo lo necesario para armar un detalle del trabajo realizado. Tener en cuenta colocar comentarios bandera que den pie al documento de la elaboración del trabajo y ayuden a comprender la lógica usada para el diseño.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+__Recordar:__
+- El sitio tiene que tener alguna parte editable por el usuario, por ejemplo, agregar o quitar de favoritos, agregar a alguna lista de pendiente, carrito, etc.
+- Las partes del lado del usuario deben ser renderizadas sin que el sitio recargue.
+- Dentro del código debe estar todo correctamente comentado y distribuido para el mejor trabajo grupal y posterior corrección.
+- No incorporar cosas que no se dominan en el general del grupo, y de ser así deben ser explicadas para todos sus compañeros para que todos tengan conocimiento del contenido.
+- El día (a confirmar) se realizará una charla expositiva de cada TP por los integrantes del grupo hacia el resto de compañeros.
+- Todos deben participar y debe tener al menos 5 commits, recordar el trabajo de grupo en ramas y la línea de producción final.
+- Si aparecen conflictos deben tomar captura de los mismos y resguardarlos en un archivo PDF como muestra y explicación de la resolución del mismo. Debe presentarse al menos 1.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Pdf_TpIntegrador](https://drive.google.com/drive/folders/1JaQ5PFQeSZZ0vj__ijJCkcTH4cjd09-P)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
