@@ -43,3 +43,71 @@ footer {
     font-size: 24px; /* Tamaño de fuente para el ícono */
   }
   
+  /* Estilos para pantallas más grandes (mayores a 360px) */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.left,
+.right {
+  margin: 0 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.left a {
+  color: #2F67BB;
+  font-size: 24px;
+}
+
+button {
+  background-color: #E08400;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+p {
+  color: #003686;
+  font-size: 14px;
+}
+
+.right a {
+  color: #E0A24A;
+  font-size: 24px;
+}
+
+/* Media query para pantallas más pequeñas (hasta 360px) */
+@media (max-width: 360px) {
+  footer {
+    flex-direction: column; /* Cambia la dirección de la flexbox a columna */
+    align-items: stretch; /* Estira los elementos para llenar el ancho */
+  }
+
+  .left,
+  .right {
+    margin: 10px 0; /* Añade espacio entre los elementos */
+  }
+
+  .left a,
+  .right a {
+    font-size: 18px; /* Reduce el tamaño de fuente para iconos en pantallas pequeñas */
+  }
+
+  button {
+    width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+    margin-top: 10px; /* Añade espacio entre el botón y el texto */
+  }
+
+  p {
+    font-size: 12px; /* Reduce el tamaño de fuente para el texto */
+  }
+}
