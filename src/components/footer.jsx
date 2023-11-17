@@ -27,10 +27,10 @@ function Footer() {
     <footer>
       <div>
         {/* Información de Contacto */}
-        <p>Contáctanos: info@example.com</p>
+        <p>Contáctanos: reactv.stream@gmail.com</p>
         
         {/* Uso de Bootstrap 5 */}
-        <p className="text-muted">&copy; 2023 {companyName}. Todos los derechos reservados.</p>
+        <p className="text-muted">&copy; 2023 {"Reactv.stream"}. Todos los derechos reservados.</p>
       </div>
 
       <div>
