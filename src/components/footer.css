@@ -1,0 +1,45 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .left,
+  .right {
+    margin: 0 10px;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
+  /* Estilos para el ícono de GitHub */
+  .left a {
+    color: #2F67BB; /* Color azul */
+    font-size: 24px; /* Tamaño de fuente para el ícono */
+  }
+  
+  /* Estilos para el botón "Team" */
+  button {
+    background-color: #E08400; /* Color naranja */
+    color: #fff; /* Texto blanco */
+    font-size: 16px; /* Tamaño de fuente para el botón */
+    font-weight: 600; /* Bold */
+    padding: 8px 16px; /* Ajuste de relleno */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero al pasar el ratón */
+  }
+  
+  /* Estilos para el texto "CaC - React 2023" */
+  p {
+    color: #003686; /* Color azul oscuro */
+    font-size: 14px; /* Tamaño de fuente para el texto */
+  }
+  
+  /* Estilos para el ícono de Figma */
+  .right a {
+    color: #E0A24A; /* Color amarillo-naranja */
+    font-size: 24px; /* Tamaño de fuente para el ícono */
+  }
+  

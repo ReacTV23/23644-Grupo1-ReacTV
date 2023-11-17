@@ -1,51 +1,43 @@
 import React from 'react';
+import './footer.css'; // Importa los estilos CSS
+import { FaGithub, FaFigma } from 'react-icons/fa'; // Importa los íconos necesarios
 
+/**
+ * Componente Footer.
+ * @component
+ * @return {JSX.Element} Elemento JSX que representa el footer.
+ */
 function Footer() {
-  // Variables let
-  let companyName = "Tu Empresa";
-
-  // Arrays en React
-  let redesSociales = [
-    { nombre: 'Twitter', enlace: 'https://twitter.com/tu_cuenta' },
-    { nombre: 'Facebook', enlace: 'https://www.facebook.com/tu_cuenta' },
-  ];
-
-  // Componentes con props
-  const RedesSociales = ({ redes }) => (
-    <ul>
-      {redes.map(red => (
-        <li key={red.nombre}>
-          <a href={red.enlace} target="_blank" rel="noopener noreferrer">
-            {red.nombre}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-
   return (
     <footer>
-      <div>
-        {/* Información de Contacto */}
-        <p>Contáctanos: reactv.stream@gmail.com</p>
-        
-        {/* Uso de Bootstrap 5 */}
-        <p className="text-muted">&copy; 2023 {"Reactv.stream"}. Todos los derechos reservados.</p>
+      {/* Sección izquierda con el ícono de GitHub */}
+      <div className="left">
+        {/* Enlace a GitHub */}
+        <a
+          href="https://github.com/tu_usuario_en_github"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* Ícono de GitHub */}
+          <FaGithub />
+        </a>
       </div>
 
-      <div>
-        {/* Enlaces de Ayuda y Preguntas Frecuentes */}
-        <p><a href="/ayuda">Centro de Ayuda</a></p>
-        <p><a href="/preguntas-frecuentes">Preguntas Frecuentes</a></p>
-
-        {/* Información Legal */}
-        <p><a href="/terminos-y-condiciones">Términos y Condiciones</a></p>
-        <p><a href="/politica-de-privacidad">Política de Privacidad</a></p>
+      {/* Sección central con el botón "Team" y el texto "CaC - React 2023" */}
+      <div className="center">
+        {/* Botón "Team" */}
+        <button>Team</button>
+        {/* Texto "CaC - React 2023" */}
+        <p>CaC - React 2023</p>
       </div>
 
-      <div>
-        {/* Componente con props */}
-        <RedesSociales redes={redesSociales} />
+      {/* Sección derecha con el ícono de Figma */}
+      <div className="right">
+        {/* Enlace a Figma */}
+        <a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">
+          {/* Ícono de Figma */}
+          <FaFigma />
+        </a>
       </div>
     </footer>
   );
