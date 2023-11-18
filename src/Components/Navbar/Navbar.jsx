@@ -10,7 +10,7 @@ const Navbar = () => {
         {/* Sección del logo (a la izquierda) */}
         <Typography variant="h6" component="div">
           <img
-            src="tu_logo.png"
+            src="/assets/img/imagen/logo-reactv.png"
             alt="Logo"
             style={{ height: '40px', marginRight: '16px' }}
           />
