@@ -6,15 +6,13 @@
     padding: 5px;
     margin-top: 20px;
     display: inline-block;
-    border: 2px solid  rgb(238, 169, 232);
     border-radius: 20px;
 }
 
 .Guest .text-wrapper h1 {
 
-    color: blue;
+    color: #E08400;
     display: inline-block;
-    background-color:  rgb(238, 169, 232);
     padding: 10px 20px;
     border-radius: 20px;
 }
