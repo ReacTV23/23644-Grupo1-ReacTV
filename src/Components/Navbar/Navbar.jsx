@@ -17,16 +17,16 @@ const Navbar = () => {
         </Typography>
 
         {/* Sección de la barra de búsqueda (en el centro) */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <IconButton color="inherit" size="large">
-            <SearchIcon />
-          </IconButton>
-          <InputBase
-            placeholder="Buscar..."
-            inputProps={{ 'aria-label': 'buscar' }}
-            style={{ width: '120px', color: 'white' }}
-          />
-        </div>
+        <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px' }}>
+        <IconButton color="primary" size="large">
+          <SearchIcon />
+        </IconButton>
+        <InputBase
+          placeholder="Buscar..."
+          inputProps={{ 'aria-label': 'buscar' }}
+          style={{ width: '120px', color: 'black' }}
+        />
+      </div>
 
         {/* Sección del botón de inicio de sesión (a la derecha) */}
         <Button color="inherit" size="large" startIcon={<AccountCircle />} sx={{ color: '#E08400' }}>
