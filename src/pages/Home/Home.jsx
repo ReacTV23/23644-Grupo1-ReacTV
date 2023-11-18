@@ -7,6 +7,7 @@ import './Home.css'
 const Home = () => {
   const [mostrarDescripcion, setMostrarDescripcion] = useState(false);
   const [botonClicado, setBotonClicado] = useState('');
+  const [isAuth, setIsAuth] = useState(false);
 
   const handleDescripcion = (textoBoton) => {
     setBotonClicado(textoBoton);
@@ -29,8 +30,9 @@ const Home = () => {
     )
   }
 
-  return (
-    <LayoutMain>
+  const MainInvitado = () => {
+    return (
+      <LayoutMain>
       {/* <Banner/> */}
       {!mostrarDescripcion &&
       <ButtonGroup className='GrupoBoton'>
@@ -42,6 +44,32 @@ const Home = () => {
       </ButtonGroup> } 
       {mostrarDescripcion && (<Descripcion/>)}
       </LayoutMain>
+    )
+  }
+
+  const MainLogueado = () => {
+    return (
+      <LayoutMain>
+      {/* <Banner/> */}
+      {!mostrarDescripcion &&
+      <ButtonGroup className='GrupoBoton'>
+          <Boton texto={'recientes'} funcion={()=>console.log('recientes')}/>
+          <Boton texto={'categorias'} funcion={()=>console.log('categorias')}/>
+          <Boton texto={'generos'} funcion={()=>console.log('generos')}/>
+          <Boton texto={'mi lista'} funcion={()=>console.log('mi lista')}/>
+          <Boton texto={'lanzamientos'} funcion={()=>console.log('lanzamientos')}/>
+      </ButtonGroup> } 
+      {mostrarDescripcion && (<Descripcion/>)}
+      </LayoutMain>
+    )
+  }
+
+  return (
+    <>
+      {/* <Boton texto={'loguearse'} funcion={()=>setIsAuth(true)}/> */}
+      {!isAuth && <MainInvitado/>}
+      {isAuth && <MainLogueado/>}
+    </>    
   )
 }
 
