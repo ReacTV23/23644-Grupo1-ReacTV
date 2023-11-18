@@ -3,14 +3,15 @@ import '../IntroVideo.css';
 
 
 const Api = () => {
+    console.log('Api component rendered');
     return (
         <div>
             <h1>ACA EMPIEZA EL CONTENIDO</h1>
             <h2>NAVEGACION</h2>
-                <h3>RESTO DE LOS COMPONENTES</h3>
-           
+            <h3>RESTO DE LOS COMPONENTES</h3>
         </div>
     )
+
 }
 
 export default Api;
