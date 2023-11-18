@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import IntroVideo from './componentes/IntroVideo';
-import Api from './componentes/Api';
+import IntroVideo from './components/IntroVideo';
+import Api from './components/Api';
 
 function App() {
   const [showVideo, setShowVideo] = useState(true);
