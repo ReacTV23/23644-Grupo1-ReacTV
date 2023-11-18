@@ -1,0 +1,42 @@
+/* busqueda.css */
+
+/* Estilos generales para el componente de búsqueda */
+h2 {
+    color: #2F67BB;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .row-cols-2,
+  .row-cols-md-3 {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para las tarjetas de resultados */
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card img {
+    max-height: 100%;
+  }
+  
+  .card-title {
+    color: #E08400;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    color: #003686;
+  }
+  
+  /* Agrega más estilos según sea necesario */
+  
+  /* Media query para pantallas más pequeñas (si es necesario) */
+  @media (max-width: 768px) {
+    .row-cols-2,
+    .row-cols-md-3 {
+      margin-top: 10px;
+    }
+  }
+  
