@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllMovies, getGenres } from "../../services/tmdbService";
+import { getAllMoviesByGenres, getGenres } from "../../services/tmdbService";
 import MoviesByGenre from "./MovieByGenre";
 
 const Filter = () => {
@@ -19,7 +19,7 @@ const Filter = () => {
 
     const fecthAllMovies = async () => {
       try {
-        const data = await getAllMovies();
+        const data = await getAllMoviesByGenres();
         setAllMovies(data);
       } catch (error) {
         console.error(`Error al obtener las peliculas: ${error.message}`);

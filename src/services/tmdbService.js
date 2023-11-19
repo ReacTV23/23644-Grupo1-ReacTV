@@ -69,7 +69,7 @@ export const getGenres = async () => {
 };
 
 // Nueva función para obtener todas las películas con sus géneros
-export const getAllMovies = async () => {
+export const getAllMoviesByGenres = async () => {
     try {
         // Obtiene los géneros utilizando getGenres
         const genresData = await getGenres();
