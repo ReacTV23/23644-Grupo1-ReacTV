@@ -13,7 +13,7 @@ const CardSinopsis = () => {
             {/* <ButtonGroup className='GrupoBotones' aria-label="small button group">
                 <Boton Contenido={PlaylistAddCircleIcon} agregar a Mi Lista/>
                 <Boton Contenido={EventIcon} agregar a calendario/>
-                <Boton Contenido={PlayCircleIcon} reproduccir/>
+                <Boton Contenido={PlayCircleIcon} reproducir video: Visualizador/>
                 <Boton Contenido={DownloadForOfflineIcon} descargar poster/>
             </ButtonGroup>  acciones*/} 
         </LayoutSecundario>
