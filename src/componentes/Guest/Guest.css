@@ -1,0 +1,36 @@
+.Guest {
+    text-align: center;
+}
+
+.Guest .text-wrapper {
+    padding: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    border-radius: 20px;
+}
+
+.Guest .text-wrapper h1 {
+
+    color: #E08400;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.Guest .text-wrapper p {
+    font-size: large;
+    color: white    ;
+    width: 1000px;
+    padding: 10px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    text-align: left;
+}
+
+.Guest video {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
