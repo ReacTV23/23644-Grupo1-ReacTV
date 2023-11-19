@@ -1,75 +1,48 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react';
 import LayoutMain from '../../layout/LayoutMain/LayoutMain'
-import { ButtonGroup } from 'react-bootstrap';
-import Boton from '../../components/Boton'
-import './Home.css'
+import Boton from '../../components/Boton';
+import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
+import HomeMobile  from './HomeMobile/HomeMobile';
+
+import './Home.css';
 
 const Home = () => {
-  const [mostrarDescripcion, setMostrarDescripcion] = useState(false);
-  const [botonClicado, setBotonClicado] = useState('');
+
   const [isAuth, setIsAuth] = useState(false);
+  const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
-  const handleDescripcion = (textoBoton) => {
-    setBotonClicado(textoBoton);
-    setMostrarDescripcion(true);
+  useEffect(() => {
+    const handleResize = () => {
+      setAnchoVentana(window.innerWidth);
+    };
+
+    // Agregar event listener para el evento resize
+    window.addEventListener('resize', handleResize);
+
+    // Limpiar el event listener cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
+
+  const toggleAuth = () => {
+    setIsAuth((prevAuth) => !prevAuth);
   };
 
-  const handleCerrarDescripcion = () => {
-    setMostrarDescripcion(false);
+  const renderDeskoptContent = () => {
+    if (anchoVentana > 768) {
+      return isAuth ? <HomeDeskoptComponents.MainDeskoptLogueado /> : <HomeDeskoptComponents.MainDeskoptInvitado />;
+    }
+    return isAuth ? <HomeMobile.MainMobileLogueado /> : <HomeMobile.MainMobileInvitado />;
   };
 
-  const Descripcion = () => {
-    return (
-      <div className="contenedor">
-        <Boton texto={botonClicado}/>
-        <div className='descripcion'>
-          ¡La descripción está aquí!
-        </div>
-        <Boton texto={'cerrar'}funcion={handleCerrarDescripcion}/>
-      </div>
-    )
-  }
-
-  const MainInvitado = () => {
-    return (
-      <LayoutMain>
-      {/* <Banner/> */}
-      {!mostrarDescripcion &&
-      <ButtonGroup className='GrupoBoton'>
-          <Boton texto={'recientes'} funcion={()=>handleDescripcion('recientes')}/>
-          <Boton texto={'categorias'} funcion={()=>handleDescripcion('categorias')}/>
-          <Boton texto={'generos'} funcion={()=>handleDescripcion('generos')}/>
-          <Boton texto={'mi lista'} funcion={()=>handleDescripcion('mi lista')}/>
-          <Boton texto={'lanzamientos'} funcion={()=>handleDescripcion('lanzamientos')}/>
-      </ButtonGroup> } 
-      {mostrarDescripcion && (<Descripcion/>)}
-      </LayoutMain>
-    )
-  }
-
-  const MainLogueado = () => {
-    return (
-      <LayoutMain>
-      {/* <Banner/> */}
-      {!mostrarDescripcion &&
-      <ButtonGroup className='GrupoBoton'>
-          <Boton texto={'recientes'} funcion={()=>console.log('recientes')}/>
-          <Boton texto={'categorias'} funcion={()=>console.log('categorias')}/>
-          <Boton texto={'generos'} funcion={()=>console.log('generos')}/>
-          <Boton texto={'mi lista'} funcion={()=>console.log('mi lista')}/>
-          <Boton texto={'lanzamientos'} funcion={()=>console.log('lanzamientos')}/>
-      </ButtonGroup> } 
-      {mostrarDescripcion && (<Descripcion/>)}
-      </LayoutMain>
-    )
-  }
 
   return (
-    <>
-      {/* <Boton texto={'loguearse'} funcion={()=>setIsAuth(true)}/> */}
-      {!isAuth && <MainInvitado/>}
-      {isAuth && <MainLogueado/>}
-    </>    
+    <LayoutMain>
+      <Boton texto={isAuth ? 'desloguearse' : 'loguearse'} funcion={toggleAuth} />
+      {renderDeskoptContent()}
+      {console.log(isAuth)}
+    </LayoutMain>    
   )
 }
 
