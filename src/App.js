@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './components/IntroVideo/IntroVideo.jsx';
 import Home from './pages/Home/Home';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
-function App() {
+
+function App() 
   const [showVideo, setShowVideo] = useState(true);
 
   const handleVideoEnd = () => {
@@ -18,7 +20,9 @@ function App() {
       {showVideo ? (
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
-      <Home />
+      /*<BrowserRouter>*/
+        <Home/>
+      /*</BrowserRouter>*/
       )};
     </>
   );
