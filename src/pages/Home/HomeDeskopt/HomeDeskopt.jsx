@@ -5,7 +5,7 @@ import './HomeDeskopt.css'
  const MainDeskoptInvitado = () => {
     return (
       <>
-        {/* <Banner/> */}
+        {/* <Banner-Vertical/> */}
         <ButtonGroup className='GrupoBotonDeskopt-Invitado'>
             <Boton texto={'recientes'}/>
             <div className='DescripcionDeskopt-Invitado'>
@@ -35,7 +35,7 @@ import './HomeDeskopt.css'
   const MainDeskoptLogueado = () => {
     return (
       <>
-      {/* <Banner/> */}
+      {/* <Banner Horizontal/> */}
       {/* <Carrusel/> */} 
       <ButtonGroup className='GrupoBotonDeskopt-Logueado'>
           <Boton texto={'recientes'} funcion={()=>console.log('recientes')}/>
