@@ -1,53 +1,33 @@
-/* Calendar.css */
-
 .custom-calendar {
+  font-family: sans-serif;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px; /* Increased max-width to accommodate larger tiles */
   margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.tile-content {
+/* Adjusted styles for larger tiles */
+
+.calendar-day {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px; /* Increased padding to fit longer titles */
+  border-bottom: 1px solid #ddd;
 }
 
-.event-text {
-  color: #007bff;
-  margin: 0;
+.calendar-events {
+  display: flex;
+  flex-direction: column; /* Changed flex direction to fit longer titles within the tile */
+  align-items: center;
 }
 
-.overlay-container {
-  display: none;
-}
-
-.calendar-wrapper {
-  display: inline-block; /* Ensure the wrapper does not span the full width */
-}
-
-.movie-name {
-  color: #28a745;
-  margin: 0;
-}
-
-.events-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.event-marker,
-.movie-marker {
+.calendar-event {
   background-color: #007bff;
   color: #fff;
-  padding: 2px 4px;
-  margin-bottom: 4px;
-}
-
-@media (max-width: 768px) {
-  .custom-calendar {
-    max-width: 100%;
-  }
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 12px;
 }
