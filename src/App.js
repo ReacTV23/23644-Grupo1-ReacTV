@@ -1,22 +1,30 @@
-import './App.css';
-import Sesion from './componentes/Sesion/Sesion.jsx'
-
+import React, { useState } from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import IntroVideo from './components/IntroVideo/IntroVideo.jsx';
+import Home from './pages/Home/Home';
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar.jsx';
+import './App.css';
 
 
-function App() {
+function App() 
+  const [showVideo, setShowVideo] = useState(true);
+
+  const handleVideoEnd = () => {
+    console.log('Video ended');
+    setShowVideo(false);
+  };
+
   return (
-    <div className="App">
-      
-      <BrowserRouter>
-        <Navbar/>
-        <Sesion/> 
-      </BrowserRouter>
-
-      
-      
-    </div>
+    <>
+      <CssBaseline/>
+      {showVideo ? (
+        <IntroVideo onVideoEnd={handleVideoEnd} />
+      ) : (
+      /*<BrowserRouter>*/
+        <Home/>
+      /*</BrowserRouter>*/
+      )};
+    </>
   );
 }
 
