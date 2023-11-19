@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import IntroVideo from './components/IntroVideo';
+import IntroVideo from './components/IntroVideo/IntroVideo.jsx';
 import Home from './pages/Home/Home';
 import './App.css';
 

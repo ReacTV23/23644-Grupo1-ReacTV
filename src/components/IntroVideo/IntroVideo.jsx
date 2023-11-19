@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import 'video.js/dist/video-js.css';
 import videojs from 'video.js';
-import '../IntroVideo.css';
+import './IntroVideo.css';
 
 const IntroVideo = ({ onVideoEnd }) => {
   useEffect(() => {
