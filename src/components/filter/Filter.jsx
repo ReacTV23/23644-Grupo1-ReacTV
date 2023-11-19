@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { getAllMoviesByGenres, getGenres } from "../../services/tmdbService";
 import MoviesByGenre from "./MovieByGenre";
+// Meterial UI
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
+// Fin Material UI
 
 const Filter = () => {
+  const theme = useTheme();
   const [genresData, setGenresData] = useState([]);
   const [allMovies, setAllMovies] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
+
+  const getButtonStyle = (isSelected) => ({
+    margin: theme.spacing(1),
+    backgroundColor: isSelected
+      ? theme.palette.primary.main
+      : theme.palette.background.paper,
+    color: isSelected
+      ? theme.palette.primary.contrastText
+      : theme.palette.text.primary,
+  });
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -17,17 +34,17 @@ const Filter = () => {
       }
     };
 
-    const fecthAllMovies = async () => {
+    const fetchAllMovies = async () => {
       try {
         const data = await getAllMoviesByGenres();
         setAllMovies(data);
       } catch (error) {
-        console.error(`Error al obtener las peliculas: ${error.message}`);
+        console.error(`Error al obtener las películas: ${error.message}`);
       }
     };
 
     fetchGenres();
-    fecthAllMovies();
+    fetchAllMovies();
   }, []);
 
   const handleCheckboxChange = (genreSlug) => {
@@ -43,21 +60,26 @@ const Filter = () => {
 
   return (
     <div>
-      <h2>Pruebas de conexion</h2>
+      <h2>Pruebas de conexión</h2>
       {genresData.map((genreGroup) => (
         <div key={genreGroup.slug}>
           <h3>{genreGroup.title}</h3>
-          <ul>
+          <ul
+            style={{
+              listStyleType: "none",
+              padding: 0,
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
             {genreGroup.items.map((genre) => (
               <li key={genre.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    value={genre.id}
-                    onChange={() => handleCheckboxChange(genre.name)}
-                  />
+                <Button
+                  style={getButtonStyle(selectedGenres.includes(genre.name))}
+                  onClick={() => handleCheckboxChange(genre.name)}
+                >
                   {genre.name}
-                </label>
+                </Button>
               </li>
             ))}
           </ul>
