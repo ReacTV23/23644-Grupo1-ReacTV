@@ -13,7 +13,6 @@
 
 # pruebas Hugo
 /src/components/pruebas
-/src/components/filter
 /src/components/generateList
 /app.js
 /src/index.js
