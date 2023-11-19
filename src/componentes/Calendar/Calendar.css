@@ -1,10 +1,53 @@
-.event-tile-content {
-    position: relative;
-    height: 100%;
+/* Calendar.css */
+
+.custom-calendar {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.tile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-text {
+  color: #007bff;
+  margin: 0;
+}
+
+.overlay-container {
+  display: none;
+}
+
+.calendar-wrapper {
+  display: inline-block; /* Ensure the wrapper does not span the full width */
+}
+
+.movie-name {
+  color: #28a745;
+  margin: 0;
+}
+
+.events-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.event-marker,
+.movie-marker {
+  background-color: #007bff;
+  color: #fff;
+  padding: 2px 4px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .custom-calendar {
+    max-width: 100%;
   }
-  
-  .event-text {
-    margin: 0;
-    padding: 5px;
-    background-color: #f0f0f0; /* Adjust background color as needed */
-  }
+}

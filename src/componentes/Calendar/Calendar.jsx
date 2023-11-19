@@ -1,7 +1,10 @@
+// Calendar.jsx
+
 import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import html2canvas from 'html2canvas';
+import './Calendar.css';
 
 const WritableCalendar = () => {
   const [date, setDate] = useState(new Date());
@@ -35,17 +38,23 @@ const WritableCalendar = () => {
     try {
       const calendarContainer = document.getElementById('calendar-container');
       const overlayContainer = overlayRef.current;
-
-      // Clone the calendar container to prevent changes to the original
-      const clonedContainer = calendarContainer.cloneNode(true);
-
-      // Append a new container for events to the cloned container
+  
+      // Create a wrapper element to enclose the calendar and events
+      const wrapperElement = document.createElement('div');
+      wrapperElement.className = 'calendar-wrapper';
+  
+      // Clone the calendar container and append to the wrapper
+      const clonedCalendar = calendarContainer.cloneNode(true);
+      wrapperElement.appendChild(clonedCalendar);
+  
+      // Add events and upcoming movies to the wrapper
       const eventsDiv = document.createElement('div');
       eventsDiv.className = 'events-overlay';
-
-      // Add events to the overlay container
+      wrapperElement.appendChild(eventsDiv);
+  
+      // Add events to the wrapper
       Object.entries(events).forEach(([eventDate, eventText]) => {
-        const dateCell = clonedContainer.querySelector(
+        const dateCell = clonedCalendar.querySelector(
           `.react-calendar__tile[data-date="${eventDate.split('T')[0]}"]`
         );
         if (dateCell) {
@@ -55,12 +64,12 @@ const WritableCalendar = () => {
           eventsDiv.appendChild(eventDiv);
         }
       });
-
-      // Add upcoming movies to the overlay container
+  
+      // Add upcoming movies to the wrapper
       upcomingMovies.forEach((movie) => {
         const movieDate = new Date(movie.release_date);
         const dateString = movieDate.toISOString().split('T')[0];
-        const dateCell = clonedContainer.querySelector(
+        const dateCell = clonedCalendar.querySelector(
           `.react-calendar__tile[data-date="${dateString}"]`
         );
         if (dateCell) {
@@ -70,31 +79,34 @@ const WritableCalendar = () => {
           eventsDiv.appendChild(movieDiv);
         }
       });
-
-      clonedContainer.appendChild(eventsDiv);
-
-      overlayContainer.appendChild(clonedContainer);
-
+  
+      // Append the wrapper element to the overlay container
+      overlayContainer.appendChild(wrapperElement);
+  
       // Use html2canvas library to capture the combined content as an image
-      const canvas = await html2canvas(overlayContainer, { scale: 2 });
-
+      const canvas = await html2canvas(wrapperElement, { scale: 2, allowTaint: true, useCORS: true });
+  
       // Convert canvas to image data URL as JPEG
       const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-
+  
       // Create a download link and trigger the download
       const a = document.createElement('a');
       a.href = imageDataUrl;
-      a.download = 'writable_calendar.jpg';
+      a.download = 'estrenos_del_mes.jpg';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
+  
       // Clear the overlay container for the next download
       overlayContainer.innerHTML = '';
     } catch (error) {
       console.error('Error capturing calendar:', error);
     }
   };
+  
+  
+  
+  
 
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
@@ -105,9 +117,11 @@ const WritableCalendar = () => {
         .map((movie) => movie.title);
 
       return (
-        <div>
+        <div className="tile-content">
           {dayEvents.map((event, index) => (
-            <p key={index}>{event}</p>
+            <p key={index} className="event-text">
+              {event}
+            </p>
           ))}
           {movieNames.map((movieName, index) => (
             <p key={index} className="movie-name">
@@ -122,17 +136,22 @@ const WritableCalendar = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="mb-4">Writable Calendar</h1>
+      <h1 className="mb-4">Calendario de estrenos</h1>
       <div className="row">
         <div className="col-md-6 mb-3">
-          <div className="card p-3">
-            <Calendar onChange={handleDateChange} value={date} tileContent={tileContent} />
+          <div className="card p-3" id="calendar-container">
+            <Calendar
+              onChange={handleDateChange}
+              value={date}
+              tileContent={tileContent}
+              className="custom-calendar"
+            />
           </div>
         </div>
       </div>
       <div className="mt-3">
         <button className="btn btn-success" onClick={downloadCalendar}>
-          Download Calendar
+          Descargar el calendario
         </button>
       </div>
 
