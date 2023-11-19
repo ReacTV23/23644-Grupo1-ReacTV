@@ -1,4 +1,5 @@
 import './App.css';
+<<<<<<< HEAD
 import CssBaseline from '@mui/material/CssBaseline';
 import Home from './pages/Home/Home';
 // import Recientes from './pages/Recientes/Recientes';
@@ -22,6 +23,15 @@ function App() {
       {/* <Lanzamientos/> */}
       {/* <About/> */}
    </>
+=======
+import Filter from './components/filter/Filter'
+
+function App() {
+  return (
+    <div className="App">
+      <Filter />
+    </div>
+>>>>>>> 6a9a05efb64cba984bdb290e4618f75a7a3e06ea
   );
  
 }
