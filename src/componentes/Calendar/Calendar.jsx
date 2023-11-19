@@ -5,7 +5,6 @@ import html2canvas from 'html2canvas';
 
 const WritableCalendar = () => {
   const [date, setDate] = useState(new Date());
-  const [eventText, setEventText] = useState('');
   const [events, setEvents] = useState({});
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const overlayRef = useRef(null);
@@ -30,20 +29,6 @@ const WritableCalendar = () => {
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
-  };
-
-  const handleTextChange = (e) => {
-    setEventText(e.target.value);
-  };
-
-  const addEvent = () => {
-    const dateString = date.toISOString().split('T')[0];
-
-    setEvents((prevEvents) => ({
-      ...prevEvents,
-      [dateString]: [...(prevEvents[dateString] || []), eventText],
-    }));
-    setEventText('');
   };
 
   const downloadCalendar = async () => {
@@ -144,35 +129,6 @@ const WritableCalendar = () => {
             <Calendar onChange={handleDateChange} value={date} tileContent={tileContent} />
           </div>
         </div>
-        <div className="col-md-6 mb-3">
-          <div className="card p-3">
-            <h4>{date.toDateString()}</h4>
-            <textarea
-              className="form-control mb-3"
-              value={eventText}
-              onChange={handleTextChange}
-              placeholder="Enter event text"
-            />
-            <button className="btn btn-primary" onClick={addEvent}>
-              Add Event
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="card p-3 mt-3" id="events-container">
-        <h4>Events</h4>
-        <ul>
-          {Object.entries(events).map(([dateString, dayEvents]) => (
-            <li key={dateString}>
-              <strong>{new Date(dateString).toDateString()}:</strong>
-              <ul>
-                {dayEvents.map((event, index) => (
-                  <li key={index}>{event}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
       </div>
       <div className="mt-3">
         <button className="btn btn-success" onClick={downloadCalendar}>
