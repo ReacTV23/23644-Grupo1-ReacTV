@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './components/IntroVideo';
-import Api from './components/Api';
+import Home from './pages/Home/Home';
+import './App.css';
 
 function App() {
   const [showVideo, setShowVideo] = useState(true);
@@ -12,14 +13,15 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <>
+      <CssBaseline/>
       {showVideo ? (
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
-        <Api />
-      )}
-    </div>
-  );
+      <Home />
+      )};
+    </>
+  )
 }
 
 export default App;
