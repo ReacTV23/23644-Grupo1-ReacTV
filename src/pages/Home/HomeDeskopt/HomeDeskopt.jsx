@@ -7,23 +7,23 @@ const MainDeskoptInvitado = () => {
       <>
         {/* <Banner-Vertical/> */}
         <ButtonGroup className='GrupoBotonDeskopt-Invitado'>
-            <Boton texto={'recientes'}/>
+            <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
             <div className='DescripcionDeskopt-Invitado'>
               ¡La descripción está aquí!
             </div>
-            <Boton texto={'categorias'} />
+            <Boton texto={'categorias'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
             <div className='DescripcionDeskopt-Invitado'>
               ¡La descripción está aquí!
             </div>
-            <Boton texto={'generos'} />
+            <Boton texto={'generos'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
+            <div className='DescripcionDeskopt-Invitado' >
+              ¡La descripción está aquí!
+            </div>
+            <Boton texto={'mi lista'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
             <div className='DescripcionDeskopt-Invitado'>
               ¡La descripción está aquí!
             </div>
-            <Boton texto={'mi lista'} />
-            <div className='DescripcionDeskopt-Invitado'>
-              ¡La descripción está aquí!
-            </div>
-            <Boton texto={'lanzamientos'}/>
+            <Boton texto={'lanzamientos'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
             <div className='DescripcionDeskopt-Invitado'>
               ¡La descripción está aquí!
             </div>

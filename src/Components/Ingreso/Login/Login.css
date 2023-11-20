@@ -1,0 +1,9 @@
+.Container {
+    width: 360px;
+    padding: 0 10px; 
+}
+
+.Label, .Input, .Boton  {
+    width: 100%;
+}
+
