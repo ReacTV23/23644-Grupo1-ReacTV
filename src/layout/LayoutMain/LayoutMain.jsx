@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../Components/Navbar/Navbar'
 import './LayoutMain.css'
 
 
@@ -12,5 +12,6 @@ const LayoutMain = ({children}) => {
     </div>
   )
 }
+
 
 export default LayoutMain

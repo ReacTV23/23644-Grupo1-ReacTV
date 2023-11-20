@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
 // import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 

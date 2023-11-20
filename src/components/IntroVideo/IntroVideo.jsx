@@ -11,7 +11,7 @@ const IntroVideo = ({ onVideoEnd }) => {
       controls: false, // Desactiva los controles predeterminados
       sources: [
         {
-          src: '/assets/img/videos/video-2-intro.mp4',
+          src: '/assets/videos/video-2-intro.mp4',
           type: 'video/mp4',
         },
       ],
@@ -20,9 +20,8 @@ const IntroVideo = ({ onVideoEnd }) => {
     // Muestra u oculta los controles personalizados al hacer clic en el video
     player.on('click', () => {
       player.controls(player.controls() ? false : true);
-     
     });
-   
+  
     player.on('ended', onVideoEnd);
 
     return () => {

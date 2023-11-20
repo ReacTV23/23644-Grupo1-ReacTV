@@ -6,6 +6,7 @@
 
 
 nav {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,7 +53,7 @@ nav .menu {
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
-    height: 2rem;
+    height: 100px;
 }
 
 nav .menu span {
@@ -60,7 +61,6 @@ nav .menu span {
     width: 100%;
     background-color: black;
     border-radius: 0.2rem;
-
 }
 
 

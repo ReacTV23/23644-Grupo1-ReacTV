@@ -1,10 +1,11 @@
 import {useState} from "react";
-import {useAuth} from "../../Context/authContext";
+import {useAuth} from "../../../Context/authContext";
 import {Link, useNavigate} from 'react-router-dom';
 import { Alert } from "../Alerts/Alert";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../Ingreso.css'
 
 export function Register() {
   const [user, setUser] = useState({
@@ -41,16 +42,22 @@ export function Register() {
   return (
     <div className="w-full max-w-xs m-auto">
       {error && <Alert message={error} />}
-
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      <form onSubmit={handleSubmit}
       >
-        <Container fluid="md mt-4">
+        <Container className='mb-1' style={{ width:'360px' }}>
           <div className="mb-4">
+          <Row>
+              <Col>
+                <label style={{ width:'100%' }}
+                  htmlFor="email"
+                  className="block text-gray-700 text-sm font-bold my-2">
+                  EMAIL
+                </label>
+              </Col>
+            </Row>
             <Row>
               <Col>
-                <input
+                <input style={{ width:'100%'}}
                   className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
@@ -59,22 +66,21 @@ export function Register() {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <label
-                  htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold my-2"
-                >
-                  EMAIL
-                </label>
-              </Col>
-            </Row>
           </div>
 
           <div className="mb-4">
+          <Row>
+              <Col>
+                <label style={{ width:'100%'}}
+                  htmlFor="password"
+                  className="block text-gray-700 text-sm font-bold my-2">
+                  PASSWORD
+                </label>
+              </Col>
+            </Row>
             <Row>
               <Col>
-                <input
+                <input style={{ width:'100%'}}
                   className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
                   type="password"
                   name="password"
@@ -84,36 +90,21 @@ export function Register() {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <label
-                  htmlFor="password"
-                  className="block text-gray-700 text-sm font-bold my-2"
-                >
-                  PASSWORD
-                </label>
-              </Col>
-            </Row>
           </div>
 
-          <div className="items-center justify-between">
+          <div className="mb-4">
             <Row>
-              <Col>
                 <div>
-                  <button className="bg-blue-500 hover:bg-green-500 text-black font-bold text-sm py-2 px-4 rounded">
+                  <button className="Boton text-sm py-2 px-4">
                     Registro
                   </button>
                 </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col></Col>
             </Row>
           </div>
         </Container>
       </form>
-      <p className="my-4 text-sm flex justify-between px-3">
-        ¿Ya tienes una cuenta? <Link to="/login">Login</Link>{" "}
+      <p style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="my-4 text-sm flex justify-between px-3">
+        ¿Ya tienes una cuenta? <Link to="/login">Login</Link>
       </p>
     </div>
   );

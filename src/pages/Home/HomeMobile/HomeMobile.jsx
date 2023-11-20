@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
-import Boton from '../../../components/Boton';
+import Boton from '../../../Components/Boton';
 import './HomeMobile.css';
 
   const MainMobileInvitado = () => {
@@ -19,11 +19,11 @@ import './HomeMobile.css';
     const Descripcion = () => {
       return (
         <div className="ContenedorMobile">
-          <Boton texto={botonClicado} />
+          <Boton texto={botonClicado} backgroundColor={'#003686'} backgroundHover={'#E08400'} />
           <div className='DescripcionMobile-Invitado'>
             ¡La descripción está aquí!
           </div>
-          <Boton texto={'cerrar'} funcion={handleCerrarDescripcion} />
+          <Boton texto={'cerrar'} funcion={handleCerrarDescripcion} backgroundColor={'#003686'} backgroundHover={'#E08400'} />
         </div>
       )
     }

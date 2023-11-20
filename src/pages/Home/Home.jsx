@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import LayoutMain from '../../layout/LayoutMain/LayoutMain'
+import LayoutMain from '../../Layout/LayoutMain/LayoutMain'
 import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
 import HomeMobile  from './HomeMobile/HomeMobile';
 
