@@ -38,8 +38,20 @@ export function AuthProvider ({children}) {
         return () => unsubscribe();
     }, []);
 
+    const value = {
+        isAuth,
+        setIsAuth,
+        signup, 
+        login, 
+        user, 
+        logout, 
+        loading, 
+        loginWithGoogle, 
+        resetPassword 
+    };
+
 return (
-    <authContext.Provider value={{ isAuth, signup, login, user, logout, loading, loginWithGoogle, resetPassword }}>
+    <authContext.Provider value={value}>
         {children}
     </authContext.Provider>
     );  
