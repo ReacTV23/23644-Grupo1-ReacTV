@@ -1,5 +1,5 @@
 import { ButtonGroup } from 'react-bootstrap';
-import Boton from '../../../components/Boton'
+import Boton from '../../../Components/Boton'
 import './HomeDeskopt.css'
 
 const MainDeskoptInvitado = () => {

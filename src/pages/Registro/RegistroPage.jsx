@@ -1,6 +1,6 @@
 import React from 'react'
-import LayoutSecundario from  '../../layout/LayoutSecundario/LayoutSecundario'
-import { Register } from '../../components/Ingreso/Register/Register'
+import LayoutSecundario from  '../../Layout/LayoutSecundario/LayoutSecundario'
+import { Register } from '../../Components/Ingreso/Register/Register'
 
 const RegistroPage = () => {
     return (

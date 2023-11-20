@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import IntroVideo from './components/IntroVideo/IntroVideo.jsx';
-import Home from './pages/Home/Home';
+import IntroVideo from './Components/IntroVideo/IntroVideo.jsx';
+import Home from './Pages/Home/Home';
 import {AuthProvider} from './Context/authContext'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {ProtectedRoute} from './components/ProtectedRuote/ProtectedRoute'
-import LoginPage  from './pages/Login/Login.jsx'
-import RegistroPage  from './pages/Registro/RegistroPage.jsx'
-import Recientes from './pages/Recientes/Recientes.jsx'
-import Categorias from './pages/Categorias/Categorias.jsx'
-import Generos from './pages/Generos/Generos.jsx'
-import MiLista from './pages/MiLista/MiLista.jsx'
-import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
+import {ProtectedRoute} from './Components/ProtectedRuote/ProtectedRoute'
+import LoginPage  from './Pages/Login/Login.jsx'
+import RegistroPage  from './Pages/Registro/RegistroPage.jsx'
+import Recientes from './Pages/Recientes/Recientes.jsx'
+import Categorias from './Pages/Categorias/Categorias.jsx'
+import Generos from './Pages/Generos/Generos.jsx'
+import MiLista from './Pages/MiLista/MiLista.jsx'
+import Lanzamientos from './Pages/Lanzamientos/Lanzamientos.jsx'
 import './App.css';
 
 
@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <CssBaseline/>
-      {showVideo ? (
+      { showVideo ? (
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
         <AuthProvider>

@@ -1,6 +1,6 @@
 import React from 'react'
-import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
-import { Login } from '../../components/Ingreso/Login/Login'
+import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
+import { Login } from '../../Components/Ingreso/Login/Login'
 
 const LoginPage = () => {
     return (

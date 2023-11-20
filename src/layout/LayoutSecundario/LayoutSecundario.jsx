@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Boton from '../../components/Boton';
+import Boton from '../../Components/Boton';
 import './LayoutSecundario.css';
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../Components/Navbar/Navbar'
 
 
 const LayoutSecundario = ({children, textoBoton}) => {

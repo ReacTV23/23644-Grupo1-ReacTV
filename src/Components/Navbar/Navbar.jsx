@@ -19,7 +19,7 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección del logo (a la izquierda) */}
         <Typography variant="h6" component="div">
           <img
-            src="/assets/img/imagen/logo-circular.png"
+            src="/assets/img/logo-circular-2.png"
             alt="Logo"
             style={{ height: '60px', marginRight: '16px' }}
           />

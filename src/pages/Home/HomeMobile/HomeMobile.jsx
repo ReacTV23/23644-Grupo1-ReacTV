@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
-import Boton from '../../../components/Boton';
+import Boton from '../../../Components/Boton';
 import './HomeMobile.css';
 
   const MainMobileInvitado = () => {
