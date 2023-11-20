@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './Components/IntroVideo/IntroVideo.jsx';
 import Home from './Pages/Home/Home';
 import {AuthProvider} from './Context/authContext'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {ProtectedRoute} from './Components/ProtectedRuote/ProtectedRoute'
-import LoginPage  from './Pages/Login/Login.jsx'
-import RegistroPage  from './Pages/Registro/RegistroPage.jsx'
+import LoginRegistro  from './Pages/LoginRegistro/LoginRegistro.jsx'
+// import RegistroPage  from './Pages/Registro/RegistroPage.jsx'
 import Recientes from './Pages/Recientes/Recientes.jsx'
 import Categorias from './Pages/Categorias/Categorias.jsx'
 import Generos from './Pages/Generos/Generos.jsx'
@@ -17,8 +17,28 @@ import './App.css';
 
 function App() {
   const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
+  // estados para autenticacion y ancho de ventana (renderizado responsive)
+  const [isAuth, setIsAuth] = useState(false);
+  const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
+  // useEfectf para capturar el ancho de la ventana y pasarlo al estado
+  useEffect(() => {
+    const handleResize = () => {
+      setAnchoVentana(window.innerWidth);
+    };
 
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const toggleAuth = () => {
+    setIsAuth((prevAuth) => !prevAuth);
+  };
+
+  // funcion manejo de video
   const handleVideoEnd = () => {
     console.log('Video ended');
     setShowVideo(false);
@@ -33,10 +53,9 @@ function App() {
         <AuthProvider>
           <Router>
             <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/login" element={<LoginPage />} />}
-              <Route path="/register" element={<RegistroPage />} />
-              <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
+              <Route path="/" element={<Home isAuth={isAuth} anchoVentana={anchoVentana}/>} />
+              <Route path="/login" element={<LoginRegistro />} />
+              <Route path="/home" element={<ProtectedRoute><Home isAuth={isAuth} anchoVentana={anchoVentana} /></ProtectedRoute>}/>
               <Route path="/recientes" element={<Recientes />} />
               <Route path="/categorias" element={<Categorias />} />
               <Route path="/generos" element={<Generos />} />
@@ -47,7 +66,7 @@ function App() {
         </AuthProvider>
       )}
     </>
-  );
+  )
 }
 
 export default App;

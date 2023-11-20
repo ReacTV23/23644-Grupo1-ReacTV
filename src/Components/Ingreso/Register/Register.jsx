@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../Ingreso.css'
 
-export function Register() {
+export function Register({width}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -40,11 +40,10 @@ export function Register() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto">
+    <div style={{ width:'100%' }}>
       {error && <Alert message={error} />}
-      <form onSubmit={handleSubmit}
-      >
-        <Container className='mb-1' style={{ width:'360px' }}>
+      <form onSubmit={handleSubmit}>
+        <Container className='mb-1'style={{ width:width}}>
           <div className="mb-4">
           <Row>
               <Col>

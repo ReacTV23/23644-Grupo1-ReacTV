@@ -1,32 +1,28 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import LayoutMain from '../../Layout/LayoutMain/LayoutMain'
 import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
 import HomeMobile  from './HomeMobile/HomeMobile';
 
 import './Home.css';
 
-const Home = () => {
+const Home = ({isAuth, anchoVentana}) => {
 
-  const [isAuth, setIsAuth] = useState(false);
-  const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
+  // const [isAuth, setIsAuth] = useState(false);
+  // const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setAnchoVentana(window.innerWidth);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setAnchoVentana(window.innerWidth);
+  //   };
 
-    // Agregar event listener para el evento resize
-    window.addEventListener('resize', handleResize);
+  //   // Agregar event listener para el evento resize
+  //   window.addEventListener('resize', handleResize);
 
-    // Limpiar el event listener cuando el componente se desmonta
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
-
-  const toggleAuth = () => {
-    setIsAuth((prevAuth) => !prevAuth);
-  };
+  //   // Limpiar el event listener cuando el componente se desmonta
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
 
   const renderDeskoptContent = () => {
     if (anchoVentana > 768) {
