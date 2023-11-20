@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../Ingreso.css'
 
-export function Login() {
+export function Login({width}) {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -67,10 +67,10 @@ export function Login() {
   };
 
   return (
-    <div className='mb-1' style={{ width:'360px' }}>
+    <div className='mb-1'style={{ width:'100%', display: 'flex', flexDirection:'column', alignItems: 'center' }}>
       {error && <Alert message={error} />}
       <form onSubmit={handleSubmit}>
-        <Container className='mb-1'>
+        <Container className='mb-1' style={{width:width}}>
           <div className="mb-4">
             <Row>
               <Col>
@@ -146,7 +146,7 @@ export function Login() {
         </p>
       </Row>
 
-      <button
+      <button style={{width:width}}
         onClick={handleGoogleSignin}
         className="Boton tborder-1 py-2 px-2 w-full">
         Iniciar con Google

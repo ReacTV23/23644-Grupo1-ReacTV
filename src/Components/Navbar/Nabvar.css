@@ -53,7 +53,7 @@ nav .menu {
     flex-direction: column;
     justify-content: space-between;
     width: 2.25rem;
-    height: 100px;
+    height: 80px;
 }
 
 nav .menu span {
