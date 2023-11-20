@@ -11,7 +11,7 @@ const IntroVideo = ({ onVideoEnd }) => {
       controls: false, // Desactiva los controles predeterminados
       sources: [
         {
-          src: '/assets/img/videos/video-2-intro.mp4',
+          src: '/assets/videos/video-2-intro.mp4',
           type: 'video/mp4',
         },
       ],
