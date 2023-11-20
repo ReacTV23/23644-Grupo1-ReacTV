@@ -1,10 +1,12 @@
 import React from 'react'
+import Navbar from '../../components/Navbar/Navbar'
 import './LayoutMain.css'
+
 
 const LayoutMain = ({children}) => {
   return (
     <div className='LayoutMain'>
-      {/* <Navbar /> */}
+      <Navbar/>
         {children}
       {/* <Footer /> */}
     </div>

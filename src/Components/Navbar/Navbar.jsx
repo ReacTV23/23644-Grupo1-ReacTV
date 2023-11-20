@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, InputBase, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, InputBase } from '@mui/material';
+import Boton from '../Boton'
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
@@ -29,9 +30,7 @@ const Navbar = () => {
       </div>
 
         {/* Sección del botón de inicio de sesión (a la derecha) */}
-        <Button color="inherit" size="large" startIcon={<AccountCircle />} sx={{ color: '#E08400' }}>
-          Login
-        </Button>
+        <Boton Contenido={AccountCircle}/>
       </Toolbar>
     </AppBar>
   );

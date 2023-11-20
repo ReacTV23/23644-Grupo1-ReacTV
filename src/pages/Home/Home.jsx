@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import LayoutMain from '../../layout/LayoutMain/LayoutMain'
-import Boton from '../../components/Boton';
 import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
 import HomeMobile  from './HomeMobile/HomeMobile';
 
@@ -39,7 +38,6 @@ const Home = () => {
 
   return (
     <LayoutMain>
-      <Boton texto={isAuth ? 'desloguearse' : 'loguearse'} funcion={toggleAuth} />
       {renderDeskoptContent()}
       {console.log(isAuth)}
     </LayoutMain>    
