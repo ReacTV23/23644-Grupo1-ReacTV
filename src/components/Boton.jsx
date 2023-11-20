@@ -2,14 +2,17 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
-const Boton = ({Contenido, texto, funcion}) => {
+const Boton = ({Contenido, texto, funcion, color, colorHover}) => {
   if(Contenido) {
     const Icono = Contenido;
     return (
      // Si hay un icono, renderiza un IconButton
       <IconButton className='IconoBoton' aria-label={Icono}>
         <Icono className='Icono'
-        sx={{fontSize: {xs:'30px', sm:'40px'}}}/>
+        sx={{fontSize: {xs:'30px', sm:'40px'},
+          color: {color},
+          ':hover': {color: colorHover}
+          }}/>
       </IconButton>
       )}
   else {

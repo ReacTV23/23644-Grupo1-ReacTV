@@ -60,9 +60,11 @@ nav .menu span {
     width: 100%;
     background-color: black;
     border-radius: 0.2rem;
-
 }
 
+.BotonLogin{
+    color: white
+}
 
 @media (max-width: 480px){
 

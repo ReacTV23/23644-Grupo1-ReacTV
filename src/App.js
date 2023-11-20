@@ -7,7 +7,7 @@ import './App.css';
 
 
 function App() {
-  const [showVideo, setShowVideo] = useState(true);
+  const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
 
   const handleVideoEnd = () => {
     console.log('Video ended');

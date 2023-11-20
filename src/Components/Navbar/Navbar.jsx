@@ -30,7 +30,7 @@ const Navbar = () => {
       </div>
 
         {/* Sección del botón de inicio de sesión (a la derecha) */}
-        <Boton Contenido={AccountCircle}/>
+        <Boton Contenido={AccountCircle} color={'white'} colorHover={'#E08400'}/>
       </Toolbar>
     </AppBar>
   );
