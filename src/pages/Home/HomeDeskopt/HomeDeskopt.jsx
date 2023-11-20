@@ -2,7 +2,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import Boton from '../../../components/Boton'
 import './HomeDeskopt.css'
 
- const MainDeskoptInvitado = () => {
+const MainDeskoptInvitado = () => {
     return (
       <>
         {/* <Banner-Vertical/> */}

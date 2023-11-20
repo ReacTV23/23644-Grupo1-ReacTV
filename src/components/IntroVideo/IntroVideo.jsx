@@ -20,9 +20,8 @@ const IntroVideo = ({ onVideoEnd }) => {
     // Muestra u oculta los controles personalizados al hacer clic en el video
     player.on('click', () => {
       player.controls(player.controls() ? false : true);
-     
     });
-   
+  
     player.on('ended', onVideoEnd);
 
     return () => {

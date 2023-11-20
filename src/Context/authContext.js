@@ -28,7 +28,6 @@ export function AuthProvider ({children}) {
 
     }   
 
-
     useEffect (() => {
         console.log('auth provider loaded');
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

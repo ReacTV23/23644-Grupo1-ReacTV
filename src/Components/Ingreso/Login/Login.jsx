@@ -1,12 +1,13 @@
 import {useState} from "react";
-import {useAuth} from "../../Context/authContext";
+import {useAuth} from "../../../Context/authContext";
 import {Link, useNavigate} from 'react-router-dom';
-import { Alert } from "../Alerts/Alert";
+import {Alert} from "../Alerts/Alert";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Boton from '../../Boton'
 
-export function Inicio() {
+export function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -60,15 +61,24 @@ export function Inicio() {
   };
 
   return (
-    <div className="mb-4" >
+    <div className='mb-1' style={{ width:'360px' }}>
       {error && <Alert message={error} />}
-      <form className="" onSubmit={handleSubmit}>
-        <Container fluid="md mt-4">
+      <form onSubmit={handleSubmit}>
+        <Container className='mb-1'>
           <div className="mb-4">
             <Row>
               <Col>
-                <input
-                  className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
+                <label style={{ width:'100%' }}
+                  htmlFor="email"
+                  className="block text-gray-700 text-sm font-bold mb-2">
+                  EMAIL
+                </label>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <input style={{ width:'100%' }}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
                   placeholder="youremail@gmail.com"
@@ -76,23 +86,18 @@ export function Inicio() {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <label
-                  htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                >
-                EMAIL
-                </label>
-              </Col>
-            </Row>
           </div>
 
           <div className="mb-4">
             <Row>
               <Col>
-                <input
-                  className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
+                <label style={{ width:'100%' }} htmlFor="password">PASSWORD</label>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <input style={{ width:'100%' }}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="password"
                   name="password"
                   placeholder="******"
@@ -101,34 +106,29 @@ export function Inicio() {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <label htmlFor="password">PASSWORD</label>
-              </Col>
-            </Row>
           </div>
 
-          <div className="items-center justify-between">
+          <div className="mb-4">
             <Row>
-              <Col>
-                <div>
-                  <button className="mt-4 text-sm text-blue font-bold py-2 px-4 rounded">
+            <Boton texto={'login'}  backgroundColor={'#8F8F8F'} backgroundHover={'#003686'}/>
+              {/* <Col> 
+                <div className="mb-4">
+                  <button style={{ width:'100%' }} className="text-sm text-blue font-bold py-2 px-4 rounded">
                     Login
                   </button>
                 </div>
-              </Col>
+              </Col> */}
             </Row>
             <Row>
               <Col>
                 <div>
-                  <a
+                  <a style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     href="#!"
-                    className="inline-block align-baseline font-bold text-sm"
-                    onClick={handleResetPassword}
-                  >
+                    className="font-bold text-sm"
+                    onClick={handleResetPassword}>
                     ¿Olvidaste tu contraseña?
                   </a>
-                </div>{" "}
+                </div>
               </Col>
             </Row>
           </div>
@@ -136,17 +136,17 @@ export function Inicio() {
       </form>
 
       <Row>
-        <p className="my-4 text-sm flex justify-between px-3">
-          ¿No tienes una cuenta? <Link to="/Register">Register</Link>{" "}
+        <p style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="mb-4 text-sm flex justify-between px-3">
+          ¿No tienes una cuenta? <Link to="/Register"> Regístrate</Link>
         </p>
       </Row>
 
-      <button
+      <Boton texto={'iniciar con Google'}  backgroundColor={'#8F8F8F'} backgroundHover={'#003686'} funcion={handleGoogleSignin}/>
+      {/* <button style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={handleGoogleSignin}
-        className="text-black rounded border-1 py-2 px-4 w-full "
-      >
+        className="text-black rounded border-1 py-2 px-2 w-full">
         Iniciar con Google
-      </button>
+      </button> */}
     </div>
   );
 }
