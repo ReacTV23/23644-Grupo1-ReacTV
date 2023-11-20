@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Boton from '../../../Components/Boton';
+import {useNavigate} from 'react-router'
 import './HomeMobile.css';
 
   const MainMobileInvitado = () => {
@@ -32,11 +33,11 @@ import './HomeMobile.css';
         {/* <Banner/> */}
         {!mostrarDescripcion &&
           <ButtonGroup className='GrupoBotonMobile'>
-            <Boton texto={'recientes'} funcion={() => handleDescripcion('recientes')} />
-            <Boton texto={'categorias'} funcion={() => handleDescripcion('categorias')} />
-            <Boton texto={'generos'} funcion={() => handleDescripcion('generos')} />
-            <Boton texto={'mi lista'} funcion={() => handleDescripcion('mi lista')} />
-            <Boton texto={'lanzamientos'} funcion={() => handleDescripcion('lanzamientos')} />
+            <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('recientes')} />
+            <Boton texto={'categorias'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('categorias')} />
+            <Boton texto={'generos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('generos')} />
+            <Boton texto={'mi lista'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('mi lista')} />
+            <Boton texto={'lanzamientos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('lanzamientos')} />
           </ButtonGroup>}
         {mostrarDescripcion && (<Descripcion />)}
       </>
@@ -44,15 +45,22 @@ import './HomeMobile.css';
   };
 
   const MainMobileLogueado = () => {
+    const navigate = useNavigate();
+
+    const handleButtonClick = (ruta) => {
+      console.log(`Navegando a ${ruta}`);
+      navigate(ruta);
+    };
+    
     return (
       <>
         {/* <Banner/> */}
         <ButtonGroup className='GrupoBotonMobile'>
-          <Boton texto={'recientes'} funcion={() => console.log('recientes')} />
-          <Boton texto={'categorias'} funcion={() => console.log('categorias')} />
-          <Boton texto={'generos'} funcion={() => console.log('generos')} />
-          <Boton texto={'mi lista'} funcion={() => console.log('mi lista')} />
-          <Boton texto={'lanzamientos'} funcion={() => console.log('lanzamientos')} />
+        <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() =>handleButtonClick('/recientes')}/>
+          <Boton texto={'categorias'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/categorias')} />
+          <Boton texto={'generos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/generos')} />
+          <Boton texto={'mi lista'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/milista')} />
+          <Boton texto={'lanzamientos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/lanzamientos')}/>
         </ButtonGroup>
       </>
     )

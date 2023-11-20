@@ -11,7 +11,7 @@ export const useAuth = () => {
 }
 
 export function AuthProvider ({children}) {
-    
+    const [isAuth, setIsAuth] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -25,13 +25,13 @@ export function AuthProvider ({children}) {
 
     const resetPassword = (email) => {
             sendPasswordResetEmail(auth, email)
-
     }   
 
     useEffect (() => {
         console.log('auth provider loaded');
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setIsAuth(!!currentUser); // Actualiza el estado de autenticación
             setLoading(false);
         });
 
@@ -39,8 +39,8 @@ export function AuthProvider ({children}) {
     }, []);
 
 return (
-        <authContext.Provider value= {{signup, login, user, logout, loading, loginWithGoogle, resetPassword}}>
-            {children}
-        </authContext.Provider>
+    <authContext.Provider value={{ isAuth, signup, login, user, logout, loading, loginWithGoogle, resetPassword }}>
+        {children}
+    </authContext.Provider>
     );  
 }

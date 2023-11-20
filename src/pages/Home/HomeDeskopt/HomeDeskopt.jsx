@@ -1,5 +1,6 @@
-import { ButtonGroup } from 'react-bootstrap';
+import {ButtonGroup} from 'react-bootstrap';
 import Boton from '../../../Components/Boton'
+import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
 
 const MainDeskoptInvitado = () => {
@@ -33,16 +34,23 @@ const MainDeskoptInvitado = () => {
   };
 
   const MainDeskoptLogueado = () => {
+    const navigate = useNavigate();
+
+    const handleButtonClick = (ruta) => {
+      console.log(`Navegando a ${ruta}`);
+      navigate(ruta);
+    };
+
     return (
       <>
       {/* <Banner Horizontal/> */}
       {/* <Carrusel/> */} 
       <ButtonGroup className='GrupoBotonDeskopt-Logueado'>
-          <Boton texto={'recientes'} funcion={()=>console.log('recientes')}/>
-          <Boton texto={'categorias'} funcion={()=>console.log('categorias')}/>
-          <Boton texto={'generos'} funcion={()=>console.log('generos')}/>
-          <Boton texto={'mi lista'} funcion={()=>console.log('mi lista')}/>
-          <Boton texto={'lanzamientos'} funcion={()=>console.log('lanzamientos')}/>
+          <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() =>handleButtonClick('/recientes')}/>
+          <Boton texto={'categorias'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/categorias')} />
+          <Boton texto={'generos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/generos')} />
+          <Boton texto={'mi lista'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/milista')} />
+          <Boton texto={'lanzamientos'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/lanzamientos')} />
       </ButtonGroup> 
       </>
     )

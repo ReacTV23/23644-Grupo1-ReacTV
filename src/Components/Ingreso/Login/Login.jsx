@@ -24,11 +24,6 @@ export function Login({width}) {
     setError("");
     try {
       await login(user.email, user.password);
-        // if(tamañoPantalla > 768px and isAuth) {
-        //   navigate("/home");
-        // } else {
-        //   navigate("/");
-        // }
         navigate("/");
 
     } catch (error) {
