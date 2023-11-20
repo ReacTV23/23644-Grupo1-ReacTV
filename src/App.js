@@ -54,8 +54,7 @@ function App() {
           <Router>
             <Routes>
               <Route path="/" element={<Home isAuth={isAuth} anchoVentana={anchoVentana}/>} />
-              <Route path="/login" element={<LoginRegistro />} />}
-              {/* <Route path="/register" element={<RegistroPage />} /> */}
+              <Route path="/login" element={<LoginRegistro />} />
               <Route path="/home" element={<ProtectedRoute><Home isAuth={isAuth} anchoVentana={anchoVentana} /></ProtectedRoute>}/>
               <Route path="/recientes" element={<Recientes />} />
               <Route path="/categorias" element={<Categorias />} />
