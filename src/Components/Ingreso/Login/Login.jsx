@@ -5,7 +5,7 @@ import {Alert} from "../Alerts/Alert";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Boton from '../../Boton'
+import '../Ingreso.css'
 
 export function Login() {
   const [user, setUser] = useState({
@@ -24,7 +24,13 @@ export function Login() {
     setError("");
     try {
       await login(user.email, user.password);
-      navigate("/");
+        // if(tamañoPantalla > 768px and isAuth) {
+        //   navigate("/home");
+        // } else {
+        //   navigate("/");
+        // }
+        navigate("/");
+
     } catch (error) {
       console.log(error.code);
       setError(error.message);
@@ -110,14 +116,13 @@ export function Login() {
 
           <div className="mb-4">
             <Row>
-            <Boton texto={'login'}  backgroundColor={'#8F8F8F'} backgroundHover={'#003686'}/>
-              {/* <Col> 
+              <Col> 
                 <div className="mb-4">
-                  <button style={{ width:'100%' }} className="text-sm text-blue font-bold py-2 px-4 rounded">
+                  <button className='Boton text-sm py-2 px-4'>
                     Login
                   </button>
                 </div>
-              </Col> */}
+              </Col>
             </Row>
             <Row>
               <Col>
@@ -141,12 +146,11 @@ export function Login() {
         </p>
       </Row>
 
-      <Boton texto={'iniciar con Google'}  backgroundColor={'#8F8F8F'} backgroundHover={'#003686'} funcion={handleGoogleSignin}/>
-      {/* <button style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      <button
         onClick={handleGoogleSignin}
-        className="text-black rounded border-1 py-2 px-2 w-full">
+        className="Boton tborder-1 py-2 px-2 w-full">
         Iniciar con Google
-      </button> */}
+      </button>
     </div>
   );
 }

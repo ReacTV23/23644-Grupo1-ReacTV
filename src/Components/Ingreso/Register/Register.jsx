@@ -2,10 +2,10 @@ import {useState} from "react";
 import {useAuth} from "../../../Context/authContext";
 import {Link, useNavigate} from 'react-router-dom';
 import { Alert } from "../Alerts/Alert";
-import Boton  from '../../Boton';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import '../Ingreso.css'
 
 export function Register() {
   const [user, setUser] = useState({
@@ -94,18 +94,11 @@ export function Register() {
 
           <div className="mb-4">
             <Row>
-                {/* <div>
-                  <button className="bg-blue-500 hover:bg-green-500 text-black font-bold text-sm py-2 px-4 rounded">
+                <div>
+                  <button className="Boton text-sm py-2 px-4">
                     Registro
                   </button>
-                </div> */}
-                <Boton
-                texto={'Registro'}
-                backgroundColor={'#8F8F8F'}
-                backgroundHover={'#003686'}
-                fontSize={'text-sm'}
-                funcion={handleSubmit}
-              />
+                </div>
             </Row>
           </div>
         </Container>
