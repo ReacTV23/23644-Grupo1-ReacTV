@@ -1,5 +1,5 @@
 import React from 'react';
-import './footer.css'; // Importa los estilos CSS
+import './Footer.css'; // Importa los estilos CSS
 import { FaGithub, FaFigma } from 'react-icons/fa'; // Importa los íconos necesarios
 
 /**
@@ -7,6 +7,7 @@ import { FaGithub, FaFigma } from 'react-icons/fa'; // Importa los íconos neces
  * @component
  * @return {JSX.Element} Elemento JSX que representa el footer.
  */
+
 function Footer() {
   return (
     <footer>

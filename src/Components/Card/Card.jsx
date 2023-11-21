@@ -1,8 +1,7 @@
 import React from 'react'
-// import movieBackground from './assets/IMG.jpeg';
 import './Card.css'
 
-export function Card( children ) {
+export function Card(children) {
 
   return (
 
