@@ -1,50 +1,64 @@
 footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #003686;
+}
   
   .left,
   .right {
     margin: 0 10px;
+    color: white
   }
   
-  .center {
-    text-align: center;
-  }
-  
-  /* Estilos para el ícono de GitHub */
+  /* Estilos para el ícono de GitHub 
   .left a {
-    color: #2F67BB; /* Color azul */
-    font-size: 24px; /* Tamaño de fuente para el ícono */
+    color: #2F67BB;  Color azul 
+    font-size: 24px;  Tamaño de fuente para el ícono 
+  }*/
+
+  .center {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
   }
   
-  /* Estilos para el botón "Team" */
-  button {
-    background-color: #E08400; /* Color naranja */
-    color: #fff; /* Texto blanco */
-    font-size: 16px; /* Tamaño de fuente para el botón */
-    font-weight: 600; /* Bold */
-    padding: 8px 16px; /* Ajuste de relleno */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cursor de puntero al pasar el ratón */
+  .center .link {
+    text-decoration: none;
+    color: white;
+    font-size: 14px; 
   }
-  
-  /* Estilos para el texto "CaC - React 2023" */
-  p {
-    color: #003686; /* Color azul oscuro */
-    font-size: 14px; /* Tamaño de fuente para el texto */
+
+  p:hover {
+    color:#E08400
   }
   
   /* Estilos para el ícono de Figma */
   .right a {
     color: #E0A24A; /* Color amarillo-naranja */
-    font-size: 24px; /* Tamaño de fuente para el ícono */
+    width: 60px;
+    height: 60px;
+
+  }
+
+  .Icono {
+    color:white;
+    object-fit: cover;
+    height: 60px;
+  }
+
+  .Icono:hover {
+    color:#E08400
   }
   
   /* Estilos para pantallas más grandes (mayores a 360px) */
-footer {
+/* footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,7 +71,13 @@ footer {
 }
 
 .center {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
 }
 
 .left a {
@@ -75,15 +95,10 @@ button {
   cursor: pointer;
 }
 
-p {
-  color: #003686;
-  font-size: 14px;
-}
-
 .right a {
   color: #E0A24A;
   font-size: 24px;
-}
+} */
 
 /* Media query para pantallas más pequeñas (hasta 360px) */
 @media (max-width: 360px) {

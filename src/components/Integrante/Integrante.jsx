@@ -12,8 +12,8 @@ const Integrante = ({nombre, detalles}) => {
       <div className='Nombre'>{nombre}</div>
       <ButtonGroup className='GrupoBotones'
         aria-label="small button group">
-          <Boton Contenido={GitHubIcon}/>
-          <Boton Contenido={LinkedInIcon}/>
+          <Boton Contenido={GitHubIcon} color={'black'} />
+          <Boton Contenido={LinkedInIcon} color={'black'}/>
     </ButtonGroup>
     </div> 
 

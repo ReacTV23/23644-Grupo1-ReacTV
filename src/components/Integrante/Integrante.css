@@ -21,16 +21,12 @@
 .GrupoBotones{
     width: 20%;
     display: flex;
-    justify-content: end;
-}
-
-.IconoBoton .Icono {
-    color: black;
+    justify-content: flex-end;
 }
 
 .Contenedor:hover .IconoBoton .Icono {
-   color: white;
-   transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    color: white;
+    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Estilos para pantallas con ancho menor o igual a 360px */
