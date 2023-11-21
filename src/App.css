@@ -3,3 +3,11 @@
   font-family: 'roboto';
 }
 
+body {
+  margin: 0;
+  background-color: #222;
+  font-family: system-ui;
+  min-height: 100vh;
+}
+
+
