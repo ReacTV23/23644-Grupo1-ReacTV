@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import YouTube from 'react-youtube';
@@ -7,7 +6,7 @@ import './Busqueda.css';
 // import { PanoramaSharp } from '@mui/icons-material';
 
 function Busqueda() {
-  const API_URL = 'https://api.themoviedb.org/3'
+  const API_URL = 'https://api.themoviedb.org/3/search/multi?include_adult=false&language=en-US&page=1'
   const API_KEY = '8ba06faa25caf225b98752550c56718f'
   const IMAGE_PATH = 'https://image.tmdb.org/t/p/original'
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original' //endpoint para las imagenes
@@ -82,7 +81,6 @@ useEffect(() => {
 
   return (
     <div>
-      <h2 className='text-center mt-5 mb-5'>Trailer Movies</h2>
       {/*buscador*/}
       <form className='container mb-4' onSubmit={searchMovies}>
       <input type="text" placeholder='search' onChange={(e)=> setSearchKey(e.target.value)}/> 
@@ -172,4 +170,3 @@ useEffect(() => {
 
 
 export default Busqueda;
-
