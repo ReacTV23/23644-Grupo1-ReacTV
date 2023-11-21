@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import './LayoutMain.css'
 
-
 const LayoutMain = ({children}) => {
   return (
     <div className='LayoutMain'>
@@ -12,6 +11,5 @@ const LayoutMain = ({children}) => {
     </div>
   )
 }
-
 
 export default LayoutMain

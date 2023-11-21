@@ -4,7 +4,6 @@ import Boton from '../../Components/Boton';
 import './LayoutSecundario.css';
 import Navbar from '../../Components/Navbar/Navbar'
 
-
 const LayoutSecundario = ({children, textoBoton}) => {
   const navigate = useNavigate();
 

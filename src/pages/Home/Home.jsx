@@ -25,3 +25,4 @@ const Home = ({anchoVentana}) => {
 }
 
 export default Home
+

@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-      <CssBaseline/>
+    <CssBaseline/>
       { showVideo ? (
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
@@ -69,3 +69,4 @@ function App() {
 }
 
 export default App;
+
