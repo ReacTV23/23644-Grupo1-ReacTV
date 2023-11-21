@@ -1,9 +1,11 @@
 import React from 'react'
-import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
 
 const Recientes = () => {
   return (
     <LayoutSecundario textoBoton={'recientes'}>
+      {/* <Carrusel/> para pelis
+      <Carrsuel/> para series*/}
     </LayoutSecundario>
   )
 }

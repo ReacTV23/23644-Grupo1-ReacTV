@@ -1,13 +1,14 @@
 .App {
   font-family: 'roboto';
   text-align: center;
- }
-
- .App video {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  font-family: 'roboto';
 }
+
+body {
+  margin: 0;
+  background-color: #222;
+  font-family: system-ui;
+  min-height: 100vh;
+}
+
+
