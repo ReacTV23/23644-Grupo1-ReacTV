@@ -11,6 +11,7 @@ import Categorias from './Pages/Categorias/Categorias.jsx'
 import Generos from './Pages/Generos/Generos.jsx'
 import MiLista from './Pages/MiLista/MiLista.jsx'
 import Lanzamientos from './Pages/Lanzamientos/Lanzamientos.jsx'
+import About from './Pages/About/About.jsx'
 import './App.css';
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
               <Route path="/generos" element={<Generos />} />
               <Route path="/milista" element={<MiLista />} />
               <Route path="/lanzamientos" element={<Lanzamientos />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </Router>
         </AuthProvider>
