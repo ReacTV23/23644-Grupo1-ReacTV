@@ -9,6 +9,12 @@
 # production
 /build
 
+# pruebas Hugo
+/src/components/pruebas
+/app.js
+/src/index.js
+/src/index.*
+
 # misc
 .DS_Store
 .env

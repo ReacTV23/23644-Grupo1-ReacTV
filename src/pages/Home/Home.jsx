@@ -1,76 +1,28 @@
-import React, {useState} from 'react'
+import React from 'react';
 import LayoutMain from '../../layout/LayoutMain/LayoutMain'
-import { ButtonGroup } from 'react-bootstrap';
-import Boton from '../../components/Boton'
-import './Home.css'
+import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
+import HomeMobile  from './HomeMobile/HomeMobile';
+import { useAuth } from '../../Context/authContext';  // Importa el hook useAuth
 
-const Home = () => {
-  const [mostrarDescripcion, setMostrarDescripcion] = useState(false);
-  const [botonClicado, setBotonClicado] = useState('');
-  const [isAuth, setIsAuth] = useState(false);
+import './Home.css';
 
-  const handleDescripcion = (textoBoton) => {
-    setBotonClicado(textoBoton);
-    setMostrarDescripcion(true);
+const Home = ({anchoVentana}) => {
+  const { isAuth } = useAuth();  // Obtiene el estado de autenticación del contexto
+
+  const renderDeskoptContent = () => {
+    if (anchoVentana > 768) {
+      return isAuth ? <HomeDeskoptComponents.MainDeskoptLogueado /> : <HomeDeskoptComponents.MainDeskoptInvitado />;
+    }
+    return isAuth ? <HomeMobile.MainMobileLogueado /> : <HomeMobile.MainMobileInvitado />;
   };
-
-  const handleCerrarDescripcion = () => {
-    setMostrarDescripcion(false);
-  };
-
-  const Descripcion = () => {
-    return (
-      <div className="contenedor">
-        <Boton texto={botonClicado}/>
-        <div className='descripcion'>
-          ¡La descripción está aquí!
-        </div>
-        <Boton texto={'cerrar'}funcion={handleCerrarDescripcion}/>
-      </div>
-    )
-  }
-
-  const MainInvitado = () => {
-    return (
-      <LayoutMain>
-      {/* <Banner/> */}
-      {!mostrarDescripcion &&
-      <ButtonGroup className='GrupoBoton'>
-          <Boton texto={'recientes'} funcion={()=>handleDescripcion('recientes')}/>
-          <Boton texto={'categorias'} funcion={()=>handleDescripcion('categorias')}/>
-          <Boton texto={'generos'} funcion={()=>handleDescripcion('generos')}/>
-          <Boton texto={'mi lista'} funcion={()=>handleDescripcion('mi lista')}/>
-          <Boton texto={'lanzamientos'} funcion={()=>handleDescripcion('lanzamientos')}/>
-      </ButtonGroup> } 
-      {mostrarDescripcion && (<Descripcion/>)}
-      </LayoutMain>
-    )
-  }
-
-  const MainLogueado = () => {
-    return (
-      <LayoutMain>
-      {/* <Banner/> */}
-      {!mostrarDescripcion &&
-      <ButtonGroup className='GrupoBoton'>
-          <Boton texto={'recientes'} funcion={()=>console.log('recientes')}/>
-          <Boton texto={'categorias'} funcion={()=>console.log('categorias')}/>
-          <Boton texto={'generos'} funcion={()=>console.log('generos')}/>
-          <Boton texto={'mi lista'} funcion={()=>console.log('mi lista')}/>
-          <Boton texto={'lanzamientos'} funcion={()=>console.log('lanzamientos')}/>
-      </ButtonGroup> } 
-      {mostrarDescripcion && (<Descripcion/>)}
-      </LayoutMain>
-    )
-  }
 
   return (
-    <>
-      {/* <Boton texto={'loguearse'} funcion={()=>setIsAuth(true)}/> */}
-      {!isAuth && <MainInvitado/>}
-      {isAuth && <MainLogueado/>}
-    </>    
+    <LayoutMain>
+      {renderDeskoptContent()}
+      {/* {console.log(isAuth)} */}
+    </LayoutMain>    
   )
 }
 
 export default Home
+
