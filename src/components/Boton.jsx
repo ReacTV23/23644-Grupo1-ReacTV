@@ -7,7 +7,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
     const Icono = Contenido;
     return (
      // Si hay un icono, renderiza un IconButton
-      <IconButton className='IconoBoton' aria-label={Icono}>
+      <IconButton className='IconoBoton' aria-label={Icono} onClick={funcion}>
         <Icono className='Icono'
           sx={{fontSize: {xs:'30px', sm: fontSize, md: fontSize},
           height: height, color: {color},
