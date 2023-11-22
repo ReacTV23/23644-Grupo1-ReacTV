@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './Components/IntroVideo/IntroVideo.jsx';
-import Home from './Pages/Home/Home';
+import Home from './pages/Home/Home';
 import {AuthProvider} from './Context/authContext'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {ProtectedRoute} from './Components/ProtectedRuote/ProtectedRoute'

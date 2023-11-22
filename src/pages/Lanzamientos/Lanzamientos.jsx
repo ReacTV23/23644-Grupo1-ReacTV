@@ -4,7 +4,6 @@ import Calendar from '../../Components/Calendar/Calendar'
 // import {Card} from '../../Components/Card/Card'
 import './Lanzamientos.css'
 
-
 const Lanzamientos = () => {
   return (
     <LayoutSecundario textoBoton={'lanzamientos'}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
 // import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 // import EventIcon from '@mui/icons-material/Event';
 // import PlayCircleIcon from '@mui/icons-material/PlayCircle';
@@ -15,7 +15,7 @@ const CardSinopsis = () => {
     //     descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis incidunt ut aut repellendus quidem eius corrupti similique eaque dolorem, deleniti voluptas dignissimos earum maxime laborum possimus nostrum. Maxime, aspernatur amet!',
     //     edad: '+14',
     //     duracion: '2H 3min',
-    //     genero: 'Accion',
+    //     genero: 'Accion', 
     //     year: '1990'
     //     }]
 

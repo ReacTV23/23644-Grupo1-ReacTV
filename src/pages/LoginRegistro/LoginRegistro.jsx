@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutForm from '../../Layout/LayoutForm/LayoutForm'
+import LayoutForm from '../../layout/LayoutForm/LayoutForm'
 import { Login } from '../../Components/Ingreso/Login/Login'
 import { Register } from '../../Components/Ingreso/Register/Register'
 import Boton from '../../Components/Boton'
