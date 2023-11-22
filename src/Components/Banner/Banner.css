@@ -50,14 +50,13 @@ body {
     align-items: flex-end;
   }
   .boton{
-    background-color: #0F1014;
+    background-color: #E08400;
     color: white;
     outline: none;
     border: 1px solid white;
     padding: 10px 15px;
     cursor: pointer;
     margin-bottom: 10px;
-   
   }
   .reproductor{
     width: 100vw;
