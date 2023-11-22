@@ -1,5 +1,6 @@
 import {ButtonGroup} from 'react-bootstrap';
 import Boton from '../../../Components/Boton'
+import Banner from '../../../Components/Banner/Banner'
 import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
 
@@ -43,7 +44,7 @@ const MainDeskoptInvitado = () => {
 
     return (
       <>
-      {/* <Banner Horizontal/> */}
+      <Banner/>
       {/* <Carrusel/> */} 
       <ButtonGroup className='GrupoBotonDeskopt-Logueado'>
           <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() =>handleButtonClick('/recientes')}/>

@@ -4,10 +4,10 @@ import YouTube from 'react-youtube';
 import './Banner.css';
 
 function Banner() {
-  const API_URL = process.env.REACT_APP_API_URL;
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_URL = process.env.REACT_APP_API_URL_TMDB;
+  const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-  const URL_IMAGE = "https://image.tmdb.org/t/p/original";
+  const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   const [movies, setMovies] = useState([]);
   const [trailer, setTrailer] = useState(null);
@@ -65,9 +65,9 @@ function Banner() {
 
   return (
     <div>
-      <h2 className="text-center mt-5 mb-5">Trailer Popular Movies</h2>
+      {/* <h2 className="text-center mt-5 mb-5">Trailer Popular Movies</h2> */}
 
-      <div>
+      <div style={{margin:'1rem'}}>
         <main>
           {movie ? (
             <div
@@ -125,7 +125,7 @@ function Banner() {
         </main>
       </div>
 
-      <div className="container mt-3">
+      {/* <div className="container mt-3">
         <div className="row">
           {movies.map((movie) => (
             <div
@@ -143,7 +143,7 @@ function Banner() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
