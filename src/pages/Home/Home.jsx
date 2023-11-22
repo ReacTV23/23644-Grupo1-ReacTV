@@ -1,5 +1,5 @@
 import React from 'react';
-import LayoutMain from '../../Layout/LayoutMain/LayoutMain'
+import LayoutMain from '../../layout/LayoutMain/LayoutMain'
 import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
 import HomeMobile  from './HomeMobile/HomeMobile';
 import { useAuth } from '../../Context/authContext';  // Importa el hook useAuth

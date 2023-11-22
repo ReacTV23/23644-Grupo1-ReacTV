@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './Components/IntroVideo/IntroVideo.jsx';
-import Home from './Pages/Home/Home';
+import Home from './pages/Home/Home';
 import {AuthProvider} from './Context/authContext'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {ProtectedRoute} from './Components/ProtectedRuote/ProtectedRoute'
-import LoginRegistro  from './Pages/LoginRegistro/LoginRegistro.jsx'
-import Recientes from './Pages/Recientes/Recientes.jsx'
-import Categorias from './Pages/Categorias/Categorias.jsx'
-import Generos from './Pages/Generos/Generos.jsx'
-import MiLista from './Pages/MiLista/MiLista.jsx'
-import Lanzamientos from './Pages/Lanzamientos/Lanzamientos.jsx'
+import LoginRegistro  from './pages/LoginRegistro/LoginRegistro.jsx'
+import Recientes from './pages/Recientes/Recientes.jsx'
+import Categorias from './pages/Categorias/Categorias.jsx'
+import Generos from './pages/Generos/Generos.jsx'
+import MiLista from './pages/MiLista/MiLista.jsx'
+import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
 import './App.css';
 
 function App() {

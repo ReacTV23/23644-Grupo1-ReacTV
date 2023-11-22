@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
 import Integrante from  '../../Components/Integrante/Integrante';
 
 // datos recibidos desde base de datos
