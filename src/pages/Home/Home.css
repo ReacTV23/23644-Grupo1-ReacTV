@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-Estilos para pantallas con ancho mayor a 768px 
+/*Estilos para pantallas con ancho mayor a 768px */
 @media (min-width: 769px) {
     .GrupoBoton  {
         flex-direction:row;
