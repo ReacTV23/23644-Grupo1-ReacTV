@@ -17,7 +17,7 @@ const Integrante = ({nombre,apellido, Github, Linkedin}) => {
         <a href={Linkedin} target="_blank" rel="noopener noreferrer">
           <Boton Contenido={LinkedInIcon}/>
         </a>
-    </ButtonGroup>
+      </ButtonGroup>
     </div> 
 
 )}
