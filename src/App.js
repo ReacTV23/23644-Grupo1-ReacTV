@@ -15,7 +15,7 @@ import About from './Pages/About/About.jsx'
 import './App.css';
 
 function App() {
-  const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
+   const [showVideo, setShowVideo] = useState(true); //pasar a true una vez que se terminen las pruebas
   // estado ancho de ventana (renderizado responsive)
   const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
@@ -43,7 +43,8 @@ function App() {
     console.log('Video ended');
     setShowVideo(false);
   };
-
+  
+  
   return (
     <>
     <CssBaseline/>
