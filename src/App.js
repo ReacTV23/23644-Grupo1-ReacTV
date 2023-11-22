@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import BusquedaNombre from './/components/componentes-atomicos/BusquedaNombre';
+import BusquedaNombre from './Components/componentes-atomicos/Busqueda';
 import './App.css';
 
 
