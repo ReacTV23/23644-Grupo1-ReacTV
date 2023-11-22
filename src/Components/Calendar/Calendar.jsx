@@ -1,10 +1,10 @@
-// Calendar.jsx
-
 import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import html2canvas from 'html2canvas';
-import './Calendar.css';
+import Boton from '../Boton'
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import 'react-calendar/dist/Calendar.css';
+import './Calendar.css'
 
 const WritableCalendar = () => {
   const [date, setDate] = useState(new Date());
@@ -21,7 +21,7 @@ const WritableCalendar = () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
-        setUpcomingMovies(data.results || []);
+        setUpcomingMovies(data.results || [])
       } catch (error) {
         console.error('Error fetching upcoming movies:', error);
       }
@@ -88,7 +88,6 @@ const WritableCalendar = () => {
   
       // Convert canvas to image data URL as JPEG
       const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-  
       // Create a download link and trigger the download
       const a = document.createElement('a');
       a.href = imageDataUrl;
@@ -104,10 +103,6 @@ const WritableCalendar = () => {
     }
   };
   
-  
-  
-  
-
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
@@ -135,29 +130,30 @@ const WritableCalendar = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="mb-4">Calendario de estrenos</h1>
-      <div className="row">
-        <div className="col-md-6 mb-3">
-          <div className="card p-3" id="calendar-container">
-            <Calendar
-              onChange={handleDateChange}
-              value={date}
-              tileContent={tileContent}
-              className="custom-calendar"
-            />
+      <div className="container mt-2" style={{width:'60%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+        <h5 className="mb-2" style={{textAling:'center', textTransform: 'uppercase'}}>Calendario de estrenos</h5>
+        <div className="row">
+          <div style={{width:'100%'}}> 
+            <div className="card p-3" id="calendar-container" style={{backgroundColor: '#003686'}}>
+              <Calendar
+                onChange={handleDateChange}
+                value={date}
+                tileContent={tileContent}
+                className="custom-calendar"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="mt-3">
-        <button className="btn btn-success" onClick={downloadCalendar}>
-          Descargar el calendario
-        </button>
-      </div>
+        <div className="mt-3">
+          <Boton Contenido={DownloadForOfflineIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} funcion={downloadCalendar} />
+          {/* <button className="btn btn-success" onClick={downloadCalendar}>
+            Descargar el calendario
+          </button> */}
+        </div>
 
-      {/* Hidden overlay container for capturing the combined content */}
-      <div ref={overlayRef} className="overlay-container" style={{ display: 'none' }} />
-    </div>
+        {/* Hidden overlay container for capturing the combined content */}
+        <div ref={overlayRef} className="overlay-container" style={{ display:'none' }} />
+      </div>
   );
 };
 
