@@ -12,10 +12,11 @@ import Generos from './Pages/Generos/Generos.jsx'
 import MiLista from './Pages/MiLista/MiLista.jsx'
 import Lanzamientos from './Pages/Lanzamientos/Lanzamientos.jsx'
 import About from './Pages/About/About.jsx'
+import VideoPlayer from './Components/IntroVideo/VideoPlayer.jsx'
 import './App.css';
 
 function App() {
-  const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
+  const [showVideo, setShowVideo] = useState(true); //pasar a true una vez que se terminen las pruebas
   // estado ancho de ventana (renderizado responsive)
   const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
@@ -47,7 +48,9 @@ function App() {
   return (
     <>
     <CssBaseline/>
+
       { showVideo ? (
+        // <VideoPlayer/>
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
         <AuthProvider>
