@@ -5,16 +5,17 @@ import Home from './pages/Home/Home';
 import {AuthProvider} from './Context/authContext'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {ProtectedRoute} from './Components/ProtectedRuote/ProtectedRoute'
-import LoginRegistro  from './pages/LoginRegistro/LoginRegistro.jsx'
-import Recientes from './pages/Recientes/Recientes.jsx'
-import Categorias from './pages/Categorias/Categorias.jsx'
-import Generos from './pages/Generos/Generos.jsx'
-import MiLista from './pages/MiLista/MiLista.jsx'
-import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
+import LoginRegistro  from './Pages/LoginRegistro/LoginRegistro.jsx'
+import Recientes from './Pages/Recientes/Recientes.jsx'
+import Categorias from './Pages/Categorias/Categorias.jsx'
+import Generos from './Pages/Generos/Generos.jsx'
+import MiLista from './Pages/MiLista/MiLista.jsx'
+import Lanzamientos from './Pages/Lanzamientos/Lanzamientos.jsx'
+import About from './Pages/About/About.jsx'
 import './App.css';
 
 function App() {
-  const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
+   const [showVideo, setShowVideo] = useState(true); //pasar a true una vez que se terminen las pruebas
   // estado ancho de ventana (renderizado responsive)
   const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 
@@ -42,7 +43,8 @@ function App() {
     console.log('Video ended');
     setShowVideo(false);
   };
-
+  
+  
   return (
     <>
     <CssBaseline/>
@@ -60,6 +62,7 @@ function App() {
               <Route path="/generos" element={<Generos />} />
               <Route path="/milista" element={<MiLista />} />
               <Route path="/lanzamientos" element={<Lanzamientos />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </Router>
         </AuthProvider>

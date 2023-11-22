@@ -55,11 +55,11 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección del botón de inicio de sesión (a la derecha) */}
         { isAuth ? ( 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Boton Contenido={NoAccountsIcon} color={'white'} colorHover={'#E08400'} fontSize={'60px'} onClick={handleLogoutClick}/>
+          <Boton Contenido={NoAccountsIcon} color={'white'} colorHover={'#E08400'} fontSize={'60px'} funcion={handleLogoutClick}/>
         </Link>
         ) : (
           <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={AccountCircle} color={'white'} colorHover={'#E08400'} fontSize={'60px'} onClick={handleLoginClick}/>
+            <Boton Contenido={AccountCircle} color={'white'} colorHover={'#E08400'} fontSize={'60px'} funcion={handleLoginClick}/>
           </Link>
         )}
       </Toolbar>
