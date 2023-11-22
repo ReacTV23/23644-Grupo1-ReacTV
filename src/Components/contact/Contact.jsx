@@ -1,5 +1,5 @@
 import emailjs from "emailjs-com" 
-import "./contact.css"
+import "./Contact.css"
 import { useState } from "react";
 
 const Contact = () => {
@@ -22,9 +22,9 @@ const Contact = () => {
         {formSubmit ? (<div className="formSubmit">
             <h3>Muchas gracias por comunicarse con nosotros.</h3>
                 <p>En breve nos pondremos en contacto.</p>
-               <div className="btn-formSubmit"> <button className="btn btn-outline-secondary" onClick={()=>setFormSubmit(false)}>Volver</button></div>
+                <div className="btn-formSubmit"> <button className="btn btn-outline-secondary" onClick={()=>setFormSubmit(false)}>Volver</button></div>
         </div>) : 
-       <form action="" onSubmit={handleSubmit}>
+        <form action="" onSubmit={handleSubmit}>
           <div className="cont-input">
             <label htmlFor="name">Nombre:</label>
             <input type="text" name="name" id="name" placeholder="Nombre"/>
@@ -45,8 +45,8 @@ const Contact = () => {
             <div className="cont-btn">
                   <button type='submit' className='Boton'>ENVIAR</button>
             </div>
-       </form>
-       }
+        </form>
+      }
     </div>
   )
 }

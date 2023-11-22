@@ -2,7 +2,6 @@ import React from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Boton from '../Boton';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import GrupoBotones from '../Botones/GrupoBotones';
 import { ButtonGroup } from 'react-bootstrap';
 import './Integrante.css';
 
@@ -13,12 +12,12 @@ const Integrante = ({nombre,apellido, Github, Linkedin}) => {
       <ButtonGroup className='GrupoBotones'
         aria-label="small button group">
         <a href={Github} target="_blank" rel="noopener noreferrer">
-          <Boton Contenido={GitHubIcon}/>
+          <Boton Contenido={GitHubIcon} color={'black'}/>
         </a>
         <a href={Linkedin} target="_blank" rel="noopener noreferrer">
-          <Boton Contenido={LinkedInIcon}/>
+          <Boton Contenido={LinkedInIcon} color={'black'}/>
         </a>
-    </ButtonGroup>
+      </ButtonGroup>
     </div> 
 
 )}
