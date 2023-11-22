@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MoviesContainer from './MoviesContainer'; // Importa el componente MoviesContainer
 
-const BusquedaNombre = () => {
-  const API_URL = 'https://api.themoviedb.org/3/search/multi?include_adult=false&language=en-US&page=1';
-  const API_KEY = '8ba06faa25caf225b98752550c56718f';
+const Busqueda = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   //variables de estado
   const [movies, setMovies] = useState([]);
@@ -76,4 +76,4 @@ const BusquedaNombre = () => {
   );
 }
 
-export default BusquedaNombre;
+export default Busqueda;

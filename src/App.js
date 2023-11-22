@@ -1,6 +1,6 @@
 // App.js
 import React from 'react';
-import BusquedaNombre from './Components/componentes-atomicos/Busqueda';
+import Busqueda from './Components/Busqueda/Busqueda';
 import './App.css';
 
 
@@ -9,7 +9,7 @@ function App() {
     <div>
       <h2 className='text-center mt-5 mb-5'>Posters</h2>
         {/* Use the Busqueda component */}
-         <BusquedaNombre />
+         <Busqueda />
       {/* You can add other components or sections here if needed */}
     </div>
   );
