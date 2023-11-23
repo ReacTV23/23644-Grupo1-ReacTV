@@ -3,8 +3,8 @@ import axios from 'axios';
 import MoviesContainer from './MoviesContainer'; // Importa el componente MoviesContainer
 
 const Busqueda = () => {
-  const API_URL = process.env.REACT_APP_API_URL;
-  const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_URL = process.env.REACT_APP_API_URL_TMDB;
+  const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
 
   //variables de estado
   const [movies, setMovies] = useState([]);

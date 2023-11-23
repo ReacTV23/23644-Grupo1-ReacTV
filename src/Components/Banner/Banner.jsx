@@ -7,7 +7,7 @@ function Banner() {
   const API_URL = process.env.REACT_APP_API_URL_TMDB;
   const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-  const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+  // const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   const [movies, setMovies] = useState([]);
   const [trailer, setTrailer] = useState(null);

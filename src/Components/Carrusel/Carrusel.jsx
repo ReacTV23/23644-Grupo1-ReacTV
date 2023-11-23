@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./carrusel.css"
+import "./Carrusel.css"
 
 const Carrusel = (props) => {   //se debe pasar loas datos como prop 
 

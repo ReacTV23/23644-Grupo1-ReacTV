@@ -1,7 +1,7 @@
 import React from 'react'
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
-import Calendar from '../../Components/Calendar/Calendar'
-// import {Card} from '../../Components/Card/Card'
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import Calendar from '../../components/Calendar/Calendar'
+// import {Card} from '../../components/Card/Card'
 import './Lanzamientos.css'
 
 const Lanzamientos = () => {

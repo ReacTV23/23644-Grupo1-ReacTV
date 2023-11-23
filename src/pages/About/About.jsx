@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
-import Integrante from  '../../Components/Integrante/Integrante';
-import Contact from '../../Components/Contact/Contact'
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import Integrante from  '../../components/Integrante/Integrante';
+import Contact from '../../components/Contact/Contact'
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
 import './About.css'
 
