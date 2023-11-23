@@ -15,3 +15,53 @@ const basicFetch = async (endPoint, genres = false) => {
         return [];
     }
 };
+
+/**
+ *
+ * Peliculas
+ *
+ */
+
+// Función auxiliar para mapear y transformar los resultados
+const transformMovieResults = (movieResults) => {
+    return movieResults.map((movieShow) => ({
+        id: movieShow.id,
+        title: movieShow.title,
+        backdrop_path: movieShow.backdrop_path,
+        overview: movieShow.overview,
+        poster_path: movieShow.poster_path,
+        media_type: movieShow.media_type,
+        genre_ids: movieShow.genre_ids,
+        vote_average: movieShow.vote_average
+    }));
+};
+
+const getPopularMovies = async (page) => {
+    const endPoint = `movie/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+};
+
+const getNowPlayingMovies = async (page) => {
+    const endPoint = `movie/now_playing?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+};
+
+const getTopRatedMovies = async (page) => {
+    const endPoint = `movie/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+};
+
+const getTrendingMovies = async (page) => {
+    const endPoint = `trending/movie/day?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+};
+
+const getMoviesByGenres = async (page, genre) => {
+    const endPoint = `discover/movie?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&with_genres=${genre}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+};
