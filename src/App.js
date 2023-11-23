@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import IntroVideo from './components/IntroVideo/IntroVideo.jsx';
 import Home from './pages/Home/Home';
-import {AuthProvider} from './context/authContext'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {ProtectedRoute} from './components/ProtectedRuote/ProtectedRoute'
-import LoginRegistro  from './pages/LoginRegistro/LoginRegistro.jsx'
+import { AuthProvider } from './context/authContext'
+import { MediaTypeProvider } from './context/mediaTypeProvider.js';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ProtectedRoute } from './components/ProtectedRuote/ProtectedRoute'
+import LoginRegistro from './pages/LoginRegistro/LoginRegistro.jsx'
 import Recientes from './pages/Recientes/Recientes.jsx'
 import Categorias from './pages/Categorias/Categorias.jsx'
 import Generos from './pages/Generos/Generos.jsx'
@@ -26,7 +27,7 @@ function App() {
       setAnchoVentana(window.innerWidth);
     };
 
-     // Agregar event listener para el evento resize
+    // Agregar event listener para el evento resize
     window.addEventListener('resize', handleResize);
 
     // Limpiar el event listener cuando el componente se desmonta
@@ -44,32 +45,32 @@ function App() {
     console.log('Video ended');
     setShowVideo(false);
   };
-  
-  
+
   return (
     <>
-    <CssBaseline/>
-
-      { showVideo ? (
+      <CssBaseline />
+      {showVideo ? (
         // <VideoPlayer/>
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
         <AuthProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home anchoVentana={anchoVentana}/>} />
-              <Route path="/login" element={<LoginRegistro />} />
-              <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
-              <Route path="/recientes" element={<Recientes />} />
-              <Route path="/categorias" element={<Categorias />} />
-              <Route path="/generos" element={<Generos />} />
-              <Route path="/milista" element={<MiLista />} />
-              <Route path="/lanzamientos" element={<Lanzamientos />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </Router>
+          <MediaTypeProvider>
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home anchoVentana={anchoVentana} />} />
+                <Route path="/login" element={<LoginRegistro />} />
+                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/recientes" element={<Recientes />} />
+                <Route path="/categorias" element={<Categorias />} />
+                <Route path="/generos" element={<Generos />} />
+                <Route path="/milista" element={<MiLista />} />
+                <Route path="/lanzamientos" element={<Lanzamientos />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </Router>
+          </MediaTypeProvider>
         </AuthProvider>
-      )} 
+      )}
     </>
   )
 }
