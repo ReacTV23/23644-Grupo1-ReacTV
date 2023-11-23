@@ -65,3 +65,41 @@ const getMoviesByGenres = async (page, genre) => {
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
+
+/**
+ *
+ * Series
+ *
+ */
+
+// Función auxiliar para mapear y transformar los resultados
+const transformTVResults = (tvResults) => {
+    return tvResults.map((tvShow) => ({
+        id: tvShow.id,
+        title: tvShow.name,
+        backdrop_path: tvShow.backdrop_path,
+        overview: tvShow.overview,
+        poster_path: tvShow.poster_path,
+        media_type: tvShow.media_type,
+        genre_ids: tvShow.genre_ids,
+        vote_average: tvShow.vote_average
+    }));
+};
+
+const getPopularTV = async (page) => {
+    const endPoint = `tv/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const tvResults = await basicFetch(endPoint);
+    return transformTVResults(tvResults);
+};
+
+const getTopRatedTV = async (page) => {
+    const endPoint = `tv/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const tvResults = await basicFetch(endPoint);
+    return transformTVResults(tvResults);
+};
+
+const getTVByGenres = async (page, genre) => {
+    const endPoint = `discover/tv?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
+    const tvResults = await basicFetch(endPoint);
+    return transformTVResults(tvResults);
+};
