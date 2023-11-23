@@ -1,10 +1,10 @@
 // tmdbService.js
 
 // Defino las constantes para la URL de la API, la clave de API, el código de lenguaje y la URL base para las imágenes
-const API_URL = process.env.REACT_APP_API_URL;
-const API_KEY = process.env.REACT_APP_API_KEY;
-const LANGUAGE_CODE = process.env.REACT_APP_LANGUAGE_CODE;
-// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE;
+const API_URL = process.env.REACT_APP_API_URL_TMDB;
+const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
+const LANGUAGE_CODE = process.env.REACT_APP_LANGUAGE_CODE_TMDB;
+// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 /**
  * Realiza una solicitud a la API utilizando el método fetch.

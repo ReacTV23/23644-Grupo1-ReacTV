@@ -1,61 +1,36 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
-import Integrante from  '../../Components/Integrante/Integrante';
-
-// datos recibidos desde base de datos
-const integrantes = {
-  'Antonela Borgogno': {
-      'GitHub': 'https://github.com/antonela',
-      'LinkedIn': 'https://www.linkedin.com/in/antonela'
-  },
-  'Hugo Segura': {
-      'GitHub': 'https://github.com/hugo',
-      'LinkedIn': 'https://www.linkedin.com/in/hugo'
-  },
-  'Horacio Porto': {
-    'GitHub': 'https://github.com/horacio',
-    'LinkedIn': 'https://www.linkedin.com/in/horacio'
-  },
-  'Casco Fani': {
-    'GitHub': 'https://github.com/fani',
-    'LinkedIn': 'https://www.linkedin.com/in/fani'
-  },
-  'Monica Crichton': {
-    'GitHub': 'https://github.com/monica',
-    'LinkedIn': 'https://www.linkedin.com/in/monica'
-  },
-  'Maria Fasce': {
-      'GitHub': 'https://github.com/maria',
-      'LinkedIn': 'https://www.linkedin.com/in/maria'
-  },
-  'Sofia Gandulfo': {
-    'GitHub': 'https://github.com/sofia',
-    'LinkedIn': 'https://www.linkedin.com/in/sofia'
-  },
-  'Alejo Piñero': {
-    'GitHub': 'https://github.com/alejo',
-    'LinkedIn': 'https://www.linkedin.com/in/alejo'
-  },
-  'Yasmin Pyrih': {
-    'GitHub': 'https://github.com/yas',
-    'LinkedIn': 'https://www.linkedin.com/in/yas'
-  },
-  'Agustin Haag': {
-    'GitHub': 'https://github.com/agustin',
-    'LinkedIn': 'https://www.linkedin.com/in/agustin'
-  }
-}
+import Integrante from  '../../components/Integrante/Integrante';
+import Contact from '../../components/Contact/Contact'
+import {getFirestore, collection, getDocs} from 'firebase/firestore';
+import './About.css'
 
 const About = () => {
+
+  const [datos, setDatos] = useState ([]);
+
+  useEffect (() => {
+    const queryDb = getFirestore();
+    const queryCollection = collection(queryDb, 'Integrantes');
+    getDocs (queryCollection)
+      .then(res => setDatos(res.docs.map(user => ({id:user.id, ...user.data()}))))
+  }, [])
+
   return (
     <LayoutSecundario textoBoton={'team'}>
-        {/* mapeo del resultado de firebase: nombre: nombre del integrante y detalle link de redes sociales */}
-        {Object.entries(integrantes).map(([nombre, detalles]) => (
-        <Integrante key={nombre} nombre={nombre} detalles={detalles}/>
-        ))}
-        {/* Form Contacto */}
+        <div className='Contenedor_About'>
+          <div className='Listado_Integantres'>
+          {/* mapeo del resultado de firebase: nombre: nombre del integrante y detalle link de redes sociales */}
+          {datos.map((dato, i) => (
+          <Integrante key={i} nombre={dato.Nombre} apellido={dato.Apellido} Github={dato.Github} Linkedin={dato.Linkedin}/>
+          ))}
+          </div>
+          <Contact style={{width:'50%'}}/>
+        </div>
     </LayoutSecundario>   
   )
 }
 
 export default About
+
