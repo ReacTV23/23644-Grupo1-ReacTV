@@ -5,7 +5,7 @@ import Boton from '../Boton'
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
-import { useAuth } from '../../Context/authContext';  // Importa el hook useAuth
+import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
 
 const Navbar = ({onLoginButtonClick}) => {
   const { isAuth, setIsAuth  } = useAuth();  // Obtiene el estado de autenticación del contexto

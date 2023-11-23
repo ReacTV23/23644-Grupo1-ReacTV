@@ -7,7 +7,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {ProtectedRoute} from './components/ProtectedRuote/ProtectedRoute'
 import LoginRegistro  from './pages/LoginRegistro/LoginRegistro.jsx'
 import Recientes from './pages/Recientes/Recientes.jsx'
-import Categorias from './Pages/Categorias/Categorias.jsx'
+import Categorias from './pages/Categorias/Categorias.jsx'
 import Generos from './pages/Generos/Generos.jsx'
 import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
