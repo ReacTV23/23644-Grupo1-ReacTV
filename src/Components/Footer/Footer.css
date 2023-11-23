@@ -5,7 +5,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #003686;
+  background-color: var(--color-azul)
 }
   
   .left,
@@ -36,12 +36,12 @@ footer {
   }
 
   p:hover {
-    color:#E08400
+    color: var(--color-naranja)
   }
   
   /* Estilos para el ícono de Figma */
   .right a {
-    color: #E0A24A; /* Color amarillo-naranja */
+    color: var(--color-naranja); /* Color amarillo-naranja */
     width: 60px;
     height: 60px;
 
@@ -54,7 +54,7 @@ footer {
   }
 
   .Icono:hover {
-    color:#E08400
+    color: var(--color-naranja)
   }
   
   /* Estilos para pantallas más grandes (mayores a 360px) */

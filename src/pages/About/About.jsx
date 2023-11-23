@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario  from '../../layout/LayoutSecundario/LayoutSecundario'
+import Titulo from '../../components/Titulo/Titulo'
 import Integrante from  '../../components/Integrante/Integrante';
 import Contact from '../../components/Contact/Contact'
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
@@ -18,13 +19,16 @@ const About = () => {
   }, [])
 
   return (
-    <LayoutSecundario textoBoton={'team'}>
+    <LayoutSecundario textoBoton={'about'}>
         <div className='Contenedor_About'>
-          <div className='Listado_Integantres'>
-          {/* mapeo del resultado de firebase: nombre: nombre del integrante y detalle link de redes sociales */}
-          {datos.map((dato, i) => (
-          <Integrante key={i} nombre={dato.Nombre} apellido={dato.Apellido} Github={dato.Github} Linkedin={dato.Linkedin}/>
-          ))}
+          <div className='Integantres'>
+            <Titulo texto={'team'}/>
+            <div className='Listado'>
+            {/* mapeo del resultado de firebase: nombre: nombre del integrante y detalle link de redes sociales */}
+            {datos.map((dato, i) => (
+            <Integrante key={i} nombre={dato.Nombre} apellido={dato.Apellido} Github={dato.Github} Linkedin={dato.Linkedin}/>
+            ))}
+            </div>
           </div>
           <Contact style={{width:'50%'}}/>
         </div>

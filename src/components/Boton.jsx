@@ -10,7 +10,8 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       <IconButton className='IconoBoton' aria-label={Icono} onClick={funcion}>
         <Icono className='Icono'
           sx={{fontSize: {xs:'30px', sm: fontSize, md: fontSize},
-          height: height, color: {color},
+          height: height, 
+          color: {color},
           ':hover': {color: colorHover}
           }}/>
       </IconButton>
@@ -21,12 +22,15 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       <Button sx={{
       width: { xs:width, sm:'360px'},
       color: color,
-      height: height,
+      height: '50px',
       margin: '10px 0',
-      borderRadius: '20px',
+      paddiing: '1rem',
+      borderRadius: '30px',
+      fontFamily: 'Roboto',
+      fontSize: '22px',
       textTransform: 'uppercase',
       backgroundColor: backgroundColor,
-      fontWeight: 'bold',
+      fontWeight: 'Normal',
       ':hover': {backgroundColor: backgroundHover, color: colorHover},
     }} 
     variant="contained"

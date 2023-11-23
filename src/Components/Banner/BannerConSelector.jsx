@@ -85,26 +85,6 @@ function BannerConSelector() {
     return (
       <div>
         <Carrusel peliculas={movies} selectMovie={selectMovie} />
-        {/* <h2 className="text-center mt-5 mb-5">Lista de Películas</h2> */}
-        {/* <div className="container mt-3">
-          <div className="row">
-            {movies.map((movie) => (
-              <div
-                key={movie.id}
-                className="col-md-4 mb-3"
-                onClick={() => selectMovie(movie)}
-              >
-                <img
-                  src={`${IMAGE_PATH + movie.poster_path}`}
-                  alt=""
-                  height={600}
-                  width="100%"
-                />
-                <h4 className="text-center">{movie.title}</h4>
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
     );
   };

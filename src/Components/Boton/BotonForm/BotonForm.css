@@ -1,0 +1,22 @@
+.cont-btn {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.cont-btn button{
+    padding: 10px 0px;
+    width: 170px;
+    text-transform: uppercase;
+    border-radius: 30px;
+    font-size:15px;
+    font-weight: 600;
+    background-color: rgb(180, 180, 180);
+}
+
+.cont-btn button:hover{
+    border: 1px solid rgb(87, 87, 87);
+    color:rgb(66, 66, 66) ;
+    background: white;
+    border: 2px solid var(--color-naranja);
+}

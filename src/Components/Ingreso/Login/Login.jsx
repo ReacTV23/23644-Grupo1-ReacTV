@@ -5,6 +5,7 @@ import {Alert} from "../Alerts/Alert";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import BotonForm from '../../Boton/BotonForm/BotonForm'
 import '../Ingreso.css'
 
 export function Login({width}) {
@@ -111,12 +112,13 @@ export function Login({width}) {
 
           <div className="mb-4">
             <Row>
-              <Col> 
-                <div className="mb-4">
+              <Col style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', marginBottom: '1rem'}}> 
+                <BotonForm texto={'login'}/>
+                {/* <div className="mb-4">
                   <button className='Boton text-sm py-2 px-4'>
                     Login
                   </button>
-                </div>
+                </div> */}
               </Col>
             </Row>
             <Row>
@@ -141,11 +143,15 @@ export function Login({width}) {
         </p>
       </Row>
 
-      <button style={{width:width}}
+      <div style={{display:'flex', alignItems:'center', justifyContent:'center'}} onClick={handleGoogleSignin} >
+        <BotonForm texto={'iniciar con google'} width={'360px'}/>
+      </div>
+      
+      {/* <button style={{width:width}}
         onClick={handleGoogleSignin}
         className="Boton tborder-1 py-2 px-2 w-full">
         Iniciar con Google
-      </button>
+      </button> */}
     </div>
   );
 }

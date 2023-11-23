@@ -5,6 +5,7 @@ import { Alert } from "../Alerts/Alert";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import BotonForm from '../../Boton/BotonForm/BotonForm'
 import '../Ingreso.css'
 
 export function Register({width}) {
@@ -92,12 +93,13 @@ export function Register({width}) {
           </div>
 
           <div className="mb-4">
-            <Row>
-                <div>
+            <Row style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
+                <BotonForm texto={'registro'}/>
+                {/* <div>
                   <button className="Boton text-sm py-2 px-4">
                     Registro
                   </button>
-                </div>
+                </div> */}
             </Row>
           </div>
         </Container>
