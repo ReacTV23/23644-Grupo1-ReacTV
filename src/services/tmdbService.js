@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const API_KEY = process.env.REACT_APP_API_KEY_TMDB
-const API_URL_BASE = process.env.REACT_APP_API_URL_TMDB
-// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB
-const API_LANGUAGE = process.env.REACT_APP_LANGUAGE_CODE_TMDB
-
+const API_KEY = "527cb9332a5ea7cb6ac262637d5178e9";
+const API_URL_BASE = "https://api.themoviedb.org/3/";
+const API_LANGUAGE = "es-AR";
+// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 const basicFetch = async (endPoint, genres = false) => {
     try {
@@ -36,30 +35,76 @@ const transformMovieResults = (movieResults) => {
     }));
 };
 
+/**
+ * Obtiene las películas populares.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas populares.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getPopularMovies = async (page) => {
     const endPoint = `movie/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
 
+/**
+ * Obtiene las películas que están actualmente en cartelera.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas en cartelera.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getNowPlayingMovies = async (page) => {
     const endPoint = `movie/now_playing?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
 
+/**
+ * Obtiene las películas mejor valoradas.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas mejor valoradas.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getTopRatedMovies = async (page) => {
     const endPoint = `movie/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
 
+/**
+ * Obtiene las películas de tendencia del día.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas de tendencia.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getTrendingMovies = async (page) => {
     const endPoint = `trending/movie/day?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
 
+/**
+ * Obtiene películas según un género específico.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @param {number} genre - El ID del género por el cual filtrar las películas.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas del género especificado.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getMoviesByGenres = async (page, genre) => {
     const endPoint = `discover/movie?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&with_genres=${genre}`;
     const movieResults = await basicFetch(endPoint);
@@ -86,18 +131,46 @@ const transformTVResults = (tvResults) => {
     }));
 };
 
+/**
+ * Obtiene las series de televisión populares.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las series de televisión populares.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getPopularTV = async (page) => {
     const endPoint = `tv/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const tvResults = await basicFetch(endPoint);
     return transformTVResults(tvResults);
 };
 
+/**
+ * Obtiene las series de televisión mejor valoradas.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las series de televisión mejor valoradas.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getTopRatedTV = async (page) => {
     const endPoint = `tv/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const tvResults = await basicFetch(endPoint);
     return transformTVResults(tvResults);
 };
 
+/**
+ * Obtiene series de televisión según un género específico.
+ *
+ * @async
+ * @function
+ * @param {number} page - El número de página para obtener resultados paginados.
+ * @param {number} genre - El ID del género por el cual filtrar las series de televisión.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las series de televisión del género especificado.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
 const getTVByGenres = async (page, genre) => {
     const endPoint = `discover/tv?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
     const tvResults = await basicFetch(endPoint);
@@ -110,6 +183,37 @@ const getTVByGenres = async (page, genre) => {
  *
  */
 
+/**
+ * Obtiene la lista de géneros desde la API de The Movie Database (TMDb).
+ *
+ * @async
+ * @function
+ * @param {string} type - El tipo de medios para el cual se obtendrán los géneros.
+ *                        Puede ser 'movie', 'tv' o 'all'.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array que contiene
+ *                           un objeto con información sobre los géneros.
+ *                           El objeto tiene las propiedades: 'slug', 'title', 'type' y 'items'.
+ *                           'type' indicará si los géneros son de películas ('movie'),
+ *                           series de televisión ('tv') o ambos ('all').
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ *
+ * @example
+ * try {
+ *   // Obtiene los géneros de películas
+ *   const movieGenresData = await getGenres('movie');
+ *   console.log(movieGenresData);
+ *
+ *   // Obtiene los géneros de series de televisión
+ *   const tvGenresData = await getGenres('tv');
+ *   console.log(tvGenresData);
+ *
+ *   // Obtiene los géneros de películas y series de televisión combinados sin duplicados
+ *   const allGenresData = await getGenres('all');
+ *   console.log(allGenresData);
+ * } catch (error) {
+ *   console.error(`Error al obtener los géneros: ${error.message}`);
+ * }
+ */
 const getGenres = async (type) => {
     try {
         let movieGenres = [];
@@ -186,6 +290,24 @@ const getGenres = async (type) => {
     }
 };
 
+/**
+ * Obtiene películas y series de televisión por género.
+ *
+ * @async
+ * @function
+ * @param {number} [page=1] - El número de página para obtener resultados paginados (por defecto es 1).
+ * @param {number} genre - El ID del género por el cual filtrar las películas y series de televisión.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan películas y series de televisión del género especificado.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ *
+ * @example
+ * try {
+ *   const results = await getAllByGenres(1, 28); // Obtiene películas y series de televisión del género de acción (ID 28) en la página 1
+ *   console.log(results);
+ * } catch (error) {
+ *   console.error(`Error al obtener películas y series por género: ${error.message}`);
+ * }
+ */
 const getAllByGenres = async (page = 1, genre) => {
     try {
         const [movies, tvShows] = await Promise.all([
