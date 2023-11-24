@@ -1,13 +1,14 @@
 import {ButtonGroup} from 'react-bootstrap';
 import Boton from '../../../components/Boton'
 import BannerConSelector from '../../../components/Banner/BannerConSelector'
+import CarruselVertical from '../../../components/Carrusel/CarruselVertical'
 import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
 
 const MainDeskoptInvitado = () => {
     return (
-      <>
-        {/* <Banner-Vertical/> */}
+      <div className='Contenedor-MainDeskoptInvitado'>
+        <CarruselVertical/>
         <ButtonGroup className='GrupoBotonDeskopt-Invitado'>
             <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
             <div className='DescripcionDeskopt-Invitado'>
@@ -30,7 +31,7 @@ const MainDeskoptInvitado = () => {
               ¡La descripción está aquí!
             </div>
         </ButtonGroup>
-      </>
+      </div>
     )
   };
 

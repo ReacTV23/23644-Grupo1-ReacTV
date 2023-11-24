@@ -78,8 +78,7 @@ function BannerConSelector() {
     fetchMovies();
   }, []);
 
-  console.log('Movies:', movies)
-
+  // console.log('Movies:', movies)
 
   const CardContainer = () => {
     return (
@@ -100,23 +99,21 @@ function BannerConSelector() {
               <div
                 className="viewtrailer"
                 style={{
-                  objectFit: "cover",
+                  objectFit: "containt",
                   backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                   width: "100%",
                   height: "100%",
                 }}
               >
                 {playing ? (
-                  <>
+                  <div className="youtube-container">
                     <YouTube
+                      className='reproductor'
                       videoId={trailer.key}
-                      className="reproductor container youtube-container"
                       opts={{
-                        width: "150%",
-                        height: "90%",
                         playerVars: {
                           autoplay: 1,
-                          controls: 0,
+                          controls: 1,
                           cc_load_policy: 0,
                           fs: 0,
                           iv_load_policy: 0,
@@ -129,7 +126,7 @@ function BannerConSelector() {
                     <button onClick={() => setPlaying(false)} className="boton">
                       Close
                     </button>
-                  </>
+                  </div>
                 ) : (
                   <div className="container">
                     <div className="">
@@ -151,7 +148,7 @@ function BannerConSelector() {
                           </button>
                         </div>
                       ) : (
-                        "Sorry, no trailer available"
+                        "Lo sentimos, el trailer no esta disponible"
                       )}
                       <h1 className="text-white">{movie.title}</h1>
                       <p className="text-white">{movie.overview}</p>
