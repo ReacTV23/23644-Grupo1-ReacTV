@@ -1,5 +1,7 @@
 import emailjs from "emailjs-com" 
 import "./Contact.css"
+import Titulo from '../Titulo/Titulo'
+import BotonForm from '../Boton/BotonForm/BotonForm'
 import { useState } from "react";
 
 const Contact = () => {
@@ -16,13 +18,14 @@ const Contact = () => {
 
   return (
     <div className="contact">    
-        <div className="container-h4">
-            <h4>CONTACTO</h4>
-        </div>
+        <Titulo texto={'contacto'} />
         {formSubmit ? (<div className="formSubmit">
             <h3>Muchas gracias por comunicarse con nosotros.</h3>
                 <p>En breve nos pondremos en contacto.</p>
-                <div className="btn-formSubmit"> <button className="btn btn-outline-secondary" onClick={()=>setFormSubmit(false)}>Volver</button></div>
+                <div onClick={()=>setFormSubmit(false)}>
+                  <BotonForm texto={'volver'} />
+                </div>
+                {/* <div className="btn-formSubmit"> <button className="btn btn-outline-secondary" onClick={()=>setFormSubmit(false)}>Volver</button></div> */}
         </div>) : 
         <form action="" onSubmit={handleSubmit}>
           <div className="cont-input">
@@ -42,9 +45,7 @@ const Contact = () => {
             <textarea name="mensaje" id="mensaje" placeholder="Mensaje">
             </textarea>
           </div>
-            <div className="cont-btn">
-                  <button type='submit' className='Boton'>ENVIAR</button>
-            </div>
+            <BotonForm texto={'enviar'}/>
         </form>
       }
     </div>

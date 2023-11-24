@@ -1,6 +1,14 @@
+.Contenedor-MainDeskoptInvitado {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .GrupoBotonDeskopt-Invitado {
     width: 100%;
-    margin: 15px 0;
     display:flex;
     flex-direction:column;
     justify-content: center;
