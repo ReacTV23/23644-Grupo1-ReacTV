@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
-import Loader from "../Loader/Loader";
-import Boton from "../Boton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import "./Carrusel.css";
+import Loader from '../../Loader/Loader'
+import Boton from '../../Boton'
+import CardImg from '../../Card/CardImg/CardImg'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import "./Carrusel.css"
 
-const Carrusel = ({ peliculas, selectMovie, actualPage }) => {
-  const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
-  // const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-
+const Carrusel = ({peliculas, selectMovie}) => {
   const fila = document.querySelector(".container-carrusel");
   const derecha = document.querySelector("#flecha-derecha");
   const izquierda = document.querySelector("#flecha-izquierda");
-  const [currentPage, setCurrentPage] = useState(actualPage);
+  const [currentPage, setCurrentPage] = useState(0);
   const moviesPerPage = 3;
   const startIndex = currentPage * moviesPerPage;
   const endIndex = startIndex + moviesPerPage;
   const peliculasPagina = peliculas.slice(startIndex, endIndex);
+  
 
   useEffect(() => {
     const handleRightClick = () => {
@@ -37,50 +36,31 @@ const Carrusel = ({ peliculas, selectMovie, actualPage }) => {
         izquierda.removeEventListener("click", handleLeftClick);
       };
     }
-  }, [currentPage]); // Agrega las dependencias necesarias para evitar problemas de memoria
+  }, [currentPage]);
 
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
+    console.log('next')
   };
-
+  
   const prevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-  };
+    console.log('prev')
+  };  
 
   return (
     <section>
       {peliculas ? (
         <div className="contenedor-principal">
-          <Boton
-            Contenido={ChevronLeftIcon}
-            funcion={prevPage}
-            colorHover={"#003686"}
-          />
-          {/* <button id="flecha-izquierda" className="flecha-izquierda" onClick={prevPage}>
-            <i className="fa-solid fa-chevron-left"></i>
-          </button> */}
+          <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
           <div className="container-carrusel">
             <div className="container-card" id="container-card">
-              {peliculasPagina.map((peli) => (
-                <div
-                  key={peli.id}
-                  className="col-md-4"
-                  onClick={() => selectMovie(peli, currentPage)}
-                >
-                  <img
-                    src={`${API_URL_IMAGE + peli.poster_path}`}
-                    alt=""
-                    height={600}
-                  />
-                </div>
+              {peliculasPagina.map(peli => (
+                <CardImg peli={peli} funcion={selectMovie}/>                
               ))}
             </div>
           </div>
-          <Boton
-            Contenido={ChevronRightIcon}
-            funcion={nextPage}
-            colorHover={"#003686"}
-          />
+          <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={'#003686'}/>
         </div>
       ) : (
         <Loader />

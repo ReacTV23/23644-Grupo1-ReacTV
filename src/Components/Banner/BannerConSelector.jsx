@@ -5,11 +5,11 @@ import {
   getTrailersById,
 } from "../../services/tmdbService";
 import YouTube from "react-youtube";
-import Carrusel from "../Carrusel/Carrusel";
+import Carrusel from "../Carrusel/CarruselHorizontal/Carrusel";
 import "./Banner.css";
 
 function BannerConSelector() {
-  // const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
   const API_URL_IMAGE = "https://image.tmdb.org/t/p/original";
 
   const [showCardContainer, setShowCardContainer] = useState(true);
@@ -96,7 +96,7 @@ function BannerConSelector() {
                 className="viewtrailer"
                 style={{
                   objectFit: "containt",
-                  backgroundImage: `url("${API_URL_IMAGE}${movie.backdrop_path}")`,
+                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                   width: "100%",
                   height: "100%",
                 }}
@@ -125,7 +125,7 @@ function BannerConSelector() {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="">
+                    <div className="banner">
                       {trailer ? (
                         <div>
                           <button
