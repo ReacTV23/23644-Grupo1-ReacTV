@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import YouTube from "react-youtube";
-import Carrusel from '../Carrusel/Carrusel';
+import Carrusel from '../Carrusel/CarruselHorizontal/Carrusel';
 import "./Banner.css";
 
 function BannerConSelector() {
@@ -101,8 +101,6 @@ function BannerConSelector() {
                 style={{
                   objectFit: "containt",
                   backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-                  width: "100%",
-                  height: "100%",
                 }}
               >
                 {playing ? (
@@ -129,7 +127,7 @@ function BannerConSelector() {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="">
+                    <div className="banner">
                       {trailer ? (
                         <div>
                           <button

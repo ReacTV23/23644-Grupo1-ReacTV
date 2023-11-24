@@ -9,8 +9,7 @@ function Banner() {
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
   // const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-  const [movies, setMovies] = useState([]);
-  const [trailer, setTrailer] = useState(null);
+  const [movies, setMovies] = useState([]);  const [trailer, setTrailer] = useState(null);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
 
