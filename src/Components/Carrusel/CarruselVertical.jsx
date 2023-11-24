@@ -6,8 +6,8 @@ import "./CarruselVertical.css";
 
 const videos = [
   { url: 'assets/videos/intro-1-usuario.mp4' },
-  { url: 'assets/videos/intro-2-usuario.mp4' },
   { url: 'assets/videos/video-1-intro.mp4' },
+  { url: 'assets/videos/intro-2-usuario.mp4' },
 ];
 
 const Carrusel = ({ selectMovie }) => {
