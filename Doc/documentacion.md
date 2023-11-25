@@ -83,3 +83,13 @@ Este esquema visual actúa como guía, revelando la secuencia lógica de interac
 [![captura-diagrama-de-flujo.jpg](https://i.postimg.cc/j2trv90G/captura-diagrama-de-flujo.jpg)](https://postimg.cc/njR5h3Lk)
 
 [**VER DIAGRAMA DE FLUJO**](https://www.figma.com/file/xbEkhhwliZvD1LMtnUjJDY/Diagrama-de-Flujo?type=whiteboard&node-id=0-1&t=ymH2RTgI9CRWPboN-0 "VER DIAGRAMA DE FLUJO")
+
+
+
+## LINKS DEL PROYECTO
+
+- [**Repo de Pruebas**](https://github.com/Antonela89/reactv3-gitflow "Repo de Pruebas:")
+
+- [**Figma-Proyecto**](https://www.figma.com/file/rq4z9JNH8yNPbiDvtk3Z8Z/ReacTV2?type=design&node-id=0-1&mode=design&t=USTibKKsWV5pQ7Np-0 "Figma-Proyecto:") 
+- [**Figma-Diagrama**](https://www.figma.com/file/xbEkhhwliZvD1LMtnUjJDY/Diagrama-de-Flujo?type=whiteboard&t=USTibKKsWV5pQ7Np-0 "Figma-Diagrama:") 
+
