@@ -74,13 +74,13 @@ function BannerConSelector() {
 
   const CardContainer = () => {
     return (
-      <div>
+      <>
         <Carrusel
           peliculas={movies}
           selectMovie={selectMovie}
           actualPage={actualPage}
         />
-      </div>
+      </>
     );
   };
 
