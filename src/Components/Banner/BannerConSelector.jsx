@@ -82,9 +82,9 @@ function BannerConSelector() {
 
   const CardContainer = () => {
     return (
-      <div>
+      <>
         <Carrusel texto={'peliculas más populares'} peliculas={movies} selectMovie={selectMovie} />
-      </div>
+      </>
     );
   };
 

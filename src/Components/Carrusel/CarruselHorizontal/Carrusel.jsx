@@ -52,7 +52,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
   return (
     <section>
       {peliculas ? (
-        <div className='contenedor'>
+        <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>
           <div className="contenedor-principal">
             <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
