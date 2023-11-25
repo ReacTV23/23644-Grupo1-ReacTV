@@ -55,11 +55,11 @@ Interfaz de acceso para los usuarios registrados.
 Página dedicada a nuevos usuarios para crear cuentas.
 
 #### 3. HOME - INVITADO:
-Recientes: Destaca las últimas incorporaciones.
-Categorías: Organiza el contenido por categorías.
-Géneros: Explora películas por género.
-Mi Lista: Espacio para que los usuarios guarden sus selecciones.
-Lanzamientos: Muestra las últimas novedades.
+**Recientes:** Destaca las últimas incorporaciones.
+**Categorías:** Organiza el contenido por categorías.
+**Géneros:** Explora películas por género.
+**Mi Lista:** Espacio para que los usuarios guarden sus selecciones.
+**Lanzamientos:** Muestra las últimas novedades.
 
 #### 4. MAIN - LOGUEADO:
 **Recientes:** Destacando novedades.
@@ -74,3 +74,12 @@ Lanzamientos: Muestra las últimas novedades.
 **Acerca de:** Información sobre la aplicación.
 **Contacto:** Formulario para ponerse en contacto.
 
+
+
+## DIAGRAMA DE FLUJO
+
+Este esquema visual actúa como guía, revelando la secuencia lógica de interacciones y direcciones dentro de la aplicación, al mismo tiempo que proporciona una explicación detallada sobre el uso de Firebase y la API. Ofrece una visión rápida y clara de cómo los usuarios navegarán entre las diferentes secciones, simplificando la comprensión de la estructura esencial.
+
+[![captura-diagrama-de-flujo.jpg](https://i.postimg.cc/j2trv90G/captura-diagrama-de-flujo.jpg)](https://postimg.cc/njR5h3Lk)
+
+[**VER DIAGRAMA DE FLUJO**](https://www.figma.com/file/xbEkhhwliZvD1LMtnUjJDY/Diagrama-de-Flujo?type=whiteboard&node-id=0-1&t=ymH2RTgI9CRWPboN-0 "VER DIAGRAMA DE FLUJO")
