@@ -83,7 +83,7 @@ function BannerConSelector() {
   const CardContainer = () => {
     return (
       <div>
-        <Carrusel peliculas={movies} selectMovie={selectMovie} />
+        <Carrusel texto={'peliculas más populares'} peliculas={movies} selectMovie={selectMovie} />
       </div>
     );
   };
@@ -99,7 +99,6 @@ function BannerConSelector() {
               <div
                 className="viewtrailer"
                 style={{
-                  objectFit: "containt",
                   backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                 }}
               >

@@ -4,9 +4,10 @@ import Boton from '../../Boton'
 import CardImg from '../../Card/CardImg/CardImg'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import Titulo from '../../Titulo/Titulo'
 import "./Carrusel.css"
 
-const Carrusel = ({peliculas, selectMovie}) => {
+const Carrusel = ({texto, peliculas, selectMovie}) => {
   const fila = document.querySelector(".container-carrusel");
   const derecha = document.querySelector("#flecha-derecha");
   const izquierda = document.querySelector("#flecha-izquierda");
@@ -51,18 +52,21 @@ const Carrusel = ({peliculas, selectMovie}) => {
   return (
     <section>
       {peliculas ? (
-        <div className="contenedor-principal">
-          <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
-          <div className="container-carrusel">
-            <div className="container-card" id="container-card">
-              {peliculasPagina.map(peli => (
-                <CardImg peli={peli} funcion={selectMovie}/>                
-              ))}
+        <div className='contenedor'>
+          <Titulo texto={texto}/>
+          <div className="contenedor-principal">
+            <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
+            <div className="container-carrusel">
+              <div className="container-card" id="container-card">
+                {peliculasPagina.map((peli, i) => (
+                  <CardImg key={i} peli={peli} funcion={selectMovie}/>                
+                ))}
+              </div>
             </div>
+            <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={'#003686'}/>
           </div>
-          <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={'#003686'}/>
-        </div>
-      ) : (
+        </div>      
+        ) : (
         <Loader />
       )}
     </section>

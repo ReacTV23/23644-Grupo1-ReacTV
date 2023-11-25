@@ -3,7 +3,7 @@ import { IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 
-const Busqueda2 = () => {
+const BusquedaInput = () => {
     return (
         <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px' }}>
                 <IconButton color="primary" size="large">
@@ -18,4 +18,4 @@ const Busqueda2 = () => {
     )
 }
 
-export default Busqueda2
+export default BusquedaInput
