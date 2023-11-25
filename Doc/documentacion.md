@@ -93,3 +93,19 @@ Este esquema visual actúa como guía, revelando la secuencia lógica de interac
 - [**Figma-Proyecto**](https://www.figma.com/file/rq4z9JNH8yNPbiDvtk3Z8Z/ReacTV2?type=design&node-id=0-1&mode=design&t=USTibKKsWV5pQ7Np-0 "Figma-Proyecto:") 
 - [**Figma-Diagrama**](https://www.figma.com/file/xbEkhhwliZvD1LMtnUjJDY/Diagrama-de-Flujo?type=whiteboard&t=USTibKKsWV5pQ7Np-0 "Figma-Diagrama:") 
 
+
+
+## INTEGRANTES GRUPO 1
+
+| NOMBRE | APELLIDO |
+| ------------ | ------------ |
+| Monica Irene | Crichton |
+| Fani Mariel | Casco |
+|  Antonela | Borgogno |
+| Horacio | Porto |
+| Hugo Antonio | Segura |
+| Maria Antonieta | Fasce |
+| Yasmin Alexandra | Pyrih |
+| Agustin Gerardo | Haag |
+| Sofía | Gandulfo |
+| Alejo |  Piñeiro |
