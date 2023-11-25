@@ -95,7 +95,6 @@ function BannerConSelector() {
               <div
                 className="viewtrailer"
                 style={{
-                  objectFit: "containt",
                   backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                   width: "100%",
                   height: "100%",
