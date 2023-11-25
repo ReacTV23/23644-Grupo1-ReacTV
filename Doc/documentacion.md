@@ -31,3 +31,13 @@ Estos bocetos son la primera visión de nuestra aplicación. Son esbozos inicial
 [![captura-prototipado.jpg](https://i.postimg.cc/kGV0gmC3/captura-prototipado.jpg)](https://postimg.cc/5QV7sDjn)
 
 [**VER DISEÑO DE INTERFAZ EN FIGMA**](https://www.figma.com/file/rq4z9JNH8yNPbiDvtk3Z8Z/ReacTV2?type=design&mode=design&t=ymH2RTgI9CRWPboN-1 "VER DISEÑO DE INTERFAZ EN FIGMA")
+
+
+
+## PROTOTIPO
+
+Se desarrolló un prototipo utilizando la herramienta "Figma" para definir el diseño y establecer las bases del proyecto. El enfoque se centra en diversas páginas clave, abarcando tanto la experiencia del usuario invitado como la del usuario logueado.
+
+[![PROTOTIPO.jpg](https://i.postimg.cc/pX5mghgk/PROTOTIPO.jpg)](https://postimg.cc/xcYjmCjb)
+
+[**VER FIGMA**](https://www.figma.com/proto/rq4z9JNH8yNPbiDvtk3Z8Z/ReacTV2?type=design&node-id=327-760&t=ymH2RTgI9CRWPboN-0&scaling=scale-down&page-id=327%253A760&prev-org-id=external-teams "VER FIGMA")
