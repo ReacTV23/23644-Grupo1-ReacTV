@@ -3,17 +3,10 @@ import axios from "axios";
 const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
 const API_URL_BASE = process.env.REACT_APP_API_URL_TMDB + "/";
 const API_LANGUAGE = process.env.REACT_APP_LANGUAGE_CODE_TMDB;
-// const API_KEY = "527cb9332a5ea7cb6ac262637d5178e9";
-// const API_URL_BASE = "https://api.themoviedb.org/3/";
-// const API_LANGUAGE = "es-AR";
-
-console.log("API Key", API_KEY)
-console.log("URL", API_URL_BASE)
-console.log("Lenguaje", API_LANGUAGE)
-
-// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+// const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 const basicFetch = async (endPoint, genres = false) => {
+    // console.log("basicFetch", `${API_URL_BASE}${endPoint}`);
     try {
         const response = await axios.get(`${API_URL_BASE}${endPoint}`);
         return genres ? response.data : response.data.results;
@@ -120,21 +113,37 @@ const getMoviesByGenres = async (page, genre) => {
 };
 
 /**
- * Obtiene una pélicula pro su id.
+ * Obtiene una pélicula por su id.
  *
  * @async
  * @function
- * @param {number} page - El número de página para obtener resultados paginados.
  * @param {number} id - El id de la película.
- * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas de tendencia.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array que representa los datos de la pelicula solicitada.
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
-const getMovieById = async (page, id) => {
-    console.log('Se consulto la pelicula con el id: ', id)
-    const endPoint = `/movie/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    // return transformMovieResults(movieResults);
-    return movieResults;
+const getMovieById = async (id) => {
+    // console.log("tmbdbService => getMovieById:", page, id);
+    const endPoint = `movie/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+    const movieResult = await basicFetch(endPoint, true);
+    // console.log("tmbdbService => getMovieById:", movieResults);
+    return movieResult;
+};
+
+/**
+ * Obtiene los trailers de una pelicula por su id.
+ *
+ * @async
+ * @function
+ * @param {number} id - El id de la película.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representa los trailers de la pelicula solicitada.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
+const getTrailersById = async (id) => {
+    // console.log("tmbdbService => getMovieById:", page, id);
+    const endPoint = `movie/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+    const trailerResults = await basicFetch(endPoint, false);
+    // console.log("tmbdbService => getMovieById:", movieResults);
+    return trailerResults;
 };
 
 
@@ -383,6 +392,7 @@ export {
     getTrendingMovies,
     getMoviesByGenres,
     getMovieById,
+    getTrailersById,
     getPopularTV,
     getTopRatedTV,
     getTVByGenres,

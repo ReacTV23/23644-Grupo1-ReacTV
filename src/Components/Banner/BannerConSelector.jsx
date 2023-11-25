@@ -1,52 +1,62 @@
 import React, { useState, useEffect } from "react";
-import { getPopularMovies, getMovieById } from "../../services/tmdbService";
+import {
+  getMovieById,
+  getPopularMovies,
+  getTrailersById,
+} from "../../services/tmdbService";
 import YouTube from "react-youtube";
 import Carrusel from "../Carrusel/Carrusel";
 import "./Banner.css";
 
-const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-
 function BannerConSelector() {
+  // const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+  const API_URL_IMAGE = "https://image.tmdb.org/t/p/original";
+
   const [showCardContainer, setShowCardContainer] = useState(true);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   const [movies, setMovies] = useState([]);
   const [trailer, setTrailer] = useState(null);
+  const [actualPage, setActualPage] = useState(0);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
 
   const fetchMovies = async () => {
     try {
+      // Traigo las peliculas populares
       const moviesData = await getPopularMovies(1);
+
       setMovies(moviesData);
       setMovie(moviesData[0]);
+
+      if (moviesData.length) {
+        await fetchMovie(moviesData[0].id);
+      }
     } catch (error) {
-      console.error(`Error al obtener las peliculas: ${error.message}`);
+      console.error(`Error buscando las peliculas: ${error.message}`);
     }
   };
 
   const fetchMovie = async (id) => {
     try {
-      const movieData = await getMovieById(1, id);
-
-      // if (movieData.videos && movieData.videos.results) {
-      //   const trailer = movieData.videos.results.find(
-      //     (vid) => vid.name === "Official Trailer"
-      //   );
-      //   setTrailer(trailer ? trailer : movieData.videos.results[0]);
-      // }
+      // busco los trailes
+      const movieData = await getMovieById(id);
+      const trailersData = await getTrailersById(id);
+      // console.log("fetchMovie => ", trailersData);
+      setTrailer(trailersData[0]);
 
       setMovie(movieData);
-      console.log(movieData);
     } catch (error) {
-      console.error(`Error fetching movie details: ${error.message}`);
+      console.error(`Error buscando los trailers: ${error.message}`);
     }
   };
 
-  const selectMovie = async (movie) => {
+  const selectMovie = async (movie, actualPage) => {
+    // console.log("BannerConSelector => selectMovie => actualPage:", actualPage);
+    setActualPage(actualPage);
     fetchMovie(movie.id);
     setMovie(movie);
-    // setSelectedMovie(movie);
+    setSelectedMovie(movie);
     setShowCardContainer(false);
     window.scrollTo(0, 0);
   };
@@ -60,15 +70,19 @@ function BannerConSelector() {
     fetchMovies();
   }, []);
 
+  // console.log('Movies:', movies)
+
   const CardContainer = () => {
     return (
       <div>
-        <Carrusel peliculas={movies} selectMovie={selectMovie} />
+        <Carrusel
+          peliculas={movies}
+          selectMovie={selectMovie}
+          actualPage={actualPage}
+        />
       </div>
     );
   };
-
-  console.log(movie);
 
   return (
     <>
@@ -82,7 +96,7 @@ function BannerConSelector() {
                 className="viewtrailer"
                 style={{
                   objectFit: "containt",
-                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+                  backgroundImage: `url("${API_URL_IMAGE}${movie.backdrop_path}")`,
                   width: "100%",
                   height: "100%",
                 }}
