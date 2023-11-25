@@ -41,3 +41,36 @@ Se desarrolló un prototipo utilizando la herramienta "Figma" para definir el di
 [![PROTOTIPO.jpg](https://i.postimg.cc/pX5mghgk/PROTOTIPO.jpg)](https://postimg.cc/xcYjmCjb)
 
 [**VER FIGMA**](https://www.figma.com/proto/rq4z9JNH8yNPbiDvtk3Z8Z/ReacTV2?type=design&node-id=327-760&t=ymH2RTgI9CRWPboN-0&scaling=scale-down&page-id=327%253A760&prev-org-id=external-teams "VER FIGMA")
+
+
+------------
+
+
+### Páginas Principales:
+
+#### 1.  LOGIN: 
+Interfaz de acceso para los usuarios registrados.
+
+#### 2. REGISTRO:
+Página dedicada a nuevos usuarios para crear cuentas.
+
+#### 3. HOME - INVITADO:
+Recientes: Destaca las últimas incorporaciones.
+Categorías: Organiza el contenido por categorías.
+Géneros: Explora películas por género.
+Mi Lista: Espacio para que los usuarios guarden sus selecciones.
+Lanzamientos: Muestra las últimas novedades.
+
+#### 4. MAIN - LOGUEADO:
+**Recientes:** Destacando novedades.
+**Categorías: **Organización por categorías.
+**Géneros Lista:** Lista detallada para explorar géneros.
+**Géneros Carrusel: **Presentación visual de géneros.
+**Mi Lista:** Espacio personalizado para las selecciones del usuario.
+**Lanzamientos:** Destacando los últimos estrenos.
+**Búsqueda:** Facilita la búsqueda de contenido.
+**Card - Ver Sinopsis:** Vista previa de una película con opción para ver la sinopsis completa.
+**Card - Con Sinopsis:** Vista completa de una película, incluyendo la sinopsis.
+**Acerca de:** Información sobre la aplicación.
+**Contacto:** Formulario para ponerse en contacto.
+
