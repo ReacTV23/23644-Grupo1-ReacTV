@@ -74,13 +74,14 @@ function BannerConSelector() {
 
   const CardContainer = () => {
     return (
-      <div>
+      <>
         <Carrusel
+          texto={'peliculas mas populares'}
           peliculas={movies}
           selectMovie={selectMovie}
           actualPage={actualPage}
         />
-      </div>
+      </>
     );
   };
 
@@ -95,10 +96,7 @@ function BannerConSelector() {
               <div
                 className="viewtrailer"
                 style={{
-                  objectFit: "containt",
-                  backgroundImage: `url("${API_URL_IMAGE}${movie.backdrop_path}")`,
-                  width: "100%",
-                  height: "100%",
+                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                 }}
               >
                 {playing ? (
@@ -125,7 +123,7 @@ function BannerConSelector() {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="">
+                    <div className="banner">
                       {trailer ? (
                         <div>
                           <button

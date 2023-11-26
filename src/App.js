@@ -12,6 +12,7 @@ import Categorias from './pages/Categorias/Categorias.jsx'
 import Generos from './pages/Generos/Generos.jsx'
 import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
+import Busqueda from './pages/Busqueda/Busqueda.jsx'
 import About from './pages/About/About.jsx'
 import Search from './pages/Search/Search.jsx'
 // import VideoPlayer from './components/IntroVideo/VideoPlayer.jsx'
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/generos" element={<Generos />} />
                 <Route path="/milista" element={<MiLista />} />
                 <Route path="/lanzamientos" element={<Lanzamientos />} />
+                <Route path="/busqueda" element={<Busqueda />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<Search/>} />
               </Routes>

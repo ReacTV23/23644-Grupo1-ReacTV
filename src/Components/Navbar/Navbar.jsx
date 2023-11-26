@@ -52,7 +52,6 @@ const Navbar = ({onLoginButtonClick}) => {
 
         {/* Sección de la barra de búsqueda (en el centro) */}
         {isAuth && (
-
           <Busqueda value={searchQuery}
           onChange={handleSearchChange}
           onSubmit={handleSearchSubmit}/>
