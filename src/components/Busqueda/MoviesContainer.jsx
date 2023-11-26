@@ -12,12 +12,8 @@ const MoviesContainer = () => {
   //variables de estado
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState([]);
-
-
   // const [movies, setMovies] = useState([]);
   // const [movie, setMovie] = useState( {title: "Loading Movies"});
-
-  console.log("Movies in MoviesContainer:", searchData);
 
  // Función para buscar películas en tiempo real
   // const searchMoviesRealTime = async (query) => {
@@ -46,7 +42,31 @@ const MoviesContainer = () => {
 //     console.error('Error fetching movies:', error.message);
 //   }
 // };
-  console.log(searchTerm)
+
+  const getDataBusqueda = async () => {
+    try {
+      const data = await searchTMDB(searchTerm, "multi", 1);
+      setSearchData(data);
+      console.log(data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Realiza la búsqueda solo si hay un término de búsqueda
+      if (searchTerm.trim() !== "") {
+        getDataBusqueda();
+      } else {
+        // Si el término de búsqueda está vacío, reinicio los resultados
+        setSearchData([]);
+      }
+    };
+
+    fetchData();
+  }, [searchTerm]); // Ahora useEffect depende de searchTerm
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -59,13 +79,32 @@ const MoviesContainer = () => {
 
     // Realiza la búsqueda solo si hay un término de búsqueda
     if (searchTerm.trim() !== "") {
+      console.log('no se ingreso ninguna palabra')
       getData();
     } else {
       // Si el término de búsqueda está vacío, reincio los resultados
       setSearchData([]);
     }
-  }, [searchTerm]);
+  }, []);
+// useEffect(() => {
+//     const getData = async () => {
+//       try {
+//         const data = await searchTMDB(searchTerm, "multi", 1);
+//         setSearchData(data);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
 
+//     // Realiza la búsqueda solo si hay un término de búsqueda
+//     if (searchTerm.trim() !== "") {
+//       console.log('no se ingreso ninguna palabra')
+//       getData();
+//     } else {
+//       // Si el término de búsqueda está vacío, reincio los resultados
+//       setSearchData([]);
+//     }
+//   }, []);
   console.log("Movies in MoviesContainer:", searchData);
 
   // useEffect(() => {
