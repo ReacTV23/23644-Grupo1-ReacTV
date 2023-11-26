@@ -1,150 +1,160 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import YouTube from 'react-youtube';
-import './Banner.css';
+import React, { useState, useEffect } from "react";
+import {
+  getMovieById,
+  getPopularMovies,
+  getTrailersById,
+} from "../../services/tmdbService";
+import YouTube from "react-youtube";
+import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
+import "./Banner.css";
 
-function Banner() {
-  const API_URL = process.env.REACT_APP_API_URL_TMDB;
-  const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
-  // const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+function BannerConSelector() {
+  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-  const [movies, setMovies] = useState([]);  const [trailer, setTrailer] = useState(null);
+  const [showCardContainer, setShowCardContainer] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const [movies, setMovies] = useState([]);
+  const [trailer, setTrailer] = useState(null);
+  const [actualPage, setActualPage] = useState(0);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
 
   const fetchMovies = async () => {
-    const type = "discover";
     try {
-      const { data: { results } } = await axios.get(`${API_URL}/${type}/movie`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
-      setMovies(results);
-      setMovie(results[0]);
+      // Traigo las peliculas populares
+      const moviesData = await getPopularMovies(1);
 
-      if (results.length) {
-        await fetchMovie(results[0].id);
+      setMovies(moviesData);
+      setMovie(moviesData[0]);
+
+      if (moviesData.length) {
+        await fetchMovie(moviesData[0].id);
       }
     } catch (error) {
-      console.error(`Error fetching movies: ${error.message}`);
+      console.error(`Error buscando las peliculas: ${error.message}`);
     }
   };
 
   const fetchMovie = async (id) => {
     try {
-      const { data } = await axios.get(`${API_URL}/movie/${id}`, {
-        params: {
-          api_key: API_KEY,
-          append_to_response: "videos",
-        },
-      });
+      // busco los trailes
+      const movieData = await getMovieById(id);
+      const trailersData = await getTrailersById(id);
+      // console.log("fetchMovie => ", trailersData);
+      setTrailer(trailersData[0]);
 
-      if (data.videos && data.videos.results) {
-        const trailer = data.videos.results.find((vid) => vid.name === "Official Trailer");
-        setTrailer(trailer ? trailer : data.videos.results[0]);
-      }
-
-      setMovie(data);
+      setMovie(movieData);
     } catch (error) {
-      console.error(`Error fetching movie details: ${error.message}`);
+      console.error(`Error buscando los trailers: ${error.message}`);
     }
   };
 
-  const selectMovie = async (movie) => {
+  const selectMovie = async (movie, actualPage) => {
+    // console.log("BannerConSelector => selectMovie => actualPage:", actualPage);
+    setActualPage(actualPage);
     fetchMovie(movie.id);
     setMovie(movie);
+    setSelectedMovie(movie);
+    setShowCardContainer(false);
     window.scrollTo(0, 0);
+  };
+
+  const closeBanner = () => {
+    setPlaying(false); // Aseguramos que el reproductor de video esté cerrado
+    setShowCardContainer(true); // Mostramos el contenedor de tarjetas
   };
 
   useEffect(() => {
     fetchMovies();
   }, []);
 
+  // console.log('Movies:', movies)
+
+  const CardContainer = () => {
+    return (
+      <>
+        <CarruselHorizontal
+          texto={'peliculas mas populares'}
+          peliculas={movies}
+          selectMovie={selectMovie}
+          actualPage={actualPage}
+        />
+      </>
+    );
+  };
+
   return (
-    <div>
-      {/* <h2 className="text-center mt-5 mb-5">Trailer Popular Movies</h2> */}
-
-      <div style={{margin:'1rem'}}>
-        <main>
-          {movie ? (
-            <div
-              className="viewtrailer"
-              style={{
-                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-                width: "100%"
-              }}
-            >
-              {playing ? (
-                <>
-                  <YouTube
-                    videoId={trailer.key}
-                    className="reproductor container youtube-container"
-                    opts={{
-                      width: "150%",
-                      height: "90%",
-                      playerVars: {
-                        autoplay: 1,
-                        controls: 0,
-                        cc_load_policy: 0,
-                        fs: 0,
-                        iv_load_policy: 0,
-                        modestbranding: 0,
-                        rel: 0,
-                        showinfo: 0,
-                      },
-                    }}
-                  />
-                  <button onClick={() => setPlaying(false)} className="boton">
-                    Close
-                  </button>
-                </>
-              ) : (
-                <div className="container">
-                  <div className="">
-                    {trailer ? (
-                      <button
-                        className="boton"
-                        onClick={() => setPlaying(true)}
-                        type="button"
-                      >
-                        Play Trailer
-                      </button>
-                    ) : (
-                      "Sorry, no trailer available"
-                    )}
-                    <h1 className="text-white">{movie.title}</h1>
-                    <p className="text-white">{movie.overview}</p>
+    <>
+      {showCardContainer ? (
+        <CardContainer />
+      ) : (
+        <div>
+          <div style={{ margin: "1rem" }}>
+            <main>
+              <div
+                className="viewtrailer"
+                style={{
+                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+                }}
+              >
+                {playing ? (
+                  <div className="youtube-container">
+                    <YouTube
+                      className="reproductor"
+                      videoId={trailer.key}
+                      opts={{
+                        playerVars: {
+                          autoplay: 1,
+                          controls: 1,
+                          cc_load_policy: 0,
+                          fs: 0,
+                          iv_load_policy: 0,
+                          modestbranding: 0,
+                          rel: 0,
+                          showinfo: 0,
+                        },
+                      }}
+                    />
+                    <button onClick={() => setPlaying(false)} className="boton">
+                      Close
+                    </button>
                   </div>
-                </div>
-              )}
-            </div>
-          ) : null}
-        </main>
-      </div>
-
-      {/* <div className="container mt-3">
-        <div className="row">
-          {movies.map((movie) => (
-            <div
-              key={movie.id}
-              className="col-md-4 mb-3"
-              onClick={() => selectMovie(movie)}
-            >
-              <img
-                src={`${URL_IMAGE + movie.poster_path}`}
-                alt=""
-                height={600}
-                width="100%"
-              />
-              <h4 className="text-center">{movie.title}</h4>
-            </div>
-          ))}
+                ) : (
+                  <div className="container">
+                    <div className="banner">
+                      {trailer ? (
+                        <div>
+                          <button
+                            className="boton"
+                            onClick={() => setPlaying(true)}
+                            type="button"
+                          >
+                            Play Trailer
+                          </button>
+                          <button
+                            className="boton"
+                            onClick={closeBanner}
+                            type="button"
+                          >
+                            Volver al Listado
+                          </button>
+                        </div>
+                      ) : (
+                        "Lo sentimos, el trailer no esta disponible"
+                      )}
+                      <h1 className="text-white">{movie.title}</h1>
+                      <p className="text-white">{movie.overview}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </main>
+          </div>
         </div>
-      </div> */}
-    </div>
+      )}
+    </>
   );
 }
 
-export default Banner;
+export default BannerConSelector;

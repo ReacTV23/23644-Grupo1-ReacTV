@@ -1,6 +1,6 @@
 import {ButtonGroup} from 'react-bootstrap';
 import Boton from '../../../components/Boton'
-import BannerConSelector from '../../../components/Banner/BannerConSelector'
+import Banner from '../../../components/Banner/Banner'
 import CarruselVertical from '../../../components/Carrusel/CarruselVertical/CarruselVertical'
 import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
@@ -65,8 +65,7 @@ const MainDeskoptLogueado = () => {
 
   return (
     <>
-      <BannerConSelector />
-      {/* <Carrusel/> */}
+      <Banner/>
       <ButtonGroup className="GrupoBotonDeskopt-Logueado">
         <Boton
           texto={"recientes"}

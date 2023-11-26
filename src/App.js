@@ -12,10 +12,8 @@ import Categorias from './pages/Categorias/Categorias.jsx'
 import Generos from './pages/Generos/Generos.jsx'
 import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
-import Busqueda from './pages/Busqueda/Busqueda.jsx'
 import About from './pages/About/About.jsx'
 import Search from './pages/Search/Search.jsx'
-// import VideoPlayer from './components/IntroVideo/VideoPlayer.jsx'
 import './App.css';
 
 function App() {
@@ -38,10 +36,6 @@ function App() {
     };
   }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
 
-  // const toggleAuth = () => {
-  //   setIsAuth((prevAuth) => !prevAuth);
-  // };
-
   // funcion manejo de video
   const handleVideoEnd = () => {
     console.log('Video ended');
@@ -52,7 +46,6 @@ function App() {
     <>
       <CssBaseline />
       {showVideo ? (
-        // <VideoPlayer/>
         <IntroVideo onVideoEnd={handleVideoEnd} />
       ) : (
         <AuthProvider>
@@ -66,8 +59,7 @@ function App() {
                 <Route path="/categorias" element={<Categorias />} />
                 <Route path="/generos" element={<Generos />} />
                 <Route path="/milista" element={<MiLista />} />
-                <Route path="/lanzamientos" element={<Lanzamientos />} />
-                <Route path="/busqueda" element={<Busqueda />} />
+                <Route path="/lanzamientos" element={<Lanzamientos />} />      
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<Search/>} />
               </Routes>

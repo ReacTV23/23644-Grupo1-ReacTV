@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Boton from '../../../components/Boton';
-import BannerConSelector from '../../../components/Banner/BannerConSelector'
+import Banner from '../../../components/Banner/Banner'
 import {useNavigate} from 'react-router'
 import './HomeMobile.css';
 
@@ -31,7 +31,7 @@ import './HomeMobile.css';
     }
     return (
       <>
-        <BannerConSelector/>
+        <Banner/>
         {!mostrarDescripcion &&
           <ButtonGroup className='GrupoBotonMobile'>
             <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleDescripcion('recientes')} />
@@ -55,7 +55,7 @@ import './HomeMobile.css';
     
     return (
       <>
-        <BannerConSelector/>
+        <Banner/>
         <ButtonGroup className='GrupoBotonMobile'>
         <Boton texto={'recientes'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() =>handleButtonClick('/recientes')}/>
           <Boton texto={'categorias'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={() => handleButtonClick('/categorias')} />

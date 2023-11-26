@@ -5,7 +5,7 @@ import CardImg from '../../Card/CardImg/CardImg'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Titulo from '../../Titulo/Titulo'
-import "./Carrusel.css"
+import "./CarruselHorizontal.css"
 
 const Carrusel = ({texto, peliculas, selectMovie}) => {
   const fila = document.querySelector(".container-carrusel");
@@ -37,7 +37,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
         izquierda.removeEventListener("click", handleLeftClick);
       };
     }
-  }, [currentPage]);
+  }, [currentPage, fila, derecha, izquierda]);
 
 
   const nextPage = () => {
