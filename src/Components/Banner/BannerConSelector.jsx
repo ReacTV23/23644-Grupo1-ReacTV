@@ -5,7 +5,7 @@ import {
   getTrailersById,
 } from "../../services/tmdbService";
 import YouTube from "react-youtube";
-import Carrusel from "../Carrusel/CarruselHorizontal/Carrusel";
+import Carrusel from '../Carrusel/CarruselHorizontal/Carrusel';
 import "./Banner.css";
 
 function BannerConSelector() {
@@ -96,8 +96,6 @@ function BannerConSelector() {
                 className="viewtrailer"
                 style={{
                   backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-                  width: "100%",
-                  height: "100%",
                 }}
               >
                 {playing ? (
