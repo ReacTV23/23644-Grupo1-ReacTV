@@ -5,7 +5,7 @@ import MoviesContainer from '../../components/Busqueda/MoviesContainer'
 const Search = () => {
     return (
         <LayoutSecundario textoBoton={'resultados'}>
-            <MoviesContainer/>
+            <MoviesContainer />
         </LayoutSecundario>
     )
 }
