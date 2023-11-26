@@ -1,7 +1,7 @@
 // ListRow.js
-
 import React, { useState, useEffect } from "react";
-import Loader from "../Loader/CircleLoader";
+import Loader from "../Loader/Loader";
+import Titulo from '../Titulo/Titulo'
 
 const ListRow = ({ title, fetchDataFunction, page = 1, genre }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +27,7 @@ const ListRow = ({ title, fetchDataFunction, page = 1, genre }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
+      <Titulo texto={title}/>
       {isLoading ? (
         <Loader />
       ) : (

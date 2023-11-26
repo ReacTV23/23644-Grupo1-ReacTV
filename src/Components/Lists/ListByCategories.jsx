@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ListRow from "./ListRow";
 import MediaSelector from "../MediaSelector/MediaSelector";
+import Titulo from '../Titulo/Titulo'
 import { useMediaType } from "../../context/mediaTypeProvider";
-
 import {
   getPopularMovies,
   getNowPlayingMovies,
@@ -23,7 +23,7 @@ const ListByCategories = () => {
     if (mediaType === "movie" || mediaType === "all") {
       setMoviesComponent(
         <>
-          <h2>Peliculas</h2>
+          <Titulo texto={'Peliculas'}/>
           <ListRow
             title="Populares"
             fetchDataFunction={getPopularMovies}
@@ -65,7 +65,7 @@ const ListByCategories = () => {
     if (mediaType === "tv" || mediaType === "all") {
       setTVComponent(
         <>
-          <h2>Series</h2>
+          <Titulo texto={'Series'}/>
           <ListRow
             title="Populares"
             fetchDataFunction={getPopularTV}
