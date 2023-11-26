@@ -28,7 +28,7 @@ export function AuthProvider ({children}) {
     }   
 
     useEffect (() => {
-        console.log('auth provider loaded');
+        // console.log('auth provider loaded');
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setIsAuth(!!currentUser); // Actualiza el estado de autenticación
