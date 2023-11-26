@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
         sendPasswordResetEmail(auth, email)
     }
 
-    useEffect(() => {
+    useEffect (() => {
         // console.log('auth provider loaded');
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
