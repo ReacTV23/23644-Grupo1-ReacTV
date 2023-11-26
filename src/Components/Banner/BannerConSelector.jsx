@@ -10,7 +10,7 @@ import "./Banner.css";
 
 function BannerConSelector() {
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-  const API_URL_IMAGE = "https://image.tmdb.org/t/p/original";
+  // const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   const [showCardContainer, setShowCardContainer] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -76,6 +76,7 @@ function BannerConSelector() {
     return (
       <>
         <Carrusel
+          texto={'peliculas mas populares'}
           peliculas={movies}
           selectMovie={selectMovie}
           actualPage={actualPage}
