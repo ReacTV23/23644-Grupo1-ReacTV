@@ -1,67 +1,59 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  getMovieById,
+  getPopularMovies,
+  getTrailersById,
+} from "../../services/tmdbService";
 import YouTube from "react-youtube";
-import Carrusel from '../Carrusel/Carrusel';
+import Carrusel from "../Carrusel/Carrusel";
 import "./Banner.css";
 
 function BannerConSelector() {
-  const API_URL = process.env.REACT_APP_API_URL_TMDB;
-  const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
-  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-  // const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+  // const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+  const API_URL_IMAGE = "https://image.tmdb.org/t/p/original";
 
   const [showCardContainer, setShowCardContainer] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const [movies, setMovies] = useState([]);
   const [trailer, setTrailer] = useState(null);
+  const [actualPage, setActualPage] = useState(0);
   const [movie, setMovie] = useState({ title: "Loading Movies" });
   const [playing, setPlaying] = useState(false);
 
   const fetchMovies = async () => {
-    const type = "discover";
     try {
-      const {
-        data: { results },
-      } = await axios.get(`${API_URL}/${type}/movie`, {
-        params: {
-          api_key: API_KEY,
-        },
-      });
-      setMovies(results);
-      setMovie(results[0]);
+      // Traigo las peliculas populares
+      const moviesData = await getPopularMovies(1);
 
-      if (results.length) {
-        await fetchMovie(results[0].id);
+      setMovies(moviesData);
+      setMovie(moviesData[0]);
+
+      if (moviesData.length) {
+        await fetchMovie(moviesData[0].id);
       }
     } catch (error) {
-      console.error(`Error fetching movies: ${error.message}`);
+      console.error(`Error buscando las peliculas: ${error.message}`);
     }
   };
 
   const fetchMovie = async (id) => {
     try {
-      const { data } = await axios.get(`${API_URL}/movie/${id}`, {
-        params: {
-          api_key: API_KEY,
-          append_to_response: "videos",
-        },
-      });
+      // busco los trailes
+      const movieData = await getMovieById(id);
+      const trailersData = await getTrailersById(id);
+      // console.log("fetchMovie => ", trailersData);
+      setTrailer(trailersData[0]);
 
-      if (data.videos && data.videos.results) {
-        const trailer = data.videos.results.find(
-          (vid) => vid.name === "Official Trailer"
-        );
-        setTrailer(trailer ? trailer : data.videos.results[0]);
-      }
-
-      setMovie(data);
+      setMovie(movieData);
     } catch (error) {
-      console.error(`Error fetching movie details: ${error.message}`);
+      console.error(`Error buscando los trailers: ${error.message}`);
     }
   };
 
-  const selectMovie = async (movie) => {
+  const selectMovie = async (movie, actualPage) => {
+    // console.log("BannerConSelector => selectMovie => actualPage:", actualPage);
+    setActualPage(actualPage);
     fetchMovie(movie.id);
     setMovie(movie);
     setSelectedMovie(movie);
@@ -83,7 +75,11 @@ function BannerConSelector() {
   const CardContainer = () => {
     return (
       <div>
-        <Carrusel peliculas={movies} selectMovie={selectMovie} />
+        <Carrusel
+          peliculas={movies}
+          selectMovie={selectMovie}
+          actualPage={actualPage}
+        />
       </div>
     );
   };
@@ -100,7 +96,7 @@ function BannerConSelector() {
                 className="viewtrailer"
                 style={{
                   objectFit: "containt",
-                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+                  backgroundImage: `url("${API_URL_IMAGE}${movie.backdrop_path}")`,
                   width: "100%",
                   height: "100%",
                 }}
@@ -108,7 +104,7 @@ function BannerConSelector() {
                 {playing ? (
                   <div className="youtube-container">
                     <YouTube
-                      className='reproductor'
+                      className="reproductor"
                       videoId={trailer.key}
                       opts={{
                         playerVars: {
