@@ -2,16 +2,11 @@ import React from 'react';
 import { IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Busqueda = ({value, funcion, onSubmit}) => {
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+const Busqueda = ({value, onChange, onSubmit}) => {
 
   return (
     <>
-      <form className='container' style={{width:'400px'}} onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px', margin: '0' }}>
+        <div style={{ width:'400px', display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px', margin: '0' }}>
           <IconButton>
             <SearchIcon />
           </IconButton>
@@ -20,9 +15,13 @@ const Busqueda = ({value, funcion, onSubmit}) => {
             inputProps={{ 'aria-label': 'buscar' }}
             style={{ width: '360px', color: 'black' }}
             value={value}
-            onInput={funcion}/>
+            onChange={onChange}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                onSubmit();
+              }
+            }}/>
         </div>
-      </form>
     </>
   );
 }

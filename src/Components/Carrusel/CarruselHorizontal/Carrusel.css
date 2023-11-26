@@ -6,13 +6,12 @@ section .contenedor-principal {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
-    background: var(--colorProducto);
     position: relative;
     background: #E08400;
-  }
+}
 
-  section .contenedor-principal .flecha-izquierda,
-  section .contenedor-principal .flecha-derecha {
+section .contenedor-principal .flecha-izquierda,
+section .contenedor-principal .flecha-derecha {
     position: absolute;
     border: none;
     background: #003686;
@@ -24,38 +23,38 @@ section .contenedor-principal {
     color: rgb(0, 0, 0);
     z-index: 400;
     transition: 0.2s;
-  }
+}
 
-  section .contenedor-principal .flecha-izquierda {
+section .contenedor-principal .flecha-izquierda {
     left: 0;
-  }
+}
 
-  section .contenedor-principal .flecha-derecha {
+section .contenedor-principal .flecha-derecha {
     right: 0;
-  }
+}
 
-  section .contenedor-principal .flecha-izquierda:hover,
-  section .contenedor-principal .flecha-derecha:hover {
+section .contenedor-principal .flecha-izquierda:hover,
+section .contenedor-principal .flecha-derecha:hover {
     cursor: pointer;
     background: rgb(255, 255, 255);
-  }
+}
 
-  section .contenedor-principal .container-carrusel {
+section .contenedor-principal .container-carrusel {
     width: 100%;
     overflow: hidden;
     scroll-behavior: smooth;
     padding: 0;
-  }
+}
 
-  section .contenedor-principal .container-carrusel .container-card {
+section .contenedor-principal .container-carrusel .container-card {
     display: flex;
     margin: 0 auto;
     justify-content: initial;
     width: 100%;
     flex-wrap: nowrap;
-  }
-  
-  /* section .contenedor-principal .container-carrusel .container-card .card-cont {
+}
+
+/* section .contenedor-principal .container-carrusel .container-card .card-cont {
     display: flex;
     flex-direction: column;
     padding: 0 20px 0 0;
@@ -67,12 +66,11 @@ section .contenedor-principal {
     /* scroll-snap-align: start; */
   /*} */
 
-  section .contenedor-principal .container-carrusel .container-card .card-cont .card-img {
+section .contenedor-principal .container-carrusel .container-card .card-cont .card-img {
     height: 40vh;
-  }
-  
-  section .contenedor-principal .container-carrusel .container-card .card-cont .card-img img {
+}
+
+section .contenedor-principal .container-carrusel .container-card .card-cont .card-img img {
     width: 100%;
     height: 100%;
-  }
-  
+}

@@ -402,7 +402,7 @@ function combineArraysGenres(array1, array2, numberOfElements) {
  * console.log(results); // Muestra la primera página de los resultados de la búsqueda de películas relacionadas con "Avengers".
  */
 const searchTMDB = async (query, context, page = 1) => {
-    const endPoint = `search/context=${context}?query=${query}&api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const endPoint = `search/${context}?query=${query}&api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
     const movieResults = await basicFetch(endPoint);
     return movieResults;
 };

@@ -2,22 +2,22 @@
 import React,  { useState, useEffect }  from 'react';
 import MovieCard from './MovieCard';
 import { searchTMDB} from '../../services/tmdbService.js'
-import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
+//import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
+import Loader from '../Loader/Loader'
 
 const MoviesContainer = () => {
 
-  const { searchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
-
-  // const API_KEY = process.env.REACT_APP_API_KEY_TMDB
-  // const IMAGE_BASE_URL = process.env.REACT_APP_URL_IMAGE_TMDB
-  // const LENGUAJE = process.env.REACT_APP_LANGUAGE_CODE_TMDB
+  // const { searchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
 
   //variables de estado
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState([]);
-  const [movies, setMovies] = useState([]);
-  const [movie, setMovie] = useState( {title: "Loading Movies"});
 
-  console.log("Movies in MoviesContainer:", movies);
+
+  // const [movies, setMovies] = useState([]);
+  // const [movie, setMovie] = useState( {title: "Loading Movies"});
+
+  console.log("Movies in MoviesContainer:", searchData);
 
  // Función para buscar películas en tiempo real
   // const searchMoviesRealTime = async (query) => {
@@ -46,17 +46,27 @@ const MoviesContainer = () => {
 //     console.error('Error fetching movies:', error.message);
 //   }
 // };
-
+  console.log(searchTerm)
   useEffect(() => {
-  const getData = async () => {
-    try {
-      const data = await searchTMDB(searchTerm, "multi", 1);
-      setSearchData(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    const getData = async () => {
+      try {
+        const data = await searchTMDB(searchTerm, "multi", 1);
+        setSearchData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Realiza la búsqueda solo si hay un término de búsqueda
+    if (searchTerm.trim() !== "") {
+      getData();
+    } else {
+      // Si el término de búsqueda está vacío, reincio los resultados
+      setSearchData([]);
     }
-  };
-  }, [])
+  }, [searchTerm]);
+
+  console.log("Movies in MoviesContainer:", searchData);
 
   // useEffect(() => {
   //   if (searchQuery) {
@@ -68,16 +78,24 @@ const MoviesContainer = () => {
 
   return (
     <div className='container mt-3'>
-      <div className='row' style={{display:'flex', alingItems:'center', justifyContent:'center'}}>
-        {movies.map((result) => {
-            return (
-              <MovieCard
-                key={result.id}
-                movie={result}
-                // handleSelectedMovie={}
-              />
-        )})}
+      <input
+        type="text"
+        placeholder="Ingrese su búsqueda"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+    {searchData === null ? (
+      <Loader />
+      ) : searchData && searchData.length === 0 ? (
+      <p>No hay resultados</p>
+      ) : (
+      <div className='row' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {searchData.map((result) => (
+          <MovieCard key={result.id} movie={result} />
+        ))}
       </div>
+      )}
     </div>
   );
 };

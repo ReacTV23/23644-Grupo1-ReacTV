@@ -13,10 +13,7 @@ import Generos from './pages/Generos/Generos.jsx'
 import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
 import About from './pages/About/About.jsx'
-import PeliculasPopulares from './components/PeliculasPopulares/PeliculasPopulares';  // Ajusta la ruta según tu estructura de archivos
 import Search from './pages/Search/Search.jsx'
-// import { Link } from 'react-router-dom';
-
 // import VideoPlayer from './components/IntroVideo/VideoPlayer.jsx'
 import './App.css';
 
@@ -71,12 +68,7 @@ function App() {
                 <Route path="/lanzamientos" element={<Lanzamientos />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<Search/>} />
-                <Route path="/peliculas-populares" element={<PeliculasPopulares />} />
               </Routes>
-              {/* Botón para navegar a PeliculasPopulares */}
-              {/* <Link to="/peliculas-populares">
-                <button>Ver Películas Populares</button>
-              </Link> */}
             </Router>
           </MediaTypeProvider>
         </AuthProvider>

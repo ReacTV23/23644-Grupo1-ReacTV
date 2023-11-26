@@ -10,9 +10,8 @@ import { useSearch } from '../../context/searchContext';  // Importa el hook use
 
 const Navbar = ({onLoginButtonClick}) => {
   const { isAuth, setIsAuth  } = useAuth();  // Obtiene el estado de autenticación del contexto
-  const { updateSearchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
+  const { searchQuery, updateSearchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
   const navigate = useNavigate();
-  const [query, setQuery] = useState('')
 
   const handleLoginClick = () => {
     // Navegar a la ruta "/login"
@@ -27,13 +26,16 @@ const Navbar = ({onLoginButtonClick}) => {
     // console.log(isAuth)
   };
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchChange = (e) => {
     // Actualizar el contexto de búsqueda con la palabra escrita en la barra de búsqueda
-    setQuery(e.target.value);
-    updateSearchQuery(query);
+    updateSearchQuery(e.target.value);
+  };
 
-    // Redireccionar a la página de búsqueda
-    navigate('/search');
+  const handleSearchSubmit = () => {
+    // Redireccionar a la página de búsqueda solo si hay un término de búsqueda
+    if (searchQuery.trim() !== "") {
+      navigate('/search');
+    }
   };
 
   return (
@@ -51,7 +53,9 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección de la barra de búsqueda (en el centro) */}
         {isAuth && (
 
-          <Busqueda value={query} funcion={handleSearchSubmit}/>
+          <Busqueda value={searchQuery}
+          onChange={handleSearchChange}
+          onSubmit={handleSearchSubmit}/>
         )}
 
         {/* Sección del botón de inicio de sesión (a la derecha) */}
