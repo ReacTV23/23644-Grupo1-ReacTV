@@ -56,7 +56,7 @@ const MoviesContainer = () => {
 
   return (
     <div className='container mt-3'>
-      <div className='row'>
+      <div className='row' style={{display:'flex', alingItems:'center', justifyContent:'center'}}>
         {movies.map((result) => {
             return (
               <MovieCard
