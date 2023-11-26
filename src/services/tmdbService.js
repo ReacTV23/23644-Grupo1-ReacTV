@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_API_KEY_TMDB;
-const API_URL_BASE = process.env.REACT_APP_API_URL_TMDB + "/";
+const API_URL_BASE = process.env.REACT_APP_API_URL_TMDB;
 const API_LANGUAGE = process.env.REACT_APP_LANGUAGE_CODE_TMDB;
-// const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+// const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 const basicFetch = async (endPoint, genres = false) => {
     // console.log("basicFetch", `${API_URL_BASE}${endPoint}`);
@@ -385,6 +385,28 @@ function combineArraysGenres(array1, array2, numberOfElements) {
     return combinedArray.slice(0, numberOfElements);
 }
 
+/**
+ * Realiza una búsqueda en la base de datos de TMDB.
+ *
+ * @async
+ * @function
+ * @param {string} query - La cadena de búsqueda.
+ * @param {string} context - El contexto de la búsqueda (por ejemplo, "movie" para buscar películas).
+ * @param {number} [page=1] - El número de página (opcional, por defecto es 1).
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan los resultados de la búsqueda.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ *
+ * @example
+ * // Ejemplo de uso:
+ * const results = await searchTMDB("Avengers", "movie", 1);
+ * console.log(results); // Muestra la primera página de los resultados de la búsqueda de películas relacionadas con "Avengers".
+ */
+const searchTMDB = async (query, context, page = 1) => {
+    const endPoint = `search/context=${context}?query=${query}&api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+    const movieResults = await basicFetch(endPoint);
+    return movieResults;
+};
+
 export {
     getPopularMovies,
     getNowPlayingMovies,
@@ -397,5 +419,6 @@ export {
     getTopRatedTV,
     getTVByGenres,
     getGenres,
-    getAllByGenres
+    getAllByGenres,
+    searchTMDB
 };

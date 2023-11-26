@@ -1,6 +1,6 @@
 // MovieCard.js
 import React from 'react';
-const URL_IMAGE = 'https://image.tmdb.org/t/p/original'; //
+const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 const MovieCard = ({ movie, handleSelectedMovie }) => {
   return (
