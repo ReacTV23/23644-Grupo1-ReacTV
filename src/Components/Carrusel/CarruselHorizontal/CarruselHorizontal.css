@@ -53,18 +53,6 @@ section .contenedor-principal .container-carrusel .container-card {
     flex-wrap: nowrap;
 }
 
-/* section .contenedor-principal .container-carrusel .container-card .card-cont {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px 0 0;
-    height: 100%;
-    width: calc(100% / 3);
-    min-width: 30%;  /* Ajusta este valor según tus necesidades */
-    /* overflow: hidden; */
-    /* transition: max-height 0.5s ease-in-out; */
-    /* scroll-snap-align: start; */
-  /*} */
-
 section .contenedor-principal .container-carrusel .container-card .card-cont .card-img {
     height: 40vh;
 }
@@ -73,16 +61,16 @@ section .contenedor-principal .container-carrusel .container-card .card-cont .ca
     width: 100%;
     height: 100%;
 }
-=======
+
 section .contenedor-carrusel-titulo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 1rem 0;
-  position: relative;
-  background: #E08400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+    position: relative;
+    background: #E08400;
 }
 
 section .contenedor-carrusel-titulo .contenedor-principal {
@@ -91,20 +79,20 @@ section .contenedor-carrusel-titulo .contenedor-principal {
     justify-content: center;
     width: calc(100% - 60px);
     padding: 1rem 0;
-  }
+}
 
-  section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
+section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     overflow: hidden;
     scroll-behavior: smooth;
-  }
+}
 
-  section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card {
+section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: nowrap;
-  }
+}
