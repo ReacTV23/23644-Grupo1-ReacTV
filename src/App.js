@@ -14,6 +14,7 @@ import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
 import Busqueda from './pages/Busqueda/Busqueda.jsx'
 import About from './pages/About/About.jsx'
+import Search from './pages/Search/Search.jsx'
 // import VideoPlayer from './components/IntroVideo/VideoPlayer.jsx'
 import './App.css';
 
@@ -68,6 +69,7 @@ function App() {
                 <Route path="/lanzamientos" element={<Lanzamientos />} />
                 <Route path="/busqueda" element={<Busqueda />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/search" element={<Search/>} />
               </Routes>
             </Router>
           </MediaTypeProvider>

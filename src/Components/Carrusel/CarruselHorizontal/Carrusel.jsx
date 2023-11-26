@@ -39,6 +39,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
     }
   }, [currentPage]);
 
+
   const nextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
     console.log('next')

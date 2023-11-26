@@ -5,12 +5,12 @@ import {
   getTrailersById,
 } from "../../services/tmdbService";
 import YouTube from "react-youtube";
-import Carrusel from '../Carrusel/CarruselHorizontal/Carrusel';
+import Carrusel from "../Carrusel/CarruselHorizontal/Carrusel";
 import "./Banner.css";
 
 function BannerConSelector() {
-  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-  // const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
+  // const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+  const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   const [showCardContainer, setShowCardContainer] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
