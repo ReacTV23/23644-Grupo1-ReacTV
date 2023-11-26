@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ChevronRight';
-import Loader from '../Loader/Loader';
-import Boton from '../Boton';
+import Loader from '../../Loader/Loader';
+import Boton from '../../Boton';
 import "./CarruselVertical.css";
 
 const videos = [

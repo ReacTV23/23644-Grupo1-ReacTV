@@ -5,12 +5,12 @@ import {
   getTrailersById,
 } from "../../services/tmdbService";
 import YouTube from "react-youtube";
-import Carrusel from "../Carrusel/Carrusel";
+import Carrusel from '../Carrusel/CarruselHorizontal/Carrusel';
 import "./Banner.css";
 
 function BannerConSelector() {
-  // const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-  const API_URL_IMAGE = "https://image.tmdb.org/t/p/original";
+  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+  // const API_URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   const [showCardContainer, setShowCardContainer] = useState(true);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -74,13 +74,14 @@ function BannerConSelector() {
 
   const CardContainer = () => {
     return (
-      <div>
+      <>
         <Carrusel
+          texto={'peliculas mas populares'}
           peliculas={movies}
           selectMovie={selectMovie}
           actualPage={actualPage}
         />
-      </div>
+      </>
     );
   };
 
@@ -95,10 +96,7 @@ function BannerConSelector() {
               <div
                 className="viewtrailer"
                 style={{
-                  objectFit: "containt",
-                  backgroundImage: `url("${API_URL_IMAGE}${movie.backdrop_path}")`,
-                  width: "100%",
-                  height: "100%",
+                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
                 }}
               >
                 {playing ? (
@@ -125,7 +123,7 @@ function BannerConSelector() {
                   </div>
                 ) : (
                   <div className="container">
-                    <div className="">
+                    <div className="banner">
                       {trailer ? (
                         <div>
                           <button

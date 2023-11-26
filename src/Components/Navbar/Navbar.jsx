@@ -2,7 +2,8 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, InputBase } from '@mui/material';
 import { Link, useNavigate  } from 'react-router-dom';
 import Boton from '../Boton'
-import SearchIcon from '@mui/icons-material/Search';
+import Busqueda2 from '../Busqueda/Busqueda2'
+//import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
@@ -40,16 +41,17 @@ const Navbar = ({onLoginButtonClick}) => {
 
         {/* Sección de la barra de búsqueda (en el centro) */}
         {isAuth && (
-          <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px' }}>
-            <IconButton color="primary" size="large">
-              <SearchIcon />
-            </IconButton>
-            <InputBase
-              placeholder="Buscar..."
-              inputProps={{ 'aria-label': 'buscar' }}
-              style={{ width: '360px', color: 'black' }}
-            />
-          </div>
+          <Busqueda2/>
+          // <div style={{ display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px' }}>
+          //   <IconButton color="primary" size="large">
+          //     <SearchIcon />
+          //   </IconButton>
+          //   <InputBase
+          //     placeholder="Buscar..."
+          //     inputProps={{ 'aria-label': 'buscar' }}
+          //     style={{ width: '360px', color: 'black' }}
+          //   />
+          ///<div>
         )}
 
         {/* Sección del botón de inicio de sesión (a la derecha) */}

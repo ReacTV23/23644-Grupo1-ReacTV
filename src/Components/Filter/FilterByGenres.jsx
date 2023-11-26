@@ -8,6 +8,8 @@ import {
   getTVByGenres,
   getAllByGenres,
 } from "../../services/tmdbService";
+import Titulo from '../Titulo/Titulo'
+import BotonGenero from '../Boton/BotonGenero/BotonGenero'
 
 const FilterByGenres = () => {
   const [genres, setGenres] = useState([]);
@@ -58,25 +60,13 @@ const FilterByGenres = () => {
   };
 
   return (
-    <div>
+    <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
       <MediaSelector />
-
-      <h2>Listado de Géneros ({mediaType})</h2>
+      <Titulo texto={`Listado de Géneros: ${mediaType}`}/>
       {/* Lista de botones para cada género */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+      <div style={{width:'100%', display:"flex", flexWrap:'wrap', justifyContent:'center',gap: "10px" }}>
         {genres.map((genre) => (
-          <button
-            key={genre.id}
-            style={{
-              backgroundColor: selectedGenres.some((g) => g.id === genre.id)
-                ? "blue"
-                : "gray",
-              color: "#fff",
-            }}
-            onClick={() => handleGenreClick(genre.id)}
-          >
-            {genre.name}
-          </button>
+          <BotonGenero key={genre.id} texto={genre.name} onClick={() => handleGenreClick(genre.id)}/>
         ))}
       </div>
 
