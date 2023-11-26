@@ -1,7 +1,7 @@
 import {ButtonGroup} from 'react-bootstrap';
 import Boton from '../../../components/Boton'
 import BannerConSelector from '../../../components/Banner/BannerConSelector'
-import CarruselVertical from '../../../components/Carrusel/CarruselVertical'
+import CarruselVertical from '../../../components/Carrusel/CarruselVertical/CarruselVertical'
 import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
 

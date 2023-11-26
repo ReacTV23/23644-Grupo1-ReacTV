@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import Loader from '../Loader/Loader'
-import Boton from '../Boton'
+import Loader from '../../Loader/Loader'
+import Boton from '../../Boton'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import "./Carrusel.css"
+import './Carrusel.css'
 
 const Carrusel = ({peliculas, selectMovie}) => {
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
