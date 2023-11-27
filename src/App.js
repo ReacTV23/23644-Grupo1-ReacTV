@@ -5,7 +5,7 @@ import Home from './pages/Home/Home';
 import { AuthProvider } from './context/authContext'
 import { MediaTypeProvider } from './context/mediaTypeProvider.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ProtectedRoute } from './components/ProtectedRuote/ProtectedRoute'
+import { ProtectedRoute } from './components/ProtectedRuote/ProtectedRoute';
 import LoginRegistro from './pages/LoginRegistro/LoginRegistro.jsx'
 import Recientes from './pages/Recientes/Recientes.jsx'
 import Categorias from './pages/Categorias/Categorias.jsx'
