@@ -2,3 +2,8 @@
     --color-azul: #003686;
     --color-naranja: #E08400;
 }
+
+* {
+    font-family: "Roboto Slab", serif;
+    box-sizing: border-box;
+}
