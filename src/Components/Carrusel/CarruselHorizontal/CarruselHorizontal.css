@@ -1,4 +1,4 @@
-section .contenedor-principal {
+/*section .contenedor-principal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +60,7 @@ section .contenedor-principal .container-carrusel .container-card .card-cont .ca
 section .contenedor-principal .container-carrusel .container-card .card-cont .card-img img {
     width: 100%;
     height: 100%;
-}
+} */
 
 section .contenedor-carrusel-titulo {
     display: flex;
