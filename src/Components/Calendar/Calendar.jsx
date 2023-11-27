@@ -3,36 +3,65 @@ import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import Boton from '../Boton'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import { getUpcomingMovies } from '../../services/tmdbService.js'
+import EventIcon from '@mui/icons-material/Event';
+import CardImg from '../Card/CardImg/CardImg'
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css'
 
-const WritableCalendar = () => {
+const WritableCalendar = ({onInfoChange }) => {
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState({});
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const overlayRef = useRef(null);
+  const [mostrarPoster, setMostrarPoster] = useState(false);
+
+  const getdata = async () =>  {
+    try {
+      const data = await getUpcomingMovies();
+      setUpcomingMovies(data);
+      // console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
 
   useEffect(() => {
-    // Fetch upcoming movies from TMDB API
-    const fetchUpcomingMovies = async () => {
-      const apiKey = '3e1d7bff8444d6e86809e57e9496b17c';
-      const url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&api_key=${apiKey}`;
+    getdata()
+  }, [])
 
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setUpcomingMovies(data.results || [])
-      } catch (error) {
-        console.error('Error fetching upcoming movies:', error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch upcoming movies from TMDB API
+  //   const fetchUpcomingMovies = async () => {
+  //     const apiKey = '3e1d7bff8444d6e86809e57e9496b17c';
+  //     const url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&api_key=${apiKey}`;
 
-    fetchUpcomingMovies();
-  }, []);
+  //     try {
+  //       const response = await fetch(url);
+  //       const data = await response.json();
+  //       setUpcomingMovies(data.results || [])
+  //     } catch (error) {
+  //       console.error('Error fetching upcoming movies:', error);
+  //     }
+  //   };
+
+  //   fetchUpcomingMovies();
+  // }, []);
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
   };
+
+  const handlePoster = (movie) => {
+    onInfoChange(movie);
+    setMostrarPoster(false);
+  }
+
+
+  console.log(upcomingMovies)
+  if (mostrarPoster) {
+    return <CardImg peli={upcomingMovies} funcion={handlePoster}/>
+  }
 
   const downloadCalendar = async () => {
     try {
@@ -65,7 +94,8 @@ const WritableCalendar = () => {
         }
       });
   
-      // Add upcoming movies to the wrapper
+      // Add upcoming movies to the 
+      console.log(upcomingMovies)
       upcomingMovies.forEach((movie) => {
         const movieDate = new Date(movie.release_date);
         const dateString = movieDate.toISOString().split('T')[0];
@@ -104,6 +134,7 @@ const WritableCalendar = () => {
   };
   
   const tileContent = ({ date, view }) => {
+
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
       const dayEvents = events[dateString] || [];
@@ -119,7 +150,7 @@ const WritableCalendar = () => {
             </p>
           ))}
           {movieNames.map((movieName, index) => (
-            <p key={index} className="movie-name">
+            <p key={index} className="movie-name" onClick={()=>{setMostrarPoster(true)}}>
               {movieName}
             </p>
           ))}
@@ -146,9 +177,7 @@ const WritableCalendar = () => {
         </div>
         <div className="mt-3">
           <Boton Contenido={DownloadForOfflineIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} funcion={downloadCalendar} />
-          {/* <button className="btn btn-success" onClick={downloadCalendar}>
-            Descargar el calendario
-          </button> */}
+          <Boton Contenido={EventIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} />
         </div>
 
         {/* Hidden overlay container for capturing the combined content */}

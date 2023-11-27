@@ -32,7 +32,8 @@ const transformMovieResults = (movieResults) => {
         poster_path: movieShow.poster_path,
         media_type: movieShow.media_type,
         genre_ids: movieShow.genre_ids,
-        vote_average: movieShow.vote_average
+        vote_average: movieShow.vote_average,
+        release_date: movieShow.release_date
     }));
 };
 
@@ -95,6 +96,20 @@ const getTrendingMovies = async (page) => {
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
 };
+
+/**
+ * Obtiene películas próximas a estrenarse.
+ *
+ * @async
+ * @function
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas que se estrenarán proximamente.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
+const getUpcomingMovies = async () => {
+    const endPoint = `movie/upcoming?language=${API_LANGUAGE}&api_key=${API_KEY}`;
+    const movieResults = await basicFetch(endPoint);
+    return transformMovieResults(movieResults);
+}
 
 /**
  * Obtiene películas según un género específico.
@@ -412,6 +427,7 @@ export {
     getNowPlayingMovies,
     getTopRatedMovies,
     getTrendingMovies,
+    getUpcomingMovies,
     getMoviesByGenres,
     getMovieById,
     getTrailersById,

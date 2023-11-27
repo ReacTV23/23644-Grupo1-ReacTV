@@ -14,6 +14,7 @@ import MiLista from './pages/MiLista/MiLista.jsx'
 import Lanzamientos from './pages/Lanzamientos/Lanzamientos.jsx'
 import About from './pages/About/About.jsx'
 import Search from './pages/Search/Search.jsx'
+import CardSinopsis from './pages/Card/CardSinopsis.jsx'
 import './App.css';
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/lanzamientos" element={<Lanzamientos />} />      
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<Search/>} />
+                <Route path="/card" element={<CardSinopsis/>} />
               </Routes>
             </Router>
           </MediaTypeProvider>
