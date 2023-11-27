@@ -1,5 +1,5 @@
 import emailjs from "emailjs-com" 
-import "./Contact.css"
+import "./contact.css"
 import Titulo from '../Titulo/Titulo'
 import BotonForm from '../Boton/BotonForm/BotonForm'
 import { useState } from "react";
