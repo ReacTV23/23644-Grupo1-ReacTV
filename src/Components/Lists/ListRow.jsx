@@ -5,7 +5,10 @@ import Titulo from "../Titulo/Titulo";
 import CarruselMini from "./CarruselMini/CarruselMini";
 
 const cardClick = (movie) => {
-  console.log("Card Clicked", movie);
+  // console.log("Card Clicked", movie);
+  const currentUrl = window.location.origin;
+  const url = `${currentUrl}/card/${movie.media_type}/${movie.id}`;
+  window.location.href = url;
 };
 
 const ListRow = ({ title, fetchDataFunction, page = 1, genre }) => {

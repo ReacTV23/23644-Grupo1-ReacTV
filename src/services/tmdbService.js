@@ -384,7 +384,7 @@ const getAllByGenres = async (page = 1, genre) => {
 
         // Puedes hacer algo con los resultados aquí, como combinarlos en un solo array
         const combinedResults = combineArraysGenres(movies, tvShows, 20);
-        console.log(movies, tvShows, combinedResults);
+        // console.log(movies, tvShows, combinedResults);
 
         return combinedResults;
     } catch (error) {

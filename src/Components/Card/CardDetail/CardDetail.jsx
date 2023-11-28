@@ -4,7 +4,7 @@ import PlaylistAddCircleIcon from "@mui/icons-material/PlaylistAddCircle";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import html2canvas from "html2canvas";
-import "./CardDetalle.css";
+import "./CardDetail.css";
 
 const CardDetalle2 = ({ movie }) => {
   const info = movie;
