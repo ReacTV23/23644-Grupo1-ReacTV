@@ -1,5 +1,3 @@
-// Calendar.jsx
-
 import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -10,10 +8,10 @@ const WritableCalendar = () => {
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState({});
   const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [movieDataLoaded, setMovieDataLoaded] = useState(false);
   const overlayRef = useRef(null);
 
   useEffect(() => {
-    // Fetch upcoming movies from TMDB API
     const fetchUpcomingMovies = async () => {
       const apiKey = '3e1d7bff8444d6e86809e57e9496b17c';
       const url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&api_key=${apiKey}`;
@@ -22,6 +20,7 @@ const WritableCalendar = () => {
         const response = await fetch(url);
         const data = await response.json();
         setUpcomingMovies(data.results || []);
+        setMovieDataLoaded(true);
       } catch (error) {
         console.error('Error fetching upcoming movies:', error);
       }
@@ -36,76 +35,36 @@ const WritableCalendar = () => {
 
   const downloadCalendar = async () => {
     try {
-      const calendarContainer = document.getElementById('calendar-container');
+      if (!movieDataLoaded) {
+        console.error('Movie data not loaded. Cannot download calendar.');
+        return;
+      }
+  
       const overlayContainer = overlayRef.current;
   
-      // Create a wrapper element to enclose the calendar and events
-      const wrapperElement = document.createElement('div');
-      wrapperElement.className = 'calendar-wrapper';
+      // Use window.requestAnimationFrame to wait for the next animation frame
+      window.requestAnimationFrame(async () => {
+        // Use html2canvas library to capture the entire document as an image
+        const canvas = await html2canvas(document.documentElement, { scale: 2, allowTaint: true, useCORS: false });
   
-      // Clone the calendar container and append to the wrapper
-      const clonedCalendar = calendarContainer.cloneNode(true);
-      wrapperElement.appendChild(clonedCalendar);
+        // Convert canvas to image data URL as JPEG
+        const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
   
-      // Add events and upcoming movies to the wrapper
-      const eventsDiv = document.createElement('div');
-      eventsDiv.className = 'events-overlay';
-      wrapperElement.appendChild(eventsDiv);
+        // Create a download link and trigger the download
+        const a = document.createElement('a');
+        a.href = imageDataUrl;
+        a.download = 'full_document.jpg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
   
-      // Add events to the wrapper
-      Object.entries(events).forEach(([eventDate, eventText]) => {
-        const dateCell = clonedCalendar.querySelector(
-          `.react-calendar__tile[data-date="${eventDate.split('T')[0]}"]`
-        );
-        if (dateCell) {
-          const eventDiv = document.createElement('div');
-          eventDiv.className = 'event-marker';
-          eventDiv.textContent = eventText;
-          eventsDiv.appendChild(eventDiv);
-        }
+        // Clear the overlay container for the next download
+        overlayContainer.innerHTML = '';
       });
-  
-      // Add upcoming movies to the wrapper
-      upcomingMovies.forEach((movie) => {
-        const movieDate = new Date(movie.release_date);
-        const dateString = movieDate.toISOString().split('T')[0];
-        const dateCell = clonedCalendar.querySelector(
-          `.react-calendar__tile[data-date="${dateString}"]`
-        );
-        if (dateCell) {
-          const movieDiv = document.createElement('div');
-          movieDiv.className = 'movie-marker';
-          movieDiv.textContent = movie.title;
-          eventsDiv.appendChild(movieDiv);
-        }
-      });
-  
-      // Append the wrapper element to the overlay container
-      overlayContainer.appendChild(wrapperElement);
-  
-      // Use html2canvas library to capture the combined content as an image
-      const canvas = await html2canvas(wrapperElement, { scale: 2, allowTaint: true, useCORS: true });
-  
-      // Convert canvas to image data URL as JPEG
-      const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-  
-      // Create a download link and trigger the download
-      const a = document.createElement('a');
-      a.href = imageDataUrl;
-      a.download = 'estrenos_del_mes.jpg';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-  
-      // Clear the overlay container for the next download
-      overlayContainer.innerHTML = '';
     } catch (error) {
-      console.error('Error capturing calendar:', error);
+      console.error('Error capturing document:', error);
     }
   };
-  
-  
-  
   
 
   const tileContent = ({ date, view }) => {
