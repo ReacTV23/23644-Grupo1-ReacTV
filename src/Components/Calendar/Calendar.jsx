@@ -7,14 +7,16 @@ import { getUpcomingMovies } from '../../services/tmdbService.js'
 import EventIcon from '@mui/icons-material/Event';
 import CardImg from '../Card/CardImg/CardImg'
 import 'react-calendar/dist/Calendar.css';
+import { useNavigate } from 'react-router-dom';
 import './Calendar.css'
 
 const WritableCalendar = ({onInfoChange }) => {
+  const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
   const [events, setEvents] = useState({});
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const overlayRef = useRef(null);
-  const [mostrarPoster, setMostrarPoster] = useState(false);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
 
   const getdata = async () =>  {
     try {
@@ -52,16 +54,15 @@ const WritableCalendar = ({onInfoChange }) => {
     setDate(newDate);
   };
 
-  const handlePoster = (movie) => {
-    onInfoChange(movie);
-    setMostrarPoster(false);
-  }
+  const handleMovieClick = (movieId) => {
+    console.log('Clicked on movie with ID:', movieId);
+    setSelectedMovieId(movieId);
+  };
 
-
-  console.log(upcomingMovies)
-  if (mostrarPoster) {
-    return <CardImg peli={upcomingMovies} funcion={handlePoster}/>
-  }
+  const handleClick = (peli) => {
+    // Navigate to the "/card" route
+      navigate('/card', { dato: peli }) ;
+    };
 
   const downloadCalendar = async () => {
     try {
@@ -106,6 +107,7 @@ const WritableCalendar = ({onInfoChange }) => {
           const movieDiv = document.createElement('div');
           movieDiv.className = 'movie-marker';
           movieDiv.textContent = movie.title;
+          movieDiv.setAttribute('data-id', movie.id);
           eventsDiv.appendChild(movieDiv);
         }
       });
@@ -138,9 +140,9 @@ const WritableCalendar = ({onInfoChange }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
       const dayEvents = events[dateString] || [];
-      const movieNames = upcomingMovies
-        .filter((movie) => new Date(movie.release_date).toDateString() === date.toDateString())
-        .map((movie) => movie.title);
+      // const movieNames = upcomingMovies
+      //   .filter((movie) => new Date(movie.release_date).toDateString() === date.toDateString())
+      //   .map((movie) => movie.title);
 
       return (
         <div className="tile-content">
@@ -149,11 +151,19 @@ const WritableCalendar = ({onInfoChange }) => {
               {event}
             </p>
           ))}
-          {movieNames.map((movieName, index) => (
-            <p key={index} className="movie-name" onClick={()=>{setMostrarPoster(true)}}>
+
+          {upcomingMovies
+          .filter((movie) => new Date(movie.release_date).toDateString() === date.toDateString())
+          .map((movie) => (
+            <p key={movie.id} className="movie-name" onClick={() => handleMovieClick(movie.id)}>
+            {movie.title}
+            </p>))}
+          {/* {movieNames.map((movieName) => (
+            <p key={index} className="movie-name" onClick={()=>{capturarIndex(index)}}>
               {movieName}
+              {index}
             </p>
-          ))}
+          ))} */}
         </div>
       );
     }
@@ -161,19 +171,35 @@ const WritableCalendar = ({onInfoChange }) => {
   };
 
   return (
-      <div className="container mt-2" style={{width:'60%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+      <div className="container mt-2" style={{width:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
         <h5 className="mb-2" style={{textAling:'center', textTransform: 'uppercase'}}>Calendario de estrenos</h5>
-        <div className="row">
-          <div style={{width:'100%'}}> 
-            <div className="card p-3" id="calendar-container" style={{backgroundColor: '#003686'}}>
-              <Calendar
-                onChange={handleDateChange}
-                value={date}
-                tileContent={tileContent}
-                className="custom-calendar"
-              />
-            </div>
+        <div className="row" style={{width:'100%', display:'flex'}}>
+          <div className="card p-3" id="calendar-container" style={{width:'60%', backgroundColor: '#003686'}}>
+            <Calendar
+              onChange={handleDateChange}
+              value={date}
+              tileContent={tileContent}
+              className="custom-calendar"
+            />
           </div>
+          {/* Renderizar el componente CardImg con el ID de la película seleccionada */}
+          {selectedMovieId && (
+          <div style={{width:'40%', 
+              backgroundColor: '#003686',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '10px',
+              ':hover': { 
+                backgroundColor: '#E08400'
+              }
+                  }}>
+            <CardImg
+              peli={upcomingMovies.find((movie) => movie.id === selectedMovieId)}
+              funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))}
+            />
+          </div>
+          )}
         </div>
         <div className="mt-3">
           <Boton Contenido={DownloadForOfflineIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} funcion={downloadCalendar} />
