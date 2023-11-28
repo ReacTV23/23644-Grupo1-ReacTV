@@ -30,10 +30,10 @@ const transformMovieResults = (movieResults) => {
         backdrop_path: movieShow.backdrop_path,
         overview: movieShow.overview,
         poster_path: movieShow.poster_path,
-        media_type: movieShow.media_type,
+        media_type: movieShow.media_type || "movie",
         genre_ids: movieShow.genre_ids,
         vote_average: movieShow.vote_average,
-        release_date: movieShow.release_date
+        release_date: movieShow.release_date,
     }));
 };
 
@@ -109,7 +109,7 @@ const getUpcomingMovies = async () => {
     const endPoint = `movie/upcoming?language=${API_LANGUAGE}&api_key=${API_KEY}`;
     const movieResults = await basicFetch(endPoint);
     return transformMovieResults(movieResults);
-}
+};
 
 /**
  * Obtiene películas según un género específico.
@@ -140,7 +140,7 @@ const getMovieById = async (id) => {
     // console.log("tmbdbService => getMovieById:", page, id);
     const endPoint = `movie/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
     const movieResult = await basicFetch(endPoint, true);
-    // console.log("tmbdbService => getMovieById:", movieResults);
+    // console.log("tmbdbService => getMovieById:", movieResult);
     return movieResult;
 };
 
@@ -161,7 +161,6 @@ const getTrailersById = async (id) => {
     return trailerResults;
 };
 
-
 /**
  *
  * Series
@@ -176,9 +175,9 @@ const transformTVResults = (tvResults) => {
         backdrop_path: tvShow.backdrop_path,
         overview: tvShow.overview,
         poster_path: tvShow.poster_path,
-        media_type: tvShow.media_type,
+        media_type: tvShow.media_type || "tv",
         genre_ids: tvShow.genre_ids,
-        vote_average: tvShow.vote_average
+        vote_average: tvShow.vote_average,
     }));
 };
 
@@ -229,6 +228,23 @@ const getTVByGenres = async (page, genre) => {
 };
 
 /**
+ * Obtiene una serie por su id.
+ *
+ * @async
+ * @function
+ * @param {number} id - El id de la película.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array que representa los datos de la serie solicitada.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
+const getTVById = async (id) => {
+    // console.log("tmbdbService => getTVById:", id);
+    const endPoint = `tv/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+    const tvResult = await basicFetch(endPoint, true);
+    // console.log("tmbdbService => getTVById:", tvResult);
+    return tvResult;
+};
+
+/**
  *
  * Generos
  *
@@ -275,12 +291,12 @@ const getGenres = async (type) => {
             const [movieResponse, tvResponse] = await Promise.all([
                 basicFetch(
                     `genre/movie/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                    true
+                    true,
                 ),
                 basicFetch(
                     `genre/tv/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                    true
-                )
+                    true,
+                ),
             ]);
 
             // Verifico si obtuve los géneros de ambas llamadas
@@ -297,7 +313,7 @@ const getGenres = async (type) => {
             // Si el tipo no es 'all', realizo la llamada a la API con el tipo correspondiente
             const response = await basicFetch(
                 `genre/${type}/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                true
+                true,
             );
 
             // Verifico si obtuve los géneros de la llamada
@@ -328,15 +344,15 @@ const getGenres = async (type) => {
                 slug: "genres",
                 title: "Listado de géneros",
                 type: type,
-                items: uniqueGenres || [] // Si uniqueGenres es undefined, asigno un array vacío
-            }
+                items: uniqueGenres || [], // Si uniqueGenres es undefined, asigno un array vacío
+            },
         ];
     } catch (error) {
         console.error(`Error al obtener los géneros para ${type}:`, error);
         return {
             error: true,
             message: `Hubo un error al obtener los géneros para ${type}`,
-            details: error.message || "Detalles del error no disponibles"
+            details: error.message || "Detalles del error no disponibles",
         };
     }
 };
@@ -363,7 +379,7 @@ const getAllByGenres = async (page = 1, genre) => {
     try {
         const [movies, tvShows] = await Promise.all([
             getMoviesByGenres(page, genre),
-            getTVByGenres(page, genre)
+            getTVByGenres(page, genre),
         ]);
 
         // Puedes hacer algo con los resultados aquí, como combinarlos en un solo array
@@ -434,7 +450,8 @@ export {
     getPopularTV,
     getTopRatedTV,
     getTVByGenres,
+    getTVById,
     getGenres,
     getAllByGenres,
-    searchTMDB
+    searchTMDB,
 };
