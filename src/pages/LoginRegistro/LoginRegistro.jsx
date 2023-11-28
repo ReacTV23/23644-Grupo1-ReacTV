@@ -1,8 +1,8 @@
 import React from 'react'
-import LayoutForm from '../../Layout/LayoutForm/LayoutForm'
-import { Login } from '../../Components/Ingreso/Login/Login'
-import { Register } from '../../Components/Ingreso/Register/Register'
-import Boton from '../../Components/Boton'
+import LayoutForm from '../../layout/LayoutForm/LayoutForm'
+import { Login } from '../../components/Ingreso/Login/Login'
+import { Register } from '../../components/Ingreso/Register/Register'
+import Boton from '../../components/Boton'
 import './LoginRegistro.css'
 
 const LoginRegistro = () => {

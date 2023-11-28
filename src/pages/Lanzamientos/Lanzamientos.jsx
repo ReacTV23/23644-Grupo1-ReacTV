@@ -1,13 +1,14 @@
 import React from 'react'
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
-// import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
+import Calendar from '../../components/Calendar/Calendar'
+import './Lanzamientos.css'
 
 const Lanzamientos = () => {
   return (
     <LayoutSecundario textoBoton={'lanzamientos'}>
-      {/* <Calendario/>
-      <Boton contenido={DownloadForOfflineIcon}/>
-      <Carrusel/> para lanzamientos */}
+      <div className='Contenedor_lanzamientos'>
+        <Calendar />
+      </div>
     </LayoutSecundario>
   )
 }

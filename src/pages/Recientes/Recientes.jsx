@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutSecundario from '../../Layout/LayoutSecundario/LayoutSecundario'
+import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
 
 const Recientes = () => {
   return (

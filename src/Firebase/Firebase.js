@@ -1,20 +1,18 @@
-// Import the functions you need from the SDKs you need
-import {initializeApp} from "firebase/app";
-import {getAuth} from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// Importa las funciones que necesitas de los SDK que necesitas
+import { initializeApp } from "firebase/app";
+import { getAuth } from 'firebase/auth';
 
-// Your web app's Firebase configuration
+// Configuración de Firebase para tu aplicación web
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_API_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_API_PROJECT_ID ,
-    storageBucket: process.env.REACT_APP_API_STORAGE_BUCKET,
-    messagingSenderId:process.env.REACT_APP_API_MESSAGING_SENDERID,
-    appId: process.env.REACT_APP_API_ID,
+    apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
+    authDomain: process.env.REACT_APP_API_AUTH_DOMAIN_FIREBASE,
+    projectId: process.env.REACT_APP_API_PROJECT_ID_FIREBASE,
+    storageBucket: process.env.REACT_APP_API_STORAGE_BUCKET_FIREBASE,
+    messagingSenderId: process.env.REACT_APP_API_MESSAGING_SENDERID_FIREBASE,
+    appId: process.env.REACT_APP_API_ID_FIREBASE,
 };
 
-// Initialize Firebase
-// console.log("Firebase Config:", firebaseConfig);
+// Inicializa Firebase
+//console.log("Firebase Config:", firebaseConfig)
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
+export const auth = getAuth(app);
