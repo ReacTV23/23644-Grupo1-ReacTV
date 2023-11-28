@@ -8,8 +8,8 @@ import {
   getTVByGenres,
   getAllByGenres,
 } from "../../services/tmdbService";
-import Titulo from '../Titulo/Titulo'
-import BotonGenero from '../Boton/BotonGenero/BotonGenero'
+import Titulo from "../Titulo/Titulo";
+import BotonGenero from "../Boton/BotonGenero/BotonGenero";
 
 const FilterByGenres = () => {
   const [genres, setGenres] = useState([]);
@@ -60,26 +60,48 @@ const FilterByGenres = () => {
   };
 
   return (
-    <div style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        maxWidth: "100vw",
+      }}
+    >
       <MediaSelector />
-      <Titulo texto={`Listado de Géneros: ${mediaType}`}/>
+      <Titulo texto={`Listado de Géneros: ${mediaType}`} />
       {/* Lista de botones para cada género */}
-      <div style={{width:'100%', display:"flex", flexWrap:'wrap', justifyContent:'center',gap: "10px" }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "10px",
+          maxWidth: "100vw",
+        }}
+      >
         {genres.map((genre) => (
-          <BotonGenero key={genre.id} texto={genre.name} onClick={() => handleGenreClick(genre.id)}/>
+          <BotonGenero
+            key={genre.id}
+            texto={genre.name}
+            onClick={() => handleGenreClick(genre.id)}
+          />
         ))}
       </div>
 
       {/* Sección que muestra los géneros seleccionados */}
+      <label>Géneros Seleccionados:</label>
       <div style={{ marginTop: "20px" }}>
-        <label>Géneros Seleccionados:</label>
-        {selectedGenres.map((selectedGenre) => (
-          <List
-            key={selectedGenre.id}
-            title={selectedGenre.name}
-            fetchDataFunction={fetchDataFunction[mediaType]}
-            genre={selectedGenre.id}
-          />
+        {selectedGenres.map((selectedGenre, index) => (
+          <div key={selectedGenre.id} style={{ maxWidth: "100vw" }}>
+            <List
+              title={selectedGenre.name}
+              fetchDataFunction={fetchDataFunction[mediaType]}
+              genre={selectedGenre.id}
+            />
+          </div>
         ))}
         {/* Mensaje si no hay géneros seleccionados */}
         {selectedGenres.length === 0 && <p>Ninguno seleccionado</p>}

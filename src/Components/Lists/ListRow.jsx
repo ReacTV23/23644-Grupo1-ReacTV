@@ -1,7 +1,12 @@
 // ListRow.js
 import React, { useState, useEffect } from "react";
 import Loader from "../Loader/Loader";
-import Titulo from '../Titulo/Titulo'
+import Titulo from "../Titulo/Titulo";
+import CarruselMini from "./CarruselMini/CarruselMini";
+
+const cardClick = (movie) => {
+  console.log("Card Clicked", movie);
+};
 
 const ListRow = ({ title, fetchDataFunction, page = 1, genre }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,15 +32,17 @@ const ListRow = ({ title, fetchDataFunction, page = 1, genre }) => {
 
   return (
     <div>
-      <Titulo texto={title}/>
+      <Titulo texto={title} />
       {isLoading ? (
         <Loader />
       ) : (
-        <ul>
-          {movies.map((movie) => (
-            <li key={movie.id}>{movie.title}</li>
-          ))}
-        </ul>
+        <div style={{ width: "100%" }}>
+          <CarruselMini
+            items={movies}
+            cardWidth={150}
+            onCardClick={cardClick}
+          />
+        </div>
       )}
     </div>
   );
