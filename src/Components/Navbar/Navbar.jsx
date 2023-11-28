@@ -38,15 +38,22 @@ const Navbar = ({onLoginButtonClick}) => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#003686', width:'100%', height:'80px'}}>
       <Toolbar sx={{ width:'100%', height:'100%', display: 'flex', justifyContent: 'space-between', alignItems:'center'}}>
         {/* Sección del logo (a la izquierda) */}
         <Typography variant="h6" component="div">
-          <img
+         <img
             src="/assets/img/logo-circular-2.png"
             alt="Logo"
             style={{ height: '60px', marginRight: '16px' }}
+            onClick={handleGoBack}
           />
         </Typography>
 
