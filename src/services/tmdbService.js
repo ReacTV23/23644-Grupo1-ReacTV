@@ -6,14 +6,14 @@ const API_LANGUAGE = process.env.REACT_APP_LANGUAGE_CODE_TMDB;
 // const URL_IMAGE = process.env.REACT_APP_URL_IMAGE_TMDB;
 
 const basicFetch = async (endPoint, genres = false) => {
-    // console.log("basicFetch", `${API_URL_BASE}${endPoint}`);
-    try {
-        const response = await axios.get(`${API_URL_BASE}${endPoint}`);
-        return genres ? response.data : response.data.results;
-    } catch (error) {
-        console.error(`Error fetching ${endPoint}:`, error.message);
-        return [];
-    }
+  // console.log("basicFetch", `${API_URL_BASE}${endPoint}`);
+  try {
+    const response = await axios.get(`${API_URL_BASE}${endPoint}`);
+    return genres ? response.data : response.data.results;
+  } catch (error) {
+    console.error(`Error conectado con ${endPoint}:`, error.message);
+    return [];
+  }
 };
 
 /**
@@ -21,21 +21,6 @@ const basicFetch = async (endPoint, genres = false) => {
  * Peliculas
  *
  */
-
-// Función auxiliar para mapear y transformar los resultados
-const transformMovieResults = (movieResults) => {
-    return movieResults.map((movieShow) => ({
-        id: movieShow.id,
-        title: movieShow.title,
-        backdrop_path: movieShow.backdrop_path,
-        overview: movieShow.overview,
-        poster_path: movieShow.poster_path,
-        media_type: movieShow.media_type || "movie",
-        genre_ids: movieShow.genre_ids,
-        vote_average: movieShow.vote_average,
-        release_date: movieShow.release_date,
-    }));
-};
 
 /**
  * Obtiene las películas populares.
@@ -46,10 +31,10 @@ const transformMovieResults = (movieResults) => {
  * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representan las películas populares.
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
-const getPopularMovies = async (page) => {
-    const endPoint = `movie/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+const getPopularMovies = async (page = 1) => {
+  const endPoint = `movie/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -62,9 +47,9 @@ const getPopularMovies = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getNowPlayingMovies = async (page) => {
-    const endPoint = `movie/now_playing?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+  const endPoint = `movie/now_playing?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -77,9 +62,9 @@ const getNowPlayingMovies = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTopRatedMovies = async (page) => {
-    const endPoint = `movie/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+  const endPoint = `movie/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -92,9 +77,9 @@ const getTopRatedMovies = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTrendingMovies = async (page) => {
-    const endPoint = `trending/movie/day?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+  const endPoint = `trending/movie/day?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -106,9 +91,9 @@ const getTrendingMovies = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getUpcomingMovies = async () => {
-    const endPoint = `movie/upcoming?language=${API_LANGUAGE}&api_key=${API_KEY}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+  const endPoint = `movie/upcoming?language=${API_LANGUAGE}&api_key=${API_KEY}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -122,9 +107,9 @@ const getUpcomingMovies = async () => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getMoviesByGenres = async (page, genre) => {
-    const endPoint = `discover/movie?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&with_genres=${genre}`;
-    const movieResults = await basicFetch(endPoint);
-    return transformMovieResults(movieResults);
+  const endPoint = `discover/movie?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&with_genres=${genre}`;
+  const movieResults = await basicFetch(endPoint);
+  return transformMovieResults(movieResults);
 };
 
 /**
@@ -137,11 +122,15 @@ const getMoviesByGenres = async (page, genre) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getMovieById = async (id) => {
-    // console.log("tmbdbService => getMovieById:", page, id);
-    const endPoint = `movie/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
-    const movieResult = await basicFetch(endPoint, true);
-    // console.log("tmbdbService => getMovieById:", movieResult);
-    return movieResult;
+  // console.log("tmbdbService => getMovieById:", page, id);
+  const endPoint = `movie/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+  const movieResult = await basicFetch(endPoint, true);
+  // Agrego la clave que necesitamos
+  movieResult.genre_names_join = movieResult.genres
+    .map((genre) => genre.name)
+    .join(" - ");
+  // console.log("tmbdbService => getMovieById:", movieResult);
+  return movieResult;
 };
 
 /**
@@ -154,11 +143,11 @@ const getMovieById = async (id) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTrailersById = async (id) => {
-    // console.log("tmbdbService => getMovieById:", page, id);
-    const endPoint = `movie/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}`;
-    const trailerResults = await basicFetch(endPoint, false);
-    // console.log("tmbdbService => getMovieById:", movieResults);
-    return trailerResults;
+  // console.log("tmbdbService => getMovieById:", page, id);
+  const endPoint = `movie/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+  const trailerResults = await basicFetch(endPoint, false);
+  // console.log("tmbdbService => getMovieById:", movieResults);
+  return trailerResults;
 };
 
 /**
@@ -166,20 +155,6 @@ const getTrailersById = async (id) => {
  * Series
  *
  */
-
-// Función auxiliar para mapear y transformar los resultados
-const transformTVResults = (tvResults) => {
-    return tvResults.map((tvShow) => ({
-        id: tvShow.id,
-        title: tvShow.name,
-        backdrop_path: tvShow.backdrop_path,
-        overview: tvShow.overview,
-        poster_path: tvShow.poster_path,
-        media_type: tvShow.media_type || "tv",
-        genre_ids: tvShow.genre_ids,
-        vote_average: tvShow.vote_average,
-    }));
-};
 
 /**
  * Obtiene las series de televisión populares.
@@ -191,9 +166,9 @@ const transformTVResults = (tvResults) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getPopularTV = async (page) => {
-    const endPoint = `tv/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const tvResults = await basicFetch(endPoint);
-    return transformTVResults(tvResults);
+  const endPoint = `tv/popular?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const tvResults = await basicFetch(endPoint);
+  return transformTVResults(tvResults);
 };
 
 /**
@@ -206,9 +181,9 @@ const getPopularTV = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTopRatedTV = async (page) => {
-    const endPoint = `tv/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const tvResults = await basicFetch(endPoint);
-    return transformTVResults(tvResults);
+  const endPoint = `tv/top_rated?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const tvResults = await basicFetch(endPoint);
+  return transformTVResults(tvResults);
 };
 
 /**
@@ -222,9 +197,9 @@ const getTopRatedTV = async (page) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTVByGenres = async (page, genre) => {
-    const endPoint = `discover/tv?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
-    const tvResults = await basicFetch(endPoint);
-    return transformTVResults(tvResults);
+  const endPoint = `discover/tv?api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}&sort_by=popularity.desc&with_genres=${genre}`;
+  const tvResults = await basicFetch(endPoint);
+  return transformTVResults(tvResults);
 };
 
 /**
@@ -237,11 +212,15 @@ const getTVByGenres = async (page, genre) => {
  * @throws {Error} Si hay un error al realizar la solicitud a la API.
  */
 const getTVById = async (id) => {
-    // console.log("tmbdbService => getTVById:", id);
-    const endPoint = `tv/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
-    const tvResult = await basicFetch(endPoint, true);
-    // console.log("tmbdbService => getTVById:", tvResult);
-    return tvResult;
+  // console.log("tmbdbService => getTVById:", id);
+  const endPoint = `tv/${id}?api_key=${API_KEY}&language=${API_LANGUAGE}`;
+  const tvResult = await basicFetch(endPoint, true);
+  // Agrego la clave que necesitamos
+  tvResult.genre_names_join = tvResult.genres
+    .map((genre) => genre.name)
+    .join(" - ");
+  // console.log("tmbdbService => getTVById:", tvResult);
+  return tvResult;
 };
 
 /**
@@ -282,79 +261,79 @@ const getTVById = async (id) => {
  * }
  */
 const getGenres = async (type) => {
-    try {
-        let movieGenres = [];
-        let tvGenres = [];
+  try {
+    let movieGenres = [];
+    let tvGenres = [];
 
-        // Verifico si el tipo es 'all'; en ese caso, realizo ambas llamadas a la API
-        if (type === "all") {
-            const [movieResponse, tvResponse] = await Promise.all([
-                basicFetch(
-                    `genre/movie/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                    true,
-                ),
-                basicFetch(
-                    `genre/tv/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                    true,
-                ),
-            ]);
+    // Verifico si el tipo es 'all'; en ese caso, realizo ambas llamadas a la API
+    if (type === "all") {
+      const [movieResponse, tvResponse] = await Promise.all([
+        basicFetch(
+          `genre/movie/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
+          true,
+        ),
+        basicFetch(
+          `genre/tv/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
+          true,
+        ),
+      ]);
 
-            // Verifico si obtuve los géneros de ambas llamadas
-            if (movieResponse.genres) {
-                // Almaceno los géneros de películas
-                movieGenres = movieResponse.genres;
-            }
+      // Verifico si obtuve los géneros de ambas llamadas
+      if (movieResponse.genres) {
+        // Almaceno los géneros de películas
+        movieGenres = movieResponse.genres;
+      }
 
-            if (tvResponse.genres) {
-                // Almaceno los géneros de series de televisión
-                tvGenres = tvResponse.genres;
-            }
-        } else {
-            // Si el tipo no es 'all', realizo la llamada a la API con el tipo correspondiente
-            const response = await basicFetch(
-                `genre/${type}/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
-                true,
-            );
+      if (tvResponse.genres) {
+        // Almaceno los géneros de series de televisión
+        tvGenres = tvResponse.genres;
+      }
+    } else {
+      // Si el tipo no es 'all', realizo la llamada a la API con el tipo correspondiente
+      const response = await basicFetch(
+        `genre/${type}/list?language=${API_LANGUAGE}&api_key=${API_KEY}`,
+        true,
+      );
 
-            // Verifico si obtuve los géneros de la llamada
-            if (response.genres) {
-                if (type === "movie") {
-                    // Almaceno los géneros de películas
-                    movieGenres = response.genres;
-                } else if (type === "tv") {
-                    // Almaceno los géneros de series de televisión
-                    tvGenres = response.genres;
-                }
-            }
+      // Verifico si obtuve los géneros de la llamada
+      if (response.genres) {
+        if (type === "movie") {
+          // Almaceno los géneros de películas
+          movieGenres = response.genres;
+        } else if (type === "tv") {
+          // Almaceno los géneros de series de televisión
+          tvGenres = response.genres;
         }
-
-        // Combino los géneros y elimino duplicados
-        const allGenres = [...movieGenres, ...tvGenres];
-
-        const uniqueGenres = allGenres.reduce((unique, genre) => {
-            const existingGenre = unique.find((g) => g.id === genre.id);
-            if (!existingGenre) {
-                unique.push(genre);
-            }
-            return unique;
-        }, []);
-
-        return [
-            {
-                slug: "genres",
-                title: "Listado de géneros",
-                type: type,
-                items: uniqueGenres || [], // Si uniqueGenres es undefined, asigno un array vacío
-            },
-        ];
-    } catch (error) {
-        console.error(`Error al obtener los géneros para ${type}:`, error);
-        return {
-            error: true,
-            message: `Hubo un error al obtener los géneros para ${type}`,
-            details: error.message || "Detalles del error no disponibles",
-        };
+      }
     }
+
+    // Combino los géneros y elimino duplicados
+    const allGenres = [...movieGenres, ...tvGenres];
+
+    const uniqueGenres = allGenres.reduce((unique, genre) => {
+      const existingGenre = unique.find((g) => g.id === genre.id);
+      if (!existingGenre) {
+        unique.push(genre);
+      }
+      return unique;
+    }, []);
+
+    return [
+      {
+        slug: "genres",
+        title: "Listado de géneros",
+        type: type,
+        items: uniqueGenres || [], // Si uniqueGenres es undefined, asigno un array vacío
+      },
+    ];
+  } catch (error) {
+    console.error(`Error al obtener los géneros para ${type}:`, error);
+    return {
+      error: true,
+      message: `Hubo un error al obtener los géneros para ${type}`,
+      details: error.message || "Detalles del error no disponibles",
+    };
+  }
 };
 
 /**
@@ -376,44 +355,45 @@ const getGenres = async (type) => {
  * }
  */
 const getAllByGenres = async (page = 1, genre) => {
-    try {
-        const [movies, tvShows] = await Promise.all([
-            getMoviesByGenres(page, genre),
-            getTVByGenres(page, genre),
-        ]);
+  try {
+    const [movies, tvShows] = await Promise.all([
+      getMoviesByGenres(page, genre),
+      getTVByGenres(page, genre),
+    ]);
 
-        // Puedes hacer algo con los resultados aquí, como combinarlos en un solo array
-        const combinedResults = combineArraysGenres(movies, tvShows, 20);
-        // console.log(movies, tvShows, combinedResults);
+    // Puedes hacer algo con los resultados aquí, como combinarlos en un solo array
+    const combinedResults = combineArraysGenres(movies, tvShows, 20);
+    // console.log(movies, tvShows, combinedResults);
 
-        return combinedResults;
-    } catch (error) {
-        console.error("Error al obtener películas y series por género:", error);
-        // Puedes manejar el error de alguna manera, como lanzar una excepción o devolver un objeto de error
-        throw error;
-    }
+    return combinedResults;
+  } catch (error) {
+    console.error("Error al obtener películas y series por género:", error);
+    // Puedes manejar el error de alguna manera, como lanzar una excepción o devolver un objeto de error
+    throw error;
+  }
 };
 
+// Combina dos array
 function combineArraysGenres(array1, array2, numberOfElements) {
-    if (array1.length === 0) return array2;
-    if (array2.length === 0) return array1;
+  if (array1.length === 0) return array2;
+  if (array2.length === 0) return array1;
 
-    const combinedArray = [];
+  const combinedArray = [];
 
-    const iterator1 = array1.values();
-    const iterator2 = array2.values();
+  const iterator1 = array1.values();
+  const iterator2 = array2.values();
 
-    let element1 = iterator1.next().value;
-    let element2 = iterator2.next().value;
+  let element1 = iterator1.next().value;
+  let element2 = iterator2.next().value;
 
-    while (element1 !== undefined && element2 !== undefined) {
-        combinedArray.push(element1, element2);
-        element1 = iterator1.next().value;
-        element2 = iterator2.next().value;
-    }
+  while (element1 !== undefined && element2 !== undefined) {
+    combinedArray.push(element1, element2);
+    element1 = iterator1.next().value;
+    element2 = iterator2.next().value;
+  }
 
-    // Tomar los primeros 10 elementos del array resultante
-    return combinedArray.slice(0, numberOfElements);
+  // Tomar los primeros n elementos del array resultante
+  return combinedArray.slice(0, numberOfElements);
 }
 
 /**
@@ -433,25 +413,113 @@ function combineArraysGenres(array1, array2, numberOfElements) {
  * console.log(results); // Muestra la primera página de los resultados de la búsqueda de películas relacionadas con "Avengers".
  */
 const searchTMDB = async (query, context, page = 1) => {
-    const endPoint = `search/${context}?query=${query}&api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
-    const movieResults = await basicFetch(endPoint);
-    return movieResults;
+  const endPoint = `search/${context}?query=${query}&api_key=${API_KEY}&language=${API_LANGUAGE}&page=${page}`;
+  const movieResults = await basicFetch(endPoint);
+  return movieResults;
+};
+
+/** Funciones Auxiliares */
+// Para mapear y transformar los resultados de movies
+const transformMovieResults = async (movieResults) => {
+  const transformedResults = await Promise.all(
+    movieResults.map(async (movieShow) => {
+      const genreNamesResult = await setGenresNames(
+        movieShow.media_type || "movie",
+        movieShow.genre_ids,
+      );
+
+      return {
+        id: movieShow.id,
+        title: movieShow.title,
+        backdrop_path: movieShow.backdrop_path,
+        overview: movieShow.overview,
+        poster_path: movieShow.poster_path,
+        media_type: movieShow.media_type || "movie",
+        genre_ids: movieShow.genre_ids,
+        genre_names: genreNamesResult.genre_names,
+        genre_names_join: genreNamesResult.genre_names
+          .map((genre) => genre.name)
+          .join(" - "),
+        vote_average: movieShow.vote_average,
+        release_date: movieShow.release_date,
+      };
+    }),
+  );
+  return transformedResults;
+};
+
+// Para mapear y transformar los resultados de tv
+const transformTVResults = async (tvResults) => {
+  const transformedResults = await Promise.all(
+    tvResults.map(async (tvShow) => {
+      const genreNamesResult = await setGenresNames(
+        tvShow.media_type || "tv",
+        tvShow.genre_ids,
+      );
+
+      return {
+        id: tvShow.id,
+        title: tvShow.name,
+        backdrop_path: tvShow.backdrop_path,
+        overview: tvShow.overview,
+        poster_path: tvShow.poster_path,
+        media_type: tvShow.media_type || "tv",
+        genre_ids: tvShow.genre_ids,
+        genre_names: genreNamesResult.genre_names,
+        genre_names_join: genreNamesResult.genre_names
+          .map((genre) => genre.name)
+          .join(" - "),
+        vote_average: tvShow.vote_average,
+      };
+    }),
+  );
+
+  return transformedResults;
+};
+
+// Busca los generos y devuelve array de objetos id: name
+const setGenresNames = async (media_type, selectedGenreIds) => {
+  try {
+    const allGenres = await getGenres(media_type);
+    if (allGenres && allGenres.length > 0) {
+      const filteredGenres = allGenres[0].items.filter((genre) =>
+        selectedGenreIds.includes(genre.id),
+      );
+      const resultObject = {
+        genre_names: filteredGenres,
+      };
+      return resultObject;
+    } else {
+      return {
+        error: true,
+        message: `Hubo un error al obtener los géneros para ${media_type}`,
+        details: "Datos de géneros no disponibles",
+      };
+    }
+  } catch (error) {
+    console.error(`Error al filtrar los géneros para ${media_type}:`, error);
+    return {
+      error: true,
+      message: `Hubo un error al filtrar los géneros para ${media_type}`,
+      details: error.message || "Detalles del error no disponibles",
+    };
+  }
 };
 
 export {
-    getPopularMovies,
-    getNowPlayingMovies,
-    getTopRatedMovies,
-    getTrendingMovies,
-    getUpcomingMovies,
-    getMoviesByGenres,
-    getMovieById,
-    getTrailersById,
-    getPopularTV,
-    getTopRatedTV,
-    getTVByGenres,
-    getTVById,
-    getGenres,
-    getAllByGenres,
-    searchTMDB,
+  getPopularMovies,
+  getNowPlayingMovies,
+  getTopRatedMovies,
+  getTrendingMovies,
+  getUpcomingMovies,
+  getMoviesByGenres,
+  getMovieById,
+  getTrailersById,
+  getPopularTV,
+  getTopRatedTV,
+  getTVByGenres,
+  getTVById,
+  getGenres,
+  getAllByGenres,
+  searchTMDB,
 };
