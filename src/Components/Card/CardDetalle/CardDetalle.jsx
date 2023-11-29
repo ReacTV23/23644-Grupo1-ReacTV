@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import Boton from '../../Boton'
+import Boton from '../../Boton'; 
 import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
