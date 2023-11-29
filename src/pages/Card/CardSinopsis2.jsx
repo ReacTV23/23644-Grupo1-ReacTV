@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieById, getTVById } from "../../services/tmdbService";
+import LayoutForm from '../../layout/LayoutForm/LayoutForm'
 import CardDetail from "../../components/Card/CardDetail/CardDetail";
 
 const CardSinopsis2 = () => {
@@ -29,10 +30,10 @@ const CardSinopsis2 = () => {
   }, [id]);
 
   return (
-    <>
+    <LayoutForm>
       {/* Renderizo el componente solo si el estado es distinto de null */}
       {info !== null ? <CardDetail movie={info} /> : null}
-    </>
+    </LayoutForm>
   );
 };
 

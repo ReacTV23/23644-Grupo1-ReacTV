@@ -20,7 +20,7 @@ const CardDetalle =({info}) => {
     }
 
     const Anio = () => {
-      const fechaCompleta = info.release_date;
+      const fechaCompleta = info.first_air_date;
       const partesFecha = fechaCompleta.split('-');
       const soloAnio = partesFecha[0];
       return <p className='year'>Año:{soloAnio}</p>
@@ -36,7 +36,6 @@ const CardDetalle =({info}) => {
         link.click();
       });
     };
-
 
   return (
       <article className='card-movie' ref={cardRef}>

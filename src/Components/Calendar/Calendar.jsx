@@ -107,8 +107,15 @@ const downloadCalendar = async () => {
         // Dibujar la imagen del póster en el lienzo
         const img = new Image();
         img.src = imageDataUrl;
-        context.drawImage(img, 0, 0,  1200, 600);
+        context.drawImage(img, 0, 0,  img.width, img.height);
       }
+    });
+
+    html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'cardDetalle.png';
+      link.click();
     });
 
     // Convertir el contenido capturado a una URL de datos
@@ -310,7 +317,7 @@ const downloadCalendar = async () => {
 
   return (
     <div className="container mt-2"  style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <div ref={calendarContainerRef}>
+      <div ref={calendarContainerRef} style={{ display: 'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center', margin:'1rem', padding: '1rem'}}>
       <h5 className="mb-2" style={{ textAlign: 'center', textTransform: 'uppercase' }}>Calendario de estrenos</h5>
       <div className="row"  style={{ width: '100%', display: 'flex' }}>
         <div className="card p-3" id="calendar-container" style={{ width: '60%', backgroundColor: '#003686' }}>
