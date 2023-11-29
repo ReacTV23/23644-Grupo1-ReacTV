@@ -40,6 +40,12 @@ const CardDetalle = ({ movie }) => {
     return <p className="year">Año:{soloAnio}</p>;
   };
 
+  //trabajar aca (info es la variable que contiene los datos, incluyendo el id de la movie)
+  const handleList = () => {
+    console.log(info.id);
+    console.log(info);
+  }
+
   return (
     <article className="card-movie" ref={cardRef}>
       <div className="img-container">
@@ -51,7 +57,7 @@ const CardDetalle = ({ movie }) => {
       </div>
       <div className="info-container">
         <div className="btn-container">
-          <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} />
+          <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} funcion={handleList} />
           <Boton Contenido={PlayCircleIcon} fontSize={"50px"} />
           <Boton
             Contenido={DownloadForOfflineIcon}

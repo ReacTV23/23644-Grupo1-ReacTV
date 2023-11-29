@@ -20,6 +20,11 @@ const Navbar = ({onLoginButtonClick}) => {
     // console.log(isAuth)
   };
 
+  const Volver = () => {
+    navigate(-1);
+  };
+
+
   const handleLogoutClick = () => {
     // Cambiar el estado de autenticación a falso
     setIsAuth(false);
@@ -46,7 +51,8 @@ const Navbar = ({onLoginButtonClick}) => {
           <img
             src="/assets/img/logo-circular-2.png"
             alt="Logo"
-            style={{ height: '60px', marginRight: '16px' }}
+            style={{ height: '60px', marginRight: '16px', cursor: 'pointer' }}
+            onClick={Volver}
           />
         </Typography>
 
