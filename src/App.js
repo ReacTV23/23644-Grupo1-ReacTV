@@ -15,7 +15,6 @@ import Lanzamientos from "./pages/Lanzamientos/Lanzamientos.jsx";
 import About from "./pages/About/About.jsx";
 import Search from "./pages/Search/Search.jsx";
 import CardSinopsis from "./pages/Card/CardSinopsis.jsx";
-import CardSinopsis2 from "./pages/Card/CardSinopsis2.jsx";
 import "./App.css";
 
 function App() {
@@ -75,8 +74,8 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/card/*" element={<CardSinopsis />} />
-                <Route path="/card/tv/:id" element={<CardSinopsis2 />} />
-                <Route path="/card/movie/:id" element={<CardSinopsis2 />} />
+                <Route path="/card/tv/:id" element={<CardSinopsis />} />
+                <Route path="/card/movie/:id" element={<CardSinopsis />} />
               </Routes>
             </Router>
           </MediaTypeProvider>
