@@ -7,24 +7,27 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Titulo from '../../Titulo/Titulo'
 import "./CarruselHorizontal.css"
 
-const Carrusel = ({texto, peliculas, selectMovie}) => {
+const Carrusel = ({ texto, peliculas, selectMovie }) => {
   const fila = document.querySelector(".container-carrusel");
   const derecha = document.querySelector("#flecha-derecha");
   const izquierda = document.querySelector("#flecha-izquierda");
   const [currentPage, setCurrentPage] = useState(0);
   const moviesPerPage = 3;
-  const startIndex = currentPage * moviesPerPage;
-  const endIndex = startIndex + moviesPerPage;
-  const peliculasPagina = peliculas.slice(startIndex, endIndex);
-  
+  const totalPages = Math.ceil(peliculas.length / moviesPerPage);
 
   useEffect(() => {
     const handleRightClick = () => {
-      fila.scrollLeft += fila.offsetWidth;
+      if (currentPage < totalPages - 1) {
+        // Solo permitir desplazamiento si no estamos en la última página
+        setCurrentPage((prevPage) => prevPage + 1);
+      }
     };
 
     const handleLeftClick = () => {
-      fila.scrollLeft -= fila.offsetWidth;
+      if (currentPage > 0) {
+        // Solo permitir desplazamiento si no estamos en la primera página
+        setCurrentPage((prevPage) => prevPage - 1);
+      }
     };
 
     if (fila && derecha && izquierda) {
@@ -32,23 +35,15 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
       izquierda.addEventListener("click", handleLeftClick);
 
       return () => {
-        // Limpiar los event listeners cuando el componente se desmonta
         derecha.removeEventListener("click", handleRightClick);
         izquierda.removeEventListener("click", handleLeftClick);
       };
     }
-  }, [currentPage, fila, derecha, izquierda]);
+  }, [currentPage, fila, derecha, izquierda, totalPages]);
 
-
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-    console.log('next')
-  };
-  
-  const prevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-    console.log('prev')
-  };  
+  const startIndex = currentPage * moviesPerPage;
+  const endIndex = Math.min(startIndex + moviesPerPage, peliculas.length);
+  const peliculasPagina = peliculas.slice(startIndex, endIndex);
 
   return (
     <section>
@@ -56,7 +51,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
         <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>
           <div className="contenedor-principal">
-            <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronLeftIcon} funcion={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 0))} colorHover={'#003686'}/>
             <div className="container-carrusel">
               <div className="container-card" id="container-card">
                 {peliculasPagina.map((peli, i) => (
@@ -64,7 +59,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
                 ))}
               </div>
             </div>
-            <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronRightIcon} funcion={() => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1))} colorHover={'#003686'}/>
           </div>
         </div>      
         ) : (
