@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { getMovieById, getTVById } from "../../services/tmdbService";
-import LayoutForm from '../../layout/LayoutForm/LayoutForm'
-import CardDetalle from '../../components/Card/CardDetalle/CardDetalle'
+import LayoutForm from "../../layout/LayoutForm/LayoutForm";
+import CardDetalle from "../../components/Card/CardDetalle/CardDetalle";
+import Loader from "../../components/Loader/Loader";
 
 const CardSinopsis = () => {
   //   Leo el parametro id
@@ -16,12 +17,13 @@ const CardSinopsis = () => {
       const result = isMovie ? await getMovieById(id) : await getTVById(id);
       setInfo(result);
     } catch (error) {
-      console.error(
-        `Error buscando ${
-          isMovie ? "la película" : "la serie de televisión"
-        } (CardSinopsis2)`,
-        error
-      );
+      // console.error(
+      //   `Error buscando ${
+      //     isMovie ? "la película" : "la serie de televisión"
+      //   } (CardSinopsis2)`,
+      //   error,
+      setInfo([]);
+      // );
     }
   };
 
@@ -29,12 +31,23 @@ const CardSinopsis = () => {
     fetchData();
   }, [id]);
 
-  return (
-    <LayoutForm>
-      {/* Renderizo el componente solo si el estado es distinto de null */}
-      {info !== null ? <CardDetalle movie={info} /> : null}
-    </LayoutForm>
-  );
+  if (info !== null) {
+    if (info.length !== 0) {
+      return (
+        <LayoutForm>
+          <CardDetalle movie={info} />
+        </LayoutForm>
+      );
+    } else {
+      return <Navigate to="/error404" />;
+    }
+  } else {
+    return (
+      <LayoutForm>
+        <Loader />
+      </LayoutForm>
+    );
+  }
 };
 
 export default CardSinopsis;

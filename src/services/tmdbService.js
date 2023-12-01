@@ -11,7 +11,7 @@ const basicFetch = async (endPoint, genres = false) => {
     const response = await axios.get(`${API_URL_BASE}${endPoint}`);
     return genres ? response.data : response.data.results;
   } catch (error) {
-    console.error(`Error conectado con ${endPoint}:`, error.message);
+    // console.error(`Error conectado con ${endPoint}:`, error.message);
     return [];
   }
 };
