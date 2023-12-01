@@ -44,6 +44,7 @@ const CardDetalle = ({ movie }) => {
   const handleList = () => {
     console.log(info.id);
     console.log(info.original_title);
+    console.log(info.original_name)
     console.log(info);
   }
 
