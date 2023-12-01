@@ -30,12 +30,12 @@ const MiLista = () => {
 
   return (
     <LayoutSecundario textoBoton={'mi lista'}>
-      <h2>Mi listado</h2>
+      
       {loading && 'Loading...'}
       <ul>
         {userEmail && (
           <div key={Math.random()}>
-            <li>{userEmail}</li>
+            <div className='mb-4'>{userEmail}</div>
             <h4>Peliculas</h4>
             <Children path={`Usuarios/${userEmail}/ListaPeliculas`} />
             <h4>Series</h4>
