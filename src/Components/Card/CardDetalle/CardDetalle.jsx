@@ -43,6 +43,7 @@ const CardDetalle = ({ movie }) => {
   //trabajar aca (info es la variable que contiene los datos, incluyendo el id de la movie)
   const handleList = () => {
     console.log(info.id);
+    console.log(info.original_title);
     console.log(info);
   }
 
