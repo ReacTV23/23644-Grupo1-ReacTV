@@ -1,5 +1,5 @@
 import emailjs from "emailjs-com";
-import "./Contact.css";
+import "./contact.css";
 import Titulo from "../Titulo/Titulo";
 import BotonForm from "../Boton/BotonForm/BotonForm";
 import { useState } from "react";
@@ -14,7 +14,7 @@ const Contact = () => {
         "service_074lwji",
         "template_yd0tvfw",
         e.target,
-        "u8IBa9FQG0gH1632j",
+        "u8IBa9FQG0gH1632j"
       )
       .then((res) => {
         console.log(res);

@@ -3,9 +3,9 @@ import NotFound from "../../components/Error404/NotFound";
 
 function Error404() {
   return (
-    <div>
+    <LayoutMain>
       <NotFound />
-    </div>
+    </LayoutMain>
   );
 }
 

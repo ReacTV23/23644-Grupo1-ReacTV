@@ -17,7 +17,7 @@ const About = () => {
     const queryCollection = collection(queryDb, "Integrantes");
     setIsLoading(true);
     getDocs(queryCollection).then((res) =>
-      setDatos(res.docs.map((user) => ({ id: user.id, ...user.data() }))),
+      setDatos(res.docs.map((user) => ({ id: user.id, ...user.data() })))
     );
     setIsLoading(false);
   }, []);

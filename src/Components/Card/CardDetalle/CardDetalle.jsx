@@ -8,7 +8,7 @@ import "./CardDetalle.css";
 
 const CardDetalle = ({ movie }) => {
   const info = movie;
-  // console.log("CardDetalle2", info);
+  //console.log("CardDetalle", info);
   // return
   const cardRef = useRef(null);
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
@@ -32,9 +32,16 @@ const CardDetalle = ({ movie }) => {
   };
 
   const Anio = () => {
-    const fechaCompleta = info.first_air_date
-      ? info.first_air_date
-      : info.release_date;
+    //codigo Hugo - renderiza desde generos y categorias pero no desde busqueda
+    // const fechaCompleta = info.first_air_date
+    //   ? info.first_air_date
+    //   : info.release_date;
+
+    //codigo Anto
+    const fechaCompleta = info && (info.first_air_date || info.release_date);
+  if (!fechaCompleta) {
+    return null; // O manejar el caso en que la fecha no esté definida
+  }
     const partesFecha = fechaCompleta.split("-");
     const soloAnio = partesFecha[0];
     return <p className="year">Año:{soloAnio}</p>;

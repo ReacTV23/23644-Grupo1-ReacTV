@@ -14,7 +14,7 @@ const MovieCard = ({dato}) => {
   
   return (
     <div className='col-md-4 mb-3'>
-      <Link to="/card" state={{ dato }}>
+      <Link to={`/card/${dato.media_type}/${dato.id}`}  state={{ dato }}>
         <img src={`${URL_IMAGE + dato.poster_path}`} alt="" height={600} width="100%" />
         <MediaTypeBadge mediaType={dato.media_type} />
       </Link>
