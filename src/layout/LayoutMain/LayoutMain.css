@@ -1,5 +1,4 @@
 .LayoutMain {
-    padding: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,6 +22,6 @@
 /* Estilos para pantallas con ancho mayor a 768px */
 @media (min-width: 769px) {
     .LayoutMain {
-        flex-direction: row;
+        flex-direction: column;
     }
 }

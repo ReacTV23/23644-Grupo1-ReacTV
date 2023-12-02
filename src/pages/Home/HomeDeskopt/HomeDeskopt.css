@@ -1,0 +1,38 @@
+.Contenedor-MainDeskoptInvitado {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.GrupoBotonDeskopt-Invitado {
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DescripcionDeskopt-Invitado {
+    width: 360px;
+    margin: 10px 0;
+    height: 140px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #E08400;
+    border-radius: 20px;
+    align-items: center;
+}
+
+/* Estilos para pantallas con ancho mayor a 768px */
+@media (min-width: 769px) {
+    .GrupoBotonDeskopt-Logueado  {
+        flex-direction:row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content:space-around
+    }
+}

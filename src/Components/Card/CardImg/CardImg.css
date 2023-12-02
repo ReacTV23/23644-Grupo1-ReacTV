@@ -1,0 +1,7 @@
+.CardImg {
+    width:calc((100% - 60px) / 3); 
+    min-width:30%; 
+    margin: 0; 
+    display:flex;
+    justify-content:center;
+}
