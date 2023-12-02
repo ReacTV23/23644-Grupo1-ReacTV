@@ -45,7 +45,9 @@ const MoviesContainer = () => {
       ) : (
       <div className='row' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {searchData.map((result) => (
-          <MovieCard key={result.id} dato={result} />
+          result.poster_path && (
+            <MovieCard key={result.id} dato={result} />
+          )
         ))}
       </div>
       )}
