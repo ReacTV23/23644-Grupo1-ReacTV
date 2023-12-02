@@ -1,7 +1,7 @@
 // MoviesContainer.js
 import React,  { useState, useEffect }  from 'react';
 import MovieCard from './MovieCard';
-import { searchTMDB} from '../../services/tmdbService.js'
+import { searchTMDB } from '../../services/tmdbService.js'
 import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
 import Loader from '../Loader/Loader'
 
