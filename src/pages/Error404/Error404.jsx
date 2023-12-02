@@ -1,11 +1,12 @@
 import React from 'react';
-//import NotFound from '../../components/Error404/NotFound';
+import NotFound from '../../components/Error404/NotFound';
 
 function Error404() {
     return (
-        <div>
-          {/*<NotFound/>*/}  
-        </div>
+
+<NotFound/>
+
+       
     );
 }
 

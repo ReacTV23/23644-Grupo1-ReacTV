@@ -1,14 +1,20 @@
 
 .not-found-container {
-
-  background-color: #d1ebec;
-  background-image: url("../../../public/assets/img/error404.png");
-  background-size:contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: rgb(0 0 0);
   width: 100vw;
-
+  height: 100vh;
+}
+.error404 {
  
+  width: 80vw;
+  height: 90vh;
+ 
+  
+  
 }
 
