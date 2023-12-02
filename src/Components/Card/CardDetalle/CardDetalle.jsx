@@ -5,7 +5,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import html2canvas from "html2canvas";
 import Swal from "sweetalert2";
-import { TrailerPlayer } from '../../Banner/Banner2'
+import { TrailerPlayer } from '../../Banner/Banner'
 import "./CardDetalle.css";
 
 const CardDetalle = ({ movie, trailer }) => {
@@ -18,7 +18,6 @@ const CardDetalle = ({ movie, trailer }) => {
 
   //estado que maneja la visibilidad del trialer
   const [showTrailer, setShowTrailer] = useState(false);
-
 
   //funcion para descarga de card
   const downloadAsImage = () => {
@@ -36,6 +35,7 @@ const CardDetalle = ({ movie, trailer }) => {
   };
 
   const playTrailer = () => {
+    console.log('CardDetalle:', trailer.key)
     // si trailer no es null: cambiar el estado
     if (trailer !== null) {
       setShowTrailer(true);
@@ -75,7 +75,6 @@ const CardDetalle = ({ movie, trailer }) => {
     return <p className="year">Año:{soloAnio}</p>;
   };
 
-
   //componente Card
   const Card = () => {
     return (
@@ -83,7 +82,8 @@ const CardDetalle = ({ movie, trailer }) => {
       <div className="img-container">
         <img
           className="img-pelicula"
-          src={`${IMAGE_PATH}${info.poster_path}`}
+          src={`https://reactvserver.hymsoft.repl.co/imagen-proxy?imageUrl=${IMAGE_PATH}${info.poster_path}`}
+          // src={`${IMAGE_PATH}${info.poster_path}`}
           alt={info.id}
         />
       </div>
@@ -132,7 +132,7 @@ const CardDetalle = ({ movie, trailer }) => {
   return (
     <>
     {showTrailer ? (
-        <TrailerPlayer trailer={trailer.key} closeBanner={closeTrailer} />
+        <TrailerPlayer trailer={trailer} closeBanner={closeTrailer} />
       ) : (
         <Card/>
       ) }
