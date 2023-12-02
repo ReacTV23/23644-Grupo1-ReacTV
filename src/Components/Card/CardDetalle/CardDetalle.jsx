@@ -39,9 +39,9 @@ const CardDetalle = ({ movie }) => {
 
     //codigo Anto
     const fechaCompleta = info && (info.first_air_date || info.release_date);
-  if (!fechaCompleta) {
-    return null; // O manejar el caso en que la fecha no esté definida
-  }
+    if (!fechaCompleta) {
+      return null; // O manejar el caso en que la fecha no esté definida
+    }
     const partesFecha = fechaCompleta.split("-");
     const soloAnio = partesFecha[0];
     return <p className="year">Año:{soloAnio}</p>;
@@ -52,7 +52,8 @@ const CardDetalle = ({ movie }) => {
       <div className="img-container">
         <img
           className="img-pelicula"
-          src={`${IMAGE_PATH}${info.poster_path}`}
+          // src={`${IMAGE_PATH}${info.poster_path}`}
+          src={`https://reactvserver--reactvstream.repl.co/imagen-proxy?imageUrl=${IMAGE_PATH}${info.poster_path}`}
           alt={info.id}
         />
       </div>
