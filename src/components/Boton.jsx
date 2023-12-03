@@ -10,8 +10,11 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       <IconButton className='IconoBoton' aria-label={Icono} onClick={funcion}>
         <Icono className='Icono'
           sx={{fontSize: {xs:'30px', sm: fontSize, md: fontSize},
+          width: {height},
           height: height, 
           color: {color},
+          borderRadius: {xs:'30px', sm:`calc(${fontSize} + 10px)`, md:`calc(${fontSize} + 10px)`},
+          backgroundColor: backgroundColor,
           ':hover': {color: colorHover}
           }}/>
       </IconButton>
@@ -20,7 +23,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
     return (
     // Si no hay un icono, renderiza un Button
       <Button sx={{
-      width: { xs:width, sm:'360px'},
+      width: { xs:width, sm:'360px', md: width},
       color: color,
       height: '50px',
       margin: '10px 0',

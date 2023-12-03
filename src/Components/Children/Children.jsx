@@ -1,26 +1,32 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { collection, getDocs } from '@firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { db } from "../../firebase/Firebase.js";
 
-const Children = ({ path, onDataReceived, limit = 5 }) => {
+const Children = ({ path, onDataReceived }) => {
   const query = collection(db, path);
   const [docs, loading, error] = useCollectionData(query);
-  console.log(docs);
 
   useEffect(() => {
-    if (!loading && docs) {
-         // Obtener solo los primeros 'limit' elementos
-      const limitedDocs = docs.slice(0, limit);
-      const ids = docs.map((doc) => doc.id);
-      onDataReceived(ids);
-    }
-  }, [loading, docs, onDataReceived, limit]);
+    const fetchData = async () => {
+      try {
+        if (!loading && docs) {
+          // Obtener todos los documentos sin límite
+          const ids = docs.map((doc) => doc.id);
+          onDataReceived(ids);
+        }
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        // Manejar el error según tus necesidades
+      }
+    };
 
-  return (
-    // Puedes devolver algo opcionalmente, o simplemente no devolver nada (return null)
-    null
-  );
+    fetchData();
+  }, [loading, docs, onDataReceived]);
+
+  // Puedes devolver algo opcionalmente, o simplemente no devolver nada (return null)
+  return null;
 };
 
 export default Children;
+
