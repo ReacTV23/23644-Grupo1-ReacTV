@@ -48,12 +48,11 @@ const CardDetalle = ({ movie }) => {
     const userEmailValue = user.email;
     setUserEmail(userEmailValue);
     console.log(userEmailValue);
-    console.log(userEmailValue);
+    console.log(info);
     console.log(info.id);
     console.log(info.original_title);
     console.log(info.original_name);
-    console.log(info);
-
+    
     const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
     const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
 
@@ -69,9 +68,39 @@ const CardDetalle = ({ movie }) => {
       dataToAdd.nombre = info.original_name;
       await addDoc(route2, dataToAdd);
     }
-
-    console.log('agregado');
+    console.log('agregado a "Mi Lista"');
   }
+  
+
+  const handleRecent = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    console.log(userEmailValue);
+    console.log(info);
+    console.log(info.id);
+    console.log(info.original_title);
+    console.log(info.original_name);
+    
+    const route3 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
+    const route4 = collection(db, `Usuarios/${userEmailValue}/RecentSeries`);
+
+    const dataToAdd2 = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd2.nombre = info.original_title;
+      await addDoc(route3, dataToAdd2);
+    } else {
+      dataToAdd2.nombre = info.original_name;
+      await addDoc(route4, dataToAdd2);
+    }
+    console.log('agregado a recientes');
+  }
+  
+
+
 
   return (
     <article className="card-movie" ref={cardRef}>
@@ -85,7 +114,7 @@ const CardDetalle = ({ movie }) => {
       <div className="info-container">
         <div className="btn-container">
           <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} funcion={handleList} />
-          <Boton Contenido={PlayCircleIcon} fontSize={"50px"} />
+          <Boton Contenido={PlayCircleIcon} fontSize={"50px"} funcion={handleRecent}/>
           <Boton
             Contenido={DownloadForOfflineIcon}
             fontSize={"50px"}
