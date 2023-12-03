@@ -17,14 +17,12 @@ const Children = ({ path, onDataReceived }) => {
         }
       } catch (error) {
         console.error('Error al obtener datos:', error);
-        // Manejar el error según tus necesidades
       }
     };
 
     fetchData();
   }, [loading, docs, onDataReceived]);
-
-  // Puedes devolver algo opcionalmente, o simplemente no devolver nada (return null)
+  
   return null;
 };
 
