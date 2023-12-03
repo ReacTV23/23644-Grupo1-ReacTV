@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import Boton from "../../Boton";
 import PlaylistAddCircleIcon from "@mui/icons-material/PlaylistAddCircle";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -7,16 +7,23 @@ import html2canvas from "html2canvas";
 import Swal from "sweetalert2";
 import { TrailerPlayer } from '../../Banner/Banner'
 import "./CardDetalle.css";
+import { db } from "../../../firebase/Firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { useAuth } from '../../../context/authContext';
 
 const CardDetalle = ({ movie, trailer }) => {
   const info = movie;
+  
   //console.log('cardDetalle:', trailer.key)
   //console.log("CardDetalle", info);
   const cardRef = useRef(null);
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-  //estado que maneja la visibilidad del trialer
+  const { user } = useAuth();
+  const [userEmail, setUserEmail] = useState(null);
+
+  //estado que maneja la visibilidad del trailer
   const [showTrailer, setShowTrailer] = useState(false);
 
   //funcion para descarga de card
@@ -51,7 +58,7 @@ const CardDetalle = ({ movie, trailer }) => {
 
  //componetes para majeno de informacion y posterior renderizado
   const ChangeLanguage = ({ lenguaje }) => {
-    let lenguajeOriginal = ""; // Declarar la variable para evitar problemas
+    let lenguajeOriginal = "";
     if (lenguaje === "en") lenguajeOriginal = "Inglés";
     if (lenguaje === "es") lenguajeOriginal = "Español";
     return (
@@ -60,12 +67,6 @@ const CardDetalle = ({ movie, trailer }) => {
   };
 
   const Anio = () => {
-    //codigo Hugo - renderiza desde generos y categorias pero no desde busqueda
-    //const fechaCompleta = info.first_air_date
-    //  ? info.first_air_date
-    //  : info.release_date;
-
-    //codigo Anto
     const fechaCompleta = info && (info.first_air_date || info.release_date);
     if (!fechaCompleta) {
       return null; // O manejar el caso en que la fecha no esté definida
@@ -75,6 +76,60 @@ const CardDetalle = ({ movie, trailer }) => {
     return <p className="year">Año:{soloAnio}</p>;
   };
 
+  const handleList = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    console.log(userEmailValue);
+    console.log(info);
+    console.log(info.id);
+    console.log(info.original_title);
+    console.log(info.original_name);
+    
+    const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
+    const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
+
+    const dataToAdd = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd.nombre = info.original_title;
+      await addDoc(route, dataToAdd);
+    } else {
+      dataToAdd.nombre = info.original_name;
+      await addDoc(route2, dataToAdd);
+    }
+    console.log('agregado a "Mi Lista"');
+  }
+  
+  const handleRecent = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    console.log(userEmailValue);
+    console.log(info);
+    console.log(info.id);
+    console.log(info.original_title);
+    console.log(info.original_name);
+    
+    const route3 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
+    const route4 = collection(db, `Usuarios/${userEmailValue}/RecentSeries`);
+
+    const dataToAdd2 = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd2.nombre = info.original_title;
+      await addDoc(route3, dataToAdd2);
+    } else {
+      dataToAdd2.nombre = info.original_name;
+      await addDoc(route4, dataToAdd2);
+    }
+    console.log('agregado a recientes');
+  }
+  
   //componente Card
   const Card = () => {
     return (
@@ -88,7 +143,8 @@ const CardDetalle = ({ movie, trailer }) => {
       </div>
       <div className="info-container">
         <div className="btn-container">
-          <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} />
+          <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} funcion={handleList} />
+          <Boton Contenido={PlayCircleIcon} fontSize={"50px"} funcion={handleRecent}/>
           <Boton 
             Contenido={PlayCircleIcon} 
             fontSize={"50px"}
@@ -108,7 +164,6 @@ const CardDetalle = ({ movie, trailer }) => {
             <p className="duracion">{info.duracion}</p>
             <p className="genero">{info.genre}</p>
             <Anio />
-            {/* jajajaja divertite con mi anidamiento */}
             {info.number_of_seasons ? (
               <p className="temporadas">
                 {info.number_of_seasons} Temporadas{" "}
