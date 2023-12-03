@@ -26,7 +26,7 @@ const MiLista = () => {
     fetchData();
   }, [user]);
 
-  console.log(userEmail);
+  // console.log(userEmail);
 
   return (
     <LayoutSecundario textoBoton={'mi lista'}>

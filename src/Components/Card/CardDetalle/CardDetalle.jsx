@@ -36,16 +36,69 @@ const CardDetalle = ({ movie, trailer }) => {
     });
   };
 
-  //funciones para cambio de estado de visiblidad de trailer
-  const closeTrailer = () => {
-    setShowTrailer(false);
-  };
+  //funcion para agregar a lista
+  const handleList = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    // console.log(userEmailValue);
+    // console.log(info);
+    // console.log(info.id);
+    // console.log(info.original_title);
+    // console.log(info.original_name);
+    
+    const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
+    const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
 
+    const dataToAdd = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd.nombre = info.original_title;
+      await addDoc(route, dataToAdd);
+    } else {
+      dataToAdd.nombre = info.original_name;
+      await addDoc(route2, dataToAdd);
+    }
+    console.log('agregado a "Mi Lista"');
+  }
+  
+  //funcion para agregar a recientes
+  const handleRecent = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    // console.log(userEmailValue);
+    // console.log(info);
+    // console.log(info.id);
+    // console.log(info.original_title);
+    // console.log(info.original_name);
+    
+    const route3 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
+    const route4 = collection(db, `Usuarios/${userEmailValue}/RecentSeries`);
+
+    const dataToAdd2 = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd2.nombre = info.original_title;
+      await addDoc(route3, dataToAdd2);
+    } else {
+      dataToAdd2.nombre = info.original_name;
+      await addDoc(route4, dataToAdd2);
+    }
+    console.log('agregado a recientes');
+  }
+  
+  //funcion para reproducir el trailer
   const playTrailer = () => {
     console.log('CardDetalle:', trailer.key)
     // si trailer no es null: cambiar el estado
     if (trailer !== null) {
       setShowTrailer(true);
+      handleRecent();
     } else {
       // Mostrar SweetAlert si no hay trailer
       Swal.fire({
@@ -54,6 +107,11 @@ const CardDetalle = ({ movie, trailer }) => {
         text: "Lo siento, no hay trailer disponible para esta película/serie.",
       });
     }
+  };
+
+  //funcion para cambio de estado de visiblidad de trailer
+  const closeTrailer = () => {
+    setShowTrailer(false);
   };
 
  //componetes para majeno de informacion y posterior renderizado
@@ -76,60 +134,6 @@ const CardDetalle = ({ movie, trailer }) => {
     return <p className="year">Año:{soloAnio}</p>;
   };
 
-  const handleList = async () => {
-    const userEmailValue = user.email;
-    setUserEmail(userEmailValue);
-    console.log(userEmailValue);
-    console.log(info);
-    console.log(info.id);
-    console.log(info.original_title);
-    console.log(info.original_name);
-    
-    const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
-    const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
-
-    const dataToAdd = {
-      id: info.id,
-      nombre: info.original_title || info.original_name,
-    };
-
-    if (info.original_title) {
-      dataToAdd.nombre = info.original_title;
-      await addDoc(route, dataToAdd);
-    } else {
-      dataToAdd.nombre = info.original_name;
-      await addDoc(route2, dataToAdd);
-    }
-    console.log('agregado a "Mi Lista"');
-  }
-  
-  const handleRecent = async () => {
-    const userEmailValue = user.email;
-    setUserEmail(userEmailValue);
-    console.log(userEmailValue);
-    console.log(info);
-    console.log(info.id);
-    console.log(info.original_title);
-    console.log(info.original_name);
-    
-    const route3 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
-    const route4 = collection(db, `Usuarios/${userEmailValue}/RecentSeries`);
-
-    const dataToAdd2 = {
-      id: info.id,
-      nombre: info.original_title || info.original_name,
-    };
-
-    if (info.original_title) {
-      dataToAdd2.nombre = info.original_title;
-      await addDoc(route3, dataToAdd2);
-    } else {
-      dataToAdd2.nombre = info.original_name;
-      await addDoc(route4, dataToAdd2);
-    }
-    console.log('agregado a recientes');
-  }
-  
   //componente Card
   const Card = () => {
     return (
@@ -143,8 +147,10 @@ const CardDetalle = ({ movie, trailer }) => {
       </div>
       <div className="info-container">
         <div className="btn-container">
-          <Boton Contenido={PlaylistAddCircleIcon} fontSize={"50px"} funcion={handleList} />
-          <Boton Contenido={PlayCircleIcon} fontSize={"50px"} funcion={handleRecent}/>
+          <Boton 
+            Contenido={PlaylistAddCircleIcon} 
+            fontSize={"50px"} 
+            funcion={handleList} />
           <Boton 
             Contenido={PlayCircleIcon} 
             fontSize={"50px"}
