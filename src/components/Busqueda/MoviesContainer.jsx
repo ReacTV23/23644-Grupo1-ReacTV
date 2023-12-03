@@ -15,7 +15,7 @@ const MoviesContainer = () => {
     try {
       const data = await searchTMDB(searchQuery, "multi", 1);
       setSearchData(data);
-      console.log(data)
+      //console.log('moviesContainer:', data)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -45,7 +45,9 @@ const MoviesContainer = () => {
       ) : (
       <div className='row' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {searchData.map((result) => (
-          <MovieCard key={result.id} dato={result} />
+          result.poster_path && (
+            <MovieCard key={result.id} dato={result} />
+          )
         ))}
       </div>
       )}
