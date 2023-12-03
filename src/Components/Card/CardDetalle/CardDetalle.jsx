@@ -1,17 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Boton from "../../Boton";
 import PlaylistAddCircleIcon from "@mui/icons-material/PlaylistAddCircle";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import html2canvas from "html2canvas";
 import "./CardDetalle.css";
+import { db } from "../../../firebase/Firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { useAuth } from '../../../context/authContext';
 
 const CardDetalle = ({ movie }) => {
   const info = movie;
-  // console.log("CardDetalle2", info);
-  // return
   const cardRef = useRef(null);
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+
+  const { user } = useAuth();
+  const [userEmail, setUserEmail] = useState(null);
 
   const downloadAsImage = () => {
     html2canvas(cardRef.current, { useCORS: true }).then((canvas) => {
@@ -23,7 +27,7 @@ const CardDetalle = ({ movie }) => {
   };
 
   const ChangeLanguage = ({ lenguaje }) => {
-    let lenguajeOriginal = ""; // Declarar la variable para evitar problemas
+    let lenguajeOriginal = "";
     if (lenguaje === "en") lenguajeOriginal = "Inglés";
     if (lenguaje === "es") lenguajeOriginal = "Español";
     return (
@@ -40,12 +44,33 @@ const CardDetalle = ({ movie }) => {
     return <p className="year">Año:{soloAnio}</p>;
   };
 
-  //trabajar aca (info es la variable que contiene los datos, incluyendo el id de la movie)
-  const handleList = () => {
+  const handleList = async () => {
+    const userEmailValue = user.email;
+    setUserEmail(userEmailValue);
+    console.log(userEmailValue);
+    console.log(userEmailValue);
     console.log(info.id);
     console.log(info.original_title);
-    console.log(info.original_name)
+    console.log(info.original_name);
     console.log(info);
+
+    const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
+    const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
+
+    const dataToAdd = {
+      id: info.id,
+      nombre: info.original_title || info.original_name,
+    };
+
+    if (info.original_title) {
+      dataToAdd.nombre = info.original_title;
+      await addDoc(route, dataToAdd);
+    } else {
+      dataToAdd.nombre = info.original_name;
+      await addDoc(route2, dataToAdd);
+    }
+
+    console.log('agregado');
   }
 
   return (
@@ -74,7 +99,6 @@ const CardDetalle = ({ movie }) => {
             <p className="duracion">{info.duracion}</p>
             <p className="genero">{info.genre}</p>
             <Anio />
-            {/* jajajaja divertite con mi anidamiento */}
             {info.number_of_seasons ? (
               <p className="temporadas">
                 {info.number_of_seasons} Temporadas{" "}
