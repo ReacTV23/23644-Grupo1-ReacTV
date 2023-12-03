@@ -10,14 +10,20 @@ import "./CardDetalle.css";
 
 const CardDetalle = ({ movie, trailer }) => {
   const info = movie;
-  //console.log('cardDetalle:', trailer.key)
-  //console.log("CardDetalle", info);
+
+  const isMovie = window.location.pathname.includes("/movie/");
+
+  console.log('info:', info.id)
+  console.log('isMovie:', isMovie)
+
   const cardRef = useRef(null);
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   //estado que maneja la visibilidad del trialer
   const [showTrailer, setShowTrailer] = useState(false);
+  // estado para almacenar id 
+  const [playingMovieInfo, setPlayingMovieInfo] = useState(null);
 
   //funcion para descarga de card
   const downloadAsImage = () => {
@@ -32,12 +38,15 @@ const CardDetalle = ({ movie, trailer }) => {
   //funciones para cambio de estado de visiblidad de trailer
   const closeTrailer = () => {
     setShowTrailer(false);
+    // Limpiar la información de la película cuando se cierra el trailer
+    setPlayingMovieInfo(null);
   };
 
   const playTrailer = () => {
-    console.log('CardDetalle:', trailer.key)
     // si trailer no es null: cambiar el estado
     if (trailer !== null) {
+      // Guardar id y isMovie en el estado
+      setPlayingMovieInfo({ id: info.id, isMovie: isMovie });
       setShowTrailer(true);
     } else {
       // Mostrar SweetAlert si no hay trailer
@@ -48,6 +57,8 @@ const CardDetalle = ({ movie, trailer }) => {
       });
     }
   };
+
+  console.log('Info:', playingMovieInfo)
 
  //componetes para majeno de informacion y posterior renderizado
   const ChangeLanguage = ({ lenguaje }) => {
