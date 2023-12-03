@@ -33,7 +33,7 @@ const MiLista = () => {
       
       {loading && 'Loading...'}
       <ul>
-        {userEmail && (
+        {/* {userEmail && (
           <div key={Math.random()}>
             <div className='mb-4'>{userEmail}</div>
             <h4>Peliculas</h4>
@@ -41,7 +41,7 @@ const MiLista = () => {
             <h4>Series</h4>
             <Children path={`Usuarios/${userEmail}/ListaSeries`} />
           </div>
-        )}
+        )} */}
       </ul>
     </LayoutSecundario>
   );

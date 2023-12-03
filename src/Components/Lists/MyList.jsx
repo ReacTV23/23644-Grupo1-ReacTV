@@ -3,6 +3,7 @@ import ListRow from "./ListRow";
 import { useMediaType } from "../../context/mediaTypeProvider";
 import { getMovieById, getTVById } from "../../services/tmdbService";
 
+
 const MyList = () => {
   const { mediaType } = useMediaType();
   const [moviesComponent, setMoviesComponent] = useState(null);

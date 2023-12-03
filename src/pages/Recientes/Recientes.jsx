@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario';
-import { collection, getDocs } from '@firebase/firestore';
+import { getMovieById, getTVById } from "../../services/tmdbService";
+import { collection } from '@firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { db } from '../../firebase/Firebase.js';
-import Children from '../../components/Children/Children.jsx';
 import { useAuth } from '../../context/authContext.js';
-import MediaSelector from '../../components/MediaSelector/MediaSelector'
+import Children from '../../components/Children/Children'
 
 const Recientes = () => {
-
   const { user } = useAuth();
   const [userEmail, setUserEmail] = useState(null);
   const query = collection(db, 'Usuarios');
   const [docs, loading, error] = useCollectionData(query);
+
+  const [peliculas, setPeliculas] = useState([]);
+  const [series, setSeries] = useState([]);
+  const [idPeliculas, setIdPeliculas] = useState([]);
+  const [idSeries, setIdSeries] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -28,27 +32,61 @@ const Recientes = () => {
     fetchData();
   }, [user]);
 
-  console.log(userEmail);
+  const handlePeliculaIds = (ids) => setIdPeliculas(ids);
+  const handleSerieIds = (ids) => setIdSeries(ids);
 
+  useEffect(() => {
+    const getData = async (ids, fetchDataFunction, setDataFunction) => {
+      try {
+        const promises = ids.map(async (id) => await fetchDataFunction(id));
+        const data = await Promise.all(promises);
+        setDataFunction(data);
+      } catch (error) {
+        console.error(`Error al traer datos: ${error.message}`);
+      }
+    };
+
+    if (idPeliculas.length > 0) {
+      getData(idPeliculas, getMovieById, setPeliculas);
+    }
+
+    if (idSeries.length > 0) {
+      getData(idSeries, getTVById, setSeries);
+    }
+  }, [idPeliculas, idSeries]);
 
   return (
     <LayoutSecundario textoBoton={'recientes'}>
-      <MediaSelector/>  
-      {loading && 'Loading...'}
-      <ul>
-        {userEmail && (
-          <div key={Math.random()}>
-            <div className='mb-4'>Continuar Viendo</div>
-            <h4>Peliculas</h4>
-            <Children path={`Usuarios/${userEmail}/RecentPeliculas`} />
-            <h4>Series</h4>
-            <Children path={`Usuarios/${userEmail}/RecentSeries`} />
-          </div>
-        )}
-      </ul>
+      {userEmail && (
+        <>
+          <ul>
+            <Children path={`Usuarios/${userEmail}/RecentPeliculas`} onDataReceived={handlePeliculaIds} key={'RecentPeliculas'} />
+            <Children path={`Usuarios/${userEmail}/RecentSeries`} onDataReceived={handleSerieIds} key={'RecentSeries'} />
+          </ul>
 
+          {loading ? (
+            <p>Cargando...</p>
+          ) : (
+            <>
+              {peliculas.map((pelicula) => (
+                <div key={pelicula.id}>
+                  <img src={`${process.env.REACT_APP_URL_IMAGE_TMDB + pelicula.poster_path}`} alt="" height={600} />
+                  <p>{pelicula.title}</p>
+                </div>
+              ))}
+
+              {series.map((serie) => (
+                <div key={serie.id}>
+                  <img src={`${process.env.REACT_APP_URL_IMAGE_TMDB + serie.poster_path}`} alt="" height={600} />
+                  <p>{serie.name}</p>
+                </div>
+              ))}
+            </>
+          )}
+        </>
+      )}
     </LayoutSecundario>
-  )
+  );
 }
 
 export default Recientes
