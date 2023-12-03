@@ -5,7 +5,7 @@ import MediaSelector from '../../components/MediaSelector/MediaSelector'
 const Recientes = () => {
   return (
     <LayoutSecundario textoBoton={'recientes'}>
-        <MediaSelector/>  
+      <MediaSelector/>  
     </LayoutSecundario>
   )
 }

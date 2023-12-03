@@ -1,11 +1,46 @@
+.contenedorPrincipal_calendario {
+  width: 100%;
+  display:flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center
+}
+
+.subcontenedorPrincipal_calendario {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  margin: 1rem; 
+  padding: 1rem;
+  
+}
+
+.titulo_calendario {
+  text-align: center;
+  text-transform: uppercase
+}
+
+.contenedor_calendario {
+  width: 100%;
+  display:flex;
+  background-color: var(--color-azul)
+}
+
+.subcontenedor_calendario {
+  width: 60%;
+  padding: 1.5rem;
+  background-color: var(--color-azul);
+}
+
 .custom-calendar {
   font-family: 'Roboto';
   font-size: 16px;;
   width: 100%;
-  /*max-width: 600px; /* Increased max-width to accommodate larger tiles */
   margin: 0 auto;
   border-radius: 10px;
-  border: 1px solid #003686;
+  border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,7 +62,7 @@
 }
 
 .calendar-event {
-  background-color: #003686;
+  background-color: var(--color-azul);
   color: white;
   padding: 5px 10px;
   margin: 5px 0;
@@ -36,10 +71,11 @@
 }
 
 .react-calendar__navigation, .react-calendar__navigation__arrow  {
-  background-color: #003686;
+  background-color: var(--color-azul);
   color: white;
   margin-bottom: 0;
   padding-bottom: 1rem;
+  border-radius: 10px 10px 0 0;
 }
 
 .react-calendar__navigation__label__labelText {
@@ -48,17 +84,17 @@
 }
 
 .react-calendar__navigation__arrow:hover, .react-calendar__navigation__label:hover{
-  color: #003686 !important;
-  background-color: #E08400 !important;
+  color: var(--color-azul)!important;
+  background-color: var(--color-naranja) !important;
 }
 
 .react-calendar__navigation__label:hover > .react-calendar__navigation__label__labelText {
-  color: #003686 !important;
+  color: var(--color-azul) !important;
 }
 
 .react-calendar__month-view__weekdays {
   font-size: 20px;
-  background-color: #003686;
+  background-color: var(--color-azul);
   color: white;
 }
 
@@ -81,7 +117,7 @@
 }
 
 .react-calendar__tile--active{
-  background-color: #003686;
+  background-color: var(--color-azul);
 }
 
 .react-calendar__tile abbr {
@@ -91,4 +127,17 @@
 
 .tile-content {
   font-size: 16px;
+}
+
+.poster_calendario {
+  width: 40%;
+  background-color: var(--color-azul);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+};
+
+.poster_calendario:hover {
+  background-color: var(--color-naranja);
 }
