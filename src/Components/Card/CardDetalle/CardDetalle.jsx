@@ -12,18 +12,18 @@ const CardDetalle = ({ movie, trailer }) => {
   const info = movie;
 
   const isMovie = window.location.pathname.includes("/movie/");
-
+  
   console.log('info:', info.id)
   console.log('isMovie:', isMovie)
 
-  const cardRef = useRef(null);
+  const cardRef = useRef(null); 
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
   //estado que maneja la visibilidad del trialer
   const [showTrailer, setShowTrailer] = useState(false);
   // estado para almacenar id 
-  const [playingMovieInfo, setPlayingMovieInfo] = useState(null);
+  const [movieInfo, setMovieInfo] = useState(null);
 
   //funcion para descarga de card
   const downloadAsImage = () => {
@@ -39,15 +39,28 @@ const CardDetalle = ({ movie, trailer }) => {
   const closeTrailer = () => {
     setShowTrailer(false);
     // Limpiar la información de la película cuando se cierra el trailer
-    setPlayingMovieInfo(null);
+    setMovieInfo(null);
   };
 
   const playTrailer = () => {
     // si trailer no es null: cambiar el estado
     if (trailer !== null) {
       // Guardar id y isMovie en el estado
-      setPlayingMovieInfo({ id: info.id, isMovie: isMovie });
+      setMovieInfo({ id: info.id, isMovie: isMovie });
       setShowTrailer(true);
+
+      console.log(movieInfo)
+
+       // Enviar la información a Firebase
+
+      //conectar a database
+      //const database = firebase.database();
+      //condicional: 
+      //if (movieInfo.isMovie === true) {
+      //    database.ref(`recientes/peliculas/${user.uid}`).push(movieInfo)
+      //  } else {
+      //    database.ref(`recientes/tv/${user.uid}`).push(movieInfo)
+      //  }
     } else {
       // Mostrar SweetAlert si no hay trailer
       Swal.fire({
@@ -58,7 +71,7 @@ const CardDetalle = ({ movie, trailer }) => {
     }
   };
 
-  console.log('Info:', playingMovieInfo)
+  console.log('Info:', movieInfo)
 
  //componetes para majeno de informacion y posterior renderizado
   const ChangeLanguage = ({ lenguaje }) => {
