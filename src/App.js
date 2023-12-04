@@ -12,7 +12,7 @@ import LoginRegistro from "./pages/LoginRegistro/LoginRegistro.jsx";
 import Recientes from "./pages/Recientes/Recientes.jsx";
 import Categorias from "./pages/Categorias/Categorias.jsx";
 import Generos from "./pages/Generos/Generos.jsx";
-import MiLista from "./pages/MiLista/MiLista2.jsx";
+import MiLista from "./pages/MiLista/MiLista.jsx";
 import Lanzamientos from "./pages/Lanzamientos/Lanzamientos.jsx";
 import About from "./pages/About/About.jsx";
 import Search from "./pages/Search/Search.jsx";
