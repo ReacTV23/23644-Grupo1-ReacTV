@@ -17,6 +17,54 @@
   /* Asegúrate de que el video esté en la parte superior de la pila de capas */
 }
 
+/* Estilos para el botón "Play Intro" */
+.play-intro-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #003686;
+  border-radius: 30px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  z-index: 1100;
+  font-weight: normal;
+    font-size: 20px;
+    font-family: 'Roboto';
+}
+.play-intro-button:hover{
+  color:white;
+  background: var(--color-naranja);
+ 
+}
+
+/* Estilos para el botón "Omitir Intro" */
+.skip-intro-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #003686;
+  border-radius: 30px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  z-index: 1100;
+  font-weight: normal;
+  font-size: 20px;
+  font-family: 'Roboto';
+}
+.skip-intro-button:hover {
+  color:white;
+  background: var(--color-naranja);
+  transform: scale(1.05);
+
+}
+
 /* IntroVideo.css */
 
 /* #introVideo::-webkit-media-controls {
