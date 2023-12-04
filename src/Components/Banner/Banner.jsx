@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getMovieById, getPopularMovies, getTrailersById } from "../../services/tmdbService";
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
-import Boton from '../Boton'
+import Boton from '../Boton/Boton';
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
@@ -38,27 +38,24 @@ export const TrailerPlayer = ({ trailer, closeBanner }) => {
         }}
         />
         <Boton texto={'close'} funcion={closeBanner}/>
-        {/* <button onClick={() => closeBanner()} className="boton">
-            Close
-        </button> */}
     </div>
     );
 };
 
 const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
     return (
-        <div className="container">
+        <div className="container-banner">
             <div className="banner">
                 {trailer ? (
-                <div>
+                <div className="botones-banner">
                     <button
-                        className="boton"
+                        className="boton-banner"
                         onClick={() => setPlaying(true)}
                         type="button">
                         Play Trailer
                     </button>
                     <button
-                        className="boton"
+                        className="boton-banner"
                         onClick={() => closeBanner()}
                         type="button">
                         Volver al Listado
@@ -67,8 +64,8 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
             ) : (
                 "Lo sentimos, el trailer no está disponible"
             )}
-            <h1 className="text-white">{movie.title}</h1>
-            <p className="text-white">{movie.overview}</p>
+            <h1 className="titulo-banner">{movie.title}</h1>
+            <p className="descripcion-banner">{movie.overview}</p>
         </div>
     </div>
     );

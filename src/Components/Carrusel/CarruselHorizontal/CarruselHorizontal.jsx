@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import Loader from '../../Loader/Loader'
-import Boton from '../../Boton'
-import CardImg from '../../Card/CardImg/CardImg'
+import Loader from '../../Loader/Loader';
+import Boton from '../../Boton/Boton';
+import CardImg from '../../Card/CardImg/CardImg';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Titulo from '../../Titulo/Titulo'
-import "./CarruselHorizontal.css"
+import Titulo from '../../Titulo/Titulo';
+import colors from '../../../config/config.js';
+import "./CarruselHorizontal.css";
 
 const Carrusel = ({texto, peliculas, selectMovie}) => {
   const fila = document.querySelector(".container-carrusel");
@@ -56,7 +57,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
         <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>
           <div className="contenedor-principal">
-            <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={`${colors.azul}`}/>
             <div className="container-carrusel">
               <div className="container-card" id="container-card">
                 {peliculasPagina.map((peli, i) => (
@@ -64,7 +65,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
                 ))}
               </div>
             </div>
-            <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={`${colors.azul}`}/>
           </div>
         </div>      
         ) : (

@@ -1,4 +1,3 @@
-// Card.jsx
 import SimpleImage from "../SimpleImage/SimpleImage";
 
 const Card = ({ data, onClick }) => {

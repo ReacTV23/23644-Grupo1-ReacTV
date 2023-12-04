@@ -1,9 +1,9 @@
 // MoviesContainer.js
 import React,  { useState, useEffect }  from 'react';
 import MovieCard from './MovieCard';
-import { searchTMDB} from '../../services/tmdbService.js'
+import { searchTMDB } from '../../services/tmdbService.js';
 import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
 
 const MoviesContainer = () => {
   const { searchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
@@ -37,20 +37,20 @@ const MoviesContainer = () => {
 
   return (
     <div className='container mt-3'>
-
-    {searchData === null ? (
-      <Loader />
-      ) : searchData && searchData.length === 0 ? (
-      <p style={{textAlign: 'center'}}>No hay resultados</p>
-      ) : (
-      <div className='row' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {searchData.map((result) => (
-          result.poster_path && (
-            <MovieCard key={result.id} dato={result} />
+      {searchData === null ? (
+        <Loader />
+          ) : searchData && searchData.length === 0 ? (
+            <p style={{textAlign:'center'}}>No hay resultados</p>
+          ) : (
+            <div className='row' style={{ display:'flex', alignItems:'center', justifyContent:'center'}}>
+              {searchData.map((result) => (
+                result.poster_path && (
+                  <MovieCard key={result.id} dato={result} />
+                  )
+              ))}
+            </div>
           )
-        ))}
-      </div>
-      )}
+        }
     </div>
   );
 };
