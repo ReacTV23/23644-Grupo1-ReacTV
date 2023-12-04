@@ -36,11 +36,11 @@ const MoviesContainer = () => {
   }, [searchQuery]); // Ahora useEffect depende de searQuery
 
   return (
-    <div className='container mt-3'>
+    <div className='container mt-3' style={{height:'100%'}}>
       {searchData === null ? (
         <Loader />
           ) : searchData && searchData.length === 0 ? (
-            <p style={{textAlign:'center'}}>No hay resultados</p>
+            <p style={{textAlign:'center', fontSize: '1.5rem'}}>No hay resultados</p>
           ) : (
             <div className='row' style={{ display:'flex', alignItems:'center', justifyContent:'center'}}>
               {searchData.map((result) => (

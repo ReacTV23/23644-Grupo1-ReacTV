@@ -49,6 +49,9 @@
 
 .info-movie {
   display: flex;
-  font-size: 2.5rem;
   flex-direction: column;
+}
+
+.info-movie p, .info-movie p span, .descripcion {
+  font-size: 1.7rem;
 }
