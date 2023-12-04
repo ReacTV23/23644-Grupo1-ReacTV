@@ -21,7 +21,7 @@ import Error404 from "./pages/Error404/Error404.jsx";//pagina error 404
 import "./App.css";
 
 function App() {
-    const [showVideo, setShowVideo] = useState(false); //pasar a true una vez que se terminen las pruebas
+    const [showVideo, setShowVideo] = useState(true); //pasar a true una vez que se terminen las pruebas
     // estado ancho de ventana (renderizado responsive)
     const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
 

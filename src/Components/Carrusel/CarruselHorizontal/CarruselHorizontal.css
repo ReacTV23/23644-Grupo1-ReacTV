@@ -6,7 +6,7 @@ section .contenedor-carrusel-titulo {
     width: 100%;
     padding: 1rem 0;
     position: relative;
-    background: #E08400;
+    background: var(--color-naranja);
 }
 
 section .contenedor-carrusel-titulo .contenedor-principal {
@@ -29,6 +29,7 @@ section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
 section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: nowrap;
+    margin: 0.5rem;
 }
