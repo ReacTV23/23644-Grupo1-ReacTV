@@ -78,7 +78,7 @@ const FilterByGenres = () => {
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          gap: "10px",
+          gap: "1rem",
           maxWidth: "100vw",
         }}
       >
@@ -93,7 +93,7 @@ const FilterByGenres = () => {
 
       {/* Sección que muestra los géneros seleccionados */}
       <label>Géneros Seleccionados:</label>
-      <div style={{ marginTop: "20px" }}>
+      <div style={{ marginTop: "2rem" }}>
         {selectedGenres.map((selectedGenre, index) => (
           <div key={selectedGenre.id} style={{ maxWidth: "100vw" }}>
             <List

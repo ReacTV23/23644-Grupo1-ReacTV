@@ -24,7 +24,7 @@
 
 .contenedor_calendario {
   width: 100%;
-  display:flex;
+  display: flex;
   background-color: var(--color-azul)
 }
 
@@ -36,51 +36,50 @@
 
 .custom-calendar {
   font-family: 'Roboto';
-  font-size: 16px;;
+  font-size: 1.6rem;
   width: 100%;
   margin: 0 auto;
-  border-radius: 10px;
-  border: 2px solid white;
+  border-radius: 1rem;
+  border: 0.2rem solid var(--color-blanco);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Adjusted styles for larger tiles */
 .calendar-day {
   display: flex;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   flex-direction: column;
   align-items: center;
-  padding: 20px; /* Increased padding to fit longer titles */
-  border-bottom: 1px solid #ddd;
+  padding: 2rem;
+  border-bottom: 1px solid var(--color-blanco);
 }
 
 .calendar-events {
   display: flex;
-  flex-direction: column; /* Changed flex direction to fit longer titles within the tile */
+  flex-direction: column;
   align-items: center;
 }
 
 .calendar-event {
   background-color: var(--color-azul);
-  color: white;
-  padding: 5px 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  font-size: 16px;
+  color: var(--color-blanco);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
 }
 
 .react-calendar__navigation, .react-calendar__navigation__arrow  {
   background-color: var(--color-azul);
-  color: white;
+  color: var(--color-blanco);
   margin-bottom: 0;
   padding-bottom: 1rem;
-  border-radius: 10px 10px 0 0;
+  border-radius: 1rem 0;
 }
 
 .react-calendar__navigation__label__labelText {
   text-transform: uppercase; 
-  color: white;
+  color: var(--color-blanco);
 }
 
 .react-calendar__navigation__arrow:hover, .react-calendar__navigation__label:hover{
@@ -93,9 +92,9 @@
 }
 
 .react-calendar__month-view__weekdays {
-  font-size: 20px;
+  font-size: 2rem;
   background-color: var(--color-azul);
-  color: white;
+  color: var(--color-blanco)
 }
 
 .react-calendar__month-view__weekdays__weekday abbr{
@@ -113,7 +112,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100px; /* Alto deseado */
+  height: 10rem; /* Alto deseado */
 }
 
 .react-calendar__tile--active{
@@ -121,12 +120,12 @@
 }
 
 .react-calendar__tile abbr {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
 .tile-content {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .poster_calendario {
@@ -135,7 +134,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 1rem;
 };
 
 .poster_calendario:hover {

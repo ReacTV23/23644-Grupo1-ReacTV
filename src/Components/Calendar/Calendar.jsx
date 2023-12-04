@@ -8,6 +8,7 @@ import Boton from '../Boton/Boton';
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
+import colors from '../../config/config.js'
 import './Calendar.css';
 
 const WritableCalendar = ({ onInfoChange }) => {
@@ -151,8 +152,8 @@ const WritableCalendar = ({ onInfoChange }) => {
         </div>
       </div>
       <div className="mt-3">
-        <Boton Contenido={DownloadForOfflineIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} funcion={downloadCalendar} />
-        <Boton Contenido={EventIcon} color={'#003686'} colorHover={'#E08400'} fontSize={'60px'} />
+        <Boton Contenido={DownloadForOfflineIcon} color={`${colors.azul}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={downloadCalendar} />
+        <Boton Contenido={EventIcon} color={`${colors.azul}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} />
       </div>
     </div>
   );

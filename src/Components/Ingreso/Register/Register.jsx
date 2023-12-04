@@ -41,24 +41,24 @@ export function Register({width}) {
   };
 
   return (
-    <div style={{ width:'100%' }}>
+    <div className='Contenedor-Principal--form'>
       {error && <Alert message={error} />}
       <form onSubmit={handleSubmit}>
-        <Container className='mb-1'style={{ width:width}}>
-          <div className="mb-4">
+        <Container className='Contenedor-form'style={{ width:width}}>
+          <div className='contenedor-input'>
           <Row>
               <Col>
-                <label style={{ width:'100%' }}
+                <label
                   htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold my-2">
+                  className="label-ingreso block text-gray-700 text-sm font-bold my-2">
                   EMAIL
                 </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <input style={{ width:'100%'}}
-                  className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
+                <input
+                  className="input-ingreso shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
                   placeholder="youremail@gmail.com"
@@ -68,20 +68,20 @@ export function Register({width}) {
             </Row>
           </div>
 
-          <div className="mb-4">
+          <div className="Contenedor-input">
           <Row>
               <Col>
-                <label style={{ width:'100%'}}
+                <label
                   htmlFor="password"
-                  className="block text-gray-700 text-sm font-bold my-2">
+                  className="label-ingreso block text-gray-700 text-sm font-bold my-2">
                   PASSWORD
                 </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <input style={{ width:'100%'}}
-                  className="shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
+                <input
+                  className="input-ingreso shadow appereance-none border rounded w-full py-2 px-3 text-gray-700 leading-thigh focus:outline-none focus:shadow-outline"
                   type="password"
                   name="password"
                   placeholder="******"
@@ -92,20 +92,15 @@ export function Register({width}) {
             </Row>
           </div>
 
-          <div className="mb-4">
-            <Row style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column'}}>
+          <div className="Contenedor-input">
+            <Row className='contendor-botonForm--ingreso'>
                 <BotonForm texto={'registro'}/>
-                {/* <div>
-                  <button className="Boton text-sm py-2 px-4">
-                    Registro
-                  </button>
-                </div> */}
             </Row>
           </div>
         </Container>
       </form>
-      <p style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="my-4 text-sm flex justify-between px-3">
-        ¿Ya tienes una cuenta? <Link to="/login">Login</Link>
+      <p className="p-ingreso my-2 text-sm flex justify-between px-3">
+        ¿Ya tienes una cuenta? <Link className='link-ingreso' to="/login">Login</Link>
       </p>
     </div>
   );

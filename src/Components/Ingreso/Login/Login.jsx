@@ -63,24 +63,24 @@ export function Login({width}) {
   };
 
   return (
-    <div className='mb-1'style={{ width:'100%', display: 'flex', flexDirection:'column', alignItems: 'center' }}>
+    <div className='Contenedor-Principal--form'>
       {error && <Alert message={error} />}
       <form onSubmit={handleSubmit}>
-        <Container className='mb-1' style={{width:width}}>
-          <div className="mb-4">
+        <Container className='Contenedor-form' style={{width:width}}>
+          <div className="Contenedor-input">
             <Row>
               <Col>
-                <label style={{ width:'100%' }}
+                <label
                   htmlFor="email"
-                  className="block text-gray-700 text-sm font-bold mb-2">
-                  EMAIL
+                  className="label-ingreso">
+                    EMAIL
                 </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <input style={{ width:'100%' }}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                <input
+                  className=" input-ingreso shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="email"
                   name="email"
                   placeholder="youremail@gmail.com"
@@ -90,16 +90,20 @@ export function Login({width}) {
             </Row>
           </div>
 
-          <div className="mb-4">
+          <div className="Contenedor-input">
             <Row>
               <Col>
-                <label style={{ width:'100%' }} htmlFor="password">PASSWORD</label>
+                <label 
+                className="label-ingreso"
+                htmlFor="password">
+                  PASSWORD
+                </label>
               </Col>
             </Row>
             <Row>
               <Col>
-                <input style={{ width:'100%' }}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                <input
+                  className="input-ingreso shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="password"
                   name="password"
                   placeholder="******"
@@ -110,23 +114,18 @@ export function Login({width}) {
             </Row>
           </div>
 
-          <div className="mb-4">
+          <div className="Contenedor-input">
             <Row>
-              <Col style={{display:'flex', alignItems:'center', justifyContent:'center', flexDirection:'column', marginBottom: '1rem'}}> 
+              <Col className='contendor-botonForm--ingreso'> 
                 <BotonForm texto={'login'}/>
-                {/* <div className="mb-4">
-                  <button className='Boton text-sm py-2 px-4'>
-                    Login
-                  </button>
-                </div> */}
               </Col>
             </Row>
             <Row>
               <Col>
                 <div>
-                  <a style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  <a
                     href="#!"
-                    className="font-bold text-sm"
+                    className="a-ingreso font-bold text-sm"
                     onClick={handleResetPassword}>
                     ¿Olvidaste tu contraseña?
                   </a>
@@ -138,20 +137,14 @@ export function Login({width}) {
       </form>
 
       <Row>
-        <p style={{ width:'100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="mb-4 text-sm flex justify-between px-3">
-          ¿No tienes una cuenta? <Link to="/Register"> Regístrate</Link>
+        <p className="p-ingreso mb-2 text-sm flex justify-between px-3">
+          ¿No tienes una cuenta? <Link className='link-ingreso' to="/Register"> Regístrate</Link>
         </p>
       </Row>
 
-      <div style={{display:'flex', alignItems:'center', justifyContent:'center'}} onClick={handleGoogleSignin} >
-        <BotonForm texto={'iniciar con google'} width={'360px'}/>
+      <div className='contendor-botonForm--ingreso' onClick={handleGoogleSignin} >
+        <BotonForm texto={'iniciar con google'} width={'36rem'}/>
       </div>
-      
-      {/* <button style={{width:width}}
-        onClick={handleGoogleSignin}
-        className="Boton tborder-1 py-2 px-2 w-full">
-        Iniciar con Google
-      </button> */}
     </div>
   );
 }

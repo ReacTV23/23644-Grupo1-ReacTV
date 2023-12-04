@@ -100,8 +100,6 @@ const CardDetalle = ({ movie, trailer }) => {
     const playTrailer = () => {
         // si trailer no es null: cambiar el estado
         if (trailer !== null) {
-        // Guardar id y isMovie en el estado
-        //setMovieInfo({ id: info.id, isMovie: isMovie });
         setShowTrailer(true);
 
         //console.log(movieInfo)
@@ -117,24 +115,10 @@ const CardDetalle = ({ movie, trailer }) => {
         }
     }
 
-  // Enviar la información a Firebase
-
-      //conectar a database
-      //const database = firebase.database();
-      //condicional: 
-      //if (movieInfo.isMovie === true) {
-      //    database.ref(`recientes/peliculas/${user.uid}`).push(movieInfo)
-      //  } else {
-      //    database.ref(`recientes/tv/${user.uid}`).push(movieInfo)
-      //  }
-
-
     //console.log('Info:', movieInfo)
     //funcion para cambio de estado de visiblidad de trailer
     const closeTrailer = () => {
         setShowTrailer(false);
-        // Limpiar la información de la película cuando se cierra el trailer
-        //setMovieInfo(null);
     };
 
     //componetes para majeno de informacion y posterior renderizado
@@ -172,17 +156,17 @@ const CardDetalle = ({ movie, trailer }) => {
                 <div className="btn-container">
                     <Boton 
                         Contenido={PlaylistAddCircleIcon} 
-                        fontSize={"50px"} 
+                        fontSize={"5rem"} 
                         funcion={handleList} />
                     <Boton 
                         Contenido={PlayCircleIcon} 
-                        fontSize={"50px"}
+                        fontSize={"5rem"}
                         funcion={playTrailer}
                         disabled={trailer === null}/>  
                         {/* Deshabilita el botón si trailer es null */}
                     <Boton
                         Contenido={DownloadForOfflineIcon}
-                        fontSize={"50px"}
+                        fontSize={"5rem"}
                         funcion={downloadAsImage}/>
                 </div>
                 <div className="datos-container">

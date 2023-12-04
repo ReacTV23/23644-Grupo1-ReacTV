@@ -9,11 +9,11 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
      // Si hay un icono, renderiza un IconButton
       <IconButton className='IconoBoton' aria-label={Icono} onClick={funcion}>
         <Icono className='Icono'
-          sx={{fontSize: {xs:'30px', sm: fontSize, md: fontSize},
+          sx={{fontSize: {xs:'3rem', sm: fontSize, md: fontSize},
           width: {height},
           height: height, 
           color: {color},
-          borderRadius: {xs:'30px', sm:`calc(${fontSize} + 10px)`, md:`calc(${fontSize} + 10px)`},
+          borderRadius: {xs:'3rem', sm:`calc(${fontSize} + 1rem)`, md:`calc(${fontSize} + 1rem)`},
           backgroundColor: backgroundColor,
           ':hover': {color: colorHover}
           }}/>
@@ -23,14 +23,14 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
     return (
     // Si no hay un icono, renderiza un Button
       <Button sx={{
-      width: { xs:width, sm:'360px', md: width},
+      width: { xs:width, sm:'36rem', md: width},
       color: color,
-      height: '50px',
-      margin: '10px 0',
+      height: '5rem',
+      margin: '1rem 0',
       paddiing: '1rem',
-      borderRadius: '30px',
+      borderRadius: '3rem',
       fontFamily: 'Roboto',
-      fontSize: '22px',
+      fontSize: '2.2rem',
       textTransform: 'uppercase',
       backgroundColor: backgroundColor,
       fontWeight: 'Normal',

@@ -3,6 +3,7 @@ import { useNavigate  } from 'react-router-dom';
 import { FaFigma } from 'react-icons/fa'; // Importa los íconos necesarios
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Boton from '../Boton/Boton'
+import colors from '../../config/config.js'
 import './Footer.css'; // Importa los estilos CSS
 
 /**
@@ -27,17 +28,17 @@ function Footer() {
           href="https://github.com/ReacTV23/ReacTV"
           target="_blank"
           rel="noopener noreferrer">
-            <Boton Contenido={GitHubIcon} color={'white'} colorHover={'#E08400'} fontSize={'60px'} height={'60px'}/>
+            <Boton Contenido={GitHubIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} height={'6rem'}/>
         </a>
       </div>
 
       {/* Sección central con el botón "Team" y el texto "CaC - React 2023" */}
       <div className="center">
         {/* Botón "Team" */}
-        <Boton texto={'team'} width={'170px'} color={'#E08400'} backgroundColor={'white'} backgroundHover={'#E08400'} colorHover={'white'} funcion={handleClick} />
+        <Boton texto={'team'} width={'17rem'} color={`${colors.naranja}`} backgroundColor={`${colors.blanco}`} backgroundHover={`${colors.naranja}`} colorHover={`${colors.blanco}`} funcion={handleClick} />
         {/* Texto "CaC - React 2023" */}
-        <a className='link' href='https://buenosaires.gob.ar/educacion/codo-codo-40' target="_blank" rel="noopener noreferrer">
-          <p>CaC - React 2023</p>
+        <a className='link-footer' href='https://buenosaires.gob.ar/educacion/codo-codo-40' target="_blank" rel="noopener noreferrer">
+          <p className='p-footer'>CaC - React 2023</p>
         </a>
         
       </div>

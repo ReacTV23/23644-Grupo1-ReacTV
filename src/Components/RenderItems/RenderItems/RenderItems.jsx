@@ -3,26 +3,35 @@ import Boton from '../../Boton/Boton';
 import Titulo from '../../Titulo/Titulo';
 import CardImg from '../../Card/CardImg/CardImg'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import './RenderItems.css'
+import colors from '../../../config/config.js'
 
-const RenderItems = ({ items, itemsPaginado, type, setItemsFunction, handleDelete, navigate,  ITEMS_PER_PAGE, paginate }) => {
+const RenderItems = ({  items, 
+                        itemsPaginado, 
+                        type, 
+                        setItemsFunction, 
+                        handleDelete, 
+                        navigate,  
+                        ITEMS_PER_PAGE, 
+                        paginate }) => {
 
     return (
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: '1rem' }}>
+        <div clasName='contenedor-renderItems' >
             <Titulo texto={`${type}`} />
-            <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '1rem' }}>
+            <div className='renderItems-items'>
                 {items.map((item) => (
-                    <div style={{ width: '200px', margin: '0.5rem', position: 'relative' }} key={item.id}>
-                        <div style={{ width: '100%', position: 'relative' }}>
+                    <div clasName='contenedor-item' key={item.id}>
+                        <div clasName='contenedor-card'>
                             <CardImg peli={item} width={200} height={300} funcion={() => navigate(`/card/movie/${item.id}`)} />
                         </div>
-                        <div style={{ position: 'absolute', top: '-25px', right: '-20px' }}>
+                        <div clasName='contenedor-boton-card'>
                             <Boton
                                 Contenido={DeleteForeverIcon}
-                                fontSize={'30px'}
-                                height={'40px'}
-                                ccolor={'white'}
-                                backgroundColor={'#003686'}
-                                backgroundHover={'#E08400'}
+                                fontSize={'3rem'}
+                                height={'4rem'}
+                                color={`${colors.blanco}`}
+                                backgroundColor={`${colors.azul}`}
+                                backgroundHover={`${colors.naranja}`}
                                 funcion={() => handleDelete(item.id, type, setItemsFunction)}/>
                         </div>
                     </div>
@@ -30,16 +39,16 @@ const RenderItems = ({ items, itemsPaginado, type, setItemsFunction, handleDelet
             </div>
             {/* Paginación */}
             {itemsPaginado.length > ITEMS_PER_PAGE && (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className='paginado'>
                     {Array.from({ length: Math.ceil(itemsPaginado.length / ITEMS_PER_PAGE) }, (_, i) => i + 1).map((page) => (
                         <Boton
                             texto={page}
                             funcion={() => paginate(page)}
                             key={page}
-                            width={'30px'}
-                            color={'white'}
-                            backgroundColor={'#003686'}
-                            backgroundHover={'#E08400'}/>
+                            width={'3rem'}
+                            color={`${colors.blanco}`}
+                            backgroundColor={`${colors.azul}`}
+                            backgroundHover={`${colors.naranja}`}/>
                     ))}
                 </div>
             )}

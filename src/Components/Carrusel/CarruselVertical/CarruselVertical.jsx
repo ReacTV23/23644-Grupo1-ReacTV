@@ -32,7 +32,6 @@ const Carrusel = ({ selectMovie }) => {
       contenedor.scrollTop += videoHeight;
     };
 
-
     if (contenedor && arriba && abajo) {
       arriba.addEventListener("click", handleArribaClick);
       abajo.addEventListener("click", handleAbajoClick);
@@ -58,7 +57,7 @@ const Carrusel = ({ selectMovie }) => {
       {videos ? (
         <div className="contenedor-principal-vertical">
           {/* <div id="flecha-arriba" className="flecha-arriba">
-            <Boton Contenido={ExpandMoreIcon} funcion={prevPage} colorHover={'#003686'}/>
+            <Boton Contenido={ExpandMoreIcon} funcion={prevPage} colorHover={`${colors.azul}`}/>
           </div> */}
           <div className="container-carrusel-vertical">
             <div className="container-video" id="container-video">
@@ -73,7 +72,7 @@ const Carrusel = ({ selectMovie }) => {
             </div>
           </div>
           {/* <div id="flecha-abajo" className="flecha-abajo">
-            <Boton Contenido={ExpandMoreIcon} funcion={nextPage} colorHover={'#003686'}/>
+            <Boton Contenido={ExpandMoreIcon} funcion={nextPage} colorHover={`${colors.azul}`}/>
           </div> */}
         </div>
       ) : (

@@ -1,18 +1,17 @@
 .container-h4 {
-    padding: 10px 0px;
-    display: flex;
-    width: 360px;
-    justify-content: center;
-    background: #003686;
-    border-radius: 30px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    text-align: center;
 }
 
 .container-h4 h4 {
     margin: 0;
-    color: white;
+    color: var(--color-blanco);
     font-weight: normal;
-    font-size: 20px;
+    font-size: 2rem;
     font-family: 'Roboto';
+    background: var(--color-azul);
+    border-radius: 3rem;
+    margin-bottom: 2rem,;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    display: inline-block;
 }

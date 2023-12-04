@@ -1,0 +1,38 @@
+.contenedor-renderItems {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.renderItems-items {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.contenedor-item {
+    width: 200px;
+    margin: 0.5rem;
+    position: relative;
+}
+
+.contenedor-card {
+    width: 100%;
+    position: relative;
+}   
+
+.contenedor-boton-card {
+    position: absolute;
+    top: -25px;
+    right: -20px;
+}
+
+.paginado {
+    display: flex;
+    justify-content: center;
+}

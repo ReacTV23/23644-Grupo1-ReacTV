@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './LayoutForm.css';
 import Navbar from '../../components/Navbar/Navbar'
 import Boton from '../../components/Boton/Boton';
+import colors from '../../config/config.js'
 
 const LayoutForm = ({children}) => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const LayoutForm = ({children}) => {
         <div className='LayoutForm'>
             <Navbar/>
                 {children}
-            <Boton texto={'volver'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={handleGoBack}/>
+            <Boton texto={'volver'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={handleGoBack}/>
         </div>
     )
 }

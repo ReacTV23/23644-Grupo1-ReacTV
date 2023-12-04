@@ -1,19 +1,19 @@
 .Contenedor {
-    height: 50px;
+    height: 5rem;
     display: flex; 
     align-items: center;
     justify-content: space-between;
-    color: black;
+    color: var(--color-negro);
 }
 
 .Contenedor:hover{
-    color: white;
-    background-color: #003686;
+    color: var(--color-blanco);
+    background-color: var(--color-azul);
 }
 
 .Nombre {
     display: flex;
-    padding-left: 10px;
+    padding-left: 1rem;
     text-align: start;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .Contenedor:hover .IconoBoton .Icono {
-    color: white;
+    color: var(--color-blanco);
     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Boton from '../../components/Boton/Boton';
 import './LayoutSecundario.css';
 import Navbar from '../../components/Navbar/Navbar'
+import colors from '../../config/config.js'
 
 const LayoutSecundario = ({children, textoBoton}) => {
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ const LayoutSecundario = ({children, textoBoton}) => {
   return (
     <div className='LayoutSecundario'>
         <Navbar/>
-        <Boton texto={textoBoton} backgroundColor={'#003686'} backgroundHover={'#E08400'}/>
+        <Boton texto={textoBoton} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`}/>
         {children}
-        <Boton texto={'volver'} backgroundColor={'#003686'} backgroundHover={'#E08400'} funcion={handleGoBack}/>
+        <Boton texto={'volver'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={handleGoBack}/>
     </div>
   )
 }

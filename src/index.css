@@ -3,6 +3,8 @@
     --color-naranja: #E08400;
     --color-negro: black;
     --color-blanco: white;
+    --color-gris-claro: rgb(180, 180, 180);
+    --color-gris-oscuro: rgb(66, 66, 66) ;
 }
 
 * {

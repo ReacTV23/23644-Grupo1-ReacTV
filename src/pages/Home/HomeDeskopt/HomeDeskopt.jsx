@@ -4,6 +4,7 @@ import Banner from '../../../components/Banner/Banner'
 import CarruselVertical from '../../../components/Carrusel/CarruselVertical/CarruselVertical'
 import {useNavigate} from 'react-router'
 import './HomeDeskopt.css'
+import colors from '../../../config/config.js'
 
 const MainDeskoptInvitado = () => {
   return (
@@ -12,40 +13,40 @@ const MainDeskoptInvitado = () => {
       <ButtonGroup className="GrupoBotonDeskopt-Invitado">
         <Boton
           texto={"recientes"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
           ¡La descripción está aquí!
         </div>
         <Boton
           texto={"categorias"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
           ¡La descripción está aquí!
         </div>
         <Boton
           texto={"generos"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
           ¡La descripción está aquí!
         </div>
         <Boton
           texto={"mi lista"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
           ¡La descripción está aquí!
         </div>
         <Boton
           texto={"lanzamientos"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
           ¡La descripción está aquí!
@@ -69,32 +70,32 @@ const MainDeskoptLogueado = () => {
       <ButtonGroup className="GrupoBotonDeskopt-Logueado">
         <Boton
           texto={"recientes"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
           funcion={() => handleButtonClick("/recientes")}
         />
         <Boton
           texto={"categorias"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
           funcion={() => handleButtonClick("/categorias")}
         />
         <Boton
           texto={"generos"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
           funcion={() => handleButtonClick("/generos")}
         />
         <Boton
           texto={"mi lista"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
           funcion={() => handleButtonClick("/milista")}
         />
         <Boton
           texto={"lanzamientos"}
-          backgroundColor={"#003686"}
-          backgroundHover={"#E08400"}
+          backgroundColor={`${colors.azul}`}
+          backgroundHover={`${colors.naranja}`}
           funcion={() => handleButtonClick("/lanzamientos")}
         />
       </ButtonGroup>

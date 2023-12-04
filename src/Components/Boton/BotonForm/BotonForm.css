@@ -4,18 +4,19 @@
     justify-content: center;
 }
 
-.cont-btn .Boton{
-    padding: 10px 0px;
-    width: 170px;
+.cont-btn .BotonForm{
+    padding: 1rem 0px;
+    width: 17rem;
     text-transform: uppercase;
-    border-radius: 30px;
-    font-size:15px;
+    border: none;
+    border-radius: 3rem;
+    font-size:1.5rem;
     font-weight: 600;
-    background-color: rgb(180, 180, 180);
+    background-color: var(--color-gris-claro);
 }
 
-.cont-btn .Boton:hover{
-    color:rgb(66, 66, 66) ;
-    background: white;
-    border: 2px solid var(--color-naranja);
+.cont-btn .BotonForm:hover{
+    color: var(--color-gris-oscuro);
+    background: var(--color-blanco);
+    border: 0.2rem solid var(--color-naranja);
 }

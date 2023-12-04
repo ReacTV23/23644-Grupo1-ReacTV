@@ -1,28 +1,32 @@
 import React from 'react';
 import { IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import './Busqueda.css';
+import colors from '../../config/config.js';
 
 const Busqueda = ({value, onChange, onSubmit}) => {
 
   return (
-    <>
-        <div style={{ width:'400px', display: 'flex', alignItems: 'center', background: 'white', borderRadius: '50px', padding: '0px', margin: '0' }}>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <InputBase
-            placeholder="Buscar..."
-            inputProps={{ 'aria-label': 'buscar' }}
-            style={{ width: '360px', color: 'black' }}
-            value={value}
-            onChange={onChange}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                onSubmit();
-              }
-            }}/>
-        </div>
-    </>
+    <div className="Busqueda">
+      <IconButton style={{backgroundColor:`${colors.blanco}`}}>
+        <SearchIcon />
+      </IconButton>
+      <InputBase
+        placeholder= "Buscar..."
+        inputProps={{ 'roboto': 'buscar' }}
+        style={{  width:'80%', 
+                  color:`${colors.negro}`, 
+                  backgroundColor:`${colors.blanco}`, 
+                  fontSize: '1.5rem',
+                  padding: '0.5rem'}}
+        value={value}
+        onChange={onChange}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onSubmit();
+          }
+        }}/>
+    </div>
   );
 }
 
