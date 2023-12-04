@@ -1,5 +1,5 @@
 import {ButtonGroup} from 'react-bootstrap';
-import Boton from '../../../components/Boton'
+import Boton from '../../../components/Boton/Boton'
 import Banner from '../../../components/Banner/Banner'
 import CarruselVertical from '../../../components/Carrusel/CarruselVertical/CarruselVertical'
 import {useNavigate} from 'react-router'

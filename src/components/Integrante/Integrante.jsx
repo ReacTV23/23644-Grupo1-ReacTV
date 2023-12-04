@@ -1,6 +1,6 @@
 import React from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import Boton from '../Boton';
+import Boton from '../Boton/Boton';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { ButtonGroup } from 'react-bootstrap';
 import './Integrante.css';

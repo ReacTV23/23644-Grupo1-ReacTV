@@ -4,7 +4,7 @@ import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import EventIcon from '@mui/icons-material/Event';
 import CardImg from '../Card/CardImg/CardImg';
-import Boton from '../Boton';
+import Boton from '../Boton/Boton';
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';

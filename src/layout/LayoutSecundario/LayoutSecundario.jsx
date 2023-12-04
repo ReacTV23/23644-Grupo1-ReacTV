@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Boton from '../../components/Boton';
+import Boton from '../../components/Boton/Boton';
 import './LayoutSecundario.css';
 import Navbar from '../../components/Navbar/Navbar'
 

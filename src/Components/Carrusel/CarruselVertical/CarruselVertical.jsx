@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import ExpandMoreIcon from '@mui/icons-material/ChevronRight';
+//import ExpandMoreIcon from '@mui/icons-material/ChevronRight';
 import Loader from '../../Loader/Loader';
-import Boton from '../../Boton';
+//import Boton from '../../Boton/Boton';
 import "./CarruselVertical.css";
 
 const videos = [
@@ -57,9 +57,9 @@ const Carrusel = ({ selectMovie }) => {
     <section>
       {videos ? (
         <div className="contenedor-principal-vertical">
-          <div id="flecha-arriba" className="flecha-arriba">
+          {/* <div id="flecha-arriba" className="flecha-arriba">
             <Boton Contenido={ExpandMoreIcon} funcion={prevPage} colorHover={'#003686'}/>
-          </div>
+          </div> */}
           <div className="container-carrusel-vertical">
             <div className="container-video" id="container-video">
               {peliculasPagina.map((peli, i) => (
@@ -72,9 +72,9 @@ const Carrusel = ({ selectMovie }) => {
               ))}
             </div>
           </div>
-          <div id="flecha-abajo" className="flecha-abajo">
+          {/* <div id="flecha-abajo" className="flecha-abajo">
             <Boton Contenido={ExpandMoreIcon} funcion={nextPage} colorHover={'#003686'}/>
-          </div>
+          </div> */}
         </div>
       ) : (
         <Loader />

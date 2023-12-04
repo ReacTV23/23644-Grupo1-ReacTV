@@ -1,5 +1,5 @@
 import React from 'react';
-import Boton from '../../Boton';
+import Boton from '../../Boton/Boton';
 import Titulo from '../../Titulo/Titulo';
 import CardImg from '../../Card/CardImg/CardImg'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';

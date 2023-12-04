@@ -21,7 +21,6 @@ const Recientes = () => {
     fetchData();
   }, [user]);
 
-
   return (
     <LayoutSecundario textoBoton={'recientes'}>
       {userEmail && (

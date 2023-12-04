@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getMovieById, getPopularMovies, getTrailersById } from "../../services/tmdbService";
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
-import Boton from '../Boton'
+import Boton from '../Boton/Boton'
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;

@@ -8,7 +8,8 @@ import { db } from '../../../firebase/Firebase.js';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { useNavigate  } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
     const [movies, setMovies] = useState([]);
@@ -20,6 +21,8 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const ITEMS_PER_PAGE = 5;
     const navigate = useNavigate();
+    const mySwal = withReactContent(Swal);
+
 
     const handleMovieIds = (ids, setDataFunction) => {
         if (movieIds.length !== ids.length) {
@@ -77,6 +80,31 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
         }
     };
 
+    const confirmDelete = (id, type, setDataFunction) => {
+        mySwal
+            .fire({
+                title: "¿Estas seguro?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "¡Si, Eliminar!",
+                cancelButtonText: "Cancelar",
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                // Llamo a la función para eliminar
+                    handleDelete(id, type, setDataFunction);
+                        mySwal.fire(
+                            "Eliminado!",
+                            "El item ha sido eliminado.",
+                            "success",
+                        );
+                    }
+            });
+        };
+
     return (
         <>
             <Children path={pathMovies} onDataReceived={(ids) => handleMovieIds(ids, setMovieIds)} />
@@ -92,7 +120,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                             itemsPaginado={movies}
                             type='movies'
                             setItemsFunction={setMovies}
-                            handleDelete={handleDelete}
+                            handleDelete={confirmDelete}
                             navigate={navigate}
                             ITEMS_PER_PAGE={ITEMS_PER_PAGE}
                             paginate={paginate}/>
@@ -103,7 +131,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                             items={currentSeries}
                             type='series'
                             setItemsFunction={setSeries}
-                            handleDelete={handleDelete}
+                            handleDelete={confirmDelete}
                             navigate={navigate}
                             ITEMS_PER_PAGE={ITEMS_PER_PAGE}
                             paginate={paginate}/>

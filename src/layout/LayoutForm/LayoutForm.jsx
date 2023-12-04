@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LayoutForm.css';
 import Navbar from '../../components/Navbar/Navbar'
-import Boton from '../../components/Boton';
+import Boton from '../../components/Boton/Boton';
 
 const LayoutForm = ({children}) => {
     const navigate = useNavigate();

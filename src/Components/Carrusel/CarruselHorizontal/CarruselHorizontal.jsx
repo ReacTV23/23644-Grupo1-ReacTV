@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Loader from '../../Loader/Loader'
-import Boton from '../../Boton'
+import Boton from '../../Boton/Boton'
 import CardImg from '../../Card/CardImg/CardImg'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
