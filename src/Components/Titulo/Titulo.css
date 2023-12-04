@@ -3,7 +3,7 @@
 }
 
 .container-h4 h4 {
-    margin: 0;
+    margin: 1rem;
     color: var(--color-blanco);
     font-weight: normal;
     font-size: 2rem;

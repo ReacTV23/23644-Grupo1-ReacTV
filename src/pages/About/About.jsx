@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import LayoutSecundario  from '../../layout/LayoutSecundario/LayoutSecundario'
+import LayoutForm from '../../layout/LayoutForm/LayoutForm'
 import Titulo from '../../components/Titulo/Titulo'
 import Integrante from  '../../components/Integrante/Integrante';
 import Contact from '../../components/Contact/Contact'
@@ -22,7 +22,7 @@ const About = () => {
   }, [])
 
   return (
-    <LayoutSecundario textoBoton={'about'}>
+    <LayoutForm>
         <div className='Contenedor_About'>
           <div className='Integantres'>
             <Titulo texto={'team'}/>
@@ -37,7 +37,7 @@ const About = () => {
           </div>
           <Contact style={{width:'50%'}}/>
         </div>
-    </LayoutSecundario>   
+    </LayoutForm>   
   )
 }
 

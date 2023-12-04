@@ -118,7 +118,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                         <RenderItems
                             items={currentMovies}
                             itemsPaginado={movies}
-                            type='movies'
+                            type='peliculas'
                             setItemsFunction={setMovies}
                             handleDelete={confirmDelete}
                             navigate={navigate}
