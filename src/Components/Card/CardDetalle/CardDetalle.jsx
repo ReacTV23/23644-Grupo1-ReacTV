@@ -52,7 +52,7 @@ const CardDetalle = ({ movie }) => {
       <div className="img-container">
         <img
           className="img-pelicula"
-          src={`${IMAGE_PATH}${info.poster_path}`}
+          src={`https://reactvserver.hymsoft.repl.co/imagen-proxy?imageUrl=${IMAGE_PATH}${info.poster_path}`}
           alt={info.id}
         />
       </div>
