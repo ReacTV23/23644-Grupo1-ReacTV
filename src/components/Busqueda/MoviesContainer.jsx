@@ -15,7 +15,7 @@ const MoviesContainer = () => {
     try {
       const data = await searchTMDB(searchQuery, "multi", 1);
       setSearchData(data);
-      console.log(data)
+      //console.log('moviesContainer:', data)
     } catch (error) {
       console.error("Error fetching data:", error);
     }

@@ -1,13 +1,13 @@
 import React from 'react';
-//import NotFound from '../../components/Error404/NotFound';
+import NotFound from '../../components/Error404/NotFound';
+import LayoutMain from '../../layout/LayoutMain/LayoutMain'
 
 function Error404() {
     return (
-        <div>
-          {/*<NotFound/>*/}  
-        </div>
+        <LayoutMain>
+            <NotFound/>
+        </LayoutMain>
     );
 }
 
 export default Error404;
-
