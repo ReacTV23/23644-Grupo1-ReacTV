@@ -6,7 +6,7 @@ section .contenedor-carrusel-titulo {
     width: 100%;
     padding: 1rem 0;
     position: relative;
-    background: var(--color-naranja);
+    background: var(--color-negro);
 }
 
 section .contenedor-carrusel-titulo .contenedor-principal {
@@ -32,4 +32,11 @@ section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .
     justify-content: space-around;
     flex-wrap: nowrap;
     margin: 0.5rem;
+}
+
+section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card .card-carrusel--horizontal {
+    object-fit: contain;
+    margin: 1rem;
+    border: 0.1rem solid var(--color-blanco);
+
 }

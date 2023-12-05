@@ -56,7 +56,6 @@ const IntroVideo = ({ onVideoEnd }) => {
     const player = videojs('introVideo');
     player.play();
     setShowPlayButton(false);
-   
   };
 
   return (

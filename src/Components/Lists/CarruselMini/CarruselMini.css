@@ -5,16 +5,16 @@ body {
 }
 
 .movieList {
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
 }
 
 .movieList h2 {
-  margin: 0px 0px 0px 30px;
+  margin: 0 0 0 3rem;
 }
 
 .movieList--container {
   overflow-x: hidden;
-  padding-left: 30px;
+  padding-left: 3rem;
 }
 
 .movieList--list {
@@ -39,7 +39,7 @@ body {
 .movieList--Arrow-Left,
 .movieList--Arrow-Right {
   position: absolute;
-  width: 40px;
+  width: 4rem;
   /* height: 225px; */
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 99;

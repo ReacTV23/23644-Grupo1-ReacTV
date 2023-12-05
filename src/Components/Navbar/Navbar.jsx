@@ -1,12 +1,13 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography} from '@mui/material';
 import { Link, useNavigate  } from 'react-router-dom';
-import Boton from '../Boton'
+import Boton from '../Boton/Boton'
 import Busqueda from '../Busqueda/Busqueda'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
 import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
+import colors from '../../config/config.js'
 
 const Navbar = ({onLoginButtonClick}) => {
   const { isAuth, setIsAuth  } = useAuth();  // Obtiene el estado de autenticación del contexto
@@ -44,14 +45,14 @@ const Navbar = ({onLoginButtonClick}) => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#003686', width:'100%', height:'80px'}}>
+    <AppBar position="static" className='contenedor-navbar' sx={{ backgroundColor: `${colors.azul}`, width:'100%', height:'8rem'}}>
       <Toolbar sx={{ width:'100%', height:'100%', display: 'flex', justifyContent: 'space-between', alignItems:'center'}}>
         {/* Sección del logo (a la izquierda) */}
         <Typography variant="h6" component="div">
           <img
             src="/assets/img/logo-circular-2.png"
             alt="Logo"
-            style={{ height: '60px', marginRight: '16px', cursor: 'pointer' }}
+            style={{ height: '6rem', marginRight: '1.6rem', cursor: 'pointer' }}
             onClick={Volver}
           />
         </Typography>
@@ -66,11 +67,11 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección del botón de inicio de sesión (a la derecha) */}
         { isAuth ? ( 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Boton Contenido={NoAccountsIcon} color={'white'} colorHover={'#E08400'} fontSize={'60px'} funcion={handleLogoutClick}/>
-        </Link>
+            <Boton Contenido={NoAccountsIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={handleLogoutClick}/>
+          </Link>
         ) : (
           <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={AccountCircle} color={'white'} colorHover={'#E08400'} fontSize={'60px'} funcion={handleLoginClick}/>
+            <Boton Contenido={AccountCircle} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={handleLoginClick}/>
           </Link>
         )}
       </Toolbar>

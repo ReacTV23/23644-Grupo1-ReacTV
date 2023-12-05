@@ -1,6 +1,7 @@
 .Contenedor-MainDeskoptInvitado {
     width: 100%;
     padding: 1rem;
+    margin: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,15 +17,21 @@
 }
 
 .DescripcionDeskopt-Invitado {
-    width: 360px;
-    margin: 10px 0;
-    height: 140px;
+    width: 36rem;
+    margin: 1rem 0;
+    height: 14rem;
     display: flex;
+    font-size: 1.5rem;
     text-align: center;
     justify-content: center;
-    border: 1px solid #E08400;
-    border-radius: 20px;
+    border: 0.3rem solid var(--color-naranja);
+    background-color: var(--color-blanco);
+    border-radius: 2rem;
     align-items: center;
+}
+
+.GrupoBotonDeskopt-Logueado {
+    margin-bottom: 2rem;
 }
 
 /* Estilos para pantallas con ancho mayor a 768px */

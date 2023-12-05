@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import Loader from '../../Loader/Loader'
-import Boton from '../../Boton'
-import CardImg from '../../Card/CardImg/CardImg'
+import Loader from '../../Loader/Loader';
+import Boton from '../../Boton/Boton';
+import CardImg from '../../Card/CardImg/CardImg';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Titulo from '../../Titulo/Titulo'
-import "./CarruselHorizontal.css"
+import Titulo from '../../Titulo/Titulo';
+import colors from '../../../config/config.js';
+import "./CarruselHorizontal.css";
 
 const Carrusel = ({ texto, peliculas, selectMovie }) => {
   const fila = document.querySelector(".container-carrusel");
@@ -41,9 +42,15 @@ const Carrusel = ({ texto, peliculas, selectMovie }) => {
     }
   }, [currentPage, fila, derecha, izquierda, totalPages]);
 
-  const startIndex = currentPage * moviesPerPage;
-  const endIndex = Math.min(startIndex + moviesPerPage, peliculas.length);
-  const peliculasPagina = peliculas.slice(startIndex, endIndex);
+
+  const nextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(peliculas.length / moviesPerPage) - 1));
+  };
+  
+  const prevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+  
 
   return (
     <section>
@@ -51,15 +58,21 @@ const Carrusel = ({ texto, peliculas, selectMovie }) => {
         <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>
           <div className="contenedor-principal">
-            <Boton Contenido={ChevronLeftIcon} funcion={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 0))} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronLeftIcon} 
+                    funcion={prevPage} 
+                    colorHover={`${colors.naranja}`}/>
             <div className="container-carrusel">
               <div className="container-card" id="container-card">
                 {peliculasPagina.map((peli, i) => (
-                  <CardImg key={i} peli={peli} funcion={selectMovie}/>                
+                  <div key={i} className='card-carrusel--horizontal'>
+                    <CardImg peli={peli} funcion={selectMovie} width={300} height={500}/>
+                  </div>                
                 ))}
               </div>
             </div>
-            <Boton Contenido={ChevronRightIcon} funcion={() => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1))} colorHover={'#003686'}/>
+            <Boton Contenido={ChevronRightIcon} 
+                    funcion={nextPage} 
+                    colorHover={`${colors.naranja}`}/>
           </div>
         </div>      
         ) : (

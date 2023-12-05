@@ -1,63 +1,58 @@
 footer {
   width: 100%;
-  height: 100px;
+  height: 10rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 1rem;
   background-color: var(--color-azul)
 }
-  
-  .left,
-  .right {
-    margin: 0 10px;
-    color: white
-  }
-  
-  /* Estilos para el ícono de GitHub 
-  .left a {
-    color: #2F67BB;  Color azul 
-    font-size: 24px;  Tamaño de fuente para el ícono 
-  }*/
 
-  .center {
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center; 
-  }
-  
-  .center .link {
-    text-decoration: none;
-    color: white;
-    font-size: 14px; 
-  }
+.left,
+.right {
+  margin: 0 10px;
+  color: white
+}
 
-  p:hover {
-    color: var(--color-naranja)
-  }
-  
-  /* Estilos para el ícono de Figma */
-  .right a {
-    color: var(--color-naranja); /* Color amarillo-naranja */
-    width: 60px;
-    height: 60px;
+.center {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
 
-  }
+.center .link-footer {
+  text-decoration: none;
+  color: var(--color-blanco);
+  font-size: 1.6rem; 
+}
+.center .p-footer {
+  font-size: 1.3rem 
+}
+.center .p-footer:hover {
+  color: var(--color-naranja)
+}
 
-  .Icono {
-    color:white;
-    object-fit: cover;
-    height: 60px;
-  }
+/* Estilos para el ícono de Figma */
+.right a {
+  color: var(--color-naranja); /* Color amarillo-naranja */
+  width: 6rem;
+  height: 6rem;
+}
+.Icono {
+  color: var(--color-blanco);
+  object-fit: cover;
+  height: 6rem;
+  font-size: 3.5rem;
+}
 
-  .Icono:hover {
-    color: var(--color-naranja)
-  }
-  
-  /* Estilos para pantallas más grandes (mayores a 360px) */
+.Icono:hover {
+  color: var(--color-naranja)
+}
+
+/* Estilos para pantallas más grandes (mayores a 360px) */
 /* footer {
   display: flex;
   justify-content: space-between;
