@@ -16,13 +16,13 @@
 }
 
 .contenedor-item {
-    width: 200px;
-    margin: 0.5rem;
+    width: 20rem;
+    margin: 1rem;
     position: relative;
 }
 
 .contenedor-card {
-    width: 100%;
+    width: 20rem;
     position: relative;
 }   
 

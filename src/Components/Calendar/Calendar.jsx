@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 //import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
 import { getUpcomingMovies } from '../../services/tmdbService.js';
@@ -18,7 +19,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
-  const [clickEnTitulo, setClickEnTitulo] = useState(false)
+  const [showPoster, setShowPoster] = useState(false);
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -40,7 +41,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const handleMovieClick = (movieId) => {
     console.log('Clicked on movie with ID:', movieId);
     setSelectedMovieId(movieId);
-    setClickEnTitulo(true); //estado del click de la movie
+    setShowPoster(true);
   };
 
   const handleClick = (peli) => {
@@ -50,6 +51,11 @@ const WritableCalendar = ({ onInfoChange }) => {
       navigate(`/card/tv/${peli.id}`, { dato: peli });
     }
   }
+
+  const esconderPoster = () => {
+    setSelectedMovieId(null);
+    setShowPoster(false);
+  };
 
   const downloadImagesLocally = async () => {
     const promises = upcomingMovies.map(async (movie) => {
@@ -134,10 +140,10 @@ const WritableCalendar = ({ onInfoChange }) => {
   };
 
   return (
-    <div className="contenedorPrincipal_calendario">
+    <div className={`contenedorPrincipal_calendario ${showPoster ? 'ancho-reducido mostrar-poster' : ''}`}>
       <div className="subcontenedorPrincipal_calendario" ref={calendarContainerRef}>
         <h5 className="titulo_calendario mb-2">Calendario de estrenos</h5>
-        <div className={`contenedor_calendario ${clickEnTitulo ? 'ancho-reducido': ''}`}>
+        <div className={`contenedor_calendario ${showPoster ? 'ancho-reducido' : ''}`}>
           <div className='subcontenedor_calendario' id="calendar-container">
             <Calendar
               onChange={handleDateChange}
@@ -146,9 +152,23 @@ const WritableCalendar = ({ onInfoChange }) => {
               className="custom-calendar"
             />
           </div>
-          {selectedMovieId && (
+          {selectedMovieId && showPoster && (
             <div className="poster_calendario">
-              <CardImg peli={upcomingMovies.find((movie) => movie.id === selectedMovieId)} funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))} />
+              <div className='contenedor-poster'>
+                <CardImg  peli={upcomingMovies.find((movie) => movie.id === selectedMovieId)} 
+                        funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))} />
+              </div>
+              <div className='contenedor-boton-poster'>
+                <Boton
+                    Contenido={HighlightOffIcon}
+                    fontSize={'4rem'}
+                    padding={'0.5rem'}
+                    height={'4rem'}
+                    color={`${colors.blanco}`}
+                    backgroundColor={`${colors.negro}`}
+                    backgroundHover={`${colors.naranja}`}
+                    funcion={esconderPoster}/>
+                </div>
             </div>
           )}
         </div>

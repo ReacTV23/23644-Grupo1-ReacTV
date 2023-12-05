@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
-const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, height, backgroundColor, backgroundHover,disabled }) => {
+const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, height, padding, backgroundColor, backgroundHover,disabled }) => {
   if(Contenido) {
     const Icono = Contenido;
     return (
@@ -11,7 +11,8 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
         <Icono className='Icono'
           sx={{fontSize: {xs:'3rem', sm: fontSize, md: fontSize},
           width: {height},
-          height: height, 
+          height: height,
+          padding: padding, 
           color: {color},
           borderRadius: {xs:'3rem', sm:`calc(${fontSize} + 1rem)`, md:`calc(${fontSize} + 1rem)`},
           backgroundColor: backgroundColor,

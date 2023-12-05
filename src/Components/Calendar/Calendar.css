@@ -28,46 +28,67 @@
   width: 100%;
   display: flex;
   background-color: var(--color-azul);
-}
+  transition: width 0.5s ease;}
 
-.subcontenedor_calendario {
+.contenedor_calendario .subcontenedor_calendario {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   background-color: var(--color-azul);
-  transition: width 0.5s ease;
-}
-
-.subcontenedor_calendario .ancho-reducido {
-  padding: 0  0 1rem 4rem;
+  
 }
 
 .poster_calendario {
   width: 40%;
   padding: 4rem;
   background-color: var(--color-azul);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: transform 0.5s ease;
 };
 
-.ancho-reducido {
-  width: 60%;
+.contenedor-poster{
+  position: relative;
+}
+
+.contenedor-boton-poster {
+  position: absolute;
+  top:1.5rem;
+  right: 1.5rem;
+}
+
+/*css ancho- reducido*/
+.contenedor_calendario.ancho-reducido {
   display: flex;
-  justify-content: center;
+  flex-wrap: nowrap; /* Evita el ajuste automático del ancho */
 }
 
 .ancho-reducido .poster_calendario {
+  width: 40%;
+}
+
+.ancho-reducido .subcontenedor_calendario {
+  width: 60%;
   transform: translateX(0);
 }
 
 .ancho-reducido .subcontenedor_calendario {
+  padding: 0 0 1rem 4rem;
   transform: translateX(0);
 }
 
+.ancho-reducido .subcontenedor_calendario .poster_calendario {
+  display: none;
+}
+
+.ancho-reducido.mostrar-poster .poster_calendario {
+  display: flex;
+}
+
+/*css calendario*/
 .custom-calendar {
   font-family: 'Roboto';
   font-size: 1.6rem;

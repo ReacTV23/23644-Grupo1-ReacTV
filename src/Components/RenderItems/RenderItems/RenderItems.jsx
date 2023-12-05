@@ -3,8 +3,8 @@ import Boton from '../../Boton/Boton';
 import Titulo from '../../Titulo/Titulo';
 import CardImg from '../../Card/CardImg/CardImg'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import './RenderItems.css'
 import colors from '../../../config/config.js'
+import './RenderItems.css'
 
 const RenderItems = ({  items, 
                         itemsPaginado, 
@@ -16,19 +16,20 @@ const RenderItems = ({  items,
                         paginate }) => {
 
     return (
-        <div clasName='contenedor-renderItems' >
+        <div className='contenedor-renderItems' >
             <Titulo texto={`${type}`} />
             <div className='renderItems-items'>
                 {items.map((item) => (
-                    <div clasName='contenedor-item' key={item.id}>
-                        <div clasName='contenedor-card'>
+                    <div className='contenedor-item' key={item.id}>
+                        <div className='contenedor-card'>
                             <CardImg peli={item} width={200} height={300} funcion={() => navigate(`/card/movie/${item.id}`)} />
                         </div>
-                        <div clasName='contenedor-boton-card'>
+                        <div className='contenedor-boton-card'>
                             <Boton
                                 Contenido={DeleteForeverIcon}
-                                fontSize={'3rem'}
+                                fontSize={'4rem'}
                                 height={'4rem'}
+                                padding={'0.5rem'}
                                 color={`${colors.blanco}`}
                                 backgroundColor={`${colors.azul}`}
                                 backgroundHover={`${colors.naranja}`}
