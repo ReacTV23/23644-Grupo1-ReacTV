@@ -1,0 +1,57 @@
+.card-movie {
+  display: flex;
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
+  border: 0.4rem solid var(--color-naranja);
+  border-radius: 2vh;
+  background-color: var(--color-azul);
+}
+
+.img-container {
+  width: 50%;
+}
+
+.img-pelicula {
+  width: 100%;
+  padding: 0.1vh;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.info-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.titulo {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.datos-container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-blanco);
+  padding: 1rem;
+}
+
+.info-movie {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-movie p, .info-movie p span, .descripcion {
+  font-size: 1.7rem;
+}

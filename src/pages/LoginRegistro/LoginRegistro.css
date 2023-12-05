@@ -1,0 +1,16 @@
+.ContenedorFormularios {
+    width: 100%;
+    min-width: 36rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.FormTitulos, .Forms {
+    width: 100%;
+    padding: 0 0.1rem;
+    display: flex;
+    justify-content: space-around;
+}

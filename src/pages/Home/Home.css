@@ -1,0 +1,25 @@
+/* .GrupoBoton, .contenedor {
+    width: 100%;
+    margin: 15px 0;
+    display:flex;
+    flex-direction:column;
+}
+
+.descripcion {
+    width: 360px;
+    margin: 10px 0;
+    height: 140px;
+    border: 1px solid #E08400;
+    border-radius: 20px;
+    text-align: center;
+}
+
+/*Estilos para pantallas con ancho mayor a 768px 
+@media (min-width: 769px) {
+    .GrupoBoton  {
+        flex-direction:row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content:space-around
+    }
+} */

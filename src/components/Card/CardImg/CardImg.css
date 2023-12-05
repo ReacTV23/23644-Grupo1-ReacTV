@@ -1,0 +1,10 @@
+.CardImg {
+    /*width:calc((100% - 60px) / 3); */
+    min-width:30%; 
+    margin: 0; 
+    display:flex;
+    justify-content:center;
+    cursor:pointer;
+    border: 0.1rem solid var(--color-blanco);  
+    border-radius: 1rem;
+}

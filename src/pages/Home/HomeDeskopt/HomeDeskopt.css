@@ -1,0 +1,45 @@
+.Contenedor-MainDeskoptInvitado {
+    width: 100%;
+    padding: 1rem;
+    margin: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.GrupoBotonDeskopt-Invitado {
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DescripcionDeskopt-Invitado {
+    width: 36rem;
+    margin: 1rem 0;
+    height: 14rem;
+    display: flex;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    border: 0.3rem solid var(--color-naranja);
+    background-color: var(--color-blanco);
+    border-radius: 2rem;
+    align-items: center;
+}
+
+.GrupoBotonDeskopt-Logueado {
+    margin-bottom: 2rem;
+}
+
+/* Estilos para pantallas con ancho mayor a 768px */
+@media (min-width: 769px) {
+    .GrupoBotonDeskopt-Logueado  {
+        flex-direction:row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content:space-around
+    }
+}
