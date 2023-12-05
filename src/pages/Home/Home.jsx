@@ -19,7 +19,6 @@ const Home = ({anchoVentana}) => {
   return (
     <LayoutMain>
       {renderDeskoptContent()}
-      {/* {console.log(isAuth)} */}
     </LayoutMain>    
   )
 }

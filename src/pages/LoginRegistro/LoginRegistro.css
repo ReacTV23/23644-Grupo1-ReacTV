@@ -1,6 +1,6 @@
 .ContenedorFormularios {
     width: 100%;
-    min-width: 360px;
+    min-width: 36rem;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -10,7 +10,7 @@
 
 .FormTitulos, .Forms {
     width: 100%;
-    padding: 0 1px;
+    padding: 0 0.1rem;
     display: flex;
     justify-content: space-around;
 }

@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: var(--color-negro);
 }
 
 /* Estilos para pantallas con ancho menor o igual a 360px */

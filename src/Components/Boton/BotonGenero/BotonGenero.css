@@ -1,22 +1,22 @@
 .BotonGenero{
-    padding: 10px 0px;
-    width: 200px;
+    padding: 1rem 0;
+    width: 20rem;
     text-transform: uppercase;
     border: none;
-    border-radius: 30px;
-    font-size:15px;
+    border-radius: 3rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    background-color: rgb(180, 180, 180);
+    background-color: var(--color-gris-claro)
 }
 
 .BotonGenero:hover{
-    color:rgb(66, 66, 66);
-    background: white;
-    border: 2px solid var(--color-naranja);
+    color: var(--color-gris-oscuro);
+    background: var(--color-blanco);
+    border: 0.2rem solid var(--color-naranja);
 }
 
 .BotonGenero.clicked {
-    color: white;
+    color: var(--color-blanco);
     background-color: var(--color-azul);
-    border: 2px solid var(--color-naranja);
+    border: 0.2rem solid var(--color-naranja);
 }

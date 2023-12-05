@@ -162,6 +162,24 @@ const getTrailersById = async (id) => {
 };
 
 /**
+ * Obtiene los trailers de una serie por su id.
+ *
+ * @async
+ * @function
+ * @param {number} id - El id de la seerie.
+ * @returns {Promise<Array>} Una promesa que se resolverá con un array de objetos que representa los trailers de la pelicula solicitada.
+ * @throws {Error} Si hay un error al realizar la solicitud a la API.
+ */
+const getTrailersTVById = async (id) => {
+    // console.log("tmbdbService => getSeriesById:", page, id);
+    //const endPoint = `tv/${id}/videos?api_key=${API_KEY}&language=${API_LANGUAGE}`; idioma español
+    const endPoint = `tv/${id}/videos?api_key=${API_KEY}`; //por default idioma ingles
+    const trailerResults = await basicFetch(endPoint, false);
+    // console.log("tmbdbService => getSeriesById:", movieResults);
+    return trailerResults;
+};
+
+/**
  *
  * Series
  *
@@ -447,6 +465,7 @@ export {
     getMoviesByGenres,
     getMovieById,
     getTrailersById,
+    getTrailersTVById,
     getPopularTV,
     getTopRatedTV,
     getTVByGenres,

@@ -1,160 +1,162 @@
 import React, { useState, useEffect } from "react";
-import {
-  getMovieById,
-  getPopularMovies,
-  getTrailersById,
-} from "../../services/tmdbService";
+import { getMovieById, getPopularMovies, getTrailersById } from "../../services/tmdbService";
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
+import Boton from '../Boton/Boton';
+import Loader from '../Loader/Loader'
 import "./Banner.css";
 
-function BannerConSelector() {
-  const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
+const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-  const [showCardContainer, setShowCardContainer] = useState(true);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const [movies, setMovies] = useState([]);
-  const [trailer, setTrailer] = useState(null);
-  const [actualPage, setActualPage] = useState(0);
-  const [movie, setMovie] = useState({ title: "Loading Movies" });
-  const [playing, setPlaying] = useState(false);
-
-  const fetchMovies = async () => {
-    try {
-      // Traigo las peliculas populares
-      const moviesData = await getPopularMovies(1);
-
-      setMovies(moviesData);
-      setMovie(moviesData[0]);
-
-      if (moviesData.length) {
-        await fetchMovie(moviesData[0].id);
-      }
-    } catch (error) {
-      console.error(`Error buscando las peliculas: ${error.message}`);
-    }
-  };
-
-  const fetchMovie = async (id) => {
-    try {
-      // busco los trailes
-      const movieData = await getMovieById(id);
-      const trailersData = await getTrailersById(id);
-      // console.log("fetchMovie => ", trailersData);
-      setTrailer(trailersData[0]);
-
-      setMovie(movieData);
-    } catch (error) {
-      console.error(`Error buscando los trailers: ${error.message}`);
-    }
-  };
-
-  const selectMovie = async (movie, actualPage) => {
-    // console.log("BannerConSelector => selectMovie => actualPage:", actualPage);
-    setActualPage(actualPage);
-    fetchMovie(movie.id);
-    setMovie(movie);
-    setSelectedMovie(movie);
-    setShowCardContainer(false);
-    window.scrollTo(0, 0);
-  };
-
-  const closeBanner = () => {
-    setPlaying(false); // Aseguramos que el reproductor de video esté cerrado
-    setShowCardContainer(true); // Mostramos el contenedor de tarjetas
-  };
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  // console.log('Movies:', movies)
-
-  const CardContainer = () => {
+const CardContainer = ({ movies, selectMovie, actualPage }) => {
     return (
-      <>
         <CarruselHorizontal
-          texto={'peliculas mas populares'}
-          peliculas={movies}
-          selectMovie={selectMovie}
-          actualPage={actualPage}
+        texto={'peliculas mas populares'}
+        peliculas={movies}
+        selectMovie={selectMovie}
+        actualPage={actualPage}
         />
-      </>
     );
-  };
+};
 
-  return (
-    <>
-      {showCardContainer ? (
-        <CardContainer />
-      ) : (
-        <div>
-          <div style={{ margin: "1rem" }}>
-            <main>
-              <div
-                className="viewtrailer"
-                style={{
-                  backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-                }}
-              >
-                {playing ? (
-                  <div className="youtube-container">
-                    <YouTube
-                      className="reproductor"
-                      videoId={trailer.key}
-                      opts={{
-                        playerVars: {
-                          autoplay: 1,
-                          controls: 1,
-                          cc_load_policy: 0,
-                          fs: 0,
-                          iv_load_policy: 0,
-                          modestbranding: 0,
-                          rel: 0,
-                          showinfo: 0,
-                        },
-                      }}
-                    />
-                    <button onClick={() => setPlaying(false)} className="boton">
-                      Close
+export const TrailerPlayer = ({ trailer, closeBanner }) => {
+    return (
+        <div className="youtube-container">
+            <YouTube
+            className="reproductor"
+            videoId={trailer.key}
+            opts={{
+            playerVars: {
+                autoplay: 1,
+                controls: 1,
+                cc_load_policy: 0,
+                fs: 0,
+                iv_load_policy: 0,
+                modestbranding: 0,
+                rel: 0,
+                showinfo: 0,
+            },
+        }}
+        />
+        <Boton texto={'close'} funcion={closeBanner}/>
+    </div>
+    );
+};
+
+const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
+    return (
+        <div className="container-banner">
+            <div className="banner">
+                {trailer ? (
+                <div className="botones-banner">
+                    <button
+                        className="boton-banner"
+                        onClick={() => setPlaying(true)}
+                        type="button">
+                        Play Trailer
                     </button>
-                  </div>
-                ) : (
-                  <div className="container">
-                    <div className="banner">
-                      {trailer ? (
-                        <div>
-                          <button
-                            className="boton"
-                            onClick={() => setPlaying(true)}
-                            type="button"
-                          >
-                            Play Trailer
-                          </button>
-                          <button
-                            className="boton"
-                            onClick={closeBanner}
-                            type="button"
-                          >
-                            Volver al Listado
-                          </button>
-                        </div>
-                      ) : (
-                        "Lo sentimos, el trailer no esta disponible"
-                      )}
-                      <h1 className="text-white">{movie.title}</h1>
-                      <p className="text-white">{movie.overview}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </main>
-          </div>
+                    <button
+                        className="boton-banner"
+                        onClick={() => closeBanner()}
+                        type="button">
+                        Volver al Listado
+                    </button> 
+                </div>
+            ) : (
+                "Lo sentimos, el trailer no está disponible"
+            )}
+            <h1 className="titulo-banner">{movie.title}</h1>
+            <p className="descripcion-banner">{movie.overview}</p>
         </div>
-      )}
-    </>
-  );
+    </div>
+    );
+};
+
+function Banner() {
+    const [showCardContainer, setShowCardContainer] = useState(true);
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    const [movies, setMovies] = useState([]);
+    const [trailer, setTrailer] = useState(null);
+    const [actualPage, setActualPage] = useState(0);
+    const [movie, setMovie] = useState({ title: "Loading Movies" });
+    const [playing, setPlaying] = useState(false);
+    const [isLoadingMovies, setIsLoadingMovies] = useState(true);
+
+
+    const fetchMovies = async () => {
+        try {
+            setIsLoadingMovies(true); // Iniciar la carga
+            const moviesData = await getPopularMovies(1);
+            setMovies(moviesData);
+            setMovie(moviesData[0]);
+
+            if (moviesData.length) {
+                await fetchMovie(moviesData[0].id);
+                setIsLoadingMovies(false);
+                }
+            } catch (error) {
+                console.error(`Error buscando las películas: ${error.message}`);
+                setIsLoadingMovies(false); // Finalizar la carga, ya sea éxito o error
+        }
+    };
+
+    const fetchMovie = async (id) => {
+        try {
+            const movieData = await getMovieById(id);
+            const trailersData = await getTrailersById(id);
+                setTrailer(trailersData[0]);
+                setMovie(movieData);
+        } catch (error) {
+            console.error(`Error buscando los trailers: ${error.message}`);
+        }
+    };
+
+    const selectMovie = async (movie, actualPage) => {
+        setActualPage(actualPage);
+        fetchMovie(movie.id);
+        setMovie(movie);
+        setSelectedMovie(movie);
+        setShowCardContainer(false);
+        window.scrollTo(0, 0);
+    };
+
+    const closeBanner = () => {
+        setPlaying(false);
+        setShowCardContainer(true);
+    };
+
+    useEffect(() => {
+        fetchMovies();
+    }, []);
+
+    return (
+        <>
+            {isLoadingMovies ? (
+                // Muestra el loader mientras las películas están cargando
+                <Loader />)  : 
+            showCardContainer ? (
+                <CardContainer movies={movies} selectMovie={selectMovie} actualPage={actualPage} />
+            ) : (
+                <div>
+                    <div style={{ margin: "1rem" }}>
+                        <main>
+                            <div
+                                className="viewtrailer"
+                                style={{
+                                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`}}>
+                                {playing ? (
+                                <TrailerPlayer trailer={trailer} closeBanner={closeBanner} />
+                                ) : (
+                                <BannerContent movie={movie} trailer={trailer} setPlaying={setPlaying} closeBanner={closeBanner} />
+                                )}
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }
 
-export default BannerConSelector;
+export default Banner;
