@@ -20,7 +20,6 @@ const Integrante = ({nombre,apellido, Github, Linkedin}) => {
         </a>
       </ButtonGroup>
     </div> 
-
 )}
 
 export default  Integrante

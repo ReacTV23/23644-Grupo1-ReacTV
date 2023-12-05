@@ -9,7 +9,8 @@ const CardImg = ({peli, height = 600, width = 400, funcion}) => {
                 src={`${IMAGE_PATH + peli.poster_path}`}
                 alt=""
                 height={height}
-                width={width}/>
+                width={width}
+                style={{objetFit: 'containt', borderRadius: '1rem'}}/>
         </div>
     )
 }

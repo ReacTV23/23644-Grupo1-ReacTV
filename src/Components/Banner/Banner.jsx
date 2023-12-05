@@ -3,6 +3,7 @@ import { getMovieById, getPopularMovies, getTrailersById } from "../../services/
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
 import Boton from '../Boton/Boton';
+import Loader from '../Loader/Loader'
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
@@ -80,18 +81,23 @@ function Banner() {
     const [actualPage, setActualPage] = useState(0);
     const [movie, setMovie] = useState({ title: "Loading Movies" });
     const [playing, setPlaying] = useState(false);
+    const [isLoadingMovies, setIsLoadingMovies] = useState(true);
+
 
     const fetchMovies = async () => {
         try {
+            setIsLoadingMovies(true); // Iniciar la carga
             const moviesData = await getPopularMovies(1);
             setMovies(moviesData);
             setMovie(moviesData[0]);
 
             if (moviesData.length) {
                 await fetchMovie(moviesData[0].id);
+                setIsLoadingMovies(false);
                 }
             } catch (error) {
                 console.error(`Error buscando las películas: ${error.message}`);
+                setIsLoadingMovies(false); // Finalizar la carga, ya sea éxito o error
         }
     };
 
@@ -126,7 +132,10 @@ function Banner() {
 
     return (
         <>
-            {showCardContainer ? (
+            {isLoadingMovies ? (
+                // Muestra el loader mientras las películas están cargando
+                <Loader />)  : 
+            showCardContainer ? (
                 <CardContainer movies={movies} selectMovie={selectMovie} actualPage={actualPage} />
             ) : (
                 <div>

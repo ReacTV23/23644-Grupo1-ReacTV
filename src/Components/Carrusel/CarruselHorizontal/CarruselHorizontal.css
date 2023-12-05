@@ -33,3 +33,10 @@ section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .
     flex-wrap: nowrap;
     margin: 0.5rem;
 }
+
+section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card .card-carrusel--horizontal {
+    object-fit: contain;
+    margin: 1rem;
+    border: 0.1rem solid var(--color-blanco);
+
+}

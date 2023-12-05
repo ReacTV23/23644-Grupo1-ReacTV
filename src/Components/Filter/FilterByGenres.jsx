@@ -92,7 +92,7 @@ const FilterByGenres = () => {
       </div>
 
       {/* Sección que muestra los géneros seleccionados */}
-      <label>Géneros Seleccionados:</label>
+      <label style={{marginTop: "2rem" , fontSize:'1.5rem'}}>Géneros Seleccionados:</label>
       <div style={{ marginTop: "2rem" }}>
         {selectedGenres.map((selectedGenre, index) => (
           <div key={selectedGenre.id} style={{ maxWidth: "100vw" }}>
@@ -104,7 +104,7 @@ const FilterByGenres = () => {
           </div>
         ))}
         {/* Mensaje si no hay géneros seleccionados */}
-        {selectedGenres.length === 0 && <p>Ninguno seleccionado</p>}
+        {selectedGenres.length === 0 && <p style={{fontSize:'1.5rem'}}>Ninguno seleccionado</p>}
       </div>
     </div>
   );

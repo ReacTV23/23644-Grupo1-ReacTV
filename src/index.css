@@ -13,5 +13,9 @@
     font-size: 10px;
 }
 
+html {
+    background-color: var(--color-negro);
+}
+
 
 

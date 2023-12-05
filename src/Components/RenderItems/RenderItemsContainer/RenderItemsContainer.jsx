@@ -113,7 +113,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
             {loading ? (
                 <Loader />
             ) : (
-                <>
+                <div style={{width:'100%', display: 'flex', flexDirection: 'column'}}>
                     {movies.length > 0 && (
                         <RenderItems
                             items={currentMovies}
@@ -136,7 +136,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                             ITEMS_PER_PAGE={ITEMS_PER_PAGE}
                             paginate={paginate}/>
                     )}
-                </>
+                </div>
             )}
         </>
     );

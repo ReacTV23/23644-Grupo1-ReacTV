@@ -42,14 +42,13 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
 
 
   const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-    console.log('next')
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(peliculas.length / moviesPerPage) - 1));
   };
   
   const prevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-    console.log('prev')
-  };  
+  };
+  
 
   return (
     <section>
@@ -57,15 +56,21 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
         <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>
           <div className="contenedor-principal">
-            <Boton Contenido={ChevronLeftIcon} funcion={prevPage} colorHover={`${colors.azul}`}/>
+            <Boton Contenido={ChevronLeftIcon} 
+                    funcion={prevPage} 
+                    colorHover={`${colors.naranja}`}/>
             <div className="container-carrusel">
               <div className="container-card" id="container-card">
                 {peliculasPagina.map((peli, i) => (
-                  <CardImg key={i} peli={peli} funcion={selectMovie}/>                
+                  <div key={i} className='card-carrusel--horizontal'>
+                    <CardImg peli={peli} funcion={selectMovie} width={300} height={500}/>
+                  </div>                
                 ))}
               </div>
             </div>
-            <Boton Contenido={ChevronRightIcon} funcion={nextPage} colorHover={`${colors.azul}`}/>
+            <Boton Contenido={ChevronRightIcon} 
+                    funcion={nextPage} 
+                    colorHover={`${colors.naranja}`}/>
           </div>
         </div>      
         ) : (
