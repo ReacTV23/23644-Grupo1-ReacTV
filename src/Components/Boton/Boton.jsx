@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
-const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, height, backgroundColor, backgroundHover }) => {
+const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, height, backgroundColor, backgroundHover,disabled }) => {
   if(Contenido) {
     const Icono = Contenido;
     return (
@@ -15,6 +15,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
           color: {color},
           borderRadius: {xs:'3rem', sm:`calc(${fontSize} + 1rem)`, md:`calc(${fontSize} + 1rem)`},
           backgroundColor: backgroundColor,
+          disabled: disabled,
           ':hover': {color: colorHover}
           }}/>
       </IconButton>
@@ -34,6 +35,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       textTransform: 'uppercase',
       backgroundColor: backgroundColor,
       fontWeight: 'Normal',
+      disabled: disabled,
       ':hover': {backgroundColor: backgroundHover, color: colorHover},
     }} 
     variant="contained"

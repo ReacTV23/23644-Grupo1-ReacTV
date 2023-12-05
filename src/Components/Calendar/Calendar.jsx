@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import EventIcon from '@mui/icons-material/Event';
+//import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
 import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
 import { getUpcomingMovies } from '../../services/tmdbService.js';
@@ -18,6 +18,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
+  const [clickEnTitulo, setClickEnTitulo] = useState(false)
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -39,6 +40,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const handleMovieClick = (movieId) => {
     console.log('Clicked on movie with ID:', movieId);
     setSelectedMovieId(movieId);
+    setClickEnTitulo(true); //estado del click de la movie
   };
 
   const handleClick = (peli) => {
@@ -135,8 +137,8 @@ const WritableCalendar = ({ onInfoChange }) => {
     <div className="contenedorPrincipal_calendario">
       <div className="subcontenedorPrincipal_calendario" ref={calendarContainerRef}>
         <h5 className="titulo_calendario mb-2">Calendario de estrenos</h5>
-        <div className="contenedor_calendario">
-          <div className="subcontenedor_calendario" id="calendar-container">
+        <div className={`contenedor_calendario ${clickEnTitulo ? 'ancho-reducido': ''}`}>
+          <div className='subcontenedor_calendario' id="calendar-container">
             <Calendar
               onChange={handleDateChange}
               value={date}
@@ -152,8 +154,19 @@ const WritableCalendar = ({ onInfoChange }) => {
         </div>
       </div>
       <div className="mt-3">
-        <Boton Contenido={DownloadForOfflineIcon} color={`${colors.azul}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={downloadCalendar} />
-        <Boton Contenido={EventIcon} color={`${colors.azul}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} />
+        <Boton 
+          Contenido={DownloadForOfflineIcon} 
+          color={`${colors.azul}`} 
+          colorHover={`${colors.naranja}`} 
+          backgroundColor={`${colors.blanco}`}
+          fontSize={'6rem'} 
+          funcion={downloadCalendar} />
+        {/* <Boton 
+          Contenido={EventAvailableRoundedIcon} 
+          color={`${colors.azul}`} 
+          colorHover={`${colors.naranja}`} 
+          backgroundColor={`${colors.blanco}`}
+          fontSize={'6rem'} /> */}
       </div>
     </div>
   );

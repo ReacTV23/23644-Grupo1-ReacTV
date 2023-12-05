@@ -16,9 +16,16 @@ const About = () => {
     const queryDb = getFirestore();
     const queryCollection = collection(queryDb, 'Integrantes');
     setIsLoading(true);
+
     getDocs (queryCollection)
-      .then(res => setDatos(res.docs.map(user => ({id:user.id, ...user.data()}))))
-      setIsLoading(false);
+      .then((res) => {
+        setDatos(res.docs.map((user) => ({id:user.id, ...user.data()})))
+        setIsLoading(false);
+      })
+      .catch ((error) => {
+        console.error('Error fetching data:', error);
+        setIsLoading(false);
+      });
   }, [])
 
   return (
