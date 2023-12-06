@@ -10,9 +10,13 @@ import "./CardDetalle.css";
 import { db } from "../../../firebase/Firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from '../../../context/authContext';
+import colors from '../../../config/config.js'
 
 const CardDetalle = ({ movie, trailer }) => {
     const info = movie;
+
+    console.log(info)
+    console.log(info.genres[0].name)
 
     //const isMovie = window.location.pathname.includes("/movie/");
 
@@ -127,9 +131,22 @@ const CardDetalle = ({ movie, trailer }) => {
         if (lenguaje === "en") lenguajeOriginal = "Inglés";
         if (lenguaje === "es") lenguajeOriginal = "Español";
         return (
-            <p className="idioma original">Idioma Original: {lenguajeOriginal}</p>
+            <p className="idioma original">IDIOMA ORIGINAL: {lenguajeOriginal}</p>
         );
     };
+
+    const GenerosListado = ({ generos }) => {
+        return (
+            <>
+                <h5 className='titulo-generos'>generos:</h5>
+                <ul className='listado-generos'>
+                    {generos.map((genero) => (
+                    <li className='generos' key={genero.id}>{genero.name}</li>
+                    ))}
+                </ul>
+            </>
+        )
+    }
 
     const Anio = () => {
         const fechaCompleta = info && (info.first_air_date || info.release_date);
@@ -138,7 +155,7 @@ const CardDetalle = ({ movie, trailer }) => {
         }
         const partesFecha = fechaCompleta.split("-");
         const soloAnio = partesFecha[0];
-        return <p className="year">Año:{soloAnio}</p>;
+        return <p className="year">AÑO:{soloAnio}</p>;
     };
 
     //componente Card
@@ -146,48 +163,60 @@ const CardDetalle = ({ movie, trailer }) => {
         return (
         <article className="card-movie" ref={cardRef}>
             <div className="img-container">
-                <img
+                {/* <img
                     className="img-pelicula"
                     src={`https://reactvserver--reactvstream.repl.co/imagen-proxy?imageUrl=${IMAGE_PATH}${info.poster_path}`}
                     alt={info.id}
+                /> */}
+                <img
+                    className="img-pelicula"
+                    src={`https://reactvserver--reactvstream.repl.co/imagen-proxy?imageUrl=${IMAGE_PATH}${info.backdrop_path}`}
+                    alt={info.id}
                 />
-            </div>
-            <div className="info-container">
-                <div className="btn-container">
-                    <Boton 
-                        Contenido={PlaylistAddCircleIcon} 
-                        fontSize={"5rem"} 
-                        funcion={handleList} />
-                    <Boton 
-                        Contenido={PlayCircleIcon} 
-                        fontSize={"5rem"}
-                        funcion={playTrailer}
-                        disabled={trailer === null}/>  
-                        {/* Deshabilita el botón si trailer es null */}
-                    <Boton
-                        Contenido={DownloadForOfflineIcon}
-                        fontSize={"5rem"}
-                        funcion={downloadAsImage}/>
-                </div>
-                <div className="datos-container">
-                    <h5 className="titulo">{info.name}</h5>
-                    <div className="info-movie">
-                        <ChangeLanguage lenguaje={info.original_language} />
-                        <p className="duracion">{info.duracion}</p>
-                        <p className="genero">{info.genre}</p>
-                        <Anio />
-                        {info.number_of_seasons ? (
-                            <p className="temporadas">
-                                {info.number_of_seasons} Temporadas{" "}
-                                {info.number_of_episodes ? (
-                                <span className="capitulos">
-                                    {info.number_of_episodes} capítulos
-                                </span>
-                            ) : null}
-                            </p>
-                        ) : null}
+                <div className="info-container">
+                    <div className="btn-container">
+                        <Boton 
+                            Contenido={PlaylistAddCircleIcon} 
+                            fontSize={"4rem"} 
+                            funcion={handleList}
+                            colorHover={`${colors.azul}`} />
+                        <Boton 
+                            Contenido={PlayCircleIcon} 
+                            fontSize={"4rem"}
+                            funcion={playTrailer}
+                            colorHover={`${colors.azul}`}
+                            disabled={trailer === null}/>  
+                            {/* Deshabilita el botón si trailer es null */}
+                        <Boton
+                            Contenido={DownloadForOfflineIcon}
+                            fontSize={"4rem"}
+                            colorHover={`${colors.azul}`}
+                            funcion={downloadAsImage}/>
                     </div>
-                    <div className="descripcion">{info.overview}</div>
+                    <div className="datos-container">
+                        <h5 className="titulo">{info.original_title}</h5>
+                        <div className='datos'>
+                            <div className="info-movie">
+                                <ChangeLanguage lenguaje={info.original_language} />
+                                <p className="duracion">{info.duracion}</p>
+                                <GenerosListado generos={info.genres}/>
+                                {/* <p className="genero">{info.genres}</p> */}
+                                <Anio />
+                                {info.number_of_seasons ? (
+                                    <p className="temporadas">
+                                        {info.number_of_seasons} Temporadas{" "}
+                                        {info.number_of_episodes ? (
+                                        <span className="capitulos">
+                                            {info.number_of_episodes} capítulos
+                                        </span>
+                                    ) : null}
+                                    </p>
+                                ) : null}
+                            </div>
+                            <div className="descripcion">{info.overview}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>

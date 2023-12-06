@@ -17,7 +17,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
           borderRadius: {xs:'3rem', sm:`calc(${fontSize} + 1rem)`, md:`calc(${fontSize} + 1rem)`},
           backgroundColor: backgroundColor,
           disabled: disabled,
-          ':hover': {color: colorHover}
+          ':hover': {color: colorHover, backgroundHover: backgroundHover}
           }}/>
       </IconButton>
       )}

@@ -1,44 +1,54 @@
 .card-movie {
   display: flex;
-  width: 100%;
+  width: 95%;
   margin: 1rem;
-  padding: 1rem;
+  margin-top: 1.5rem;
+  padding: 2rem;
   border: 0.4rem solid var(--color-naranja);
-  border-radius: 2vh;
+  border-radius: 2rem;
   background-color: var(--color-azul);
+  align-items: center;
+  min-height: calc(100vh - 18rem);
+  position: relative;
 }
 
 .img-container {
-  width: 50%;
+  width: 100%; 
+  min-height: calc(100vh - 18rem);
+  position: relative;
+  border-radius: 2rem;
 }
 
 .img-pelicula {
   width: 100%;
-  padding: 0.1vh;
-  object-fit: cover;
-  border-radius: 1rem;
+  min-height: calc(100vh - 18rem);
+  object-fit: contain;
+  border-radius: 2rem;
+  filter: brightness(0.9); /* Ajusta el valor según sea necesario */
 }
 
 .info-container {
-  width: 50%;
+  width: 70%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .btn-container {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
-.titulo {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: bold;
-}
-
 .datos-container {
+  width: 50%;
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -47,11 +57,51 @@
   padding: 1rem;
 }
 
-.info-movie {
-  display: flex;
-  flex-direction: column;
+.titulo {
+  width: 100%;
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: bold;
 }
 
+.datos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.info-movie {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+}
+
+
 .info-movie p, .info-movie p span, .descripcion {
-  font-size: 1.7rem;
+  font-size: 2rem;
+}
+
+.titulo-generos {
+  font-size: 2.3rem;
+  text-transform: uppercase
+}
+
+.listado-generos {
+  list-style: none;
+  display: flex;
+}
+
+.generos {
+  color: var(--color-blanco);
+  font-size: 2rem;
+  padding: 0.5rem;
+}
+
+.descripcion {
+  width: 100%;
+  padding: 1rem;
 }
