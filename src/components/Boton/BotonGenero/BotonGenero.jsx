@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './BotonGenero.css';
 
-const BotonForm = ({texto, onClick}) => {
+const BotonGenero = ({texto, onClick}) => {
     const [isSelected, setIsSelected] = useState(false)
 
     const handleButtonClick = () => {
@@ -14,4 +14,4 @@ const BotonForm = ({texto, onClick}) => {
     )
 }
 
-export default BotonForm
+export default BotonGenero
