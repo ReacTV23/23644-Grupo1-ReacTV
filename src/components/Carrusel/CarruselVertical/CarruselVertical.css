@@ -1,0 +1,71 @@
+section {
+  width: 100%;
+  padding: 1rem;
+}
+
+section .contenedor-principal-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin: 2rem 0;
+  position: relative;
+  background: var(--color-naranja)
+}
+
+section .contenedor-principal-vertical .flecha-arriba,
+section .contenedor-principal-vertical .flecha-abajo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--color-azul);
+  font-size: 1.2rem;
+  height: 4rem;
+  width: 3rem;
+  color: var(--color-negro);
+  z-index: 400;
+  transition: 0.2s;
+}
+
+section .contenedor-principal-vertical .flecha-arriba {
+  transform: rotate(270deg); /* Rotar la flecha hacia arriba */
+}
+
+section .contenedor-principal-vertical .flecha-abajo {
+  transform: rotate(-270deg); /* Rotar la flecha hacia abajo */
+}
+
+section .contenedor-principal-vertical .flecha-arriba:hover,
+section .contenedor-principal-vertical .flecha-abajo:hover {
+  cursor: pointer;
+  background: var(--color-blanco)
+}
+
+section .contenedor-principal-vertical .container-carrusel-vertical {
+  width: 100%;
+  height: 190vh;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  padding: 1rem
+}
+
+section .contenedor-principal-vertical .container-carrusel-vertical .container-video {
+  display: flex;
+  flex-direction: column; /* Cambiado para apilar las tarjetas verticalmente */
+  width: 300%;
+  justify-content: space-around;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+section .contenedor-principal-vertical .container-carrusel-vertical .container-video video {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; Ajusta el tamaño del video mientras mantiene su proporción */
+}
+
+section .contenedor-principal-vertical .container-carrusel-vertical .container-video video::-webkit-media-controls {
+  display: none; /* Oculta los controles del reproductor de video */
+}

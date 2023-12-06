@@ -1,0 +1,85 @@
+.contact{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem 0;
+    min-width: 40rem;
+}
+
+.contact form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact form .cont-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    width: 70%;
+    font-size: 1.5rem;
+}
+
+.contact form .cont-input label{
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.contact form .cont-input input, .contact form .cont-input textarea{
+    padding: 1.2rem 0;
+    border-radius: 2rem;
+    padding-left: 0.7rem;
+    border: 0.1rem solid var(--color-gris-claro);
+    outline: none;
+}
+
+.contact form .cont-input input::placeholder, .contact form .cont-input textarea::placeholder{
+    padding-left:0.7rem ;
+}
+
+.contact form .cont-input textarea{
+    height: 25vh;
+    resize: none;
+}
+
+.contact form .cont-btn {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.contact  .formSubmit{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    min-height: 60vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.contact  .formSubmit p, main .contact .contact-form .formSubmit h3{
+    text-align: center;
+    color: var(--color-negro);
+}
+
+.contact  .formSubmit p{
+    text-align: center;
+    margin: 2rem 0 3rem 0;
+}
+
+.contact .formSubmit div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact  .formSubmit .btn-formSubmit{
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,0 +1,17 @@
+.container-h4 {
+    text-align: center;
+}
+
+.container-h4 h4 {
+    margin: 1rem;
+    color: var(--color-blanco);
+    font-weight: normal;
+    font-size: 2rem;
+    font-family: 'Roboto';
+    background: var(--color-azul);
+    border-radius: 3rem;
+    margin-bottom: 2rem,;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    display: inline-block;
+}

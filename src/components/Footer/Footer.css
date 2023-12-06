@@ -1,0 +1,123 @@
+footer {
+  width: 100%;
+  height: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-azul)
+}
+
+.left,
+.right {
+  margin: 0 10px;
+  color: white
+}
+
+.center {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+}
+
+.center .link-footer {
+  text-decoration: none;
+  color: var(--color-blanco);
+  font-size: 1.6rem; 
+}
+.center .p-footer {
+  font-size: 1.3rem 
+}
+.center .p-footer:hover {
+  color: var(--color-naranja)
+}
+
+/* Estilos para el ícono de Figma */
+.right a {
+  color: var(--color-naranja); /* Color amarillo-naranja */
+  width: 6rem;
+  height: 6rem;
+}
+.Icono {
+  color: var(--color-blanco);
+  object-fit: cover;
+  height: 6rem;
+  font-size: 3.5rem;
+}
+
+.Icono:hover {
+  color: var(--color-naranja)
+}
+
+/* Estilos para pantallas más grandes (mayores a 360px) */
+/* footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.left,
+.right {
+  margin: 0 10px;
+}
+
+.center {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.left a {
+  color: #2F67BB;
+  font-size: 24px;
+}
+
+button {
+  background-color: #E08400;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.right a {
+  color: #E0A24A;
+  font-size: 24px;
+} */
+
+/* Media query para pantallas más pequeñas (hasta 360px) */
+@media (max-width: 360px) {
+  footer {
+    flex-direction: column; /* Cambia la dirección de la flexbox a columna */
+    align-items: stretch; /* Estira los elementos para llenar el ancho */
+  }
+
+  .left,
+  .right {
+    margin: 10px 0; /* Añade espacio entre los elementos */
+  }
+
+  .left a,
+  .right a {
+    font-size: 18px; /* Reduce el tamaño de fuente para iconos en pantallas pequeñas */
+  }
+
+  button {
+    width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+    margin-top: 10px; /* Añade espacio entre el botón y el texto */
+  }
+
+  p {
+    font-size: 12px; /* Reduce el tamaño de fuente para el texto */
+  }
+}

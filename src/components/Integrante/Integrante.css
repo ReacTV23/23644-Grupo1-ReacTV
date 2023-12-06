@@ -1,0 +1,64 @@
+.Contenedor {
+    height: 5rem;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-negro);
+}
+
+.Contenedor:hover{
+    color: var(--color-blanco);
+    background-color: var(--color-azul);
+}
+
+.Nombre {
+    display: flex;
+    padding-left: 1rem;
+    text-align: start;
+    font-size: 1.5rem;
+}
+
+.GrupoBotones{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Contenedor:hover .IconoBoton .Icono {
+    color: var(--color-blanco);
+    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos para pantallas con ancho menor o igual a 360px */
+@media (max-width: 360px) {
+    .Contenedor {
+        width: 100%;
+    }
+    .Nombre {
+        width: 60%
+    }
+    .GrupoBotones{
+        width: 40%;
+
+    }
+}
+
+/* Estilos para pantallas con ancho mayor a 360px y menor o igual a 768px */
+@media (min-width: 361px) and (max-width: 768px) {
+    .Contenedor {
+        width: 100%;
+    }
+    .Nombre {
+        width: 60%;
+    }
+    .GrupoBotones{
+        width: 40%;
+    }
+}
+
+/* Estilos para pantallas con ancho mayor a 768px */
+/* @media (min-width: 769px) {
+    .Contenedor {
+        width: 768px;
+    }
+} */

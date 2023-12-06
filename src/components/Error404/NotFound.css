@@ -1,0 +1,16 @@
+
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: var(--color-negro);
+  width: 100vw;
+  height: 100vh;
+}
+.error404 {
+  width: 80vw;
+  height: 90vh;
+}
+

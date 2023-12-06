@@ -1,0 +1,22 @@
+.BotonGenero{
+    padding: 1rem 0;
+    width: 20rem;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: var(--color-gris-claro)
+}
+
+.BotonGenero:hover{
+    color: var(--color-gris-oscuro);
+    background: var(--color-blanco);
+    border: 0.2rem solid var(--color-naranja);
+}
+
+.BotonGenero.clicked {
+    color: var(--color-blanco);
+    background-color: var(--color-azul);
+    border: 0.2rem solid var(--color-naranja);
+}

@@ -1,0 +1,66 @@
+.banner {
+  font-size: 1.5rem;
+  padding: 2rem;
+}
+
+.viewtrailer {
+  min-height: 100vh; /*100% de la altura de la ventana*/
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+.boton-banner {
+  background-color: var(--color-naranja); 
+  font-size: 1.5rem;
+  color: white; 
+  outline: none;
+  border: 0.1rem solid white; 
+  padding: 1rem 1.5rem;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600; /* Cambié la fuente a Semibold */
+  position: relative;
+  z-index: 1;
+}
+
+.boton:hover{
+  color: var(--color-azul);
+  border: 0.1rem solid var(--color-azul);
+}
+
+.titulo-banner {
+  font-size: 2.5rem;
+  color: var(--color-blanco);
+  padding: 2rem 0;
+}
+
+.descripcion-banner {
+  font-size: 1.8rem;
+  color: var(--color-blanco);
+}
+  
+.black-background {
+  background-color: var(--color-negro);
+}
+
+.youtube-container {
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: var(--color-negro);
+}
+
+.youtube-container .reproductor {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 1rem;
+}
