@@ -1,4 +1,5 @@
 .LayoutMain {
+    min-height: calc(100vh - 18rem);
     display: flex;
     flex-direction: column;
     align-items: center;

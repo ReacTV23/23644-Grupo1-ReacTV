@@ -17,7 +17,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
           borderRadius: {xs:'3rem', sm:`calc(${fontSize} + 1rem)`, md:`calc(${fontSize} + 1rem)`},
           backgroundColor: backgroundColor,
           disabled: disabled,
-          ':hover': {color: colorHover}
+          ':hover': {color: colorHover, backgroundHover: backgroundHover}
           }}/>
       </IconButton>
       )}
@@ -28,8 +28,8 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       width: { xs:width, sm:'36rem', md: width},
       color: color,
       height: '5rem',
-      margin: '1rem 0',
-      paddiing: '1rem',
+      margin: '1rem',
+      paddiing: '1rem', 
       borderRadius: '3rem',
       fontFamily: 'Roboto',
       fontSize: '2.2rem',
