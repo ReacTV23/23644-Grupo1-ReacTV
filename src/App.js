@@ -47,7 +47,7 @@ function App() {
     return (
         <>
             <CssBaseline />
-            {showVideo ? (
+            {AuthProvider.isAuth === false && showVideo ? (
                 <IntroVideo onVideoEnd={handleVideoEnd} />
             ) : (
                 <AuthProvider>
