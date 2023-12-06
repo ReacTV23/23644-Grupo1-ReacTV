@@ -4,8 +4,6 @@ import IntroVideo from "./components/IntroVideo/IntroVideo.jsx";
 import Home from "./pages/Home/Home";
 import { AuthProvider } from "./context/authContext";
 import { MediaTypeProvider } from "./context/mediaTypeProvider.js";
-//import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-//este import tiene agregado el Navigate de la ruta de error 404
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRuote/ProtectedRoute";
 import LoginRegistro from "./pages/LoginRegistro/LoginRegistro.jsx";
@@ -75,7 +73,7 @@ function App() {
                                 <Route path="/lanzamientos" element={<Lanzamientos />} />
                                 <Route path="/about" element={<About />} />
                                 <Route path="/search" element={<Search />} />
-                                <Route path="/card/*" element={<CardSinopsis />} />
+                                {/* <Route path="/card/*" element={<CardSinopsis />} /> */}
                                 <Route path="/card/tv/:id" element={<CardSinopsis />} />
                                 <Route path="/card/movie/:id" element={<CardSinopsis />} />
                                 <Route path="milista" element={<MiLista />} /> 
@@ -83,7 +81,6 @@ function App() {
                                 <Route path="/*" element={<Navigate to="/Error404" /> } /> 
                             {/*         
                                 */}
-
                             </Routes>
                         </Router>
                     </MediaTypeProvider>

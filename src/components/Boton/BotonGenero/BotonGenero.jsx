@@ -1,17 +1,26 @@
-import React, {useState} from 'react';
-import './BotonGenero.css';
+import React, { useState, useEffect } from "react";
+import "./BotonGenero.css";
 
-const BotonForm = ({texto, onClick}) => {
-    const [isSelected, setIsSelected] = useState(false)
+const BotonGenero = ({ texto, onClick, isSelected }) => {
+    const [localSelected, setLocalSelected] = useState(isSelected);
+
+    useEffect(() => {
+        setLocalSelected(isSelected);
+    }, [isSelected]);
 
     const handleButtonClick = () => {
-        setIsSelected(!isSelected); // Cambia el estado al hacer clic
-        onClick(); // Llama a la función onClick proporcionada desde el componente padre
+        setLocalSelected(!localSelected);
+        onClick();
     };
 
     return (
-        <button type='submit' className={`BotonGenero ${isSelected ? 'clicked' : ''}`} onClick={handleButtonClick}>{texto}</button>
-    )
-}
+        <button
+            type="submit"
+            className={`BotonGenero ${localSelected ? "clicked" : ""}`}
+            onClick={handleButtonClick}>
+            {texto}
+        </button>
+    );
+};
 
-export default BotonForm
+export default BotonGenero;
