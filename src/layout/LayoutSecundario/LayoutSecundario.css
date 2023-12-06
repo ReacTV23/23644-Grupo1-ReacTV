@@ -1,4 +1,5 @@
 .LayoutSecundario{
+    min-height: calc(100vh - 8rem);
     width: 100%;
     display: flex;
     flex-direction: column;
