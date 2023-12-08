@@ -63,7 +63,7 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
                     </button> 
                 </div>
             ) : (
-                "Lo sentimos, el trailer no está disponible"
+                <p className='sinTrailer'>Lo sentimos, el trailer no está disponible</p>
             )}
             <h1 className="titulo-banner">{movie.title}</h1>
             <p className="descripcion-banner">{movie.overview}</p>
@@ -138,22 +138,16 @@ function Banner() {
             showCardContainer ? (
                 <CardContainer movies={movies} selectMovie={selectMovie} actualPage={actualPage} />
             ) : (
-                <div>
-                    <div style={{ margin: "1rem" }}>
-                        <main>
-                            <div
-                                className="viewtrailer"
-                                style={{
-                                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`}}>
-                                {playing ? (
-                                <TrailerPlayer trailer={trailer} closeBanner={closeBanner} />
-                                ) : (
-                                <BannerContent movie={movie} trailer={trailer} setPlaying={setPlaying} closeBanner={closeBanner} />
-                                )}
-                            </div>
-                        </main>
-                    </div>
-                </div>
+                <main
+                    className="viewtrailer"
+                    style={{
+                    backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`}}>
+                    {playing ? (
+                    <TrailerPlayer trailer={trailer} closeBanner={closeBanner} />
+                    ) : (
+                    <BannerContent movie={movie} trailer={trailer} setPlaying={setPlaying} closeBanner={closeBanner} />
+                    )}
+                </main>
             )}
         </>
     );
