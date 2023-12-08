@@ -63,10 +63,13 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
 
     const handleDelete = async (id, type, setDataFunction) => {
         try {
-        const path = type === 'movies' ? pathMovies : pathSeries;
+        const path = type === 'peliculas' ? pathMovies : pathSeries;
 
         const querySnapshot = await getDocs(collection(db, path));
         const docToDelete = querySnapshot.docs.find((doc) => doc.data().id === id);
+        console.log(id)
+        console.log(path)
+        
 
         if (docToDelete) {
             await deleteDoc(docToDelete.ref);
@@ -129,6 +132,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                     {series.length > 0 && (
                         <RenderItems
                             items={currentSeries}
+                            itemsPaginado={series} //este era el error de borrado
                             type='series'
                             setItemsFunction={setSeries}
                             handleDelete={confirmDelete}
