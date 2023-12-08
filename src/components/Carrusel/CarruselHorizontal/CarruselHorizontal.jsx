@@ -51,7 +51,7 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
   
 
   return (
-    <section>
+    <section className='carruselHorizontal-section'>
       {peliculas ? (
         <div className='contenedor-carrusel-titulo'>
           <Titulo texto={texto}/>

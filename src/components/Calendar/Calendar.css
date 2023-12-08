@@ -3,7 +3,8 @@
   display:flex;
   flex-direction: column; 
   align-items: center; 
-  justify-content: center
+  justify-content: center;
+  padding: 2rem;
 }
 
 .subcontenedorPrincipal_calendario {
@@ -12,7 +13,6 @@
   flex-direction: column;
   align-items: center; 
   justify-content: center;
-  margin: 1rem; 
   padding: 1rem;
   background-color: var(--color-blanco);
 }
@@ -28,7 +28,8 @@
   width: 100%;
   display: flex;
   background-color: var(--color-azul);
-  transition: width 0.5s ease;}
+  transition: width 0.5s ease;
+}
 
 .contenedor_calendario .subcontenedor_calendario {
   width: 100%;

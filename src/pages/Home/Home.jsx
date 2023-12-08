@@ -4,8 +4,6 @@ import {HomeDeskoptComponents} from './HomeDeskopt/HomeDeskopt';
 import HomeMobile  from './HomeMobile/HomeMobile';
 import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
 
-import './Home.css';
-
 const Home = ({anchoVentana}) => {
   const { isAuth } = useAuth();  // Obtiene el estado de autenticación del contexto
 

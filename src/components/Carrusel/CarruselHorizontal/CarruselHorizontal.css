@@ -1,4 +1,8 @@
-section .contenedor-carrusel-titulo {
+.carruselHorizontal-section {
+    min-height: calc(100vh - 8rem);
+}
+
+.carruselHorizontal-section .contenedor-carrusel-titulo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +13,7 @@ section .contenedor-carrusel-titulo {
     background: var(--color-negro);
 }
 
-section .contenedor-carrusel-titulo .contenedor-principal {
+.carruselHorizontal-section .contenedor-carrusel-titulo .contenedor-principal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +21,7 @@ section .contenedor-carrusel-titulo .contenedor-principal {
     padding: 1rem 0;
 }
 
-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
+.carruselHorizontal-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,7 +30,7 @@ section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel {
     scroll-behavior: smooth;
 }
 
-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card {
+.carruselHorizontal-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -34,9 +38,7 @@ section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .
     margin: 0.5rem;
 }
 
-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card .card-carrusel--horizontal {
+.carruselHorizontal-section .contenedor-carrusel-titulo  .contenedor-principal .container-carrusel .container-card .card-carrusel--horizontal {
     object-fit: contain;
     margin: 1rem;
-    border: 0.1rem solid var(--color-blanco);
-
 }
