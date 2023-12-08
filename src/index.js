@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { SearchProvider } from './context/searchContext'; 
+import { SearchProvider } from './Context/searchContext'; 
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import html2canvas from 'html2canvas';

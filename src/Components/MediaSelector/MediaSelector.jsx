@@ -1,5 +1,5 @@
 import React from "react";
-import { useMediaType } from "../../context/mediaTypeProvider";
+import { useMediaType } from "../../Context/mediaTypeProvider";
 import Titulo from '../Titulo/Titulo'
 import Checkbox from '../Checkbox/Checkbox'
 import './MediaSelector.css'

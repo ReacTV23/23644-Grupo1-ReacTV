@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import LayoutForm from '../../layout/LayoutForm/LayoutForm'
 import Titulo from '../../components/Titulo/Titulo'
 import Integrante from  '../../components/Integrante/Integrante';
-import Contact from '../../components/Contact/Contact'
+import Contact from '../../components/contact/Contact'
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
 import Loader from "../../components/Loader/Loader";
 import './About.css'

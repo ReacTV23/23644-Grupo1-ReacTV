@@ -5,8 +5,8 @@ import Boton from '../Boton/Boton'
 import Busqueda from '../Busqueda/Busqueda'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
-import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
-import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
+import { useAuth } from '../../Context/authContext.js';  // Importa el hook useAuth
+import { useSearch } from '../../Context/searchContext.js';  // Importa el hook useSearch
 import colors from '../../config/config.js'
 
 const Navbar = ({onLoginButtonClick}) => {
