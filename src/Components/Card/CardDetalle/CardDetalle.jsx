@@ -7,9 +7,9 @@ import html2canvas from "html2canvas";
 import Swal from "sweetalert2";
 import { TrailerPlayer } from '../../Banner/Banner'
 import "./CardDetalle.css";
-import { db } from "../../../firebase/Firebase";
+import { db } from "../../../Firebase/Firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { useAuth } from '../../../context/authContext';
+import { useAuth } from '../../../Context/authContext';
 
 const CardDetalle = ({ movie, trailer }) => {
     const info = movie;

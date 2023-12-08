@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import IntroVideo from "./components/IntroVideo/IntroVideo.jsx";
 import Home from "./pages/Home/Home";
-import { AuthProvider } from "./context/authContext";
-import { MediaTypeProvider } from "./context/mediaTypeProvider.js";
+import { AuthProvider } from "./Context/authContext.js";
+import { MediaTypeProvider } from "./Context/mediaTypeProvider.js";
 //import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //este import tiene agregado el Navigate de la ruta de error 404
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
