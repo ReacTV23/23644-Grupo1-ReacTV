@@ -4,7 +4,7 @@
     margin: 0; 
     display:flex;
     justify-content:center;
-    cursor:pointer;
-    border: 0.1rem solid var(--color-blanco);  
+    cursor:pointer; 
+    border: 0.1rem solid var(--color-blanco);
     border-radius: 1rem;
 }

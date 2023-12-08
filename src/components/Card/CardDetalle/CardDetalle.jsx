@@ -137,14 +137,12 @@ const CardDetalle = ({ movie, trailer }) => {
 
     const GenerosListado = ({ generos }) => {
         return (
-            <>
-                <h5 className='titulo-generos'>generos:</h5>
-                <ul className='listado-generos'>
-                    {generos.map((genero) => (
-                    <li className='generos' key={genero.id}>{genero.name}</li>
-                    ))}
-                </ul>
-            </>
+            <ul className='listado-generos'>
+            <h5 className='titulo-generos'>generos:</h5>
+                {generos.map((genero) => (
+                <li className='generos' key={genero.id}>{genero.name}</li>
+                ))}
+            </ul>
         )
     }
 
@@ -155,7 +153,7 @@ const CardDetalle = ({ movie, trailer }) => {
         }
         const partesFecha = fechaCompleta.split("-");
         const soloAnio = partesFecha[0];
-        return <p className="year">AÑO:{soloAnio}</p>;
+        return <p className="year">AÑO: {soloAnio}</p>;
     };
 
     //componente Card
@@ -179,18 +177,18 @@ const CardDetalle = ({ movie, trailer }) => {
                             Contenido={PlaylistAddCircleIcon} 
                             fontSize={"4rem"} 
                             funcion={handleList}
-                            colorHover={`${colors.azul}`} />
+                            colorHover={`${colors.naranja}`} />
                         <Boton 
                             Contenido={PlayCircleIcon} 
                             fontSize={"4rem"}
                             funcion={playTrailer}
-                            colorHover={`${colors.azul}`}
+                            colorHover={`${colors.naranja}`}
                             disabled={trailer === null}/>  
                             {/* Deshabilita el botón si trailer es null */}
                         <Boton
                             Contenido={DownloadForOfflineIcon}
                             fontSize={"4rem"}
-                            colorHover={`${colors.azul}`}
+                            colorHover={`${colors.naranja}`}
                             funcion={downloadAsImage}/>
                     </div>
                     <div className="datos-container">
@@ -198,22 +196,23 @@ const CardDetalle = ({ movie, trailer }) => {
                         <div className='datos'>
                             <div className="info-movie">
                                 <ChangeLanguage lenguaje={info.original_language} />
-                                <p className="duracion">{info.duracion}</p>
+                                {/* <p className="duracion">{info.duracion}</p> */}
                                 <GenerosListado generos={info.genres}/>
-                                {/* <p className="genero">{info.genres}</p> */}
                                 <Anio />
                                 {info.number_of_seasons ? (
                                     <p className="temporadas">
-                                        {info.number_of_seasons} Temporadas{" "}
+                                        {info.number_of_seasons} Temporadas: {" "}
                                         {info.number_of_episodes ? (
                                         <span className="capitulos">
-                                            {info.number_of_episodes} capítulos
+                                            {info.number_of_episodes} capítulos: 
                                         </span>
                                     ) : null}
                                     </p>
                                 ) : null}
                             </div>
-                            <div className="descripcion">{info.overview}
+                            <div className="descripcion">
+                                <p className='descripcion-titulo'>Sinopsis:</p>
+                                {info.overview}
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ const CardImg = ({peli, height = 600, width = 400, funcion}) => {
                 alt=""
                 height={height}
                 width={width}
-                style={{objetFit: 'containt', borderRadius: '1rem'}}/>
+                style={{objetFit: 'containt', borderRadius:'1rem'}}/>
         </div>
     )
 }
