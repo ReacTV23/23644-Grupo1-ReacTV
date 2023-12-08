@@ -30,7 +30,7 @@ const CardSinopsis = () => {
       console.error(
         `Error buscando ${
           isMovie ? "la película" : "la serie de televisión"
-        } (CardSinopsis2)`,
+        } (CardSinopsis)`,
         error
       );
     }

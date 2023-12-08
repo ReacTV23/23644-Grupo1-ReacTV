@@ -28,7 +28,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize, width, h
       width: { xs:width, sm:'36rem', md: width},
       color: color,
       height: '5rem',
-      margin: '1rem',
+      margin: '2rem',
       paddiing: '1rem', 
       borderRadius: '3rem',
       fontFamily: 'Roboto',

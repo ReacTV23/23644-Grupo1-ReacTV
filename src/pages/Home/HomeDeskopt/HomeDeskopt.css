@@ -30,10 +30,6 @@
     align-items: center;
 }
 
-.GrupoBotonDeskopt-Logueado {
-    margin-bottom: 2rem;
-}
-
 /* Estilos para pantallas con ancho mayor a 768px */
 @media (min-width: 769px) {
     .GrupoBotonDeskopt-Logueado  {
