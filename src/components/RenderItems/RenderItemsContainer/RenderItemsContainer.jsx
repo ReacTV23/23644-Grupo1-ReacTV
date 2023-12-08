@@ -63,7 +63,8 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
 
     const handleDelete = async (id, type, setDataFunction) => {
         try {
-        const path = type === 'movies' ? pathMovies : pathSeries;
+        //console.log(type)
+        const path = type === 'peliculas' ? pathMovies : pathSeries;
 
         const querySnapshot = await getDocs(collection(db, path));
         const docToDelete = querySnapshot.docs.find((doc) => doc.data().id === id);
@@ -129,6 +130,7 @@ const RenderItemsContainer = ({ userEmail, pathMovies, pathSeries }) => {
                     {series.length > 0 && (
                         <RenderItems
                             items={currentSeries}
+                            itemsPaginado={series}
                             type='series'
                             setItemsFunction={setSeries}
                             handleDelete={confirmDelete}
