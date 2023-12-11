@@ -9,17 +9,6 @@ import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-// const CardContainer = ({ movies, selectMovie, actualPage }) => {
-//     return (
-//         <CarruselHorizontal
-//         texto={'peliculas mas populares'}
-//         peliculas={movies}
-//         selectMovie={selectMovie}
-//         actualPage={actualPage}
-//         />
-//     );
-// };
-
 export const TrailerPlayer = ({ trailer, closeBanner }) => {
     return (
         <div className="youtube-container">
@@ -45,33 +34,50 @@ export const TrailerPlayer = ({ trailer, closeBanner }) => {
 };
 
 const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
+
+    const [playButtonClicked, setPlayButtonClicked] = useState(false);
+
+    const handlePlayButtonClick = () => {
+        setPlaying(true);
+        setPlayButtonClicked(true);
+    };
+
     return (
         <div className="container-banner">
             <div className="banner">
-                {trailer ? (
-                <div className="botones-banner">
-                    <button
-                        className="boton-banner"
-                        onClick={() => setPlaying(true)}
-                        type="button">
-                        Play Trailer
-                    </button>
+            <div className="botones-banner">
+                    {trailer ? (
+                        <button
+                            className="boton-banner"
+                            onClick={handlePlayButtonClick}
+                            type="button">
+                            Play Trailer
+                        </button>
+                    ) : (
+                        <button
+                            className="boton-banner"
+                            onClick={() => setPlayButtonClicked(true)} // Simula el clic para mostrar el Alert
+                            type="button">
+                            Play Trailer
+                        </button>
+                    )}
                     <button
                         className="boton-banner"
                         onClick={() => closeBanner()}
                         type="button">
                         Volver al Listado
-                    </button> 
-                </div>
-            ) : (
-                <Alert  title={'Sin trailer'} 
-                        text={'Lo sentimos, el trailer no está disponible'}
-                        icon={'info'}
-                        confirmButtonText = {'Aceptar'}
-                        cancelButtonText={'Cancelar'}/>
+                    </button>
 
-                // <p className='sinTrailer'>Lo sentimos, el trailer no está disponible</p>
-            )}
+                    {playButtonClicked && !trailer && (
+                        <Alert
+                            title={'Sin trailer'}
+                            text={'Lo sentimos, el trailer no está disponible'}
+                            icon={'info'}
+                            confirmButtonText={'Aceptar'}
+                            cancelButtonText={'Cancelar'}
+                        />
+                    )}
+                </div>
             <h1 className="titulo-banner">{movie.title}</h1>
             <p className="descripcion-banner">{movie.overview}</p>
         </div>
