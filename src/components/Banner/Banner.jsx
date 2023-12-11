@@ -3,21 +3,22 @@ import { getMovieById, getPopularMovies, getTrailersById } from "../../services/
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
 import Boton from '../Boton/Boton';
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
+import Alert from '../Alert/Alert';
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
-const CardContainer = ({ movies, selectMovie, actualPage }) => {
-    return (
-        <CarruselHorizontal
-        texto={'peliculas mas populares'}
-        peliculas={movies}
-        selectMovie={selectMovie}
-        actualPage={actualPage}
-        />
-    );
-};
+// const CardContainer = ({ movies, selectMovie, actualPage }) => {
+//     return (
+//         <CarruselHorizontal
+//         texto={'peliculas mas populares'}
+//         peliculas={movies}
+//         selectMovie={selectMovie}
+//         actualPage={actualPage}
+//         />
+//     );
+// };
 
 export const TrailerPlayer = ({ trailer, closeBanner }) => {
     return (
@@ -63,7 +64,13 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
                     </button> 
                 </div>
             ) : (
-                <p className='sinTrailer'>Lo sentimos, el trailer no está disponible</p>
+                <Alert  title={'Sin trailer'} 
+                        text={'Lo sentimos, el trailer no está disponible'}
+                        icon={'info'}
+                        confirmButtonText = {'Aceptar'}
+                        cancelButtonText={'Cancelar'}/>
+
+                // <p className='sinTrailer'>Lo sentimos, el trailer no está disponible</p>
             )}
             <h1 className="titulo-banner">{movie.title}</h1>
             <p className="descripcion-banner">{movie.overview}</p>
@@ -75,7 +82,6 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
 function Banner() {
     const [showCardContainer, setShowCardContainer] = useState(true);
     const [selectedMovie, setSelectedMovie] = useState(null);
-
     const [movies, setMovies] = useState([]);
     const [trailer, setTrailer] = useState(null);
     const [actualPage, setActualPage] = useState(0);
@@ -136,8 +142,8 @@ function Banner() {
                 // Muestra el loader mientras las películas están cargando
                 <Loader />)  : 
             showCardContainer ? (
-                <CardContainer movies={movies} selectMovie={selectMovie} actualPage={actualPage} />
-            ) : (
+                <CarruselHorizontal texto={'peliculas mas populares'} peliculas={movies} selectMovie={selectMovie} actualPage={actualPage}/>
+                ) : (
                 <main
                     className="viewtrailer"
                     style={{
