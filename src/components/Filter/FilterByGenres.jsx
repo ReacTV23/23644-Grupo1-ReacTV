@@ -15,14 +15,13 @@ const FilterByGenres = () => {
   const [genres, setGenres] = useState([]);
   const { mediaType } = useMediaType();
   const [selectedGenres, setSelectedGenres] = useState([]);
-  // Objeto que asocia funciones de obtención de datos con tipos de medios específicos
+
   const fetchDataFunction = {
     movie: getMoviesByGenres,
     tv: getTVByGenres,
     all: getAllByGenres,
   };
 
-  // Efecto que se ejecuta al montar el componente o cuando cambia el tipo de medio
   useEffect(() => {
     const fetchGenres = async () => {
       try {
@@ -33,22 +32,19 @@ const FilterByGenres = () => {
       }
     };
 
-    // Llamada a la función para obtener los géneros
     fetchGenres();
 
-    // Reinicia la lista de géneros seleccionados
+    // Reinicia la lista de géneros seleccionados y el estado de selección en BotonGenero
     setSelectedGenres([]);
   }, [mediaType]);
 
-  // Maneja los clics en los botones de género
   const handleGenreClick = (genreId) => {
     const selectedGenre = genres.find((genre) => genre.id === genreId);
 
     if (selectedGenre) {
-      // Si el género ya está seleccionado, lo quita; de lo contrario, lo agrega
       if (selectedGenres.includes(selectedGenre)) {
         setSelectedGenres((prevSelectedGenres) =>
-          prevSelectedGenres.filter((genre) => genre.id !== selectedGenre.id)
+          prevSelectedGenres.filter((genre) => genre.id !== selectedGenre.id),
         );
       } else {
         setSelectedGenres((prevSelectedGenres) => [
@@ -71,14 +67,13 @@ const FilterByGenres = () => {
     >
       <MediaSelector />
       <Titulo texto={`Listado de Géneros: ${mediaType}`} />
-      {/* Lista de botones para cada género */}
       <div
         style={{
           width: "100%",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "center",
-          gap: "1rem",
+          gap: "10px",
           maxWidth: "100vw",
         }}
       >
@@ -87,12 +82,15 @@ const FilterByGenres = () => {
             key={genre.id}
             texto={genre.name}
             onClick={() => handleGenreClick(genre.id)}
+            isSelected={selectedGenres.some(
+              (selectedGenre) => selectedGenre.id === genre.id,
+            )}
           />
         ))}
       </div>
 
       {/* Sección que muestra los géneros seleccionados */}
-      <label style={{marginTop: "2rem" , fontSize:'1.5rem'}}>Géneros Seleccionados:</label>
+      <label style={{fontSize: '1.5rem', marginTop: "2rem"}}>Géneros Seleccionados:</label>
       <div style={{ marginTop: "2rem" }}>
         {selectedGenres.map((selectedGenre, index) => (
           <div key={selectedGenre.id} style={{ maxWidth: "100vw" }}>
@@ -104,10 +102,10 @@ const FilterByGenres = () => {
           </div>
         ))}
         {/* Mensaje si no hay géneros seleccionados */}
-        {selectedGenres.length === 0 && <p style={{fontSize:'1.5rem'}}>Ninguno seleccionado</p>}
+        {selectedGenres.length === 0 && <p style={{fontSize: '1.5rem'}}>Ninguno seleccionado</p>}
       </div>
     </div>
   );
 };
 
-export default FilterByGenres;
+export default FilterByGenres;

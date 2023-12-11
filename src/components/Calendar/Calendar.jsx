@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import Alert from '../Alert/Alert'
 //import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CardImg from '../Card/CardImg/CardImg';
@@ -20,6 +21,8 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
   const [showPoster, setShowPoster] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -72,11 +75,11 @@ const WritableCalendar = ({ onInfoChange }) => {
   const downloadCalendar = async () => {
     try {
       const calendarContainer = calendarContainerRef.current;
-
-      if (!calendarContainer) {
-        console.error('Calendario no encontrado');
-        return;
-      }
+      
+        if (!calendarContainer) {
+          console.error('Calendario no encontrado');
+          return;
+        }
 
       const images = await downloadImagesLocally();
       const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: false });
@@ -108,11 +111,13 @@ const WritableCalendar = ({ onInfoChange }) => {
       a.download = 'full_calendar.jpg';
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+
     } catch (error) {
       console.error('Error capturing calendar:', error);
-    }
-  };
+    } finally {
+      setShowAlert(false);
+    };
+  }
 
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
@@ -181,6 +186,17 @@ const WritableCalendar = ({ onInfoChange }) => {
           backgroundColor={`${colors.blanco}`}
           fontSize={'6rem'} 
           funcion={downloadCalendar} />
+
+          {showAlert && (
+            <Alert
+              title="Descargar Calendario"
+              text="¿Deseas descargar el calendario?"
+              icon="info"
+              confirmButtonText="Sí"
+              cancelButtonText="Cancelar"
+              onConfirm={() => {downloadCalendar()}}
+              onCancel={() => setShowAlert(false)}/>
+          )}
         {/* <Boton 
           Contenido={EventAvailableRoundedIcon} 
           color={`${colors.azul}`} 

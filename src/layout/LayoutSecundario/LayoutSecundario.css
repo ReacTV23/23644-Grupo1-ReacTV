@@ -1,9 +1,11 @@
 .LayoutSecundario{
+    min-height: calc(100vh - 8rem);
+    /* margin: 0 2rem; */
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    /* justify-content:center; */
     background-color: var(--color-negro);
     color: var(--color-blanco);
     font-size: 1.5rem

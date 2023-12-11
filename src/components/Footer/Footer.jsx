@@ -35,7 +35,7 @@ function Footer() {
       {/* Sección central con el botón "Team" y el texto "CaC - React 2023" */}
       <div className="center">
         {/* Botón "Team" */}
-        <Boton texto={'team'} width={'17rem'} color={`${colors.naranja}`} backgroundColor={`${colors.blanco}`} backgroundHover={`${colors.naranja}`} colorHover={`${colors.blanco}`} funcion={handleClick} />
+        <Boton texto={'conocenos'} width={'17rem'} color={`${colors.naranja}`} backgroundColor={`${colors.blanco}`} backgroundHover={`${colors.naranja}`} colorHover={`${colors.blanco}`} funcion={handleClick} />
         {/* Texto "CaC - React 2023" */}
         <a className='link-footer' href='https://buenosaires.gob.ar/educacion/codo-codo-40' target="_blank" rel="noopener noreferrer">
           <p className='p-footer'>CaC - React 2023</p>

@@ -3,21 +3,11 @@ import { getMovieById, getPopularMovies, getTrailersById } from "../../services/
 import YouTube from "react-youtube";
 import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizontal";
 import Boton from '../Boton/Boton';
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
+import Alert from '../Alert/Alert';
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
-
-const CardContainer = ({ movies, selectMovie, actualPage }) => {
-    return (
-        <CarruselHorizontal
-        texto={'peliculas mas populares'}
-        peliculas={movies}
-        selectMovie={selectMovie}
-        actualPage={actualPage}
-        />
-    );
-};
 
 export const TrailerPlayer = ({ trailer, closeBanner }) => {
     return (
@@ -44,27 +34,50 @@ export const TrailerPlayer = ({ trailer, closeBanner }) => {
 };
 
 const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
+
+    const [playButtonClicked, setPlayButtonClicked] = useState(false);
+
+    const handlePlayButtonClick = () => {
+        setPlaying(true);
+        setPlayButtonClicked(true);
+    };
+
     return (
         <div className="container-banner">
             <div className="banner">
-                {trailer ? (
-                <div className="botones-banner">
-                    <button
-                        className="boton-banner"
-                        onClick={() => setPlaying(true)}
-                        type="button">
-                        Play Trailer
-                    </button>
+            <div className="botones-banner">
+                    {trailer ? (
+                        <button
+                            className="boton-banner"
+                            onClick={handlePlayButtonClick}
+                            type="button">
+                            Play Trailer
+                        </button>
+                    ) : (
+                        <button
+                            className="boton-banner"
+                            onClick={() => setPlayButtonClicked(true)} // Simula el clic para mostrar el Alert
+                            type="button">
+                            Play Trailer
+                        </button>
+                    )}
                     <button
                         className="boton-banner"
                         onClick={() => closeBanner()}
                         type="button">
                         Volver al Listado
-                    </button> 
+                    </button>
+
+                    {playButtonClicked && !trailer && (
+                        <Alert
+                            title={'Sin trailer'}
+                            text={'Lo sentimos, el trailer no está disponible'}
+                            icon={'info'}
+                            confirmButtonText={'Aceptar'}
+                            cancelButtonText={'Cancelar'}
+                        />
+                    )}
                 </div>
-            ) : (
-                "Lo sentimos, el trailer no está disponible"
-            )}
             <h1 className="titulo-banner">{movie.title}</h1>
             <p className="descripcion-banner">{movie.overview}</p>
         </div>
@@ -75,7 +88,6 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
 function Banner() {
     const [showCardContainer, setShowCardContainer] = useState(true);
     const [selectedMovie, setSelectedMovie] = useState(null);
-
     const [movies, setMovies] = useState([]);
     const [trailer, setTrailer] = useState(null);
     const [actualPage, setActualPage] = useState(0);
@@ -136,24 +148,18 @@ function Banner() {
                 // Muestra el loader mientras las películas están cargando
                 <Loader />)  : 
             showCardContainer ? (
-                <CardContainer movies={movies} selectMovie={selectMovie} actualPage={actualPage} />
-            ) : (
-                <div>
-                    <div style={{ margin: "1rem" }}>
-                        <main>
-                            <div
-                                className="viewtrailer"
-                                style={{
-                                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`}}>
-                                {playing ? (
-                                <TrailerPlayer trailer={trailer} closeBanner={closeBanner} />
-                                ) : (
-                                <BannerContent movie={movie} trailer={trailer} setPlaying={setPlaying} closeBanner={closeBanner} />
-                                )}
-                            </div>
-                        </main>
-                    </div>
-                </div>
+                <CarruselHorizontal texto={'peliculas mas populares'} peliculas={movies} selectMovie={selectMovie} actualPage={actualPage}/>
+                ) : (
+                <main
+                    className="viewtrailer"
+                    style={{
+                    backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`}}>
+                    {playing ? (
+                    <TrailerPlayer trailer={trailer} closeBanner={closeBanner} />
+                    ) : (
+                    <BannerContent movie={movie} trailer={trailer} setPlaying={setPlaying} closeBanner={closeBanner} />
+                    )}
+                </main>
             )}
         </>
     );

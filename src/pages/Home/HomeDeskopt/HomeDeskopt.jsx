@@ -17,7 +17,11 @@ const MainDeskoptInvitado = () => {
           backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
-          ¡La descripción está aquí!
+          ¡Pausa cuando quieras!.
+          <br></br>
+          ReacTV cuenta con avanzado sistema de reproduccion que te permite dejar de ver tu programa favorito, luego regresar y continuar donde estabas.
+          <br></br>
+          ¡Todo esto como si nunca te hubieras ido!.
         </div>
         <Boton
           texto={"categorias"}
@@ -25,7 +29,11 @@ const MainDeskoptInvitado = () => {
           backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
-          ¡La descripción está aquí!
+          Cada cosa en su lugar.
+          <br></br>
+          ¿Estas cansado de buscar y no encontrar nada?
+          <br></br>
+          Entonces prueba nuestro selector de categorias. Busca lo que quieras, encuentra lo que necesitas.
         </div>
         <Boton
           texto={"generos"}
@@ -33,7 +41,10 @@ const MainDeskoptInvitado = () => {
           backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
-          ¡La descripción está aquí!
+          Libreria adaptada a tus gustos.
+          <br></br>
+          <br></br>
+          ¡Con nuestra ultima actualizacion puedes buscar SOLO los generos que deseas y dejar fuera todo aquello que no te interese ver en este momento!.
         </div>
         <Boton
           texto={"mi lista"}
@@ -41,7 +52,12 @@ const MainDeskoptInvitado = () => {
           backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
-          ¡La descripción está aquí!
+          ¿Todavia no salio esa pelicula que deseas?.
+          <br></br>
+          ¿Encontraste algo y no tienes tiempo?.
+          <br></br>
+          <br></br>
+          Tranquilo, puedes guardarla aqui y verla luego sin olvidarte.
         </div>
         <Boton
           texto={"lanzamientos"}
@@ -49,7 +65,9 @@ const MainDeskoptInvitado = () => {
           backgroundHover={`${colors.naranja}`}
         />
         <div className="DescripcionDeskopt-Invitado">
-          ¡La descripción está aquí!
+          El mas innovador sistema de lanzamientos hecho para vos.
+          Cientos de peliculas ordenadas por dias para saber cuando sale esa nueva temporada que tanto esperas.
+          ¡Hasta puedes descargar el calendario!.
         </div>
       </ButtonGroup>
     </div>
