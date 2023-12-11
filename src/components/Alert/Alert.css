@@ -1,0 +1,22 @@
+.container-alert{
+    font-family: 'Roboto';
+}
+
+.title-alert{
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.content-alert{
+    font-size: 1.5rem;
+}
+
+.confirm-button-alert{
+    padding: 1rem;
+    background-color: var(--color-azul);
+}
+
+.cancel-button-alert{
+    padding: 1rem;
+    background-color: var(--color-naranja);
+}

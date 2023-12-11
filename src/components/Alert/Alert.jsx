@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import './Alert.css';
 
 const Alert = ({ title, text, icon, confirmButtonText, cancelButtonText, onConfirm, onCancel }) => {
 
-    //props:
+//   props:
 //   title: El título del mensaje.
 //   text: El texto del mensaje.
 //   icon: El ícono que se muestra en el mensaje (puedes usar 'info', 'success', 'warning', 'error', etc.).
@@ -20,6 +21,14 @@ const Alert = ({ title, text, icon, confirmButtonText, cancelButtonText, onConfi
             showCancelButton: true,
             confirmButtonText,
             cancelButtonText,
+            customClass: {
+                // Clases personalizadas para estilos específicos
+                container: 'container-alert',
+                title: 'title-alert',
+                htmlContainer: 'content-alert',
+                confirmButton: 'confirm-button-alert',
+                cancelButton: 'cancel-button-alert',
+            }
         }).then((result) => {
             if (result.isConfirmed) {
             if (onConfirm) {
