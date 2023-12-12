@@ -1,16 +1,33 @@
+
+/* Estilos base para tamaños grandes de pantalla */
 .ContenedorFormularios {
-    width: 100%;
-    min-width: 36rem;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
     align-items: center;
-    justify-content: center;
-}
-
-.FormTitulos, .Forms {
-    width: 100%;
-    padding: 0 0.1rem;
+  }
+  
+  .FormTitulos {
     display: flex;
-    justify-content: space-around;
-}
+    gap: 16px;
+  }
+  
+  .Forms {
+    display: flex;
+    gap: 16px;
+  }
+  
+  /* Media query para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .FormTitulos {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .Forms {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* Otras media queries para tamaños de pantalla adicionales si es necesario */
+  

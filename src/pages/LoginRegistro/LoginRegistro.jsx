@@ -23,4 +23,4 @@ const LoginRegistro = () => {
     )
 }
 
-export default LoginRegistro
+export default LoginRegistro;
