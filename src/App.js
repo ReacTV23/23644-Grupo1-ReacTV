@@ -17,56 +17,61 @@ import Search from "./pages/Search/Search.jsx";
 import CardSinopsis from "./pages/Card/CardSinopsis.jsx";
 import Error404 from "./pages/Error404/Error404.jsx";//pagina error 404
 import "./App.css";
-
 function App() {
-    const [showVideo, setShowVideo] = useState(true); //pasar a true una vez que se terminen las pruebas
+    // Obtener el valor de 'showVideo' del almacenamiento local
+    const showVideoFromLocalStorage = localStorage.getItem("showVideo");
+    const [showVideo, setShowVideo] = useState(showVideoFromLocalStorage !== "false");
+  
     // estado ancho de ventana (renderizado responsive)
     const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
-
-    // useEfectf para capturar el ancho de la ventana y pasarlo al estado
+  
+    // useEffect para capturar el ancho de la ventana y pasarlo al estado
     useEffect(() => {
-        const handleResize = () => {
-            setAnchoVentana(window.innerWidth);
-        };
-
-        // Agregar event listener para el evento resize
-        window.addEventListener("resize", handleResize);
-
-        // Limpiar el event listener cuando el componente se desmonta
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+      const handleResize = () => {
+        setAnchoVentana(window.innerWidth);
+      };
+  
+      // Agregar event listener para el evento resize
+      window.addEventListener("resize", handleResize);
+  
+      // Limpiar el event listener cuando el componente se desmonta
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
     }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
-
-    // funcion manejo de video
+  
+    // función manejo de video
     const handleVideoEnd = () => {
-        console.log("Video ended");
-        setShowVideo(false);
+      console.log("Video ended");
+      setShowVideo(false);
+      // Guardar el estado en el almacenamiento local
+      localStorage.setItem("showVideo", "false");
     };
-
+  
+  
     return (
-        <>
-            <CssBaseline />
-            {AuthProvider.isAuth === false && showVideo ? (
-                <IntroVideo onVideoEnd={handleVideoEnd} />
-            ) : (
-                <AuthProvider>
-                    <MediaTypeProvider>
-                        <Router>
-                            <Routes>
-                                <Route
-                                    path="/"
-                                    element={<Home anchoVentana={anchoVentana} />}
-                                />
-                                <Route path="/login" element={<LoginRegistro />} />
-                                <Route
-                                    path="/home"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Home />
-                                        </ProtectedRoute>
-                                    }
-                                />
+      <>
+        <CssBaseline />
+        {showVideo ? (
+          <IntroVideo onVideoEnd={handleVideoEnd} />
+        ) : (
+          <AuthProvider>
+            <MediaTypeProvider>
+              <Router>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={<Home anchoVentana={anchoVentana} />}
+                  />
+                  <Route path="/login" element={<LoginRegistro />} />
+                  <Route
+                    path="/home"
+                    element={
+                      <ProtectedRoute>
+                        <Home />
+                      </ProtectedRoute>
+                    }
+                  />
                                 <Route path="/recientes" element={<Recientes />} />
                                 <Route path="/categorias" element={<Categorias />} />
                                 <Route path="/generos" element={<Generos />} />
@@ -76,7 +81,7 @@ function App() {
                                 {/* <Route path="/card/*" element={<CardSinopsis />} /> */}
                                 <Route path="/card/tv/:id" element={<CardSinopsis />} />
                                 <Route path="/card/movie/:id" element={<CardSinopsis />} />
-                                <Route path="/milista" element={<MiLista />} /> 
+                                <Route path="milista" element={<MiLista />} /> 
                                 <Route path="/error404" element={<Error404 /> } /> 
                                 <Route path="/*" element={<Navigate to="/Error404" /> } /> 
                             {/*         
