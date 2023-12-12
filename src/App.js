@@ -81,7 +81,7 @@ function App() {
                                 {/* <Route path="/card/*" element={<CardSinopsis />} /> */}
                                 <Route path="/card/tv/:id" element={<CardSinopsis />} />
                                 <Route path="/card/movie/:id" element={<CardSinopsis />} />
-                                <Route path="milista" element={<MiLista />} /> 
+                                <Route path="/milista" element={<MiLista />} /> 
                                 <Route path="/error404" element={<Error404 /> } /> 
                                 <Route path="/*" element={<Navigate to="/Error404" /> } /> 
                             {/*         
