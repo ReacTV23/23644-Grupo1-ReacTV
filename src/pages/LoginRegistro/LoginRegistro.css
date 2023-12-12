@@ -1,33 +1,37 @@
-
-/* Estilos base para tamaños grandes de pantalla */
 .ContenedorFormularios {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.FormTitulos,
+.Forms {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .ContenedorFormularios {
+    grid-template-columns: 1fr;
   }
-  
-  .FormTitulos {
-    display: flex;
-    gap: 16px;
+
+  .FormTitulos:nth-child(2) {
+    order: 2; 
   }
-  
-  .Forms {
-    display: flex;
-    gap: 16px;
+
+  .Forms:nth-child(2) {
+    order: 2; 
   }
-  
-  /* Media query para pantallas más pequeñas */
-  @media (max-width: 768px) {
-    .FormTitulos {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .Forms {
-      flex-direction: column;
-      align-items: center;
-    }
+
+  .FormTitulos:nth-child(3) {
+    order: 3;
   }
-  
-  /* Otras media queries para tamaños de pantalla adicionales si es necesario */
-  
+
+  .Forms:nth-child(4) {
+    order: 4; 
+  }
+}
