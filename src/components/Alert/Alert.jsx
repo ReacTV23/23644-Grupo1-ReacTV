@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 import './Alert.css';
 
-const Alert = ({ title, text, icon, confirmButtonText, cancelButtonText, onConfirm, onCancel }) => {
+const Alert = ({ title, text, icon, confirmButtonText="Aceptar", cancelButtonText="Cancelar", onConfirm, onCancel }) => {
 
 //   props:
 //   title: El título del mensaje.

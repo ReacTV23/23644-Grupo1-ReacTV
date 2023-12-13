@@ -30,7 +30,7 @@ const CardDetalle = ({ movie, trailer }) => {
     //funcion para descarga de card
     const downloadAsImage = async () => {
         const confirmDownload = await Swal.fire({
-            title: '¿Quieres descargar esta película/serie?',
+            title: '¿Quieres descargar este poster?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Sí, descargar',
@@ -52,7 +52,7 @@ const CardDetalle = ({ movie, trailer }) => {
     //funcion para agregar a lista o recientes
     const handleListOrRecent = async (route, dataToAdd, querySnapshot) => {
         if (querySnapshot.size === 0) {
-            // No hay documentos con el mismo ID, puedes agregarlo
+            // No hay documentos con el mismo ID: agregarlo
             await addDoc(route, dataToAdd);
             Swal.fire({
                 icon: "success",
