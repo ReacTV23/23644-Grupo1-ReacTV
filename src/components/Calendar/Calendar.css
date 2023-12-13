@@ -178,7 +178,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 10rem; /* Alto deseado */
+  height: 10rem; 
 }
 
 .react-calendar__tile--active{
@@ -208,3 +208,38 @@
   margin:0.2rem;
   font-size: 1.8rem;
 }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .contenedor_calendario {
+   
+    flex-direction: column; /* Cambia la dirección del flex container a columna */
+  }
+
+  .ancho-reducido .subcontenedor_calendario {
+    width: 100%; /* Ajusta el ancho a 100% en pantallas pequeñas */
+    padding: 0 1rem 1rem 1rem;
+    transform: translateX(0);
+
+  }
+
+  .poster_calendario {
+    width: 100%; 
+    padding: 2rem;
+    position: static; /* Elimina la posición relativa */
+    margin-top: 2rem; 
+    box-sizing: border-box; 
+  
+  }
+  .poster_calendario img {
+    width: 100%; /* Hace que la imagen ocupe el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    display: block; /* Elimina el espacio adicional debajo de la imagen */
+  }
+
+  .ancho-reducido .poster_calendario {
+    width: 100%; /* O el ancho deseado en pantallas pequeñas */
+  }
+}
+
+

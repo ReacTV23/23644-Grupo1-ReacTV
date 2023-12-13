@@ -10,4 +10,4 @@ const Lanzamientos = () => {
   )
 }
 
-export default Lanzamientos
+export default Lanzamientos;

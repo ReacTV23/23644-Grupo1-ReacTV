@@ -24,3 +24,4 @@ const BotonGenero = ({ texto, onClick, isSelected }) => {
 };
 
 export default BotonGenero;
+

@@ -1,6 +1,8 @@
 .card-movie {
+  box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho total */
   display: flex;
-  width: 95%;
+  justify-content: center;
+  width: 95vw;
   margin: 1rem;
   margin-top: 1.5rem;
   padding: 2rem;
@@ -13,7 +15,7 @@
 }
 
 .img-container {
-  width: 100%; 
+  width: 100vw; 
   padding: 2rem;
   background-color: var(--color-azul);
   border: 0.4rem solid var(--color-naranja);
@@ -26,7 +28,7 @@
   width: 100%;
   min-height: calc(100vh - 18rem);
   object-fit: contain;
-  border-radius: 2rem;
+  border-radius: 1rem;
   filter: brightness(0.6); /* sombreado a la imagen de fondo */
 }
 
@@ -34,6 +36,7 @@
   width: 50%;
   display: flex;
   justify-content: center;
+
   align-items: center;
   flex-direction: column;
   position: absolute;
@@ -98,7 +101,7 @@
 .titulo-generos, .descripcion-titulo {
   margin: 0;
   font-size: 2rem;
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 
 .generos {
@@ -110,4 +113,64 @@
 .descripcion {
   width: 100%;
   padding: 0 2rem;
+}
+/* pantallas chicas*/
+/* ... tu código anterior ... */
+
+/* pantallas chicas */
+@media only screen and (max-width: 768px) {
+  .card-movie {
+    flex-direction: column;
+    align-items: center; /* Alinea la card al centro */
+    margin-right: 0; /* Evita el margen derecho innecesario */
+  }
+
+  .img-container {
+    width: 90%;
+    min-height: auto;
+    margin-top: 20px; /* Ajusta el margen superior */
+    margin-bottom: 20px; /* Ajusta el margen inferior */
+    padding: 0; /* Elimina el padding para ocupar el ancho completo */
+  }
+
+  .info-container {
+    width: 100%;
+    position: static;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .btn-container {
+    width: 100%; /* Ajusta el ancho al 100% */
+    display: flex;
+    justify-content: space-around; /* Espaciado uniforme entre los botones */
+  }
+
+  .datos {
+    width: 100%;
+    text-align: center;
+  }
+
+  .info-movie {
+    width: 100%;
+  }
+
+  .listado-generos {
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas si es necesario */
+    justify-content: center; /* Centra los elementos en el contenedor */
+  }
+
+  .generos {
+    margin: 0.5rem; /* Agrega espacio entre los elementos de género */
+  }
+
+  .descripcion {
+    width: 100%;
+    padding: 0.5rem; /* Ajusta el relleno de la descripción */
+  }
+  
+  .titulo {
+    font-size: 2rem; /* Ajusta el tamaño del título en pantallas pequeñas */
+  }
+  
 }

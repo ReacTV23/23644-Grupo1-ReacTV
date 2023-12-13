@@ -9,4 +9,4 @@ const BotonForm = ({texto,width, onClick}) => {
     )
 }
 
-export default BotonForm
+export default BotonForm;
