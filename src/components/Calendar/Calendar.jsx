@@ -2,11 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import Alert from '../Alert/Alert'
+//import Alert from '../Alert/Alert'
 //import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
+import Swal from "sweetalert2";
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
@@ -21,8 +22,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
   const [showPoster, setShowPoster] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-
+  //const [showAlert, setShowAlert] = useState(false);
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -73,6 +73,14 @@ const WritableCalendar = ({ onInfoChange }) => {
   };
 
   const downloadCalendar = async () => {
+    // setShowAlert(true);
+    const confirmDownload = await Swal.fire({
+      title: '¿Quieres descargar este poster?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, descargar',
+      cancelButtonText: 'Cancelar',
+  });
     try {
       const calendarContainer = calendarContainerRef.current;
       
@@ -98,12 +106,19 @@ const WritableCalendar = ({ onInfoChange }) => {
         }
       });
 
-      html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'cardDetalle.png';
-        link.click();
-      });
+      if (confirmDownload.isConfirmed) {
+        html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
+          const link = document.createElement('a');
+          link.href = canvas.toDataURL('image/png');
+          link.download = 'cardDetalle.png';
+          link.click();
+        })
+      } else {
+          Swal.fire({
+            title: 'Descarga cancelada',
+            icon: 'info',
+        });
+      }
 
       const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
       const a = document.createElement('a');
@@ -114,9 +129,11 @@ const WritableCalendar = ({ onInfoChange }) => {
 
     } catch (error) {
       console.error('Error capturing calendar:', error);
-    } finally {
-      setShowAlert(false);
-    };
+    }
+    
+    // } finally {
+    //   setShowAlert(false);
+    // };
   }
 
   const tileContent = ({ date, view }) => {
@@ -186,7 +203,7 @@ const WritableCalendar = ({ onInfoChange }) => {
           backgroundColor={`${colors.blanco}`}
           fontSize={'6rem'} 
           funcion={downloadCalendar} />
-
+{/* 
           {showAlert && (
             <Alert
               title="Descargar Calendario"
@@ -196,7 +213,9 @@ const WritableCalendar = ({ onInfoChange }) => {
               cancelButtonText="Cancelar"
               onConfirm={() => {downloadCalendar()}}
               onCancel={() => setShowAlert(false)}/>
-          )}
+          )} */}
+
+
         {/* <Boton 
           Contenido={EventAvailableRoundedIcon} 
           color={`${colors.azul}`} 

@@ -17,6 +17,7 @@ import Search from "./pages/Search/Search.jsx";
 import CardSinopsis from "./pages/Card/CardSinopsis.jsx";
 import Error404 from "./pages/Error404/Error404.jsx";//pagina error 404
 import "./App.css";
+
 function App() {
     // Obtener el valor de 'showVideo' del almacenamiento local
     const showVideoFromLocalStorage = localStorage.getItem("showVideo");
@@ -59,40 +60,31 @@ function App() {
             <MediaTypeProvider>
               <Router>
                 <Routes>
-                  <Route
-                    path="/"
-                    element={<Home anchoVentana={anchoVentana} />}
-                  />
+                  <Route path="/" element={<Home anchoVentana={anchoVentana} />}/>
                   <Route path="/login" element={<LoginRegistro />} />
-                  <Route
-                    path="/home"
-                    element={
+                  <Route path="/home" element={
                       <ProtectedRoute>
                         <Home />
                       </ProtectedRoute>
-                    }
-                  />
-                                <Route path="/recientes" element={<Recientes />} />
-                                <Route path="/categorias" element={<Categorias />} />
-                                <Route path="/generos" element={<Generos />} />
-                                <Route path="/lanzamientos" element={<Lanzamientos />} />
-                                <Route path="/about" element={<About />} />
-                                <Route path="/search" element={<Search />} />
-                                {/* <Route path="/card/*" element={<CardSinopsis />} /> */}
-                                <Route path="/card/tv/:id" element={<CardSinopsis />} />
-                                <Route path="/card/movie/:id" element={<CardSinopsis />} />
-                                <Route path="/milista" element={<MiLista />} /> 
-                                <Route path="/error404" element={<Error404 /> } /> 
-                                <Route path="/*" element={<Navigate to="/Error404" /> } /> 
-                            {/*         
-                                */}
-                            </Routes>
-                        </Router>
-                    </MediaTypeProvider>
-                </AuthProvider>
-            )}
-        </>
-    );
+                    } />
+                  <Route path="/recientes" element={<Recientes />} />
+                  <Route path="/categorias" element={<Categorias />} />
+                  <Route path="/generos" element={<Generos />} />
+                  <Route path="/lanzamientos" element={<Lanzamientos />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/search" element={<Search />} />
+                  <Route path="/card/tv/:id" element={<CardSinopsis />} />
+                  <Route path="/card/movie/:id" element={<CardSinopsis />} />
+                  <Route path="/milista" element={<MiLista />} /> 
+                  <Route path="/error404" element={<Error404 /> } /> 
+                  <Route path="/*" element={<Navigate to="/Error404" /> } /> 
+                </Routes>
+              </Router>
+            </MediaTypeProvider>
+          </AuthProvider>
+        )}
+      </>
+  );
 }
 
 export default App;
