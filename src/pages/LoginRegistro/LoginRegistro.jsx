@@ -10,7 +10,6 @@ const LoginRegistro = () => {
   return (
     <LayoutForm>
       <div className='ContenedorFormularios'>
-        
         <div className='Forms'>
           <div className='FormTitulos'>
             <Boton
