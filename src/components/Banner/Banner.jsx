@@ -5,6 +5,10 @@ import CarruselHorizontal from "../Carrusel/CarruselHorizontal/CarruselHorizonta
 import Boton from '../Boton/Boton';
 import Loader from '../Loader/Loader';
 import Alert from '../Alert/Alert';
+import Swal from "sweetalert2";
+import { db } from "../../firebase/Firebase";
+import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
+import { useAuth } from '../../context/authContext.js';
 import "./Banner.css";
 
 const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
@@ -36,11 +40,72 @@ export const TrailerPlayer = ({ trailer, closeBanner }) => {
 const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
 
     const [playButtonClicked, setPlayButtonClicked] = useState(false);
+    const { user } = useAuth();
+    const [userEmail, setUserEmail] = useState(null);
 
     const handlePlayButtonClick = () => {
         setPlaying(true);
         setPlayButtonClicked(true);
+        handleRecent();
     };
+
+    //funcion para agregar a lista o recientes
+    const handleListOrRecent = async (route, dataToAdd, querySnapshot) => {
+        if (querySnapshot.size === 0) {
+            // No hay documentos con el mismo ID: agregarlo
+            await addDoc(route, dataToAdd);
+            Swal.fire({
+                icon: "success",
+                title: "Agregado correctamente",
+                text: "La película/serie se ha agragado a la lista.",
+            });
+            console.log('Agregado correctamente');
+        } else {
+            // Ya existe un documento con el mismo ID
+            Swal.fire({
+                icon: "info",
+                title: "Id repetido",
+                text: "Lo siento, La película/serie ya está en la lista.",
+            });
+        }
+    }
+
+    //funcion para agregar a lista
+    const handleList = async () => {
+        const userEmailValue = user.email;
+        setUserEmail(userEmailValue);
+
+        const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
+
+        const dataToAdd = {
+            id: movie.id,
+            nombre: movie.original_title,
+        };
+
+        if (movie.original_title) {
+            dataToAdd.nombre = movie.original_title;
+            await handleListOrRecent(route, dataToAdd, await getDocs(query(route, where("id", "==", movie.id))));
+        }
+    }
+
+    //funcion para agregar a recientes
+    const handleRecent = async () => {
+        const userEmailValue = user.email;
+        setUserEmail(userEmailValue);
+
+        const route2 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
+
+        const dataToAdd2 = {
+            id: movie.id,
+            nombre: movie.original_title
+        };
+
+        if (movie.original_title) {
+            dataToAdd2.nombre = movie.original_title;
+            await handleListOrRecent(route2, dataToAdd2, await getDocs(query(route2, where("id", "==", movie.id))));
+        }
+    }
+
 
     return (
         <div className="container-banner">
@@ -61,6 +126,12 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
                             Play Trailer
                         </button>
                     )}
+                    <button
+                        className="boton-banner"
+                        onClick={() => handleList()}
+                        type="button">
+                        Agregar a mi lista
+                    </button>
                     <button
                         className="boton-banner"
                         onClick={() => closeBanner()}
