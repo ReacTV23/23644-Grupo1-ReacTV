@@ -1,7 +1,7 @@
 .Contenedor-Principal--form {
     width: 100%;
     display: flex; 
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -10,22 +10,23 @@
 }
 
 .Contenedor-input {
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
 }
 
 .input-ingreso, .label-ingreso {
-    width:100%;
+    width: 100%;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
 .contendor-botonForm--ingreso {
-    display:flex;
-    align-items:center;
-    justify-content:center; 
-    flex-direction:column; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-direction: column; 
     margin-bottom: 1rem;
 }
+
 
 .a-ingreso{
     width:100%;
