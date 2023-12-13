@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { AppBar, Toolbar, Typography} from '@mui/material';
 import { Link, useNavigate  } from 'react-router-dom';
 import Boton from '../Boton/Boton'
@@ -10,27 +10,50 @@ import { useSearch } from '../../context/searchContext';  // Importa el hook use
 import colors from '../../config/config.js'
 
 const Navbar = ({onLoginButtonClick}) => {
-  const { isAuth, setIsAuth  } = useAuth();  // Obtiene el estado de autenticación del contexto
+  const { isAuth, setIsAuth } = useAuth();  // Obtiene el estado de autenticación del contexto
   const { searchQuery, updateSearchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
   const navigate = useNavigate();
 
+  // const handleLoginClick = () => {
+  //   // Navegar a la ruta "/login"
+  //   setIsAuth(true);
+  //   navigate('/login');
+  //   // console.log(isAuth)
+  // };
+
+
+  //modificacion mas rapida del estado isAuth
   const handleLoginClick = () => {
-    // Navegar a la ruta "/login"
-    setIsAuth(true);
-    navigate('/login');
-    // console.log(isAuth)
+    setIsAuth((prevIsAuth) => {
+      if (!prevIsAuth) {
+        navigate('/login');
+      }
+      return prevIsAuth;
+    });
   };
 
   const Volver = () => {
     navigate(-1);
   };
 
-
   const handleLogoutClick = () => {
     // Cambiar el estado de autenticación a falso
     setIsAuth(false);
-    // console.log(isAuth)
+    console.log('isAuthLogout:',isAuth)
   };
+
+  // const handleLogoutClick = () => {
+  //   // Cambiar el estado de autenticación a falso
+  //   setIsAuth((prevIsAuth) => {
+  //     console.log('prevIsAuth:', prevIsAuth);
+  
+  //     // Aquí prevIsAuth representa el valor anterior de isAuth
+  //     return false; // Cambiar el estado a falso
+  //   });
+  
+  //   // isAuth aún puede ser verdadero en este punto, ya que la actualización es asíncrona
+  //   console.log('isAuthLogout:', isAuth);
+  // };
 
   const handleSearchChange = (e) => {
     // Actualizar el contexto de búsqueda con la palabra escrita en la barra de búsqueda
@@ -43,6 +66,12 @@ const Navbar = ({onLoginButtonClick}) => {
       navigate('/search');
     }
   };
+
+  useEffect(() => {
+    // Este código se ejecutará cada vez que isAuth cambie
+    console.log('isAuthNabvar:', isAuth);
+
+  }, [isAuth]);
 
   return (
     <AppBar position="static" className='contenedor-navbar' sx={{ backgroundColor: `${colors.azul}`, width:'100%', height:'8rem'}}>
