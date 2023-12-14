@@ -64,7 +64,7 @@ function App() {
                   <Route path="/login" element={<LoginRegistro />} />
                   <Route path="/home" element={
                       <ProtectedRoute>
-                        <Home />
+                        <Home anchoVentana={anchoVentana} /> 
                       </ProtectedRoute>
                     } />
                   <Route path="/recientes" element={<Recientes />} />
