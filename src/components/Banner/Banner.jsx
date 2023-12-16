@@ -57,15 +57,15 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
             Swal.fire({
                 icon: "success",
                 title: "Agregado correctamente",
-                text: "La película/serie se ha agragado a la lista.",
+                text: "La película o serie se ha agregado.",
             });
-            console.log('Agregado correctamente');
+            //console.log('Agregado correctamente');
         } else {
             // Ya existe un documento con el mismo ID
             Swal.fire({
                 icon: "info",
                 title: "Id repetido",
-                text: "Lo siento, La película/serie ya está en la lista.",
+                text: "Lo siento, La película o serie ya está guardada en la sección correspondiente.",
             });
         }
     }
@@ -110,7 +110,7 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
     return (
         <div className="container-banner">
             <div className="banner">
-            <div className="botones-banner">
+                <div className="botones-banner">
                     {trailer ? (
                         <button
                             className="boton-banner"
@@ -131,12 +131,6 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner }) => {
                         onClick={() => handleList()}
                         type="button">
                         Agregar a mi lista
-                    </button>
-                    <button
-                        className="boton-banner"
-                        onClick={() => closeBanner()}
-                        type="button">
-                        Volver al Listado
                     </button>
 
                     {playButtonClicked && !trailer && (

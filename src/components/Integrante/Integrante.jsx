@@ -13,10 +13,10 @@ const Integrante = ({nombre,apellido, Github, Linkedin}) => {
       <ButtonGroup className='GrupoBotones'
         aria-label="small button group">
         <a href={Github} target="_blank" rel="noopener noreferrer">
-          <Boton Contenido={GitHubIcon} color={`${colors.negro}`}/>
+          <Boton Contenido={GitHubIcon} fontSize={'5rem'} color={`${colors.negro}`}/>
         </a>
         <a href={Linkedin} target="_blank" rel="noopener noreferrer">
-          <Boton Contenido={LinkedInIcon} color={`${colors.negro}`}/>
+          <Boton Contenido={LinkedInIcon} fontSize={'5rem'} color={`${colors.negro}`}/>
         </a>
       </ButtonGroup>
     </div> 
