@@ -67,7 +67,6 @@ const BannerContent = ({ movie, trailer, setPlaying, closeBanner, handleRecent, 
                 icon: alertConfig.icon,
                 confirmButtonText: alertConfig.confirmButtonText,
                 showCancelButton: alertConfig.showCancelButton,
-                // Nuevas propiedades
                 onConfirm: alertConfig.onConfirm,
                 onCancel: alertConfig.onCancel,
             });

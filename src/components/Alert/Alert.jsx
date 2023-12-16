@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import {useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 import withReactContent from "sweetalert2-react-content";
 import './Alert.css';
 
 const Alert = ({ title, text, icon, confirmButtonText, cancelButtonText, showCancelButton, onConfirm, onCancel }) => {
+    
     const mySwal = withReactContent(Swal);
 //   props:
 //   title: El título del mensaje.

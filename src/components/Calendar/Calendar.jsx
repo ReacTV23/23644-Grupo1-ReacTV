@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-//import Alert from '../Alert/Alert'
+import Alert from '../Alert/Alert'
 //import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
-import Swal from "sweetalert2";
+//import Swal from "sweetalert2";
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
@@ -22,7 +22,9 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
   const [showPoster, setShowPoster] = useState(false);
-  //const [showAlert, setShowAlert] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertConfig, setAlertConfig] = useState(null);
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -72,69 +74,183 @@ const WritableCalendar = ({ onInfoChange }) => {
     return imageArray.reduce((map, item) => ({ ...map, [item.id]: item.imageDataUrl }), {});
   };
 
-  const downloadCalendar = async () => {
-    // setShowAlert(true);
-    const confirmDownload = await Swal.fire({
-      title: '¿Quieres descargar este poster?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, descargar',
-      cancelButtonText: 'Cancelar',
-  });
-    try {
-      const calendarContainer = calendarContainerRef.current;
+  // const downloadCalendarConfirmation = () => {
+  //   downloadCalendar(); // Llama a downloadCalendar cuando se confirme
+  //   setShowAlert(false); // Cierra la alerta
+  // };
+
+  // const downloadCalendarCancel = () => {
+  //   setShowAlert(false);
+  // }
+
+  // const downloadCalendar = async () => {
+  //   setShowAlert(true);
+  //   setAlertConfig({
+  //     title: "Descargar Calendario",
+  //     text: "¿Deseas descargar el calendario?",
+  //     icon: 'question',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Sí, descargar',
+  //     cancelButtonText: 'Cancelar',
+  //     onConfirm: downloadCalendarConfirmation,
+  //     onCancel: downloadCalendarCancel,
+  //   });
+  //   const confirmDownload = await Swal.fire({
+  //     title: '¿Quieres descargar este poster?',
+  //     icon: 'question',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Sí, descargar',
+  //     cancelButtonText: 'Cancelar',
+  // });
+    // try {
+    //   const calendarContainer = calendarContainerRef.current;
       
-        if (!calendarContainer) {
-          console.error('Calendario no encontrado');
-          return;
-        }
+    //     if (!calendarContainer) {
+    //       setShowAlert(true);
+    //       setAlertConfig({
+    //         title: 'Calendario no encontrado',
+    //         icon: 'error',
+    //         showCancelButton: false,
+    //         confirmButtonText: 'Ok'})
+    //       // console.error('Calendario no encontrado');
+    //       return;
+    //     }
 
-      const images = await downloadImagesLocally();
-      const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: false });
-      const context = canvas.getContext('2d');
 
-      upcomingMovies.forEach((movie) => {
-        const imageDataUrl = images[movie.id];
-        const movieDate = new Date(movie.release_date);
-        const dateString = movieDate.toISOString().split('T')[0];
-        const dateCell = calendarContainer.querySelector(`.react-calendar__tile[data-date="${dateString}"]`);
 
-        if (dateCell) {
-          const img = new Image();
-          img.src = imageDataUrl;
-          context.drawImage(img, 0, 0, img.width, img.height);
-        }
-      });
+        const downloadCalendarConfirmation = async () => {
+          setShowAlert(false);
+          try {
+            const calendarContainer = calendarContainerRef.current;
+            if (!calendarContainer) {
+              throw new Error('Calendario no encontrado');
+            }
+      
+            const images = await downloadImagesLocally();
+            const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: false });
+            const context = canvas.getContext('2d');
+      
+            upcomingMovies.forEach((movie) => {
+              const imageDataUrl = images[movie.id];
+              const movieDate = new Date(movie.release_date);
+              const dateString = movieDate.toISOString().split('T')[0];
+              const dateCell = calendarContainer.querySelector(`.react-calendar__tile[data-date="${dateString}"]`);
+      
+              if (dateCell) {
+                const img = new Image();
+                img.src = imageDataUrl;
+                context.drawImage(img, 0, 0, img.width, img.height);
+              }
+            });
+      
+            if (alertConfig && alertConfig.isConfirmed) {
+              html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'cardDetalle.png';
+                link.click();
+              });
+            } else {
+              setShowAlert(true);
+              setAlertConfig({
+                title: 'Descarga cancelada',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+              });
+            }
+      
+            const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+            const a = document.createElement('a');
+            a.href = imageDataUrl;
+            a.download = 'full_calendar.jpg';
+            document.body.appendChild(a);
+            a.click();
+          } catch (error) {
+            console.error('Error capturing calendar:', error);
+            setShowAlert(true);
+            setAlertConfig({
+              title: error.message || 'Error al descargar el calendario',
+              icon: 'error',
+              showCancelButton: false,
+              confirmButtonText: 'Ok',
+            });
+          }
+        };
+      
+        const downloadCalendarCancel = () => {
+          setShowAlert(false);
+          setAlertConfig(null); // Limpiar la configuración de la alerta al cancelar
+        };
+      
+        const downloadCalendar = () => {
+          setShowAlert(true);
+          setAlertConfig({
+            title: 'Descargar Calendario',
+            text: '¿Deseas descargar el calendario?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, descargar',
+            cancelButtonText: 'Cancelar',
+            onConfirm: downloadCalendarConfirmation,
+            onCancel: downloadCalendarCancel,
+          });
+        };
+      
 
-      if (confirmDownload.isConfirmed) {
-        html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
-          const link = document.createElement('a');
-          link.href = canvas.toDataURL('image/png');
-          link.download = 'cardDetalle.png';
-          link.click();
-        })
-      } else {
-          Swal.fire({
-            title: 'Descarga cancelada',
-            icon: 'info',
-        });
-      }
 
-      const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-      const a = document.createElement('a');
-      a.href = imageDataUrl;
-      a.download = 'full_calendar.jpg';
-      document.body.appendChild(a);
-      a.click();
+      // const images = await downloadImagesLocally();
+      // const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: false });
+      // const context = canvas.getContext('2d');
 
-    } catch (error) {
-      console.error('Error capturing calendar:', error);
-    }
+      // upcomingMovies.forEach((movie) => {
+      //   const imageDataUrl = images[movie.id];
+      //   const movieDate = new Date(movie.release_date);
+      //   const dateString = movieDate.toISOString().split('T')[0];
+      //   const dateCell = calendarContainer.querySelector(`.react-calendar__tile[data-date="${dateString}"]`);
+
+      //   if (dateCell) {
+      //     const img = new Image();
+      //     img.src = imageDataUrl;
+      //     context.drawImage(img, 0, 0, img.width, img.height);
+      //   }
+      // });
+
+      // if (alertConfig && alertConfig.isConfirmed) {
+      //   html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
+      //     const link = document.createElement('a');
+      //     link.href = canvas.toDataURL('image/png');
+      //     link.download = 'cardDetalle.png';
+      //     link.click();
+      //   })
+      // } else {
+      //   setShowAlert(true);
+      //   setAlertConfig({
+      //     title: 'Descarga cancelada',
+      //     icon: 'error',
+      //     showCancelButton: false,
+      //     confirmButtonText: 'Ok'})
+      //   //   Swal.fire({
+      //   //     title: 'Descarga cancelada',
+      //   //     icon: 'info',
+      //   // });
+      // }
+
+    //   const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+    //   const a = document.createElement('a');
+    //   a.href = imageDataUrl;
+    //   a.download = 'full_calendar.jpg';
+    //   document.body.appendChild(a);
+    //   a.click();
+
+    // } catch (error) {
+    //   console.error('Error capturing calendar:', error);
+    // }
     
     // } finally {
     //   setShowAlert(false);
     // };
-  }
+  //}
 
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
@@ -204,18 +320,18 @@ const WritableCalendar = ({ onInfoChange }) => {
           backgroundColor={`${colors.blanco}`}
           fontSize={'6rem'} 
           funcion={downloadCalendar} />
-{/* 
+
           {showAlert && (
             <Alert
-              title="Descargar Calendario"
-              text="¿Deseas descargar el calendario?"
-              icon="info"
-              confirmButtonText="Sí"
-              cancelButtonText="Cancelar"
-              onConfirm={() => {downloadCalendar()}}
-              onCancel={() => setShowAlert(false)}/>
-          )} */}
-
+            title={alertConfig.title}
+            text={alertConfig.text}
+            icon={alertConfig.icon}
+            confirmButtonText={alertConfig.confirmButtonText}
+            showCancelButton={alertConfig.showCancelButton}
+            onConfirm={alertConfig.onConfirm}
+            onCancel= {alertConfig.onCancel}
+            />
+          )}
 
         {/* <Boton 
           Contenido={EventAvailableRoundedIcon} 
