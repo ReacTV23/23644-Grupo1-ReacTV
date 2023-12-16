@@ -9,7 +9,7 @@ const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize = '2.2rem
      // Si hay un icono, renderiza un IconButton
       <IconButton className='IconoBoton' aria-label={Icono} onClick={funcion}>
         <Icono className='Icono'
-          sx={{fontSize: {xs:'3rem', sm: fontSize, md: fontSize},
+          sx={{fontSize: {xs:'3rem', sm: `calc(${fontSize} + 1rem)`, md: `calc(${fontSize} + 0.5rem`},
           width: {height},
           height: height,
           padding: padding, 

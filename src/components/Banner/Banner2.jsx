@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 import Alert from '../Alert/Alert';
 import { db } from "../../firebase/Firebase";
 import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
-import { useAuth } from '../../context/authContext.js';
+import { useAuth } from '../../context/authContext2.js';
 import colors from '../../config/config.js'
 import "./Banner.css";
 

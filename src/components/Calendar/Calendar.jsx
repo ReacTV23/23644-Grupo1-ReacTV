@@ -199,6 +199,7 @@ const WritableCalendar = ({ onInfoChange }) => {
         <Boton 
           Contenido={DownloadForOfflineIcon} 
           color={`${colors.azul}`} 
+          padding={'0.5rem'}
           colorHover={`${colors.naranja}`} 
           backgroundColor={`${colors.blanco}`}
           fontSize={'6rem'} 

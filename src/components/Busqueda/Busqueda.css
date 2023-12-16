@@ -1,5 +1,6 @@
 .Busqueda {
   max-width: 1200px; 
+  min-width: 360px;;
   margin: 0 auto; 
   display: flex; 
   align-items: center; 
@@ -7,5 +8,4 @@
   background-color: var(--color-blanco);
   border-radius: 25px; 
   padding: 5px; 
- 
 }

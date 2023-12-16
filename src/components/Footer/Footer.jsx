@@ -28,7 +28,7 @@ function Footer() {
           href="https://github.com/ReacTV23/ReacTV"
           target="_blank"
           rel="noopener noreferrer">
-            <Boton Contenido={GitHubIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} height={'6rem'}/>
+            <Boton Contenido={GitHubIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} padding={0} height={'6rem'}/>
         </a>
       </div>
 

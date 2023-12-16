@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import IntroVideo from "./components/IntroVideo/IntroVideo.jsx";
+import IntroVideo from "./components/IntroVideo/IntroVideo2.jsx";
 import Home from "./pages/Home/Home";
-import { AuthProvider } from "./context/authContext";
+import { AuthProvider } from "./context/authContext2";
 import { MediaTypeProvider } from "./context/mediaTypeProvider.js";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRuote/ProtectedRoute";
@@ -19,9 +19,8 @@ import Error404 from "./pages/Error404/Error404.jsx";//pagina error 404
 import "./App.css";
 
 function App() {
-    // Obtener el valor de 'showVideo' del almacenamiento local
     const showVideoFromLocalStorage = localStorage.getItem("showVideo");
-    const [showVideo, setShowVideo] = useState(showVideoFromLocalStorage !== "false");
+    console.log(showVideoFromLocalStorage);
   
     // estado ancho de ventana (renderizado responsive)
     const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
@@ -41,20 +40,11 @@ function App() {
       };
     }, []); // El array vacío asegura que el efecto se ejecute solo una vez al montar el componente
   
-    // función manejo de video
-    const handleVideoEnd = () => {
-      console.log("Video ended");
-      setShowVideo(false);
-      // Guardar el estado en el almacenamiento local
-      //localStorage.setItem("showVideo", "false");
-    };
-  
-  
     return (
       <>
         <CssBaseline />
-        {showVideo ? (
-          <IntroVideo onVideoEnd={handleVideoEnd} />
+        {showVideoFromLocalStorage === true ? (
+          <IntroVideo />
         ) : (
           <AuthProvider>
             <MediaTypeProvider>
@@ -62,7 +52,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home anchoVentana={anchoVentana} />}/>
                   <Route path="/login" element={<LoginRegistro />} />
-                  <Route path="/home" element={
+                  <Route path="/" element={
                       <ProtectedRoute>
                         <Home anchoVentana={anchoVentana} /> 
                       </ProtectedRoute>

@@ -58,7 +58,8 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
           <div className="contenedor-principal">
             <Boton Contenido={ChevronLeftIcon} 
                     funcion={prevPage} 
-                    colorHover={`${colors.naranja}`}/>
+                    colorHover={`${colors.naranja}`}
+                    fontSize={'5rem'}/>
             <div className="container-carrusel">
               <div className="container-card" id="container-card">
                 {peliculasPagina.map((peli, i) => (
@@ -70,7 +71,8 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
             </div>
             <Boton Contenido={ChevronRightIcon} 
                     funcion={nextPage} 
-                    colorHover={`${colors.naranja}`}/>
+                    colorHover={`${colors.naranja}`}
+                    fontSize={'5rem'}/>
           </div>
         </div>      
         ) : (
