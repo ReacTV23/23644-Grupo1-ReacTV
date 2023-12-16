@@ -7,10 +7,19 @@ import colors from '../../config/config.js';
 import './IntroVideo2.css';
 
 const IntroVideo = () => {
-  const { setShowVideo } = useAuth();
+
   const [skipIntro, setSkipIntro] = useState(false);
   const [showSkipButton, setShowSkipButton] = useState(true);
   const [showPlayButton, setShowPlayButton] = useState(true);
+
+  const {setShowVideo}  = useAuth();
+  const showVideoFromLocalStorage = localStorage.getItem("showVideo");
+  console.log(showVideoFromLocalStorage);
+
+  useEffect(() => {
+    // Establecer el estado después del renderizado inicial
+    setShowVideo(showVideoFromLocalStorage);
+  }, [showVideoFromLocalStorage]);
 
   const videoRef = useRef(null);
 
@@ -60,7 +69,9 @@ const IntroVideo = () => {
   }, [skipIntro]);
 
   const handleSkipIntro = () => {
-    setSkipIntro(true);
+    console.log("Skipping Intro");
+    const player = videojs(videoRef.current);
+      player.pause();
     setShowPlayButton(false); // Oculta el botón "Play Intro" cuando se omite la intro
     setShowSkipButton(false); // Oculta el botón "Omitir Intro" cuando se omite la intro
     handleVideoEnd();

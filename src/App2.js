@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import IntroVideo from "./components/IntroVideo/IntroVideo2.jsx";
 import Home from "./pages/Home/Home";
-import { AuthProvider } from "./context/authContext2";
+import { AuthProvider, useAuth } from "./context/authContext2";
 import { MediaTypeProvider } from "./context/mediaTypeProvider.js";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRuote/ProtectedRoute";
@@ -19,8 +19,9 @@ import Error404 from "./pages/Error404/Error404.jsx";//pagina error 404
 import "./App.css";
 
 function App() {
-    const showVideoFromLocalStorage = localStorage.getItem("showVideo");
-    console.log(showVideoFromLocalStorage);
+  const {showVideo} = useAuth()
+
+    //console.log(showVideo)
   
     // estado ancho de ventana (renderizado responsive)
     const [anchoVentana, setAnchoVentana] = useState(window.innerWidth);
@@ -43,8 +44,8 @@ function App() {
     return (
       <>
         <CssBaseline />
-        {showVideoFromLocalStorage === true ? (
-          <IntroVideo />
+        {showVideo ? (
+          <IntroVideo/>
         ) : (
           <AuthProvider>
             <MediaTypeProvider>
