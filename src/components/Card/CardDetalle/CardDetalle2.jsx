@@ -4,13 +4,14 @@ import PlaylistAddCircleIcon from "@mui/icons-material/PlaylistAddCircle";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import html2canvas from "html2canvas";
-import Swal from "sweetalert2";
-import { TrailerPlayer } from '../../Banner/Banner'
+//import Swal from "sweetalert2";
+import Alert from '../../Alert/Alert';
+import { TrailerPlayer } from '../../Banner/Banner2';
 import "./CardDetalle.css";
 import { db } from "../../../firebase/Firebase";
 import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { useAuth } from '../../../context/authContext2';
-import colors from '../../../config/config.js'
+import colors from '../../../config/config.js';
 
 const CardDetalle = ({ movie, trailer }) => {
     const info = movie;
@@ -24,28 +25,55 @@ const CardDetalle = ({ movie, trailer }) => {
     const { user } = useAuth();
     const [userEmail, setUserEmail] = useState(null);
 
+    const [showAlert, setShowAlert] = useState(false);  // Nuevo estado para controlar la visibilidad del Alert
+    const [alertConfig, setAlertConfig] = useState(null);
+
     //estado que maneja la visibilidad del trailer
     const [showTrailer, setShowTrailer] = useState(false);
 
     //funcion para descarga de card
     const downloadAsImage = async () => {
-        const confirmDownload = await Swal.fire({
+        setShowAlert(true);
+        setAlertConfig({
             title: '¿Quieres descargar este poster?',
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: 'Sí, descargar',
             cancelButtonText: 'Cancelar',
-        });
+        })
 
-        if (confirmDownload.isConfirmed) {
+        const result = await new Promise((resolve) => {
+            setAlertConfig((prevConfig) => ({
+                ...prevConfig,
+                onConfirm: () => resolve(true),
+                onCancel: () => resolve(false),
+            }));
+        });
+    
+        setShowAlert(false);
+
+        if (result) {
             html2canvas(cardRef.current, { useCORS: true }).then((canvas) => {
             const link = document.createElement("a");
             link.href = canvas.toDataURL("image/png");
             link.download = "cardDetalle.png";
             link.click();
+            setShowAlert(true);
+            setAlertConfig({
+                title: 'Descarga finalizada',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            });
             });
         } else {
-            console.log("Descarga cancelada");
+            setShowAlert(true);
+            setAlertConfig({
+                title: 'Descarga cancelada',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            });
         }
     };
 
@@ -54,19 +82,25 @@ const CardDetalle = ({ movie, trailer }) => {
         if (querySnapshot.size === 0) {
             // No hay documentos con el mismo ID: agregarlo
             await addDoc(route, dataToAdd);
-            Swal.fire({
-                icon: "success",
-                title: "Agregado correctamente",
-                text: "La película/serie se ha agragado a la lista.",
-            });
+            setShowAlert(true);  // Mostrar el Alert después de agregar correctamente
+            setAlertConfig({
+                icon:"success",
+                title:"Agregado correctamente",
+                text:"La película o serie se ha agregado.",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            }) 
             console.log('Agregado correctamente');
         } else {
             // Ya existe un documento con el mismo ID
-            Swal.fire({
-                icon: "info",
-                title: "Id repetido",
-                text: "Lo siento, La película/serie ya está en la lista.",
-            });
+            setShowAlert(true);  // Mostrar el Alert en caso de ID repetido
+            setAlertConfig({
+                icon:"info",
+                title:"Id repetido",
+                text:"Lo siento, La película o serie ya está guardada en la sección correspondiente.",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            })
         }
     }
 
@@ -125,11 +159,14 @@ const CardDetalle = ({ movie, trailer }) => {
         handleRecent();
         } else {
         // Mostrar SweetAlert si no hay trailer
-            Swal.fire({
-                icon: "info",
-                title: "Sin Trailer",
-                text: "Lo siento, no hay trailer disponible para esta película/serie.",
-            });
+            setShowAlert(true); 
+            setAlertConfig({
+                icon:"info",
+                title:"Sin Trailer",
+                text:"Lo siento, no hay trailer disponible para esta película",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            })
         }
     }
 
@@ -244,6 +281,18 @@ const CardDetalle = ({ movie, trailer }) => {
             ) : (
                 <Card/>
             ) }
+            {showAlert && (
+                <Alert
+                    title={alertConfig.title}
+                    text={alertConfig.text}
+                    icon={alertConfig.icon}
+                    showCancelButton={alertConfig.showCancelButton}
+                    confirmButtonText={alertConfig.confirmButtonText}
+                    cancelButtonText={alertConfig.cancelButtonText}
+                    onConfirm={alertConfig.onConfirm}
+                    onCancel= {alertConfig.onCancel}
+                />
+            )}
         </>
     );
 };
