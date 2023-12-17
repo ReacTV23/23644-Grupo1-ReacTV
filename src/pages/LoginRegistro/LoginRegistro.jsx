@@ -1,6 +1,6 @@
 import React from 'react';
 import LayoutForm from '../../layout/LayoutForm/LayoutForm';
-import { Login } from '../../components/Ingreso/Login/Login';
+import { Login } from '../../components/Ingreso/Login/Login2';
 import { Register } from '../../components/Ingreso/Register/Register';
 import Boton from '../../components/Boton/Boton';
 import './LoginRegistro.css';
