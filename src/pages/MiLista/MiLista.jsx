@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario';
-import RenderItemsContainer from '../../components/RenderItems/RenderItemsContainer/RenderItemsContainer'
-import { useAuth } from '../../context/authContext.js';
+import RenderItemsContainer from '../../components/RenderItems/RenderItemsContainer/RenderItemsContainer2'
+import { useAuth } from '../../context/authContext2.js';
 
 const MiLista = () => {
   const { user } = useAuth();
@@ -20,7 +20,6 @@ const MiLista = () => {
   useEffect(() => {
     fetchData();
   }, [user]);
-
 
   return (
     <LayoutSecundario textoBoton={'mi lista'}>

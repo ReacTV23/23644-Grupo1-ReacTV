@@ -53,7 +53,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home anchoVentana={anchoVentana} />}/>
                   <Route path="/login" element={<LoginRegistro />} />
-                  <Route path="/" element={
+                  <Route path="/home" element={
                       <ProtectedRoute>
                         <Home anchoVentana={anchoVentana} /> 
                       </ProtectedRoute>

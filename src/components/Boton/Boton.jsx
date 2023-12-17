@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
-const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize = '2.2rem', margin='2rem', width='36rem', height='5rem', padding='1rem', backgroundColor, backgroundHover,disabled }) => {
+const Boton = ({Contenido, texto, funcion, color, colorHover, fontSize = '2.2rem', margin='2rem', width='36rem', height='5rem', padding='1rem', backgroundColor, backgroundHover, disabled }) => {
   if(Contenido) {
     const Icono = Contenido;
     return (

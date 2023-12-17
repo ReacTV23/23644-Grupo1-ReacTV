@@ -19,8 +19,8 @@ const RenderItems = ({  items,
         <div className='contenedor-renderItems' >
             <Titulo texto={`${type}`} />
             <div className='renderItems-items'>
-                {items.map((item) => (
-                    <div className='contenedor-item' key={item.id}>
+                {items.map((item, index) => (
+                    <div className='contenedor-item' key={`${item.id}_${index}`}>
                         <div className='contenedor-card'>
                             <CardImg peli={item} width={200} height={300} funcion={() => navigate(`/card/movie/${item.id}`)} />
                         </div>

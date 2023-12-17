@@ -18,10 +18,18 @@
     font-size: 1.5rem;
 }
 
+.Contenedor:hover .Nombre {
+    font-weight: 600;
+}
+
 .GrupoBotones{
     width: 20%;
     display: flex;
     justify-content: flex-end;
+}
+
+.Contenedor .IconoBoton .Icono {
+    color: var(--color-negro);
 }
 
 .Contenedor:hover .IconoBoton .Icono {

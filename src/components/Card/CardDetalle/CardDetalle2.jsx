@@ -9,7 +9,7 @@ import { TrailerPlayer } from '../../Banner/Banner'
 import "./CardDetalle.css";
 import { db } from "../../../firebase/Firebase";
 import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
-import { useAuth } from '../../../context/authContext';
+import { useAuth } from '../../../context/authContext2';
 import colors from '../../../config/config.js'
 
 const CardDetalle = ({ movie, trailer }) => {
