@@ -27,9 +27,10 @@ const RenderItems = ({  items,
                         <div className='contenedor-boton-card'>
                             <Boton
                                 Contenido={DeleteForeverIcon}
-                                fontSize={'4rem'}
-                                height={'4rem'}
-                                padding={'0.5rem'}
+                                fontSize={'2.5rem'}
+                                height={'2rem'}
+                                margin={'0.5rem'}
+                                padding={'1rem'}
                                 color={`${colors.blanco}`}
                                 backgroundColor={`${colors.azul}`}
                                 backgroundHover={`${colors.naranja}`}
@@ -46,7 +47,7 @@ const RenderItems = ({  items,
                             texto={page}
                             funcion={() => paginate(page)}
                             key={page}
-                            width={'3rem'}
+                            width={'1rem'}
                             color={`${colors.blanco}`}
                             backgroundColor={`${colors.azul}`}
                             backgroundHover={`${colors.naranja}`}/>

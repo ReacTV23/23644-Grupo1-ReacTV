@@ -8,6 +8,7 @@ import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
+import { useResponsive } from '../../context/responsiveContext.js';
 import 'react-calendar/dist/Calendar.css';
 import colors from '../../config/config.js'
 import './Calendar.css';
@@ -23,6 +24,9 @@ const WritableCalendar = ({ onInfoChange }) => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [alertConfig, setAlertConfig] = useState(null);
+
+  const { anchoVentana } = useResponsive();
+  console.log('anchoVentanaCalendar', anchoVentana)
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -210,7 +214,8 @@ const WritableCalendar = ({ onInfoChange }) => {
             <div className="poster_calendario">
               <div className='contenedor-poster'>
                 <CardImg  peli={upcomingMovies.find((movie) => movie.id === selectedMovieId)} 
-                          funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))} />
+                          funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))}
+                          anchoVentana={anchoVentana}/>
               </div>
               <div className='contenedor-boton-poster'>
                 <Boton

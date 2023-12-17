@@ -96,7 +96,7 @@ const Navbar = ({onLoginButtonClick}) => {
             <img
               src="/assets/img/logo-circular-2.png"
               alt="Logo"
-              style={{ height: '6rem', marginRight: '1.6rem', cursor: 'pointer' }}
+              style={{ height: '5.5rem', marginRight: '1.6rem', cursor: 'pointer' }}
             />
           ) : (
           <>
@@ -116,11 +116,11 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección del botón de inicio de sesión (a la derecha) */}
         { isAuth ? ( 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={NoAccountsIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} padding={0} funcion={handleLogoutClick}/>
+            <Boton Contenido={NoAccountsIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={handleLogoutClick}/>
           </Link>
         ) : (
           <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={AccountCircle} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} padding={0} funcion={handleLoginClick}/>
+            <Boton Contenido={AccountCircle} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={handleLoginClick}/>
           </Link>
         )}
       </Toolbar>

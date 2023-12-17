@@ -14,7 +14,7 @@ const IntroVideo = () => {
 
   const {setShowVideo}  = useAuth();
   const showVideoFromLocalStorage = localStorage.getItem("showVideo");
-  console.log(showVideoFromLocalStorage);
+  console.log('showVideoFromLocalStorage', showVideoFromLocalStorage);
 
   useEffect(() => {
     // Establecer el estado después del renderizado inicial

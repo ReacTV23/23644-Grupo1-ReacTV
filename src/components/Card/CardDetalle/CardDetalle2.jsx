@@ -28,6 +28,8 @@ const CardDetalle = ({ movie, trailer }) => {
     const [showAlert, setShowAlert] = useState(false);  // Nuevo estado para controlar la visibilidad del Alert
     const [alertConfig, setAlertConfig] = useState(null);
 
+    
+
     //estado que maneja la visibilidad del trailer
     const [showTrailer, setShowTrailer] = useState(false);
 
