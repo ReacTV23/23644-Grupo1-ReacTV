@@ -21,7 +21,6 @@ const MiLista = () => {
     fetchData();
   }, [user]);
 
-
   return (
     <LayoutSecundario textoBoton={'mi lista'}>
       {userEmail && (

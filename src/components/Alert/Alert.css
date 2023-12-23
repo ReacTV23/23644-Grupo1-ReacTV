@@ -7,16 +7,18 @@
     text-transform: uppercase;
 }
 
-.content-alert{
-    font-size: 1.5rem;
+.content-alert {
+    font-size: 1.5rem !important;
 }
 
 .confirm-button-alert{
     padding: 1rem;
-    background-color: var(--color-azul);
+    font-size: 1.5rem !important;
+    background-color: var(--color-azul) !important;
 }
 
 .cancel-button-alert{
     padding: 1rem;
-    background-color: var(--color-naranja);
+    font-size: 1.5rem !important;
+    background-color: var(--color-naranja) !important;
 }

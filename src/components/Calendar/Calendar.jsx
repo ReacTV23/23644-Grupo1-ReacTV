@@ -2,14 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import html2canvas from 'html2canvas';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-//import Alert from '../Alert/Alert'
-//import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+import Alert from '../Alert/Alert'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CardImg from '../Card/CardImg/CardImg';
 import Boton from '../Boton/Boton';
-import Swal from "sweetalert2";
 import { getUpcomingMovies } from '../../services/tmdbService.js';
 import { useNavigate } from 'react-router-dom';
+import { useResponsive } from '../../context/responsiveContext.js';
 import 'react-calendar/dist/Calendar.css';
 import colors from '../../config/config.js'
 import './Calendar.css';
@@ -22,7 +21,12 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const calendarContainerRef = useRef(null);
   const [showPoster, setShowPoster] = useState(false);
-  //const [showAlert, setShowAlert] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertConfig, setAlertConfig] = useState(null);
+
+  const anchoVentana  = useResponsive();
+  console.log('anchoVentanaCalendar', anchoVentana)
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;
 
@@ -72,70 +76,102 @@ const WritableCalendar = ({ onInfoChange }) => {
     return imageArray.reduce((map, item) => ({ ...map, [item.id]: item.imageDataUrl }), {});
   };
 
-  const downloadCalendar = async () => {
-    // setShowAlert(true);
-    const confirmDownload = await Swal.fire({
-      title: '¿Quieres descargar este poster?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, descargar',
-      cancelButtonText: 'Cancelar',
-  });
-    try {
-      const calendarContainer = calendarContainerRef.current;
-      
+    const downloadCalendarConfirmation = async () => {
+      setShowAlert(false);
+      try {
+        const calendarContainer = calendarContainerRef.current;
         if (!calendarContainer) {
-          console.error('Calendario no encontrado');
-          return;
+          throw new Error('Calendario no encontrado');
         }
-
-      const images = await downloadImagesLocally();
-      const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: false });
-      const context = canvas.getContext('2d');
-
-      upcomingMovies.forEach((movie) => {
-        const imageDataUrl = images[movie.id];
-        const movieDate = new Date(movie.release_date);
-        const dateString = movieDate.toISOString().split('T')[0];
-        const dateCell = calendarContainer.querySelector(`.react-calendar__tile[data-date="${dateString}"]`);
-
-        if (dateCell) {
-          const img = new Image();
-          img.src = imageDataUrl;
-          context.drawImage(img, 0, 0, img.width, img.height);
-        }
-      });
-
-      if (confirmDownload.isConfirmed) {
-        html2canvas(calendarContainerRef.current, { useCORS: true }).then((canvas) => {
+  
+        const images = await downloadImagesLocally();
+        const canvas = await html2canvas(calendarContainer, { scale: 1, allowTaint: true, useCORS: true });
+        const context = canvas.getContext('2d');
+  
+        upcomingMovies.forEach((movie) => {
+          const imageDataUrl = images[movie.id];
+          const movieDate = new Date(movie.release_date);
+          const dateString = movieDate.toISOString().split('T')[0];
+          const dateCell = calendarContainer.querySelector(`.react-calendar__tile[data-date="${dateString}"]`);
+  
+          if (dateCell) {
+            const img = new Image();
+            img.src = imageDataUrl;
+            context.drawImage(img, 0, 0, img.width, img.height);
+          }
+        });
+  
+        if (alertConfig && alertConfig.isConfirmed) {
           const link = document.createElement('a');
           link.href = canvas.toDataURL('image/png');
-          link.download = 'cardDetalle.png';
+          link.download = 'calendario.png';
           link.click();
-        })
-      } else {
-          Swal.fire({
+          setShowAlert(true);
+          setAlertConfig({
+            title: 'Descarga finalizada',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Ok',
+          });
+        } else {
+          setShowAlert(true);
+          setAlertConfig({
             title: 'Descarga cancelada',
-            icon: 'info',
+            icon: 'error',
+            showCancelButton: false,
+            confirmButtonText: 'Ok',
+          });
+        }
+  
+        const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
+        const a = document.createElement('a');
+        a.href = imageDataUrl;
+        a.download = 'full_calendar.jpg';
+        document.body.appendChild(a);
+        a.click();
+        setShowAlert(true);
+          setAlertConfig({
+            title: 'Descarga finalizada',
+            icon: 'success',
+            showCancelButton: false,
+            confirmButtonText: 'Ok',
+          });
+      } catch (error) {
+        console.error('Error capturing calendar:', error);
+        setShowAlert(true);
+        setAlertConfig({
+          title: error.message || 'Error al descargar el calendario',
+          icon: 'error',
+          showCancelButton: false,
+          confirmButtonText: 'Ok',
         });
       }
-
-      const imageDataUrl = canvas.toDataURL('image/jpeg', 1.0);
-      const a = document.createElement('a');
-      a.href = imageDataUrl;
-      a.download = 'full_calendar.jpg';
-      document.body.appendChild(a);
-      a.click();
-
-    } catch (error) {
-      console.error('Error capturing calendar:', error);
-    }
-    
-    // } finally {
-    //   setShowAlert(false);
-    // };
-  }
-
+    };
+  
+    const downloadCalendarCancel = () => {
+      setShowAlert(true);
+      setAlertConfig({
+        title: 'Descarga cancelada',
+        icon: 'error',
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+      });
+    };
+  
+    const downloadCalendar = () => {
+      setShowAlert(true);
+      setAlertConfig({
+        title: 'Descargar Calendario',
+        text: '¿Deseas descargar el calendario?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, descargar',
+        cancelButtonText: 'Cancelar',
+        onConfirm: downloadCalendarConfirmation,
+        onCancel: downloadCalendarCancel,
+      });
+    };
+  
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toISOString().split('T')[0];
@@ -178,7 +214,8 @@ const WritableCalendar = ({ onInfoChange }) => {
             <div className="poster_calendario">
               <div className='contenedor-poster'>
                 <CardImg  peli={upcomingMovies.find((movie) => movie.id === selectedMovieId)} 
-                        funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))} />
+                          funcion={() => handleClick(upcomingMovies.find((movie) => movie.id === selectedMovieId))}
+                          anchoVentana={anchoVentana}/>
               </div>
               <div className='contenedor-boton-poster'>
                 <Boton
@@ -199,29 +236,24 @@ const WritableCalendar = ({ onInfoChange }) => {
         <Boton 
           Contenido={DownloadForOfflineIcon} 
           color={`${colors.azul}`} 
+          padding={'0.5rem'}
           colorHover={`${colors.naranja}`} 
           backgroundColor={`${colors.blanco}`}
           fontSize={'6rem'} 
           funcion={downloadCalendar} />
-{/* 
+
           {showAlert && (
             <Alert
-              title="Descargar Calendario"
-              text="¿Deseas descargar el calendario?"
-              icon="info"
-              confirmButtonText="Sí"
-              cancelButtonText="Cancelar"
-              onConfirm={() => {downloadCalendar()}}
-              onCancel={() => setShowAlert(false)}/>
-          )} */}
-
-
-        {/* <Boton 
-          Contenido={EventAvailableRoundedIcon} 
-          color={`${colors.azul}`} 
-          colorHover={`${colors.naranja}`} 
-          backgroundColor={`${colors.blanco}`}
-          fontSize={'6rem'} /> */}
+            title={alertConfig.title}
+            text={alertConfig.text}
+            icon={alertConfig.icon}
+            showCancelButton={alertConfig.showCancelButton}
+            confirmButtonText={alertConfig.confirmButtonText}
+            cancelButtonText={alertConfig.cancelButtonText}
+            onConfirm={alertConfig.onConfirm}
+            onCancel= {alertConfig.onCancel}
+            />
+          )}
       </div>
     </div>
   );

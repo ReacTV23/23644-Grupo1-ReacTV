@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { SearchProvider } from './context/searchContext'; 
+import { AuthProvider } from "./context/authContext";
 import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import html2canvas from 'html2canvas';
@@ -14,8 +15,10 @@ import html2canvas from 'html2canvas';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <AuthProvider>
     <SearchProvider>
       <App />
     </SearchProvider>
+  </AuthProvider>
 );
 

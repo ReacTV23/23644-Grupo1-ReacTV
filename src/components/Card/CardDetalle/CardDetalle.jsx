@@ -4,21 +4,16 @@ import PlaylistAddCircleIcon from "@mui/icons-material/PlaylistAddCircle";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import html2canvas from "html2canvas";
-import Swal from "sweetalert2";
-import { TrailerPlayer } from '../../Banner/Banner'
-import "./CardDetalle.css";
+import Alert from '../../Alert/Alert';
+import { TrailerPlayer } from '../../Banner/Banner';
 import { db } from "../../../firebase/Firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
 import { useAuth } from '../../../context/authContext';
-import colors from '../../../config/config.js'
+import colors from '../../../config/config.js';
+import "./CardDetalle.css";
 
 const CardDetalle = ({ movie, trailer }) => {
     const info = movie;
-
-    console.log(info)
-    console.log(info.genres[0].name)
-
-    //const isMovie = window.location.pathname.includes("/movie/");
 
     //console.log('cardDetalle:', trailer.key)
     //console.log("CardDetalle", info);
@@ -29,31 +24,92 @@ const CardDetalle = ({ movie, trailer }) => {
     const { user } = useAuth();
     const [userEmail, setUserEmail] = useState(null);
 
+    const [showAlert, setShowAlert] = useState(false);  // Nuevo estado para controlar la visibilidad del Alert
+    const [alertConfig, setAlertConfig] = useState(null);
+
+    
+
     //estado que maneja la visibilidad del trailer
     const [showTrailer, setShowTrailer] = useState(false);
-    // estado para almacenar id 
-    //const [movieInfo, setMovieInfo] = useState(null);
 
     //funcion para descarga de card
-    const downloadAsImage = () => {
-        html2canvas(cardRef.current, { useCORS: true }).then((canvas) => {
-        const link = document.createElement("a");
-        link.href = canvas.toDataURL("image/png");
-        link.download = "cardDetalle.png";
-        link.click();
+    const downloadAsImage = async () => {
+        setShowAlert(true);
+        setAlertConfig({
+            title: '¿Quieres descargar este poster?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, descargar',
+            cancelButtonText: 'Cancelar',
+        })
+
+        const result = await new Promise((resolve) => {
+            setAlertConfig((prevConfig) => ({
+                ...prevConfig,
+                onConfirm: () => resolve(true),
+                onCancel: () => resolve(false),
+            }));
         });
+    
+        setShowAlert(false);
+
+        if (result) {
+            html2canvas(cardRef.current, { useCORS: true }).then((canvas) => {
+            const link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "cardDetalle.png";
+            link.click();
+            setShowAlert(true);
+            setAlertConfig({
+                title: 'Descarga finalizada',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            });
+            });
+        } else {
+            setShowAlert(true);
+            setAlertConfig({
+                title: 'Descarga cancelada',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            });
+        }
     };
+
+    //funcion para agregar a lista o recientes
+    const handleListOrRecent = async (route, dataToAdd, querySnapshot) => {
+        if (querySnapshot.size === 0) {
+            // No hay documentos con el mismo ID: agregarlo
+            await addDoc(route, dataToAdd);
+            setShowAlert(true);  // Mostrar el Alert después de agregar correctamente
+            setAlertConfig({
+                icon:"success",
+                title:"Agregado correctamente",
+                text:"La película o serie se ha agregado.",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            }) 
+            console.log('Agregado correctamente');
+        } else {
+            // Ya existe un documento con el mismo ID
+            setShowAlert(true);  // Mostrar el Alert en caso de ID repetido
+            setAlertConfig({
+                icon:"info",
+                title:"Id repetido",
+                text:"Lo siento, La película o serie ya está guardada en la sección correspondiente.",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            })
+        }
+    }
 
     //funcion para agregar a lista
     const handleList = async () => {
         const userEmailValue = user.email;
         setUserEmail(userEmailValue);
-        // console.log(userEmailValue);
-        // console.log(info);
-        // console.log(info.id);
-        // console.log(info.original_title);
-        // console.log(info.original_name);
-    
+
         const route = collection(db, `Usuarios/${userEmailValue}/ListaPeliculas`);
         const route2 = collection(db, `Usuarios/${userEmailValue}/ListaSeries`);
 
@@ -64,24 +120,18 @@ const CardDetalle = ({ movie, trailer }) => {
 
         if (info.original_title) {
             dataToAdd.nombre = info.original_title;
-            await addDoc(route, dataToAdd);
+            await handleListOrRecent(route, dataToAdd, await getDocs(query(route, where("id", "==", info.id))));
         } else {
             dataToAdd.nombre = info.original_name;
-            await addDoc(route2, dataToAdd);
+            await handleListOrRecent(route2, dataToAdd, await getDocs(query(route2, where("id", "==", info.id))));
         }
-        console.log('agregado a "Mi Lista"');
     }
 
-  //funcion para agregar a recientes
+    //funcion para agregar a recientes
     const handleRecent = async () => {
         const userEmailValue = user.email;
         setUserEmail(userEmailValue);
-        // console.log(userEmailValue);
-        // console.log(info);
-        // console.log(info.id);
-        // console.log(info.original_title);
-        // console.log(info.original_name);
-        
+
         const route3 = collection(db, `Usuarios/${userEmailValue}/RecentPeliculas`);
         const route4 = collection(db, `Usuarios/${userEmailValue}/RecentSeries`);
 
@@ -92,13 +142,12 @@ const CardDetalle = ({ movie, trailer }) => {
 
         if (info.original_title) {
             dataToAdd2.nombre = info.original_title;
-            await addDoc(route3, dataToAdd2);
+            await handleListOrRecent(route3, dataToAdd2, await getDocs(query(route3, where("id", "==", info.id))));
         } else {
             dataToAdd2.nombre = info.original_name;
-            await addDoc(route4, dataToAdd2);
+            await handleListOrRecent(route4, dataToAdd2, await getDocs(query(route4, where("id", "==", info.id))));
         }
-        console.log('agregado a recientes');
-    } 
+    }
 
     //funcion para reproducir el trailer
     const playTrailer = () => {
@@ -110,12 +159,15 @@ const CardDetalle = ({ movie, trailer }) => {
         
         handleRecent();
         } else {
-      // Mostrar SweetAlert si no hay trailer
-            Swal.fire({
-                icon: "info",
-                title: "Sin Trailer",
-                text: "Lo siento, no hay trailer disponible para esta película/serie.",
-            });
+        // Mostrar SweetAlert si no hay trailer
+            setShowAlert(true); 
+            setAlertConfig({
+                icon:"info",
+                title:"Sin Trailer",
+                text:"Lo siento, no hay trailer disponible para esta película",
+                confirmButtonText:"OK",
+                showCancelButton:false,
+            })
         }
     }
 
@@ -230,6 +282,18 @@ const CardDetalle = ({ movie, trailer }) => {
             ) : (
                 <Card/>
             ) }
+            {showAlert && (
+                <Alert
+                    title={alertConfig.title}
+                    text={alertConfig.text}
+                    icon={alertConfig.icon}
+                    showCancelButton={alertConfig.showCancelButton}
+                    confirmButtonText={alertConfig.confirmButtonText}
+                    cancelButtonText={alertConfig.cancelButtonText}
+                    onConfirm={alertConfig.onConfirm}
+                    onCancel= {alertConfig.onCancel}
+                />
+            )}
         </>
     );
 };

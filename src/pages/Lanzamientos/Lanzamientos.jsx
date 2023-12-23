@@ -4,9 +4,9 @@ import Calendar from '../../components/Calendar/Calendar'
 
 const Lanzamientos = () => {
   return (
-    <LayoutSecundario textoBoton={'lanzamientos'}>
-        <Calendar />
-    </LayoutSecundario>
+      <LayoutSecundario textoBoton={'lanzamientos'}>
+          <Calendar/>
+      </LayoutSecundario>
   )
 }
 

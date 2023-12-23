@@ -3,8 +3,9 @@ import LayoutForm from '../../layout/LayoutForm/LayoutForm';
 import { Login } from '../../components/Ingreso/Login/Login';
 import { Register } from '../../components/Ingreso/Register/Register';
 import Boton from '../../components/Boton/Boton';
-import './LoginRegistro.css';
 import colors from '../../config/config.js';
+import './LoginRegistro.css';
+
 
 const LoginRegistro = () => {
   return (

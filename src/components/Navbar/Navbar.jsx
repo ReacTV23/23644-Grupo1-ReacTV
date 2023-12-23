@@ -12,7 +12,7 @@ import { useSearch } from '../../context/searchContext';  // Importa el hook use
 import colors from '../../config/config.js'
 
 const Navbar = ({onLoginButtonClick}) => {
-  const { isAuth, setIsAuth } = useAuth();  // Obtiene el estado de autenticación del contexto
+  const { isAuth, setIsAuth,  setShowVideo} = useAuth();  // Obtiene el estado de autenticación del contexto
   const { searchQuery, updateSearchQuery } = useSearch(); // Obtiene el estado y las funciones de búsqueda del contexto
   const navigate = useNavigate();
 
@@ -44,6 +44,11 @@ const Navbar = ({onLoginButtonClick}) => {
   const handleLogoutClick = () => {
     // Cambiar el estado de autenticación a falso
     setIsAuth(false);
+    localStorage.setItem("showVideo", "true");
+
+    // Obtener el valor de 'showVideo' del almacenamiento local
+    const showVideoFromLocalStorage = localStorage.getItem("showVideo");
+    setShowVideo(showVideoFromLocalStorage);
     console.log('isAuthLogout:',isAuth)
   };
 
@@ -91,12 +96,12 @@ const Navbar = ({onLoginButtonClick}) => {
             <img
               src="/assets/img/logo-circular-2.png"
               alt="Logo"
-              style={{ height: '6rem', marginRight: '1.6rem', cursor: 'pointer' }}
+              style={{ height: '5.5rem', marginRight: '1.6rem', cursor: 'pointer' }}
             />
           ) : (
           <>
-            <Boton Contenido={HomeIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} funcion={navigateHome} />
-            <Boton Contenido={ArrowBackIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'}  funcion={Volver}/>
+            <Boton Contenido={HomeIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={navigateHome} />
+            <Boton Contenido={ArrowBackIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={Volver}/>
           </>
           )}
         </Typography>
@@ -111,11 +116,11 @@ const Navbar = ({onLoginButtonClick}) => {
         {/* Sección del botón de inicio de sesión (a la derecha) */}
         { isAuth ? ( 
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={NoAccountsIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={handleLogoutClick}/>
+            <Boton Contenido={NoAccountsIcon} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={handleLogoutClick}/>
           </Link>
         ) : (
           <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Boton Contenido={AccountCircle} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'6rem'} funcion={handleLoginClick}/>
+            <Boton Contenido={AccountCircle} color={`${colors.blanco}`} colorHover={`${colors.naranja}`} fontSize={'5rem'} padding={0} funcion={handleLoginClick}/>
           </Link>
         )}
       </Toolbar>

@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 60px);
+    width:100%;
     padding: 1rem 0;
 }
 

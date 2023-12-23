@@ -58,7 +58,7 @@ import colors from '../../../config/config.js'
       <>
         <Banner/>
         <ButtonGroup className='GrupoBotonMobile'>
-        <Boton texto={'recientes'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={() =>handleButtonClick('/recientes')}/>
+          <Boton texto={'recientes'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={() =>handleButtonClick('/recientes')}/>
           <Boton texto={'categorias'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={() => handleButtonClick('/categorias')} />
           <Boton texto={'generos'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={() => handleButtonClick('/generos')} />
           <Boton texto={'mi lista'} backgroundColor={`${colors.azul}`} backgroundHover={`${colors.naranja}`} funcion={() => handleButtonClick('/milista')} />
