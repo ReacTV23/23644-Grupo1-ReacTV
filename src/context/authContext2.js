@@ -55,6 +55,12 @@ export function AuthProvider({ children }) {
         return () => unsubscribe();
     }, []);
 
+    useEffect(() => {
+        // Almacenar el valor actual de 'showVideo' en el localStorage
+        localStorage.setItem("showVideo", showVideo.toString());
+    }, [showVideo]);
+
+
     const value = {
         isAuth,
         setIsAuth,
