@@ -1,6 +1,6 @@
 import React from 'react'
 import LayoutSecundario from '../../layout/LayoutSecundario/LayoutSecundario'
-import Calendar from '../../components/Calendar/Calendar2'
+import Calendar from '../../components/Calendar/Calendar'
 
 const Lanzamientos = () => {
   return (

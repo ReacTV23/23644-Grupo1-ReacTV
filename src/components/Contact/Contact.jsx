@@ -1,8 +1,8 @@
+import { useState } from "react";
 import emailjs from "emailjs-com";
-import "./Contact.css";
 import Titulo from '../Titulo/Titulo';
 import BotonForm from '../Boton/BotonForm/BotonForm';
-import { useState } from "react";
+import "./Contact.css";
 
 const Contact = () => {
     const [formSubmit, setFormSubmit] = useState(false)

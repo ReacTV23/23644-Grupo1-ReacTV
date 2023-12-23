@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import Boton from '../../../components/Boton/Boton';
-import Banner from '../../../components/Banner/Banner2'
+import Banner from '../../../components/Banner/Banner'
 import {useNavigate} from 'react-router'
 import './HomeMobile.css';
 import colors from '../../../config/config.js'

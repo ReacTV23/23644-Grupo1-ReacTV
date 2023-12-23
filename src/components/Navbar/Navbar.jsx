@@ -7,7 +7,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useAuth } from '../../context/authContext2';  // Importa el hook useAuth
+import { useAuth } from '../../context/authContext';  // Importa el hook useAuth
 import { useSearch } from '../../context/searchContext';  // Importa el hook useSearch
 import colors from '../../config/config.js'
 

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { SearchProvider } from './context/searchContext'; 
-import { AuthProvider } from "./context/authContext2";
-import App from './App2'
+import { AuthProvider } from "./context/authContext";
+import App from './App'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import html2canvas from 'html2canvas';
 

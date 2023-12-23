@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieById, getTVById, getTrailersById, getTrailersTVById } from "../../services/tmdbService";
 import LayoutForm from '../../layout/LayoutForm/LayoutForm'
-import CardDetalle from '../../components/Card/CardDetalle/CardDetalle2'
+import CardDetalle from '../../components/Card/CardDetalle/CardDetalle'
 
 const CardSinopsis = () => {
   //   Leo el parametro id

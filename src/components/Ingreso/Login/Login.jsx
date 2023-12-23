@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {useAuth} from "../../../context/authContext2";
+import {useAuth} from "../../../context/authContext";
 import {Link, useNavigate} from 'react-router-dom';
-import {Alert} from "../Alerts/Alert";
+import Alert from '../../Alert/Alert'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -13,7 +13,7 @@ export function Login({width}) {
     email: "",
     password: "",
   });
-  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const {login, loginWithGoogle, resetPassword } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -64,7 +64,13 @@ export function Login({width}) {
 
   return (
     <div className='Contenedor-Principal--form'>
-      {error && <Alert message={error} />}
+      {error && 
+        <Alert 
+          text ={error}
+          icon = {'warning'}
+          showCancelButton={false}
+          confirmButtonText={'OK'}
+        />}
       <form onSubmit={handleSubmit}>
         <Container className='Contenedor-form' style={{width:width}}>
           <div className="Contenedor-input">

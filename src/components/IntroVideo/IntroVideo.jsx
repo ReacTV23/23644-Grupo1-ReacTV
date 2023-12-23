@@ -1,15 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useAuth } from "../../context/authContext.js";
 import 'video.js/dist/video-js.css';
 import videojs from 'video.js';
+import Boton from '../Boton/Boton';
+import colors from '../../config/config.js';
 import './IntroVideo.css';
 
-const IntroVideo = ({ onVideoEnd }) => {
+const IntroVideo = () => {
+
   const [skipIntro, setSkipIntro] = useState(false);
   const [showSkipButton, setShowSkipButton] = useState(true);
   const [showPlayButton, setShowPlayButton] = useState(true);
 
+  const {setShowVideo}  = useAuth();
+  const showVideoFromLocalStorage = localStorage.getItem("showVideo");
+  console.log('showVideoFromLocalStorage', showVideoFromLocalStorage);
+
   useEffect(() => {
-    const player = videojs('introVideo', {
+    // Establecer el estado después del renderizado inicial
+    setShowVideo(showVideoFromLocalStorage);
+  }, [showVideoFromLocalStorage]);
+
+  const videoRef = useRef(null);
+
+  // función manejo de video
+  const handleVideoEnd = () => {
+    console.log("Video ended");
+    setShowVideo(false);
+    // Guardar el estado en el almacenamiento local
+    localStorage.setItem("showVideo", "false");
+  };
+
+  useEffect(() => {
+    const player = videojs(videoRef.current, {
       autoplay: true,
       muted: false,
       controls: false,
@@ -29,7 +52,7 @@ const IntroVideo = ({ onVideoEnd }) => {
     player.on('ended', () => {
       if (!skipIntro) {
         setShowPlayButton(false);
-        onVideoEnd();
+        handleVideoEnd();
       }
     });
 
@@ -43,40 +66,52 @@ const IntroVideo = ({ onVideoEnd }) => {
         player.dispose();
       }
     };
-  }, [onVideoEnd, skipIntro]);
+  }, [skipIntro]);
 
   const handleSkipIntro = () => {
-    setSkipIntro(true);
+    console.log("Skipping Intro");
+    const player = videojs(videoRef.current);
+      player.pause();
     setShowPlayButton(false); // Oculta el botón "Play Intro" cuando se omite la intro
     setShowSkipButton(false); // Oculta el botón "Omitir Intro" cuando se omite la intro
-    onVideoEnd();
+    handleVideoEnd();
   };
 
   const handlePlayIntro = () => {
-    const player = videojs('introVideo');
+    const player = videojs(videoRef.current);
     player.play();
     setShowPlayButton(false);
   };
 
   return (
     <div className="intro-video-container">
-      <video id="introVideo" className="video-js vjs-default-skin" />
+      <video ref={videoRef} className="video-js vjs-default-skin" />
       {!skipIntro && showSkipButton && (
-        <button onClick={handleSkipIntro} className="skip-intro-button">
-          Omitir Intro
-        </button>
+        <div className="skip-intro-button">
+          <Boton
+            texto={'Omitir Intro'}
+            width={'5rem'}
+            fontSize={'1.5rem'}
+            funcion={handleSkipIntro}
+            backgroundColor={colors.naranja}
+            backgroundHover={colors.azul}
+          />
+        </div>
       )}
       {!skipIntro && showPlayButton && (
-        <button onClick={handlePlayIntro} className="play-intro-button">
-          Play Intro
-        </button>
+        <div className="play-intro-button">
+          <Boton
+            texto={'Play Intro'}
+            width={'5rem'}
+            fontSize={'1.5rem'}
+            funcion={handlePlayIntro}
+            backgroundColor={colors.naranja}
+            backgroundHover={colors.azul}
+          />
+        </div>
       )}
     </div>
   );
 };
 
 export default IntroVideo;
-
-
-
-

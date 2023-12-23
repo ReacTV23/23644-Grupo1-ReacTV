@@ -1,12 +1,12 @@
 import {useState} from "react";
-import {useAuth} from "../../../context/authContext2";
+import {useAuth} from "../../../context/authContext";
 import {Link, useNavigate} from 'react-router-dom';
-import { Alert } from "../Alerts/Alert";
+import Alert from '../../Alert/Alert';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import BotonForm from '../../Boton/BotonForm/BotonForm'
-import '../Ingreso.css'
+import BotonForm from '../../Boton/BotonForm/BotonForm';
+import '../Ingreso.css';
 
 export function Register({width}) {
   const [user, setUser] = useState({
@@ -42,7 +42,13 @@ export function Register({width}) {
 
   return (
     <div className='Contenedor-Principal--form'>
-      {error && <Alert message={error} />}
+    {error && 
+        <Alert 
+          text ={error}
+          icon = {'warning'}
+          showCancelButton={false}
+          confirmButtonText={'OK'}
+        />}
       <form onSubmit={handleSubmit}>
         <Container className='Contenedor-form'style={{ width:width}}>
           <div className='contenedor-input'>
