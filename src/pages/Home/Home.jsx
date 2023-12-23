@@ -7,7 +7,8 @@ import { useResponsive } from '../../context/responsiveContext.js'
 
 const Home = () => {
   const { isAuth } = useAuth();  // Obtiene el estado de autenticación del contexto
-  const { anchoVentana } =  useResponsive();
+  const anchoVentana =  useResponsive();
+  console.log('anchoVentanaHome', anchoVentana)
 
   const renderDeskoptContent = () => {
     if (anchoVentana > 768) {

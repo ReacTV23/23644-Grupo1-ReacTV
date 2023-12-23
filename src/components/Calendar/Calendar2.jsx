@@ -25,7 +25,7 @@ const WritableCalendar = ({ onInfoChange }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertConfig, setAlertConfig] = useState(null);
 
-  const { anchoVentana } = useResponsive();
+  const anchoVentana  = useResponsive();
   console.log('anchoVentanaCalendar', anchoVentana)
 
   const IMAGE_PATH = process.env.REACT_APP_URL_IMAGE_TMDB;

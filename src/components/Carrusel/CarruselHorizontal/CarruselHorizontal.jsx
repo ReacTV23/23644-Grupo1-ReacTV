@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useResponsive } from '../../../context/responsiveContext.js'
 import Loader from '../../Loader/Loader';
 import Boton from '../../Boton/Boton';
 import CardImg from '../../Card/CardImg/CardImg';
@@ -13,10 +14,21 @@ const Carrusel = ({texto, peliculas, selectMovie}) => {
   const derecha = document.querySelector("#flecha-derecha");
   const izquierda = document.querySelector("#flecha-izquierda");
   const [currentPage, setCurrentPage] = useState(0);
-  const moviesPerPage = 3;
+  const anchoVentana = useResponsive();
+ 
+  const anchoCarruselCard = anchoVentana - 60
+  console.log('anchoCarruselCard', anchoCarruselCard); 
+  const anchoCard = 400;
+  const margenes = 20;
+  const nCards = Math.round(anchoCarruselCard/(anchoCard+margenes))
+  console.log('nCards', nCards);
+
+  const moviesPerPage = nCards;
   const startIndex = currentPage * moviesPerPage;
   const endIndex = startIndex + moviesPerPage;
   const peliculasPagina = peliculas.slice(startIndex, endIndex);
+
+  
   
 
   useEffect(() => {
